@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
-void hashFile(char *source, char *dest) {
+void hashFile(const char *source, const char *dest) {
   if (!source || !dest)
     return;
   char buff[1000];
@@ -12,7 +12,7 @@ void hashFile(char *source, char *dest) {
   system(buff);
 }
 
-char *sha256file(char *filename) {
+char *sha256file(const char *filename) {
   if (!filename)
     return NULL;
   static char template[] = "/tmp/XXXXXX";
@@ -35,7 +35,7 @@ char *sha256file(char *filename) {
   return sha256;
 }
 
-void removeFile(char *filename) {
+void removeFile(const char *filename) {
   if (!filename)
     return;
   char buff[1000];

@@ -7,7 +7,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-List **listdir(char *rootDir) {
+List **listdir(const char *rootDir) {
   struct dirent *ep = NULL;
   List **list = initList();
   DIR *dp = opendir(rootDir);
@@ -23,7 +23,7 @@ List **listdir(char *rootDir) {
   return list;
 }
 
-int fileExists(char *file) {
+int fileExists(const char *file) {
   List **listDirCurrent = listdir(".");
   if (!listDirCurrent)
     return 0;
@@ -32,7 +32,7 @@ int fileExists(char *file) {
   return answer;
 }
 
-void cp(char *to, char *from) {
+void cp(const char *to, const char *from) {
   if (!to || !from)
     return;
   if (!fileExists(from)) {
@@ -53,7 +53,7 @@ void cp(char *to, char *from) {
   fclose(fTo);
 }
 
-char *hashToPath(char *hash) {
+char *hashToPath(const char *hash) {
   int strlenHash = strlen(hash);
   char *dir = malloc((strlenHash + 1) * sizeof(char));
   dir[0] = hash[0];
@@ -66,7 +66,7 @@ char *hashToPath(char *hash) {
   return dir;
 }
 
-void blobFile(char *filename) {
+void blobFile(const char *filename) {
   if (!filename)
     return;
   if (!fileExists(filename)) {
@@ -84,4 +84,27 @@ void blobFile(char *filename) {
   free(path);
   free(dir);
   free(hash);
+}
+
+int getChmod(const char *path) {
+  if (!path || !fileExists(path))
+    return -1;
+  struct stat ret;
+
+  if (stat(path, &ret) == -1) {
+    return -1;
+  }
+
+  return (ret.st_mode & S_IRUSR) | (ret.st_mode & S_IWUSR) |
+         (ret.st_mode & S_IXUSR) | /*owner*/
+         (ret.st_mode & S_IRGRP) | (ret.st_mode & S_IWGRP) |
+         (ret.st_mode & S_IXGRP) | /*group*/
+         (ret.st_mode & S_IROTH) | (ret.st_mode & S_IWOTH) |
+         (ret.st_mode & S_IXOTH); /*other*/
+}
+
+void setChmod(const char *path, int mode) {
+  if (!path || !fileExists(path))
+    return;
+  chmod(path, mode);
 }

@@ -9,7 +9,7 @@
  * @param rootDir
  * @return List**
  */
-List **listdir(char *rootDir);
+List **listdir(const char *rootDir);
 
 /**
  * @brief Function that return 1 if the file exist, 0 otherwise
@@ -17,7 +17,7 @@ List **listdir(char *rootDir);
  * @param file
  * @return int
  */
-int fileExists(char *file);
+int fileExists(const char *file);
 
 /**
  * @brief Function that copy the file from to the file to
@@ -25,7 +25,7 @@ int fileExists(char *file);
  * @param to
  * @param from
  */
-void cp(char *to, char *from);
+void cp(const char *to, const char *from);
 
 /**
  * @brief Function used to get the path of the file from the hash
@@ -33,13 +33,29 @@ void cp(char *to, char *from);
  * @param hash
  * @return char*
  */
-char *hashToPath(char *hash);
+char *hashToPath(const char *hash);
 
 /**
  * @brief Function used to create a blob file from a filename
  *
  * @param filename
  */
-void blobFile(char *filename);
+void blobFile(const char *filename);
+
+/**
+ * @brief Get the Chmod of a file, return -1 if the file doesn't exist
+ * 
+ * @param path 
+ * @return int 
+ */
+int getChmod(const char *path);
+
+/**
+ * @brief Set the chmod of a file if the file exist
+ * 
+ * @param path 
+ * @param mode 
+ */
+void setChmod(const char *path, int mode);
 
 #endif

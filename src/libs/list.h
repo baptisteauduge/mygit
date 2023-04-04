@@ -20,7 +20,7 @@ List **initList();
  * @param data
  * @return Cell*
  */
-Cell *buildCell(char *data);
+Cell *buildCell(const char *data);
 /**
  * @brief Function used to free a cell, if the cell is NULL, nothing will be done
  *
@@ -78,7 +78,7 @@ char *ltos(List **list);
  * @param str
  * @return Cell*
  */
-Cell *searchList(List **list, char *str);
+Cell *searchList(List **list, const char *str);
 
 /**
  * @brief Create a cell containing data and add it at the begging of list.
@@ -88,7 +88,7 @@ Cell *searchList(List **list, char *str);
  * @param data
  * @return int
  */
-int addFirstCell(List **list, char *data);
+int addFirstCell(List **list, const char *data);
 
 /**
  * @brief Function used to create a List using a string,
@@ -98,7 +98,7 @@ int addFirstCell(List **list, char *data);
  * @param str
  * @return List**
  */
-List **stol(char *str);
+List **stol(const char *str);
 
 /**
  * @brief Function used to save a list into a file
@@ -106,7 +106,7 @@ List **stol(char *str);
  * @param list
  * @param path
  */
-void ltof(List **list, char *path);
+void ltof(List **list, const char *path);
 
 /**
  * @brief Function used to load a list from a file
@@ -114,6 +114,6 @@ void ltof(List **list, char *path);
  * @param path
  * @return List**
  */
-List **ftol(char *path);
+List **ftol(const char *path);
 
 #endif

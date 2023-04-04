@@ -12,7 +12,7 @@ List **initList() {
   return new;
 }
 
-Cell *buildCell(char *data) {
+Cell *buildCell(const char *data) {
   Cell *newCell = malloc(sizeof(Cell));
   if (!newCell)
     return NULL;
@@ -81,7 +81,7 @@ char *ltos(List **list) {
   return str;
 }
 
-Cell *searchList(List **list, char *str) {
+Cell *searchList(List **list, const char *str) {
   if (!list || !str)
     return NULL;
   Cell *iter = *list;
@@ -90,7 +90,7 @@ Cell *searchList(List **list, char *str) {
   return iter;
 }
 
-int addFirstCell(List **list, char *data) {
+int addFirstCell(List **list, const char *data) {
   Cell *myNewCell = NULL;
   myNewCell = buildCell(data);
   if (!myNewCell)
@@ -99,7 +99,7 @@ int addFirstCell(List **list, char *data) {
   return 1;
 }
 
-List **stol(char *str) {
+List **stol(const char *str) {
   List **res = initList();
   char buffer[MAX_LEN_DATA];
   int bufferSize = 0, bufferOffset = 0, i = 0;
@@ -126,7 +126,7 @@ List **stol(char *str) {
   return res;
 }
 
-void ltof(List **list, char *path) {
+void ltof(List **list, const char *path) {
   if (!list || !path)
     return;
   FILE *f = fopen(path, "w");
@@ -142,7 +142,7 @@ void ltof(List **list, char *path) {
   free(strList);
 }
 
-List **ftol(char *path) {
+List **ftol(const char *path) {
   if (!path)
     return NULL;
   FILE *f = fopen(path, "r");

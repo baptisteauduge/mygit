@@ -7,20 +7,21 @@
  * @param source The source file
  * @param dest The destination file
  */
-void hashFile(char *source, char *dest);
+void hashFile(const char *source, const char *dest);
+
 /**
  * @brief Function used to hash a file and return the result as a string
  * 
  * @param filename The file to hash
  * @return char* The hash of the file
  */
-char *sha256file(char *filename);
+char *sha256file(const char *filename);
 
 /**
  * @brief Function used to remove a file with a given path
  * 
  * @param filename The filename / path of the file
  */
-void removeFile(char *filename);
+void removeFile(const char *filename);
 
 #endif
