@@ -26,7 +26,7 @@ char *list_to_string(List **list) {
   return str;
 }
 
-static void update_and_reset_buffer(char *str, char *buffer, int *buffer_size,
+static void update_and_reset_buffer(const char *str, char *buffer, int *buffer_size,
                                     int *buffer_offset) {
   memcpy(buffer, str + *buffer_offset, *buffer_size * sizeof(char));
   buffer[*buffer_size] = '\0';
