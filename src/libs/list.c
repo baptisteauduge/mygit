@@ -85,7 +85,7 @@ Cell *searchList(List **list, const char *str) {
   if (!list || !str)
     return NULL;
   Cell *iter = *list;
-  while (iter && strcmp(iter->data, str) != 0)
+  while (iter && strcmp(iter->data, str))
     iter = iter->next;
   return iter;
 }
