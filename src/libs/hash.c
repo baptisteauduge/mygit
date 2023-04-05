@@ -7,9 +7,9 @@
 void hashFile(const char *source, const char *dest) {
   if (!source || !dest)
     return;
-  char buff[1000];
-  sprintf(buff, "cat %s | sha256sum > %s", source, dest);
-  system(buff);
+  char command[1000];
+  sprintf(command, "cat %s | sha256sum > %s", source, dest);
+  system(command);
 }
 
 char *sha256file(const char *filename) {
@@ -25,6 +25,11 @@ char *sha256file(const char *filename) {
 
   hashFile(filename, tempFileName);
   sha256 = malloc(65 * sizeof(char));
+  if (!sha256) {
+      close(fd);
+      removeFile(tempFileName);
+      return NULL;
+  }
   f = fopen(tempFileName, "r");
   fgets(sha256, 65, f);
 
