@@ -17,7 +17,7 @@ OBJ 		= 	$(SRC:.c=.o)
 
 NAME 		=		mygit
 
-CFLAGS	= 	-Wall -Wextra -Werror
+CFLAGS	= 	-Wall -Wextra -Werror -g
 
 CC 			=		gcc
 

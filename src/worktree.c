@@ -1,6 +1,6 @@
 // Sorbonne University, 2022 - 2023
 // MyGit Project
-// 
+//
 // worktree.c
 // File description:
 //     This file contains the implementation of the worktree.h header.
@@ -22,6 +22,15 @@ WorkFile *createWorkFile(const char *name) {
   new->hash = NULL;
   new->mode = 0;
   return new;
+}
+
+void freeWorkFile(WorkFile *wf) {
+  if (!wf)
+    return;
+  free(wf->name);
+  if (wf->hash)
+    free(wf->hash);
+  free(wf);
 }
 
 static const char *contentOrEmpty(const char *str) {
@@ -66,14 +75,29 @@ WorkTree *initWorkTree() {
     return NULL;
   }
   res->n = 0;
-  res->size = (size_t) WORKTREE_INIT_SIZE;
+  res->size = (size_t)WORKTREE_INIT_SIZE;
   return res;
+}
+
+void freeWorkTree(WorkTree *wt) {
+  if (!wt)
+    return;
+  if (wt->tab) {
+    for (int i = 0; i < wt->size; ++i) {
+      if (wt->tab[i].name)
+        free(wt->tab[i].name);
+      if (wt->tab[i].hash)
+        free(wt->tab->hash);
+    }
+    free(wt->tab);
+  }
+  free(wt);
 }
 
 int inWorkTree(const WorkTree *wt, const char *name) {
   if (!wt || !name)
     return -1;
-  for (int i = 0; i < wt->size; ++i) {
+  for (int i = 0; i < wt->n; ++i) {
     if (!strcmp(wt->tab[i].name, name))
       return i;
   }
@@ -85,12 +109,17 @@ int appendWorkTree(WorkTree *wt, const char *name, const char *hash, int mode) {
     return -1;
   if (inWorkTree(wt, name) >= 0)
     return 0;
-  wt->tab[++wt->n].name = strdup(name);
+  wt->tab[wt->n].name = strdup(name);
+  if (!wt->tab[wt->n].name)
+    return -1;
   wt->tab[wt->n].mode = mode;
-  if (hash)
+  if (hash) {
     wt->tab[wt->n].hash = strdup(hash);
-  else
+    if (!wt->tab[wt->n].hash)
+      return -1;
+  } else
     wt->tab[wt->n].hash = NULL;
+  ++wt->n;
   return 1;
 }
 
@@ -98,14 +127,68 @@ char *wtts(const WorkTree *wt) {
   if (!wt)
     return NULL;
   size_t resSize = wt->n * (WORKTREE_FIELD_MAX_SIZE * 3 + 1);
-  char *res = malloc(sizeof(char) * resSize);
+  char *res = malloc(sizeof(char) * resSize), *tmp = NULL;
 
   if (!res)
     return NULL;
   for (int i = 0; i < wt->n; ++i) {
-    snprintf(res, resSize, "%s%s", res, wfts(wt->tab + i));
+    tmp = wfts(wt->tab + i);
+    snprintf(res, resSize, "%s%s", res, tmp);
     if (i != wt->n - 1)
       snprintf(res, resSize, "%s\n", res);
+    free(tmp);
   }
+  return res;
+}
+
+WorkTree *stwt(const char *str) {
+  if (!str)
+    return NULL;
+
+  int bufferOffset = 0, bufferSize = 0;
+  char buffer[WORKTREE_FIELD_MAX_SIZE * 3];
+  WorkFile *tmp = NULL;
+  WorkTree *res = initWorkTree();
+  if (!res)
+    return NULL;
+
+  for (int i = 0; str[i] != '\0'; ++i) {
+    if (str[i] == '\n') {
+      memcpy(buffer, str + bufferOffset, bufferSize * sizeof(char));
+      buffer[bufferSize] = '\0';
+      tmp = stwf(buffer);
+      if (!tmp) {
+        fprintf(stderr, "Error, when creating a new workfile, the returned "
+                        "WorkTree could be uncomplete\n");
+        return res;
+      }
+      if (!appendWorkTree(res, tmp->name, tmp->hash, tmp->mode)) {
+        fprintf(stderr, "Error when trying to append the WorkTree, WorkTree "
+                        "could be uncomplete\n");
+        freeWorkFile(tmp);
+        return res;
+      }
+      bufferOffset += bufferSize + 1;
+      bufferSize = 0;
+      freeWorkFile(tmp);
+      continue;
+    }
+    ++bufferSize;
+  }
+  memcpy(buffer, str + bufferOffset, bufferSize * sizeof(char));
+  buffer[bufferSize] = '\0';
+  tmp = stwf(buffer);
+  if (!tmp) {
+    fprintf(stderr, "Error, when creating a new workfile, the returned "
+                    "WorkTree could be uncomplete\n");
+    return res;
+  }
+  if (!appendWorkTree(res, tmp->name, tmp->hash, tmp->mode)) {
+    fprintf(stderr, "Error when trying to append the WorkTree, WorkTree could "
+                    "be uncomplete\n");
+    freeWorkFile(tmp);
+    return res;
+  }
+  freeWorkFile(tmp);
   return res;
 }

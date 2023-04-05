@@ -1,6 +1,6 @@
 // Sorbonne University, 2022 - 2023
 // MyGit Project
-// 
+//
 // worktree.h
 // File description:
 //     This file contains the definition of the WorkTree structure and
@@ -34,6 +34,13 @@ typedef struct {
 WorkFile *createWorkFile(const char *name);
 
 /**
+ * @brief Free a WorkFile if it's allocated.
+ *
+ * @param wf
+ */
+void freeWorkFile(WorkFile *wf);
+
+/**
  * @brief Convert a WorkFile to a string, each field is separated by
  * tabulation. If one field is NULL, it is replaced by an empty string.
  *
@@ -57,6 +64,13 @@ WorkFile *stwf(const char *str);
  * @return WorkTree*
  */
 WorkTree *initWorkTree();
+
+/**
+ * @brief Free a WorkTree if it's allocated.
+ *
+ * @param wt
+ */
+void freeWorkTree(WorkTree *wt);
 
 /**
  * @brief Returns the index of the WorkFile in the tab
@@ -89,5 +103,13 @@ int appendWorkTree(WorkTree *wt, const char *name, const char *hash,
  * @return char*
  */
 char *wtts(const WorkTree *wt);
+
+/**
+ * @brief Return the WorkTree corresponding to a String. Refer to wtts and wfts
+ *
+ * @param str
+ * @return WorkTree*
+ */
+WorkTree *stwt(const char *str);
 
 #endif
