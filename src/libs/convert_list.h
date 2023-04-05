@@ -16,6 +16,14 @@
 #include "list.h"
 
 /**
+ * @brief Function used to find the size needed to convert a list to a string
+ *
+ * @param list
+ * @return int
+ */
+int size_list_to_string(List **list);
+
+/**
  * @brief Function used to create a List using a string,
  * format must be : "firstCell|secondCell| ... | lastCell"
  * WHERE "|" is the SEPARATOR_LIST_STRING (in a define)
