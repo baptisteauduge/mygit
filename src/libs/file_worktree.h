@@ -12,12 +12,10 @@
 #include "worktree.h"
 
 /**
- * @brief Create a blob file representing the WorkTree. The function is using
- * tmp file to get the hash of the file. The function returns the hash of the
- * content of the WorkTree file.
+ * @brief Create a blob file representing the WorkTree.
  *
  * @param wt
- * @return char*
+ * @return char* the hash of the content of the WorkTree file or NULL
  */
 char *create_blob_of_worktree(WorkTree *wt);
 
