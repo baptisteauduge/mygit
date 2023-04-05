@@ -6,10 +6,17 @@
 ## Makefile for MyGit project
 
 SRC 		=  	src/main.c												\
+						src/libs/cell.c 									\
 						src/libs/list.c										\
+						src/libs/convert_list.c						\
 						src/libs/hash.c										\
 						src/libs/filesystem.c							\
-						src/worktree.c
+						src/libs/file_rights.c						\
+						src/libs/workfile.c 							\
+						src/libs/convert_workfile.c				\
+						src/libs/worktree.c 							\
+						src/libs/convert_worktree.c				\
+						src/libs/file_worktree.c								
 
 OBJ 		= 	$(SRC:.c=.o)
 
@@ -33,9 +40,6 @@ $(NAME): $(OBJ)
 
 main.o: main.c
 	$(CC) -c $(CFLAGS) main.c
-
-worktree.o: worktree.c src/libs/hash.o
-	$(CC) -c $(CFLAGS) worktree.c
 
 fclean:
 	rm $(NAME) $(OBJ)

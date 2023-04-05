@@ -14,14 +14,14 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-List **listdir(const char *rootDir) {
+List **get_list_files_and_dir(const char *rootDir) {
   struct dirent *ep = NULL;
-  List **list = initList();
+  List **list = create_init_list();
   DIR *dp = opendir(rootDir);
   if (!dp || !list)
     return NULL;
   while ((ep = readdir(dp))) {
-    if (!addFirstCell(list, ep->d_name)) {
+    if (!create_and_insert_cell_in_list(list, ep->d_name)) {
       fprintf(stderr,
               "Error, the returned list of directories may be not complete");
       return list;
@@ -30,84 +30,61 @@ List **listdir(const char *rootDir) {
   return list;
 }
 
-int fileExists(const char *file) {
+int does_file_exists(const char *file) {
   struct stat buffer;
   return (stat(file, &buffer) == 0);
 }
 
-void cp(const char *to, const char *from) {
+void copy_file(const char *to, const char *from) {
   if (!to || !from)
     return;
-  if (!fileExists(from)) {
+  if (!does_file_exists(from)) {
     fprintf(stderr, "Error, the file %s doesn't exist\n", from);
     return;
   }
-  FILE *fFrom = fopen(from, "r");
-  FILE *fTo = fopen(to, "w");
-  if (!fFrom || !fTo) {
+  FILE *file_from = fopen(from, "r");
+  FILE *file_to = fopen(to, "w");
+  if (!file_from || !file_to) {
     fprintf(stderr, "Error, can't open file %s or %s in read or write mode\n",
             from, to);
     return;
   }
   char buffer[SIZE_BUFFER_READ_LINE];
-  while (fgets(buffer, SIZE_BUFFER_READ_LINE, fFrom))
-    fputs(buffer, fTo);
-  fclose(fFrom);
-  fclose(fTo);
+  while (fgets(buffer, SIZE_BUFFER_READ_LINE, file_from))
+    fputs(buffer, file_to);
+  fclose(file_from);
+  fclose(file_to);
 }
 
-char *hashToPath(const char *hash) {
-  int strlenHash = strlen(hash);
-  char *dir = malloc((strlenHash + 1) * sizeof(char));
+char *get_path_from_hash(const char *hash) {
+  int strlen_hash = strlen(hash);
+  char *dir = malloc((strlen_hash + 1) * sizeof(char));
   dir[0] = hash[0];
   dir[1] = hash[1];
   dir[2] = '/';
-  for (int i = 3; i < strlenHash + 1; ++i) {
+  for (int i = 3; i < strlen_hash + 1; ++i) {
     dir[i] = hash[i - 1];
   }
-  dir[strlenHash + 1] = '\0';
+  dir[strlen_hash + 1] = '\0';
   return dir;
 }
 
-void blobFile(const char *filename) {
+void create_blob(const char *filename) {
   if (!filename)
     return;
-  if (!fileExists(filename)) {
+  if (!does_file_exists(filename)) {
     fprintf(stderr, "Error, the file %s doesn't exist\n", filename);
     return;
   }
-  char *hash = sha256file(filename);
-  char *path = hashToPath(hash);
+  char *hash = get_sha256_of_file(filename);
+  char *path = get_path_from_hash(hash);
   char *dir = strdup(hash);
   dir[2] = '\0';
-  if (!fileExists(dir)) {
+  if (!does_file_exists(dir)) {
     mkdir(dir, S_IRWXU);
   }
-  cp(path, filename);
+  copy_file(path, filename);
   free(path);
   free(dir);
   free(hash);
-}
-
-int getChmod(const char *path) {
-  if (!path || !fileExists(path))
-    return -1;
-  struct stat ret;
-
-  if (stat(path, &ret) == -1) {
-    return -1;
-  }
-
-  return (ret.st_mode & S_IRUSR) | (ret.st_mode & S_IWUSR) |
-         (ret.st_mode & S_IXUSR) | /*owner*/
-         (ret.st_mode & S_IRGRP) | (ret.st_mode & S_IWGRP) |
-         (ret.st_mode & S_IXGRP) | /*group*/
-         (ret.st_mode & S_IROTH) | (ret.st_mode & S_IWOTH) |
-         (ret.st_mode & S_IXOTH); /*other*/
-}
-
-void setChmod(const char *path, int mode) {
-  if (!path || !fileExists(path))
-    return;
-  chmod(path, mode);
 }

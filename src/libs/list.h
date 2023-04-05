@@ -9,33 +9,17 @@
 #ifndef LIST_H
 #define LIST_H
 
-#define MAX_FILES 100
-#define MAX_LEN_DATA 100
-#define SEPARATOR_LIST_STRING "|"
-#define SIZE_BUFFER_READ_LINE 512
+#include "cell.h"
 
-typedef struct cell {
-  char *data;
-  struct cell *next;
-} Cell;
 typedef Cell List;
 
-List **initList();
 /**
- * @brief Function used to build a new Cell, will return NULL if any error
- * The provided data will be copied
- *
- * @param data
- * @return Cell*
+ * @brief Function used to create and initialize a list
+ * 
+ * @return List** 
  */
-Cell *buildCell(const char *data);
-/**
- * @brief Function used to free a cell, if the cell is NULL, nothing will be
- * done
- *
- * @param cell
- */
-void freeCell(Cell *cell);
+
+List **create_init_list();
 
 /**
  * @brief Function used to free a list, if the list is NULL, nothing will be
@@ -43,7 +27,7 @@ void freeCell(Cell *cell);
  *
  * @param list
  */
-void freeList(List **list);
+void free_list(List **list);
 
 /**
  * @brief Function that will add the provided Cell at the begging of the list
@@ -52,7 +36,7 @@ void freeList(List **list);
  * @param list
  * @param cell
  */
-void insertFirst(List **list, Cell *cell);
+void insert_cell_at_begging_list(List **list, Cell *cell);
 
 /**
  * @brief Function that return the pos-ème element of the list, or NULL if error
@@ -61,23 +45,7 @@ void insertFirst(List **list, Cell *cell);
  * @param pos the index of the element you are looking for
  * @return Cell*
  */
-Cell *listGet(List **list, int pos);
-
-/**
- * @brief Cell to string
- *
- * @param cell
- * @return char*
- */
-char *ctos(const Cell *cell);
-
-/**
- * @brief List to string, return NULL if error
- *
- * @param list
- * @return char*
- */
-char *ltos(List **list);
+Cell *get_index_of_list(List **list, int pos);
 
 /**
  * @brief Search and return (if it exist) the element of the list where data ==
@@ -87,7 +55,7 @@ char *ltos(List **list);
  * @param str
  * @return Cell*
  */
-Cell *searchList(List **list, const char *str);
+Cell *search_data_in_list(List **list, const char *str);
 
 /**
  * @brief Create a cell containing data and add it at the begging of list.
@@ -97,32 +65,6 @@ Cell *searchList(List **list, const char *str);
  * @param data
  * @return int
  */
-int addFirstCell(List **list, const char *data);
-
-/**
- * @brief Function used to create a List using a string,
- * format must be : "firstCell|secondCell| ... | lastCell"
- * WHERE "|" is the SEPARATOR_LIST_STRING (in a define)
- *
- * @param str
- * @return List**
- */
-List **stol(const char *str);
-
-/**
- * @brief Function used to save a list into a file
- *
- * @param list
- * @param path
- */
-void ltof(List **list, const char *path);
-
-/**
- * @brief Function used to load a list from a file
- *
- * @param path
- * @return List**
- */
-List **ftol(const char *path);
+int create_and_insert_cell_in_list(List **list, const char *data);
 
 #endif

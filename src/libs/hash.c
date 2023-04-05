@@ -11,7 +11,7 @@
 #include <string.h>
 #include <unistd.h>
 
-void hashFile(const char *source, const char *dest) {
+void put_hash_of_source(const char *source, const char *dest) {
   if (!source || !dest)
     return;
   char command[1000];
@@ -19,35 +19,35 @@ void hashFile(const char *source, const char *dest) {
   system(command);
 }
 
-char *sha256file(const char *filename) {
+char *get_sha256_of_file(const char *filename) {
   if (!filename)
     return NULL;
   static char template[] = "/tmp/XXXXXX";
-  char tempFileName[1000], *sha256;
+  char temp_filename[1000], *sha256;
   int fd;
   FILE *f;
 
-  strcpy(tempFileName, template);
-  fd = mkstemp(tempFileName);
+  strcpy(temp_filename, template);
+  fd = mkstemp(temp_filename);
 
-  hashFile(filename, tempFileName);
+  put_hash_of_source(filename, temp_filename);
   sha256 = malloc(65 * sizeof(char));
   if (!sha256) {
       close(fd);
-      removeFile(tempFileName);
+      remove_file(temp_filename);
       return NULL;
   }
-  f = fopen(tempFileName, "r");
+  f = fopen(temp_filename, "r");
   fgets(sha256, 65, f);
 
   fclose(f);
   close(fd);
-  removeFile(tempFileName);
+  remove_file(temp_filename);
 
   return sha256;
 }
 
-void removeFile(const char *filename) {
+void remove_file(const char *filename) {
   if (!filename)
     return;
   char buff[1000];

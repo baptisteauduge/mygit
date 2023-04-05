@@ -14,7 +14,7 @@
  * @param source The source file
  * @param dest The destination file
  */
-void hashFile(const char *source, const char *dest);
+void put_hash_of_source(const char *source, const char *dest);
 
 /**
  * @brief Function used to hash a file and return the result as a string
@@ -22,13 +22,13 @@ void hashFile(const char *source, const char *dest);
  * @param filename The file to hash
  * @return char* The hash of the file
  */
-char *sha256file(const char *filename);
+char *get_sha256_of_file(const char *filename);
 
 /**
  * @brief Function used to remove a file with a given path
  *
  * @param filename The filename / path of the file
  */
-void removeFile(const char *filename);
+void remove_file(const char *filename);
 
 #endif
