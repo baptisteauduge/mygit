@@ -50,7 +50,7 @@ void insertFirst(List **list, Cell *cell) {
   *list = cell;
 }
 
-Cell *listGet(const List **list, int pos) {
+Cell *listGet(List **list, int pos) {
   if (!list || !*list)
     return NULL;
   Cell *iter = *list;
@@ -67,21 +67,22 @@ char *ctos(const Cell *cell) {
   return cell->data;
 }
 
-char *ltos(const List **list) {
+char *ltos(List **list) {
   Cell *iter = *list;
-  char *str = malloc(MAX_FILES * MAX_LEN_DATA * sizeof(char));
+  size_t strSize = MAX_FILES * MAX_LEN_DATA;
+  char *str = malloc(strSize * sizeof(char));
   if (!str)
     return NULL;
   while (iter) {
-    strcat(str, ctos(iter));
+    snprintf(str, strSize, "%s%s", str, ctos(iter));
     iter = iter->next;
     if (iter)
-      strcat(str, SEPARATOR_LIST_STRING);
+      snprintf(str, strSize, "%s%s", str, SEPARATOR_LIST_STRING);
   }
   return str;
 }
 
-Cell *searchList(const List **list, const char *str) {
+Cell *searchList(List **list, const char *str) {
   if (!list || !str)
     return NULL;
   Cell *iter = *list;
@@ -101,6 +102,8 @@ int addFirstCell(List **list, const char *data) {
 
 List **stol(const char *str) {
   List **res = initList();
+  if (!res)
+    return NULL;
   char buffer[MAX_LEN_DATA];
   int bufferSize = 0, bufferOffset = 0, i = 0;
   for (; str[i] != '\0'; ++i) {
@@ -126,7 +129,7 @@ List **stol(const char *str) {
   return res;
 }
 
-void ltof(const List **list, const char *path) {
+void ltof(List **list, const char *path) {
   if (!list || !path)
     return;
   FILE *f = fopen(path, "w");
