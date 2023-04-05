@@ -7,40 +7,44 @@
 //     in another format.
 
 #include "convert_list.h"
+#include "constants.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+int size_list_to_string(List **list) {
+  Cell *iter = *list;
+  int size = 0;
+  while (iter) {
+    size += strlen(cell_to_string(iter));
+    iter = iter->next;
+    if (iter)
+      size += strlen(SEPARATOR_LIST_STRING);
+  }
+  return size;
+}
+
 char *list_to_string(List **list) {
   Cell *iter = *list;
-  size_t str_size = MAX_FILES * MAX_LEN_DATA;
+  size_t str_size = size_list_to_string(list);
   char *str = malloc(str_size * sizeof(char));
   if (!str)
     return NULL;
   while (iter) {
-    snprintf(str, str_size, "%s%s", str, cell_to_string(iter));
+    strcat(str, cell_to_string(iter));
     iter = iter->next;
     if (iter)
-      snprintf(str, str_size, "%s%s", str, SEPARATOR_LIST_STRING);
+      strcat(str, SEPARATOR_LIST_STRING);
   }
   return str;
 }
 
-static void update_and_reset_buffer(const char *str, char *buffer, int *buffer_size,
-                                    int *buffer_offset) {
+static void update_and_reset_buffer(const char *str, char *buffer,
+                                    int *buffer_size, int *buffer_offset) {
   memcpy(buffer, str + *buffer_offset, *buffer_size * sizeof(char));
   buffer[*buffer_size] = '\0';
   *buffer_offset += *buffer_size + 1;
   *buffer_size = 0;
-}
-
-static int create_and_insert_cell_in_list_or_return(List **res, char *buffer) {
-  if (!create_and_insert_cell_in_list(res, buffer)) {
-    fprintf(stderr, "Error while converting the string into a List, the List "
-                    "could be not complete");
-    return 0;
-  }
-  return 1;
 }
 
 List **string_to_list(const char *str) {
@@ -54,23 +58,26 @@ List **string_to_list(const char *str) {
   for (int i = 0; str[i] != '\0'; ++i) {
     if (str[i] == SEPARATOR_LIST_STRING[0]) {
       update_and_reset_buffer(str, buffer, &buffer_size, &buffer_offset);
-      if (!create_and_insert_cell_in_list_or_return(res, buffer))
+      if (!create_and_insert_cell_in_list(res, buffer)) {
+        fprintf(stderr, ERROR_LIST_NOT_COMPLETE);
         return res;
+      }
       continue;
     }
     ++buffer_size;
   }
   update_and_reset_buffer(str, buffer, &buffer_size, &buffer_offset);
-  create_and_insert_cell_in_list_or_return(res, buffer);
+  if (!create_and_insert_cell_in_list(res, buffer))
+    fprintf(stderr, ERROR_LIST_NOT_COMPLETE);
   return res;
 }
 
 void list_to_file(List **list, const char *path) {
   if (!list || !path)
     return;
-  FILE *f = fopen(path, "w");
+  FILE *f = fopen(path, MODE_WRITE);
   if (!f) {
-    fprintf(stderr, "Error, can't open file %s in write mode ...\n", path);
+    fprintf(stderr, ERROR_OPEN_FILE_WRITE, path);
     return;
   }
   char *str_list = list_to_string(list);
@@ -84,13 +91,16 @@ void list_to_file(List **list, const char *path) {
 List **file_to_list(const char *path) {
   if (!path)
     return NULL;
-  FILE *f = fopen(path, "r");
-  char buffer[MAX_FILES * MAX_LEN_DATA];
+  FILE *f = fopen(path, MODE_READ);
+  size_t buffer_size = MAX_FILES * MAX_LEN_DATA;
+  char buffer[buffer_size];
   if (!f) {
-    fprintf(stderr, "Error, can't open file %s in read mode ...\n", path);
+    fprintf(stderr, ERROR_OPEN_FILE_READ, path);
     return NULL;
   }
-  fgets(buffer, MAX_FILES * MAX_LEN_DATA, f);
+  fgets(buffer, buffer_size, f);
+  // Remove the \n at the end of the string if there is one
+  buffer[strcspn(buffer, "\n")] = '\0';
   fclose(f);
   return string_to_list(buffer);
 }
