@@ -19,7 +19,9 @@ int main(void) {
   char *str = wtts(list);
   printf("%s\n", str);
   free(str);
+  char *blobPath = blobWorkTree(list);
+  printf("Blob path %s\n", blobPath);
   freeWorkTree(list);
-
+  free(blobPath);
   // printf("%s\n", ltos(list));
 }

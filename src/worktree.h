@@ -112,15 +112,32 @@ char *wtts(const WorkTree *wt);
  */
 WorkTree *stwt(const char *str);
 
-
 /**
  * @brief Write the WorkTree in a file, return 0 if everything went well, -1
  * otherwise.
- * 
- * @param wt 
- * @param file 
- * @return int 
+ *
+ * @param wt
+ * @param file
+ * @return int
  */
-int wttf(const WorkTree* wt, char* file);
+int wttf(const WorkTree *wt, const char *file);
+
+/**
+ * @brief Create a WorkTree from a file. If any error, the function will return
+ * NULL
+ *
+ * @param file
+ * @return WorkTree*
+ */
+WorkTree *ftwt(const char *file);
+
+/**
+ * @brief Create a blob file representing the WorkTree. The function returns the
+ * name of the created file, NULL if any error.
+ *
+ * @param wt
+ * @return char*
+ */
+char *blobWorkTree(WorkTree *wt);
 
 #endif

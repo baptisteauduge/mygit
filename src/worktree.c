@@ -6,9 +6,13 @@
 //     This file contains the implementation of the worktree.h header.
 
 #include "worktree.h"
+#include "libs/filesystem.h"
+#include "libs/hash.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 WorkFile *createWorkFile(const char *name) {
   WorkFile *new = malloc(sizeof(WorkFile));
@@ -87,7 +91,7 @@ void freeWorkTree(WorkTree *wt) {
       if (wt->tab[i].name)
         free(wt->tab[i].name);
       if (wt->tab[i].hash)
-        free(wt->tab->hash);
+        free(wt->tab[i].hash);
     }
     free(wt->tab);
   }
@@ -193,7 +197,7 @@ WorkTree *stwt(const char *str) {
   return res;
 }
 
-int wttf(const WorkTree *wt, char *file) {
+int wttf(const WorkTree *wt, const char *file) {
   if (!wt || !file)
     return -1;
   FILE *f = fopen(file, "w");
@@ -204,13 +208,76 @@ int wttf(const WorkTree *wt, char *file) {
     fclose(f);
     return -1;
   }
-  if (fprintf(f, "%s", wtStr) != 0) {
-    fclose(f);
-    free(wtStr);
-    return -1;
-  }
+  fprintf(f, "%s", wtStr);
   fclose(f);
   free(wtStr);
   return 0;
 }
 
+WorkTree *ftwt(const char *file) {
+  if (!file)
+    return NULL;
+  char fileContent[WORKTREE_FIELD_MAX_SIZE * 3 * WORKTREE_INIT_SIZE],
+      buffer[WORKTREE_FIELD_MAX_SIZE * 3];
+  FILE *f = fopen(file, "r");
+
+  if (!f) {
+    fprintf(stderr, "Error, can't open the file %s in read mode", file);
+    return NULL;
+  }
+
+  while (fgets(buffer, WORKTREE_FIELD_MAX_SIZE * 3, f))
+    snprintf(fileContent, WORKTREE_FIELD_MAX_SIZE * 3 * WORKTREE_INIT_SIZE,
+             "%s%s", fileContent, buffer);
+  fclose(f);
+  return stwt(fileContent);
+}
+
+char *blobWorkTree(WorkTree *wt) {
+  if (!wt)
+    return NULL;
+  char tmpFilename[] = "/tmp/XXXXXX", dir[3], *tmp, *hashPath, *hashFile;
+  size_t hashPathSize = 0;
+  int fd = mkstemp(tmpFilename);
+  if (fd == -1)
+    return NULL;
+
+  if (wttf(wt, tmpFilename) == -1)
+    goto cleanup;
+
+  hashFile = sha256file(tmpFilename);
+  if (!hashFile)
+    goto cleanup;
+
+  memcpy(dir, hashFile, 2);
+  dir[2] = '\0';
+  if (!fileExists(dir) && mkdir(dir, S_IRWXU) == -1) {
+    free(hashFile);
+    goto cleanup;
+  }
+
+  hashPath = hashToPath(hashFile);
+  if (!hashPath) {
+    free(hashFile);
+    goto cleanup;
+  }
+
+  hashPathSize = strlen(hashPath) + 3;
+  tmp = malloc(sizeof(char) * hashPathSize);
+  if (!tmp) {
+    free(hashFile);
+    free(hashPath);
+    goto cleanup;
+  }
+
+  snprintf(tmp, hashPathSize, "%s.t", hashPath);
+  cp(tmp, tmpFilename);
+  free(hashPath);
+  free(tmp);
+  close(fd);
+  return hashFile;
+
+cleanup:
+  close(fd);
+  return NULL;
+}

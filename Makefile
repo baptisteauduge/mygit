@@ -34,7 +34,7 @@ $(NAME): $(OBJ)
 main.o: main.c
 	$(CC) -c $(CFLAGS) main.c
 
-worktree.o: worktree.c
+worktree.o: worktree.c src/libs/hash.o
 	$(CC) -c $(CFLAGS) worktree.c
 
 fclean:
