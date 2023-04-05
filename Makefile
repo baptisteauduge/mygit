@@ -30,19 +30,17 @@ CC 			=		gcc
 
 # Main rules
 all:
-	+$(MAKE) -C src/libs
+	+$(MAKE) -C src all
 	+$(MAKE) $(NAME)
 	
 $(NAME): $(OBJ)
-	$(CC) -o mygit $(CFLAGS) $(OBJ)
+	$(CC) -o $(NAME) $(CFLAGS) $(OBJ)
 
 ######################################################################
 
-main.o: main.c
-	$(CC) -c $(CFLAGS) main.c
-
 fclean:
-	rm $(NAME) $(OBJ)
+	+$(MAKE) -C src fclean
+	rm $(NAME)
 
 re: fclean all
 
