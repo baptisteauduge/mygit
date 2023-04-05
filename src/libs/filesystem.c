@@ -1,6 +1,6 @@
 // Sorbonne University, 2022 - 2023
 // MyGit Project
-// 
+//
 // filesystem.c
 // File description:
 //   This file contains the implementation of the filesystem.h header.
@@ -31,12 +31,8 @@ List **listdir(const char *rootDir) {
 }
 
 int fileExists(const char *file) {
-  List **listDirCurrent = listdir(".");
-  if (!listDirCurrent)
-    return 0;
-  int answer = searchList(listDirCurrent, file) != NULL;
-  freeList(listDirCurrent);
-  return answer;
+  struct stat buffer;
+  return (stat(file, &buffer) == 0);
 }
 
 void cp(const char *to, const char *from) {
