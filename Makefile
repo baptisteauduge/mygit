@@ -8,7 +8,8 @@
 SRC 		=  	src/main.c												\
 						src/libs/list.c										\
 						src/libs/hash.c										\
-						src/libs/filesystem.c
+						src/libs/filesystem.c							\
+						src/worktree.c
 
 OBJ 		= 	$(SRC:.c=.o)
 
@@ -32,6 +33,9 @@ $(NAME): $(OBJ)
 
 main.o: main.c
 	$(CC) -c $(CFLAGS) main.c
+
+worktree.o: worktree.c
+	$(CC) -c $(CFLAGS) worktree.c
 
 fclean:
 	rm $(NAME) $(OBJ)
