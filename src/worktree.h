@@ -112,4 +112,15 @@ char *wtts(const WorkTree *wt);
  */
 WorkTree *stwt(const char *str);
 
+
+/**
+ * @brief Write the WorkTree in a file, return 0 if everything went well, -1
+ * otherwise.
+ * 
+ * @param wt 
+ * @param file 
+ * @return int 
+ */
+int wttf(const WorkTree* wt, char* file);
+
 #endif

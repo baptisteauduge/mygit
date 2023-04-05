@@ -192,3 +192,25 @@ WorkTree *stwt(const char *str) {
   freeWorkFile(tmp);
   return res;
 }
+
+int wttf(const WorkTree *wt, char *file) {
+  if (!wt || !file)
+    return -1;
+  FILE *f = fopen(file, "w");
+  if (!f)
+    return -1;
+  char *wtStr = wtts(wt);
+  if (!wtStr) {
+    fclose(f);
+    return -1;
+  }
+  if (fprintf(f, "%s", wtStr) != 0) {
+    fclose(f);
+    free(wtStr);
+    return -1;
+  }
+  fclose(f);
+  free(wtStr);
+  return 0;
+}
+
