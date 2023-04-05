@@ -53,7 +53,7 @@ void insertFirst(List **list, Cell *cell);
  * @param pos the index of the element you are looking for
  * @return Cell*
  */
-Cell *listGet(List **list, int pos);
+Cell *listGet(const List **list, int pos);
 
 /**
  * @brief Cell to string
@@ -61,7 +61,7 @@ Cell *listGet(List **list, int pos);
  * @param cell
  * @return char*
  */
-char *ctos(Cell *cell);
+char *ctos(const Cell *cell);
 
 /**
  * @brief List to string, return NULL if error
@@ -69,7 +69,7 @@ char *ctos(Cell *cell);
  * @param list
  * @return char*
  */
-char *ltos(List **list);
+char *ltos(const List **list);
 
 /**
  * @brief Search and return (if it exist) the element of the list where data ==
@@ -79,7 +79,7 @@ char *ltos(List **list);
  * @param str
  * @return Cell*
  */
-Cell *searchList(List **list, const char *str);
+Cell *searchList(const List **list, const char *str);
 
 /**
  * @brief Create a cell containing data and add it at the begging of list.
@@ -107,7 +107,7 @@ List **stol(const char *str);
  * @param list
  * @param path
  */
-void ltof(List **list, const char *path);
+void ltof(const List **list, const char *path);
 
 /**
  * @brief Function used to load a list from a file

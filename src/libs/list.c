@@ -50,7 +50,7 @@ void insertFirst(List **list, Cell *cell) {
   *list = cell;
 }
 
-Cell *listGet(List **list, int pos) {
+Cell *listGet(const List **list, int pos) {
   if (!list || !*list)
     return NULL;
   Cell *iter = *list;
@@ -61,13 +61,13 @@ Cell *listGet(List **list, int pos) {
   return iter;
 }
 
-char *ctos(Cell *cell) {
+char *ctos(const Cell *cell) {
   if (!cell)
     return NULL;
   return cell->data;
 }
 
-char *ltos(List **list) {
+char *ltos(const List **list) {
   Cell *iter = *list;
   char *str = malloc(MAX_FILES * MAX_LEN_DATA * sizeof(char));
   if (!str)
@@ -81,7 +81,7 @@ char *ltos(List **list) {
   return str;
 }
 
-Cell *searchList(List **list, const char *str) {
+Cell *searchList(const List **list, const char *str) {
   if (!list || !str)
     return NULL;
   Cell *iter = *list;
@@ -126,7 +126,7 @@ List **stol(const char *str) {
   return res;
 }
 
-void ltof(List **list, const char *path) {
+void ltof(const List **list, const char *path) {
   if (!list || !path)
     return;
   FILE *f = fopen(path, "w");
