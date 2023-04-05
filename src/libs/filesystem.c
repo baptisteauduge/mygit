@@ -1,3 +1,10 @@
+// Sorbonne University, 2022 - 2023
+// MyGit Project
+// 
+// filesystem.c
+// File description:
+//   This file contains the implementation of the filesystem.h header.
+
 #include "filesystem.h"
 #include "hash.h"
 #include <dirent.h>

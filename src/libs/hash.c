@@ -1,3 +1,10 @@
+// Sorbonne University, 2022 - 2023
+// MyGit Project
+// 
+// hash.c
+// File description:
+//   This file contains the implementation of the hash.h header.
+
 #include "hash.h"
 #include <stdio.h>
 #include <stdlib.h>

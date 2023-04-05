@@ -1,3 +1,11 @@
+// Sorbonne University, 2022 - 2023
+// MyGit Project
+// 
+// list.h
+// File description:
+//   This file contains the definition of the List structure and the
+//   signatures associated functions.
+
 #ifndef LIST_H
 #define LIST_H
 

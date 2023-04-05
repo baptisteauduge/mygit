@@ -1,3 +1,10 @@
+// Sorbonne University, 2022 - 2023
+// MyGit Project
+// 
+// list.c
+// File description:
+//   This file contains the implementation of the list.h header.
+
 #include "list.h"
 #include <stdio.h>
 #include <stdlib.h>

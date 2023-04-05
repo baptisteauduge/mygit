@@ -1,3 +1,11 @@
+// Sorbonne University, 2022 - 2023
+// MyGit Project
+// 
+// worktree.h
+// File description:
+//     This file contains the definition of the WorkTree structure and
+//     the functions to manipulate it.
+
 #ifndef WORKTREE_H
 #define WORKTREE_H
 
@@ -26,8 +34,8 @@ typedef struct {
 WorkFile *createWorkFile(const char *name);
 
 /**
- * @brief Convert a WorkFile to a string, each field is separated by tabulation.
- * If one field is NULL, it is replaced by an empty string.
+ * @brief Convert a WorkFile to a string, each field is separated by
+ * tabulation. If one field is NULL, it is replaced by an empty string.
  *
  * @param wf
  * @return char*

@@ -1,3 +1,10 @@
+// Sorbonne University, 2022 - 2023
+// MyGit Project
+// 
+// filesystem.h
+// File description:
+//    This file contains the signatures of the filesystem functions.
+
 #ifndef FILESYSTEM_H
 #define FILESYSTEM_H
 #include "list.h"

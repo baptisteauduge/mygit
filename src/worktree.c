@@ -1,3 +1,10 @@
+// Sorbonne University, 2022 - 2023
+// MyGit Project
+// 
+// worktree.c
+// File description:
+//     This file contains the implementation of the worktree.h header.
+
 #include "worktree.h"
 #include <stdio.h>
 #include <stdlib.h>

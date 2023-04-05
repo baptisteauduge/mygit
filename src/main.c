@@ -1,3 +1,10 @@
+// Sorbonne University, 2022 - 2023
+// MyGit Project
+// 
+// main.c
+// File description:
+//    This file contains the main function of the program.
+
 #include <stdio.h>
 #include "libs/filesystem.h"
 

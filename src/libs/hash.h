@@ -1,3 +1,10 @@
+// Sorbonne University, 2022 - 2023
+// MyGit Project
+// 
+// hash.h
+// File description:
+//     This file contains the signatures of the hash.c file.
+
 #ifndef HASH_H
 #define HASH_H
 
