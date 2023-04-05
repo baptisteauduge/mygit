@@ -44,17 +44,17 @@ void blobFile(const char *filename);
 
 /**
  * @brief Get the Chmod of a file, return -1 if the file doesn't exist
- * 
- * @param path 
- * @return int 
+ *
+ * @param path
+ * @return int
  */
 int getChmod(const char *path);
 
 /**
  * @brief Set the chmod of a file if the file exist
- * 
- * @param path 
- * @param mode 
+ *
+ * @param path
+ * @param mode
  */
 void setChmod(const char *path, int mode);
 

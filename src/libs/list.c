@@ -1,8 +1,8 @@
 #include "list.h"
-#include <stdlib.h>
 #include <stdio.h>
-#include <unistd.h>
+#include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 List **initList() {
   List **new = malloc(sizeof(List *));

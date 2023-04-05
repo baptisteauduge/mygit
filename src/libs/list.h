@@ -22,7 +22,8 @@ List **initList();
  */
 Cell *buildCell(const char *data);
 /**
- * @brief Function used to free a cell, if the cell is NULL, nothing will be done
+ * @brief Function used to free a cell, if the cell is NULL, nothing will be
+ * done
  *
  * @param cell
  */
