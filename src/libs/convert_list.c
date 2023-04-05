@@ -26,33 +26,42 @@ char *list_to_string(List **list) {
   return str;
 }
 
+static void update_and_reset_buffer(char *str, char *buffer, int *buffer_size,
+                                    int *buffer_offset) {
+  memcpy(buffer, str + *buffer_offset, *buffer_size * sizeof(char));
+  buffer[*buffer_size] = '\0';
+  *buffer_offset += *buffer_size + 1;
+  *buffer_size = 0;
+}
+
+static int create_and_insert_cell_in_list_or_return(List **res, char *buffer) {
+  if (!create_and_insert_cell_in_list(res, buffer)) {
+    fprintf(stderr, "Error while converting the string into a List, the List "
+                    "could be not complete");
+    return 0;
+  }
+  return 1;
+}
+
 List **string_to_list(const char *str) {
   List **res = create_init_list();
-  if (!res)
-    return NULL;
   char buffer[MAX_LEN_DATA];
   int buffer_size = 0;
   int buffer_offset = 0;
+
+  if (!res)
+    return NULL;
   for (int i = 0; str[i] != '\0'; ++i) {
     if (str[i] == SEPARATOR_LIST_STRING[0]) {
-      memcpy(buffer, str + buffer_offset, buffer_size * sizeof(char));
-      buffer[buffer_size] = '\0';
-      if (!create_and_insert_cell_in_list(res, buffer)) {
-        fprintf(stderr, "Error while converting the string into a List, the "
-                        "List could be not complete\n");
+      update_and_reset_buffer(str, buffer, &buffer_size, &buffer_offset);
+      if (!create_and_insert_cell_in_list_or_return(res, buffer))
         return res;
-      }
-      buffer_offset += buffer_size + 1;
-      buffer_size = 0;
       continue;
     }
     ++buffer_size;
   }
-  memcpy(buffer, str + buffer_offset, buffer_size * sizeof(char));
-  buffer[buffer_size] = '\0';
-  if (!create_and_insert_cell_in_list(res, buffer))
-    fprintf(stderr, "Error while converting the string into a List, the List "
-                    "could be not complete\n");
+  update_and_reset_buffer(str, buffer, &buffer_size, &buffer_offset);
+  create_and_insert_cell_in_list_or_return(res, buffer);
   return res;
 }
 
