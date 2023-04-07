@@ -7,7 +7,7 @@
 SRC						=						src/libs/cell/cell.c															\
 													src/libs/list/convert_str_list.c									\
 													src/libs/list/insert_get_search_list.c						\
-								  		    src/libs/list/list.c															\
+													src/libs/list/list.c															\
 													src/libs/list/save_get_file_list.c								\
 													src/libs/file/read_file.c													\
 													src/libs/file/copy_file.c													\
@@ -28,15 +28,15 @@ SRC_TEST			=						tests/test.c																			\
 													tests/libs/test_cell.c														\
 													tests/libs/test_list.c														\
 
-OBJ			 			=						$(SRC:.c=.o)
+OBJ						=						$(SRC:.c=.o)
 
 OBJ_TEST			=						$(SRC_TEST:.c=.o)
 
-NAME 					= 					mygit
+NAME					=						mygit
 
-CC 						= 					gcc
+CC						=						gcc
 
-CFLAGS 				= 					-Wall -Wextra -Werror -I./include
+CFLAGS				=						-Wall -Wextra -Werror -I./include
 
 all: $(NAME)
 
