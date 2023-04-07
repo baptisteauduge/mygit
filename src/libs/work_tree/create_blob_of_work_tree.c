@@ -12,9 +12,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-static int create_temp_file_and_write_in_it(char *work_tree_str)
+static int create_temp_file_and_write_in_it(char *work_tree_str, char *tmp_filename)
 {
-  char tmp_filename[] = "/tmp/XXXXXX";
   int fd = -1;
   FILE *f = NULL;
 
@@ -41,7 +40,7 @@ char *create_blob_of_work_tree(work_tree_t *wt)
   work_tree_str = convert_work_tree_to_str(wt);
   if (!work_tree_str)
     return NULL;
-  if (!create_temp_file_and_write_in_it(work_tree_str)) {
+  if (!create_temp_file_and_write_in_it(work_tree_str, tmp_filename)) {
     free(work_tree_str);
     return NULL;
   }
