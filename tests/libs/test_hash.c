@@ -1,4 +1,3 @@
-// Sorbonne University, 2022 - 2023
 // MyGit Project
 //
 // test_hash.c
@@ -6,7 +5,7 @@
 //     test_hash.c
 
 #include "test_hash.h"
-#include "../../src/libs/hash.h"
+#include "hash/hash.h"
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>

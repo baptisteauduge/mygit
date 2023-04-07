@@ -1,47 +1,68 @@
-## Sorbonne University, 2022 - 2023
 ## MyGit Project
 ##
 ## Makefile
 ## File description:
 ## Makefile for MyGit project
 
-SRC 		=  	src/main.c												\
-						src/libs/cell.c 									\
-						src/libs/list.c										\
-						src/libs/convert_list.c						\
-						src/libs/hash.c										\
-						src/libs/filesystem.c							\
-						src/libs/file_rights.c						\
-						src/libs/workfile.c 							\
-						src/libs/convert_workfile.c				\
-						src/libs/worktree.c 							\
-						src/libs/convert_worktree.c				\
-						src/libs/file_worktree.c								
+SRC						=						src/libs/cell/cell.c															\
+													src/libs/list/convert_str_list.c									\
+													src/libs/list/insert_get_search_list.c						\
+								  		    src/libs/list/list.c															\
+													src/libs/list/save_get_file_list.c								\
+													src/libs/file/read_file.c													\
+													src/libs/file/copy_file.c													\
+													src/libs/file/create_blob.c												\
+													src/libs/file/list_files.c												\
+													src/libs/file/rights_file.c												\
+													src/libs/hash/hash.c															\
+													src/libs/work_file/work_file.c										\
+													src/libs/work_file/convert_str_work_file.c				\
+													src/libs/work_tree/work_tree.c										\
+													src/libs/work_tree/convert_str_work_tree.c				\
+													src/libs/work_tree/insert_get_search_work_tree.c	\
+													src/libs/work_tree/save_get_file_work_tree.c			\
+													src/libs/work_tree/create_blob_of_work_tree.c	
 
-OBJ 		= 	$(SRC:.c=.o)
 
-######################################################################
+SRC_TEST			=						tests/test.c																			\
+													tests/libs/test_cell.c														\
+													tests/libs/test_list.c														\
 
-NAME 		=		mygit
+OBJ			 			=						$(SRC:.c=.o)
 
-CFLAGS	= 	-Wall -Wextra -Werror -g
+OBJ_TEST			=						$(SRC_TEST:.c=.o)
 
-CC 			=		gcc
+NAME 					= 					mygit
 
-# Main rules
-all:
-	+$(MAKE) -C src all
-	+$(MAKE) $(NAME)
-	
-$(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(CFLAGS) $(OBJ)
+CC 						= 					gcc
 
-######################################################################
+CFLAGS 				= 					-Wall -Wextra -Werror -I./include
 
-fclean:
-	+$(MAKE) -C src fclean
-	rm $(NAME)
+all: $(NAME)
+
+$(NAME): $(OBJ) main.o
+	gcc -o $(NAME) $(OBJ) main.o
+
+tests_run: $(OBJ_TEST) $(OBJ)
+	gcc -o unit_tests $(OBJ_TEST) $(OBJ)
+	./unit_tests
+
+tests_memory: $(OBJ_TEST) $(OBJ)
+	gcc -o unit_tests $(OBJ_TEST) $(OBJ)
+	leaks --atExit -- ./unit_tests
+
+$(OBJ_TEST): %.o: %.c
+	gcc -c $(CFLAGS) -I./tests $< -o $@
+
+main.o: src/main.c
+	gcc -c $(CFLAGS) src/main.c
+
+clean:
+	rm -f $(OBJ) $(OBJ_TEST) src/main.o tests/test.o
+
+fclean: clean
+	rm -f $(NAME) unit_tests
 
 re: fclean all
 
-.PHONY: all fclean re $(NAME)
+.PHONY: all clean fclean re

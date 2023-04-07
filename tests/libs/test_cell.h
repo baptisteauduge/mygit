@@ -1,4 +1,3 @@
-// Sorbonne University, 2022 - 2023
 // MyGit Project
 // 
 // test_cell.h
