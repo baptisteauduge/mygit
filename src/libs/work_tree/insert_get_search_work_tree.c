@@ -46,7 +46,7 @@ int append_work_tree(work_tree_t *wt, const char *name, const char *hash,
     return -1;
   if (index_in_work_tree(wt, name) >= 0)
     return 0;
-  wf_to_treat = &wt->tab[wt->max_size];
+  wf_to_treat = &wt->tab[wt->size];
   wf_to_treat->name = strdup(name);
   if (!wf_to_treat->name)
     return -1;
