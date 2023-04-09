@@ -25,6 +25,7 @@ char *get_sha256_of_file(const char *filename)
     return NULL;
   put_hash_of_source_in_dest(filename, temp_filename);
   sha256 = get_first_line(temp_filename);
+  sha256[64] = '\0';
   if (!sha256)
     return NULL;
   close(fd);
