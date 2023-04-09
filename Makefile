@@ -21,7 +21,8 @@ SRC						=						src/libs/cell/cell.c															\
 													src/libs/work_tree/convert_str_work_tree.c				\
 													src/libs/work_tree/insert_get_search_work_tree.c	\
 													src/libs/work_tree/save_get_file_work_tree.c			\
-													src/libs/work_tree/create_blob_of_work_tree.c	
+													src/libs/work_tree/create_blob_of_work_tree.c			\
+													src/libs/work_tree/save_content_and_work_tree.c
 
 
 SRC_TEST			=						tests/test.c																			\
@@ -36,7 +37,7 @@ NAME					=						mygit
 
 CC						=						gcc
 
-CFLAGS				=						-Wall -Wextra -Werror -I./include
+CFLAGS				=						-Wall -Wextra -Werror -I./include -g
 
 all: $(NAME)
 

@@ -11,5 +11,6 @@
 
 list_t *get_list_files_and_dir(const char *path);
 int does_file_exists(const char *path);
+int is_file(const char *file);
 
 #endif
