@@ -18,16 +18,16 @@ static int create_temp_file_and_write_in_it(char *work_tree_str, char *tmp_filen
   FILE *f = NULL;
 
   if (!work_tree_str)
-    return -1;
+    return 0;
   fd = mkstemp(tmp_filename);
   if (fd == -1)
-    return -1;
+    return 0;
   f = fdopen(fd, WRITE_MODE);
   if (!f)
-    return -1;
+    return 0;
   fprintf(f, "%s", work_tree_str);
   fclose(f);
-  return 0;
+  return 1;
 }
 
 char *create_blob_of_work_tree(work_tree_t *wt)
