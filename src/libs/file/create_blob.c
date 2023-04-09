@@ -54,41 +54,40 @@ char *get_path_from_hash(const char *hash)
 }
 
 // This function is used to add a file extension to a path, path is modified
-static void set_path_with_extension(char **path, const char *file_extension)
+static void realloc_and_concat(char **base, const char *extension)
 {
   char *new_path = NULL;
   size_t len_path = 0;
   size_t len_extension = 0;
 
-  if (!path || !*path || !file_extension)
+  if (!base || !*base || !extension)
     return;
-  len_path = strlen(*path);
-  len_extension = strlen(file_extension);
-  new_path = realloc(*path, sizeof(char) * (len_path + len_extension + 1));
+  len_path = strlen(*base);
+  len_extension = strlen(extension);
+  new_path = realloc(*base, sizeof(char) * (len_path + len_extension + 1));
   if (!new_path)
     return;
-  *path = new_path;
+  *base = new_path;
   for (size_t i = 0; i < len_extension; ++i) {
-    (*path)[len_path + i] = file_extension[i];
+    (*base)[len_path + i] = extension[i];
   }
-  (*path)[len_path + len_extension] = '\0';
+  (*base)[len_path + len_extension] = '\0';
 }
 
 static int get_hash_and_path_with_extension_if_exists(
     const char *path_file, char **hash, char **path, const char *file_extension)
 {
-  if (!path_file || !file_extension || !does_file_exists(path_file) || !hash ||
-      !path)
+  if (!path_file || !does_file_exists(path_file) || !hash || !path)
     return 0;
   *hash = get_sha256_of_file(path_file);
   if (!*hash)
     return 0;
+  realloc_and_concat(hash, file_extension);
   *path = get_path_from_hash(*hash);
   if (!*path) {
     free(*hash);
     return 0;
   }
-  set_path_with_extension(path, file_extension);
   return 1;
 }
 
