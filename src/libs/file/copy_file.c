@@ -15,13 +15,13 @@ static int open_file_read_write_and_print_error(const char *path_read,
 {
   *file_read = fopen(path_read, READ_MODE);
   if (!*file_read)
-    return 1;
+    return 0;
   *file_write = fopen(path_write, WRITE_MODE);
   if (!*file_write) {
     fclose(*file_read);
-    return 1;
+    return 0;
   }
-  return 0;
+  return 1;
 }
 
 int copy_file(const char *to, const char *from)
