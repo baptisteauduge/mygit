@@ -40,25 +40,19 @@ static void set_content_file_mode_and_hash(work_file_t *wf,
   set_chmod(path_absolue_file, wf->mode);
 }
 
-static void load_work_tree_and_iterate(work_file_t *wf,
-                                       const char *path_absolute_blob,
+static void load_work_tree_and_iterate(const char *path_absolute_blob,
                                        const char *path)
 {
   work_tree_t *wt_new = NULL;
-  char *new_path = NULL;
 
   wt_new = file_to_work_tree(path_absolute_blob);
   if (!wt_new)
     return;
-  new_path = get_path_absolute(path, wf->name);
-  if (!new_path)
-    return;
-  restore_work_tree(wt_new, new_path);
-  free(new_path);
+  restore_work_tree(wt_new, path);
   free_work_tree(wt_new);
 }
 
-void restore_work_tree(work_tree_t *wt, char *path)
+void restore_work_tree(work_tree_t *wt, const char *path)
 {
   work_file_t *wf = NULL;
   char *path_absolute_blob = NULL;
@@ -78,6 +72,6 @@ void restore_work_tree(work_tree_t *wt, char *path)
     if (is_save_file(path_absolute_blob))
       set_content_file_mode_and_hash(wf, path_absolute_blob, path);
     else
-      load_work_tree_and_iterate(wf, path_absolute_blob, path);
+      load_work_tree_and_iterate(path_absolute_blob, path);
   }
 }

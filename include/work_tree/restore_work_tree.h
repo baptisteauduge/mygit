@@ -9,6 +9,6 @@
 
 #include "work_tree/work_tree.h"
 
-void restore_work_tree(work_tree_t *wt, char *path);
+void restore_work_tree(work_tree_t *wt, const char *path);
 
 #endif

@@ -9,6 +9,7 @@
 #include "file/copy_file.h"
 #include "file/list_files.h"
 #include "hash/hash.h"
+#include "utils/realloc_and_concat.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -53,27 +54,6 @@ char *get_path_from_hash(const char *hash)
   return dir;
 }
 
-// This function is used to add a file extension to a path, path is modified
-static void realloc_and_concat(char **base, const char *extension)
-{
-  char *new_path = NULL;
-  size_t len_path = 0;
-  size_t len_extension = 0;
-
-  if (!base || !*base || !extension)
-    return;
-  len_path = strlen(*base);
-  len_extension = strlen(extension);
-  new_path = realloc(*base, sizeof(char) * (len_path + len_extension + 1));
-  if (!new_path)
-    return;
-  *base = new_path;
-  for (size_t i = 0; i < len_extension; ++i) {
-    (*base)[len_path + i] = extension[i];
-  }
-  (*base)[len_path + len_extension] = '\0';
-}
-
 static int get_hash_and_path_with_extension_if_exists(
     const char *path_file, char **hash, char **path, const char *file_extension)
 {
@@ -82,7 +62,7 @@ static int get_hash_and_path_with_extension_if_exists(
   *hash = get_sha256_of_file(path_file);
   if (!*hash)
     return 0;
-  realloc_and_concat(hash, file_extension);
+  realloc_and_concat_after(hash, file_extension);
   *path = get_path_from_hash(*hash);
   if (!*path) {
     free(*hash);

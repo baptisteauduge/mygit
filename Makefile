@@ -9,6 +9,7 @@ SRC						=						src/libs/cell/cell.c															\
 													src/libs/list/insert_get_search_list.c						\
 													src/libs/list/list.c															\
 													src/libs/list/save_get_file_list.c								\
+													src/libs/list/add_prefix_all_list.c								\
 													src/libs/file/read_file.c													\
 													src/libs/file/copy_file.c													\
 													src/libs/file/create_blob.c												\
@@ -24,7 +25,8 @@ SRC						=						src/libs/cell/cell.c															\
 													src/libs/work_tree/save_get_file_work_tree.c			\
 													src/libs/work_tree/create_blob_of_work_tree.c			\
 													src/libs/work_tree/save_content_and_work_tree.c 	\
-													src/libs/work_tree/restore_work_tree.c 						
+													src/libs/work_tree/restore_work_tree.c 						\
+													src/libs/utils/realloc_and_concat.c	
 
 
 SRC_TEST			=						tests/test.c																			\

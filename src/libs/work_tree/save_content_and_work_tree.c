@@ -6,9 +6,10 @@
 
 #include "work_tree/save_content_and_work_tree.h"
 #include "file/create_blob.h"
+#include "file/get_path_absolute.h"
 #include "file/list_files.h"
 #include "file/rights_file.h"
-#include "file/get_path_absolute.h"
+#include "list/add_prefix_all_list.h"
 #include "work_tree/create_blob_of_work_tree.h"
 #include "work_tree/insert_get_search_work_tree.h"
 #include <stdlib.h>
@@ -54,6 +55,7 @@ static void create_work_tree_and_iterate(work_tree_t *wt, work_file_t *wf,
   list_t *list = get_list_files_and_dir(path_absolute);
   if (!list)
     return;
+  add_prefix_all_list(list, wf->name);
   fill_work_tree(wt2, list, path_absolute);
   wt->tab[index].mode = get_chmod(path_absolute);
   wt->tab[index].hash = save_content_and_work_tree(wt2, path_absolute);
