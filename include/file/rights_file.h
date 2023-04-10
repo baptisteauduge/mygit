@@ -7,7 +7,9 @@
 #ifndef RIGHTS_FILE_H
 #define RIGHTS_FILE_H
 
-int get_chmod(const char *path);
-int set_chmod(const char *path, int mode);
+#include <sys/stat.h>
+
+mode_t get_chmod(const char *path);
+int set_chmod(const char *path, mode_t mode);
 
 #endif

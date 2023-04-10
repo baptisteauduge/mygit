@@ -8,29 +8,11 @@
 #include "file/create_blob.h"
 #include "file/list_files.h"
 #include "file/rights_file.h"
+#include "file/get_path_absolute.h"
 #include "work_tree/create_blob_of_work_tree.h"
 #include "work_tree/insert_get_search_work_tree.h"
 #include <stdlib.h>
 #include <string.h>
-
-static char *get_path_absolute(const char *path, const char *filename)
-{
-  char *path_absolute = NULL;
-  size_t size = 0;
-
-  if (!path || !filename)
-    return NULL;
-  size = strlen(path);
-  size += strlen(filename);
-  path_absolute = malloc((size + 2) * sizeof(char));
-  if (!path_absolute)
-    return NULL;
-  strcpy(path_absolute, path);
-  if (path_absolute[size - 1] != '/')
-    strlcat(path_absolute, "/", size + 1);
-  strlcat(path_absolute, filename, size + 2);
-  return path_absolute;
-}
 
 static void save_content_file_get_mode_and_hash(work_file_t *wf,
                                                 const char *path_absolute)
@@ -90,7 +72,7 @@ char *save_content_and_work_tree(work_tree_t *wt, const char *path)
     wf = &wt->tab[i];
     path_absolute = get_path_absolute(path, wf->name);
     if (!path_absolute)
-      return 0;
+      return NULL;
     if (is_file(path_absolute))
       save_content_file_get_mode_and_hash(wf, path_absolute);
     else

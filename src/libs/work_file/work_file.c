@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-work_file_t *create_work_file(const char *name, const char *hash, int mode) {
+work_file_t *create_work_file(const char *name, const char *hash, mode_t mode) {
   work_file_t *new_wf = NULL;
   
   if (!name)

@@ -38,7 +38,7 @@ static int set_hash_or_null(const char *hash, work_file_t *wf)
 }
 
 int append_work_tree(work_tree_t *wt, const char *name, const char *hash,
-                     int mode)
+                     mode_t mode)
 {
   work_file_t *wf_to_treat = NULL;
 

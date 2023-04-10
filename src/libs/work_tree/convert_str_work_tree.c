@@ -63,11 +63,11 @@ static int browse_string_and_append_wt(work_tree_t *wt, char **str_cpy)
   char *token = NULL;
   char *name = NULL;
   char *hash = NULL;
-  int mode;
+  mode_t mode = 0;
 
   token = strsep(str_cpy, "\n");
   while (token) {
-    if (sscanf(token, "%ms\t%ms\t%d", &name, &hash, &mode) != 3)
+    if (!get_content_str_work_file(token, &name, &hash, &mode))
       return 0;
     if (append_work_tree(wt, name, hash, mode) == -1) {
       free(name);

@@ -7,9 +7,8 @@
 #include "file/rights_file.h"
 #include "file/list_files.h"
 #include <stdio.h>
-#include <sys/stat.h>
 
-int get_chmod(const char *path)
+mode_t get_chmod(const char *path)
 {
   struct stat ret = {0};
 
@@ -17,18 +16,14 @@ int get_chmod(const char *path)
     return -1;
   if (stat(path, &ret) == -1)
     return -1;
-  return (ret.st_mode & S_IRUSR) | (ret.st_mode & S_IWUSR) |
-         (ret.st_mode & S_IXUSR) | /*owner*/
-         (ret.st_mode & S_IRGRP) | (ret.st_mode & S_IWGRP) |
-         (ret.st_mode & S_IXGRP) | /*group*/
-         (ret.st_mode & S_IROTH) | (ret.st_mode & S_IWOTH) |
-         (ret.st_mode & S_IXOTH); /*other*/
+  return ret.st_mode & 0777;
 }
 
-int set_chmod(const char *path, int mode)
+int set_chmod(const char *path, mode_t mode)
 {
   if (!path || !does_file_exists(path))
     return 0;
-  chmod(path, mode);
+  if (chmod(path, mode) == -1)
+    return 0;
   return 1;
 }

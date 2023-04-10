@@ -14,6 +14,7 @@ SRC						=						src/libs/cell/cell.c															\
 													src/libs/file/create_blob.c												\
 													src/libs/file/list_files.c												\
 													src/libs/file/rights_file.c												\
+													src/libs/file/get_path_absolute.c									\
 													src/libs/hash/hash.c															\
 													src/libs/work_file/work_file.c										\
 													src/libs/work_file/convert_str_work_file.c				\
@@ -22,7 +23,8 @@ SRC						=						src/libs/cell/cell.c															\
 													src/libs/work_tree/insert_get_search_work_tree.c	\
 													src/libs/work_tree/save_get_file_work_tree.c			\
 													src/libs/work_tree/create_blob_of_work_tree.c			\
-													src/libs/work_tree/save_content_and_work_tree.c
+													src/libs/work_tree/save_content_and_work_tree.c 	\
+													src/libs/work_tree/restore_work_tree.c 						
 
 
 SRC_TEST			=						tests/test.c																			\
@@ -37,12 +39,14 @@ NAME					=						mygit
 
 CC						=						gcc
 
-CFLAGS				=						-Wall -Wextra -Werror -I./include -g
+CFLAGS				=						-Wall -Wextra -Werror
+
+CPPFLAGS			=						-I./include
 
 all: $(NAME)
 
 $(NAME): $(OBJ) main.o
-	gcc -o $(NAME) $(OBJ) main.o
+	$(CC) -o $(NAME) $(CFLAGS) $(CPPFLAGS) $(OBJ) main.o
 
 tests_run: $(OBJ_TEST) $(OBJ)
 	gcc -o unit_tests $(OBJ_TEST) $(OBJ)
@@ -56,14 +60,17 @@ $(OBJ_TEST): %.o: %.c
 	gcc -c $(CFLAGS) -I./tests $< -o $@
 
 main.o: src/main.c
-	gcc -c $(CFLAGS) src/main.c
+	gcc -c $(CFLAGS) $(CPPFLAGS) src/main.c
 
 clean:
-	rm -f $(OBJ) $(OBJ_TEST) src/main.o tests/test.o
+	$(RM) $(OBJ) $(OBJ_TEST) src/main.o tests/test.o
 
 fclean: clean
-	rm -f $(NAME) unit_tests
+	$(RM) $(NAME) unit_tests
 
 re: fclean all
+
+debug: CPPFLAGS += -g3 -ggdb
+debug: re
 
 .PHONY: all clean fclean re

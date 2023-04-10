@@ -47,7 +47,7 @@ char *convert_work_file_to_str(const work_file_t *wf)
     return NULL;
   name = get_content_or_empty_str(wf->name);
   hash = get_content_or_empty_str(wf->hash);
-  if (snprintf(wf_str, size_wf_str, "%s\t%s\t%d", name, hash, wf->mode) < 0) {
+  if (snprintf(wf_str, size_wf_str, "%s\t%s\t%ho", name, hash, wf->mode) < 0) {
     free(wf_str);
     return NULL;
   }
@@ -62,19 +62,38 @@ static void set_to_null_if_empty(char **str)
   }
 }
 
+// Due to a non support in MacOS of %ms, in sscanf
+// we use %s and then we allocate the memory
+int get_content_str_work_file(const char *str, char **name, char **hash, mode_t *mode)
+{
+  if (!name || !hash || !mode || !str)
+    return 0;
+  *name = malloc(BUFFER_SIZE * sizeof(char));
+  if (!*name)
+    return 0;
+  *hash = malloc(BUFFER_SIZE * sizeof(char));
+  if (!*hash) {
+    free(*name);
+    return 0;
+  }
+  if (sscanf(str, "%s\t%s\t%ho", *name, *hash, mode) != 3)
+    return 0;
+  set_to_null_if_empty(name);
+  set_to_null_if_empty(hash);
+  return 1;
+}
+
 work_file_t *convert_str_to_work_file(const char *str)
 {
   work_file_t *wf = NULL;
   char *name = NULL;
   char *hash = NULL;
-  int mode = 0;
+  mode_t mode = 0;
 
   if (!str)
     return NULL;
-  if (sscanf(str, "%ms\t%ms\t%d", &name, &hash, &mode) != 3)
+  if (!get_content_str_work_file(str, &name, &hash, &mode))
     return NULL;
-  set_to_null_if_empty(&name);
-  set_to_null_if_empty(&hash);
   wf = create_work_file(name, hash, mode);
   free(name);
   free(hash);

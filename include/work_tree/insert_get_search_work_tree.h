@@ -8,9 +8,10 @@
 #define INSERT_GET_SEARCH_WORK_TREE_H
 
 #include "work_tree/work_tree.h"
+#include <sys/stat.h>
 
 int append_work_tree(work_tree_t *wt, const char *name, const char *hash,
-                     int mode);
+                     mode_t mode);
 int index_in_work_tree(const work_tree_t *wt, const char *name);
 
 #endif
