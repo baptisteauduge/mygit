@@ -9,5 +9,6 @@
 
 char *get_sha256_of_file(const char *filename);
 void put_hash_of_source_in_dest(const char *source, const char *dest);
+unsigned long commit_hash_func(const char *str);
 
 #endif

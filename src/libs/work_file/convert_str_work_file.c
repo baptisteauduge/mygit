@@ -6,16 +6,10 @@
 
 #include "work_file/convert_str_work_file.h"
 #include "work_file/work_file.h"
+#include "utils/get_content_or_empty_str.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-static const char *get_content_or_empty_str(const char *str)
-{
-  if (!str)
-    return "";
-  return str;
-}
 
 size_t size_work_file_to_str(const work_file_t *wf)
 {
