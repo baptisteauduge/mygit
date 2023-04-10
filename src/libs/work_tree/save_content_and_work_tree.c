@@ -43,6 +43,7 @@ static void fill_work_tree(work_tree_t *wt, list_t *list, const char *path)
 }
 
 static void create_work_tree_and_iterate(work_tree_t *wt, work_file_t *wf,
+                                         const char *path,
                                          const char *path_absolute, int index)
 {
   work_tree_t *wt2 = NULL;
@@ -55,10 +56,11 @@ static void create_work_tree_and_iterate(work_tree_t *wt, work_file_t *wf,
   list_t *list = get_list_files_and_dir(path_absolute);
   if (!list)
     return;
+  add_prefix_all_list(list, "/");
   add_prefix_all_list(list, wf->name);
   fill_work_tree(wt2, list, path_absolute);
   wt->tab[index].mode = get_chmod(path_absolute);
-  wt->tab[index].hash = save_content_and_work_tree(wt2, path_absolute);
+  wt->tab[index].hash = save_content_and_work_tree(wt2, path);
   free_work_tree(wt2);
   free_list(list);
 }
@@ -78,7 +80,7 @@ char *save_content_and_work_tree(work_tree_t *wt, const char *path)
     if (is_file(path_absolute))
       save_content_file_get_mode_and_hash(wf, path_absolute);
     else
-      create_work_tree_and_iterate(wt, wf, path_absolute, i);
+      create_work_tree_and_iterate(wt, wf, path, path_absolute, i);
     free(path_absolute);
   }
   return create_blob_of_work_tree(wt);

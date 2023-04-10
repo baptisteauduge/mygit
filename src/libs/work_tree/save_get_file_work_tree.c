@@ -39,10 +39,9 @@ work_tree_t *file_to_work_tree(const char *path)
 
   if (!path)
     return NULL;
-  file_content = get_first_line(path);
+  file_content = get_file_content(path);
   if (!file_content)
     return NULL;
-  remove_new_line_if_exists(file_content);
   wt = convert_str_to_work_tree(file_content);
   free(file_content);
   return wt;

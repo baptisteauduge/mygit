@@ -7,6 +7,8 @@
 #ifndef CREATE_BLOB_H
 #define CREATE_BLOB_H
 
+#define DIR_BLOBS ".mygit/objects/"
+
 char *get_dir_from_hash(const char *hash);
 char *get_path_from_hash(const char *hash);
 char *create_blob_file_and_get_hash(const char *path_file,

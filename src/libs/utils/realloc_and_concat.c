@@ -41,7 +41,6 @@ void realloc_and_concat_before(const char *prefix, char **base)
   new_path = malloc(sizeof(char) * (len_path + len_prefix + 1));
   if (!new_path)
     return;
-  *base = new_path;
   for (size_t i = 0; i < len_path + len_prefix; ++i) {
     if (i < len_prefix)
       new_path[i] = prefix[i];

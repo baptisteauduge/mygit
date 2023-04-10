@@ -38,16 +38,34 @@ static void set_content_file_mode_and_hash(work_file_t *wf,
   path_absolue_file = get_path_absolute(path, wf->name);
   copy_file(path_absolue_file, path_blob);
   set_chmod(path_absolue_file, wf->mode);
+  free(path_absolue_file);
 }
 
-static void load_work_tree_and_iterate(const char *path_absolute_blob,
+static void create_dir_if_doesnt_exist(const char *path, const char *name,
+                                       mode_t mode)
+{
+  char *path_absolute_dir = NULL;
+
+  if (!path || !name)
+    return;
+  path_absolute_dir = get_path_absolute(path, name);
+  if (!does_file_exists(path_absolute_dir))
+    mkdir(path_absolute_dir, mode);
+  free(path_absolute_dir);
+}
+
+static void load_work_tree_and_iterate(const work_file_t *wf,
+                                       const char *path_absolute_blob,
                                        const char *path)
 {
   work_tree_t *wt_new = NULL;
 
+  if (!wf || !path_absolute_blob || !path)
+    return;
   wt_new = file_to_work_tree(path_absolute_blob);
   if (!wt_new)
     return;
+  create_dir_if_doesnt_exist(path, wf->name, wf->mode);
   restore_work_tree(wt_new, path);
   free_work_tree(wt_new);
 }
@@ -72,6 +90,7 @@ void restore_work_tree(work_tree_t *wt, const char *path)
     if (is_save_file(path_absolute_blob))
       set_content_file_mode_and_hash(wf, path_absolute_blob, path);
     else
-      load_work_tree_and_iterate(path_absolute_blob, path);
+      load_work_tree_and_iterate(wf, path_absolute_blob, path);
+    free(path_absolute_blob);
   }
 }

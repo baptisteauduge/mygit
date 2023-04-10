@@ -14,6 +14,7 @@
 #include <work_tree/insert_get_search_work_tree.h>
 #include <work_tree/restore_work_tree.h>
 #include <work_tree/save_content_and_work_tree.h>
+#include <work_tree/save_get_file_work_tree.h>
 #include <work_tree/work_tree.h>
 
 int main(void)
@@ -47,12 +48,15 @@ int main(void)
   // free(work_tree_str);
   // free_work_tree(wt);
   // free(hash);
-  char str[] = ".gitignore\tddde6f32adfe2e66780dcc7ae72ad086cf2eb67da960aefe27c"
-               "6d405ef0f1067\t644\nMakefile\t63657e358cc8abef5fed61af1227f7b46"
-               "7947a355f451229a17595b711b46d43\t644\ntesting\tb0a476205acbe6ce"
-               "1898b353e758f6e70c2d23adb4ac089adfd695ec2ee3d212.t\t755\n";
-  work_tree_t *wt = convert_str_to_work_tree(str);
+
+  work_tree_t *wt = file_to_work_tree(
+      ".mygit/blobs/66/"
+      "ccc2baf81bf82cab7baaf9bcea8a0f28bc6492251d5f95153421dac8b27de8.t");
+  char *str = convert_work_tree_to_str(wt);
+  printf("%s\n", str);
   printf("aaa\n");
   restore_work_tree(wt, ".");
+  free_work_tree(wt);
+  free(str);
   return 0;
 }
