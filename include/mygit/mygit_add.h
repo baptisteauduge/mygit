@@ -1,11 +1,11 @@
 // MyGit Project
 //
-// add.h
+// mygit_add.h
 // File description:
-//    add.h
+//    mygit_add.h
 
-#ifndef ADD_H
-#define ADD_H
+#ifndef MYGIT_ADD_H
+#define MYGIT_ADD_H
 
 void mygit_add(const char *file);
 

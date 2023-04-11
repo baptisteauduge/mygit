@@ -12,5 +12,6 @@
 #define MYGIT_DIR_BLOBS ".mygit/objects/"
 #define MYGIT_DIR_REFS ".mygit/refs/"
 #define MYGIT_PATH_ADD ".mygit/.add"
+#define PREFIX_PATH "."
 
 #endif

@@ -10,7 +10,7 @@ SRC						=						src/libs/cell/cell.c															\
 													src/libs/list/list.c															\
 													src/libs/list/save_get_file_list.c								\
 													src/libs/list/add_prefix_all_list.c								\
-													src/libs/file/read_file.c													\
+													src/libs/file/read_write_file.c										\
 													src/libs/file/copy_file.c													\
 													src/libs/file/create_blob.c												\
 													src/libs/file/list_files.c												\
@@ -39,7 +39,10 @@ SRC						=						src/libs/cell/cell.c															\
 													src/libs/commit/create_blob_of_commit.c						\
 													src/init/init.c																		\
 													src/refs/refs.c																		\
-													src/mygit/add.c
+													src/refs/refs_utils.c															\
+													src/mygit/mygit_add.c															\
+													src/mygit/mygit_commit.c													\
+													src/mygit/mygit_commit_pre_check.c								\
 
 OBJ						=						$(SRC:.c=.o)
 
@@ -74,7 +77,7 @@ clean:
 	$(RM) $(OBJ) $(OBJ_TEST) src/main.o tests/test.o
 
 fclean: clean
-	$(RM) $(NAME) unit_tests tests.o tests.gcda tests.gcno
+	$(RM) $(NAME) unit_tests tests.o tests.gcda tests.gcno main.o
 
 re: fclean all
 

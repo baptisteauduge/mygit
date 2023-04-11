@@ -28,7 +28,7 @@ commit_t *create_and_init_empty_commit(void)
   return commit;
 }
 
-commit_t *create_commit_with_tree_key_val(char *hash)
+commit_t *create_commit_with_tree_key_val(const char *hash)
 {
   commit_t *commit;
 

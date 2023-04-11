@@ -22,7 +22,7 @@ typedef struct hash_table_s {
 typedef hash_table_t commit_t;
 
 commit_t *create_and_init_empty_commit(void);
-commit_t *create_commit_with_tree_key_val(char *hash);
+commit_t *create_commit_with_tree_key_val(const char *hash);
 void free_commit(commit_t *commit);
 
 #endif

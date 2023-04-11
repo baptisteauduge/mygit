@@ -6,7 +6,7 @@
 
 #include "hash/hash.h"
 #include "file/constants_file.h"
-#include "file/read_file.h"
+#include "file/read_write_file.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

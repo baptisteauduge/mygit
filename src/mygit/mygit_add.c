@@ -1,9 +1,9 @@
 // MyGit Project
 //
-// add.c
+// mygit_add.c
 // File description:
-//    add.c
-#include "mygit/add.h"
+//    mygit_add.c
+#include "mygit/mygit_add.h"
 #include "utils/constants.h"
 #include "work_tree/insert_get_search_work_tree.h"
 #include "work_tree/save_get_file_work_tree.h"

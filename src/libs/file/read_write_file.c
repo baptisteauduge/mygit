@@ -1,10 +1,10 @@
 // MyGit Project
 //
-// read_file.c
+// read_write_file.c
 // File description:
-//    read_file.c
+//    read_write_file.c
 
-#include "file/read_file.h"
+#include "file/read_write_file.h"
 #include "file/constants_file.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -80,4 +80,17 @@ void remove_new_line_if_exists(char *str)
   newline = strchr(str, '\n');
   if (newline)
     *newline = '\0';
+}
+
+void write_file_content(const char *path, const char *content)
+{
+  FILE *file = NULL;
+
+  if (!path || !content)
+    return;
+  file = fopen(path, WRITE_MODE);
+  if (!file)
+    return;
+  fputs(content, file);
+  fclose(file);
 }
