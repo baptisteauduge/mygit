@@ -20,8 +20,8 @@ void create_or_update_ref(const char *ref_name, const char *hash)
 
   if (ref_name == NULL || hash == NULL)
     return;
-  refs_path_size = strlen(MYGIT_DIR_REFS) + strlen(ref_name);
-  refs_path = calloc(refs_path_size + 1, sizeof(char));
+  refs_path_size = strlen(MYGIT_DIR_REFS) + strlen(ref_name) + 1;
+  refs_path = calloc(refs_path_size, sizeof(char));
   if (refs_path == NULL)
     return;
   strncpy(refs_path, MYGIT_DIR_REFS, refs_path_size);
@@ -41,8 +41,8 @@ void delete_ref(const char *ref_name)
 
   if (!ref_name)
     return;
-  refs_path_size = strlen(MYGIT_DIR_REFS) + strlen(ref_name);
-  refs_path = calloc(refs_path_size + 1, sizeof(char));
+  refs_path_size = strlen(MYGIT_DIR_REFS) + strlen(ref_name) + 1;
+  refs_path = calloc(refs_path_size, sizeof(char));
   if (!refs_path)
     return;
   strncpy(refs_path, MYGIT_DIR_REFS, refs_path_size);
@@ -59,8 +59,8 @@ char *get_ref(const char *ref_name)
 
   if (!ref_name)
     return NULL;
-  refs_path_size = strlen(MYGIT_DIR_REFS) + strlen(ref_name);
-  refs_path = calloc(refs_path_size + 1, sizeof(char));
+  refs_path_size = strlen(MYGIT_DIR_REFS) + strlen(ref_name) + 1;
+  refs_path = calloc(refs_path_size, sizeof(char));
   if (!refs_path)
     return NULL;
   strncpy(refs_path, MYGIT_DIR_REFS, refs_path_size);
