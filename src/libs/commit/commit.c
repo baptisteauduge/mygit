@@ -8,6 +8,7 @@
 #include "commit/insert_key_val_in_commit.h"
 #include "hash/hash.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 commit_t *create_and_init_empty_commit(void)
 {
@@ -15,13 +16,15 @@ commit_t *create_and_init_empty_commit(void)
 
   if (!commit)
     return NULL;
-  commit->key_val = calloc(sizeof(key_val_t *), commit->max_size);
+  commit->size = 0;
+  commit->max_size = COMMIT_KEY_VAL_MAX_SIZE;
+  commit->key_val = malloc(sizeof(key_val_t *) * commit->max_size);
   if (!commit->key_val) {
     free(commit);
     return NULL;
   }
-  commit->max_size = COMMIT_KEY_VAL_MAX_SIZE;
-  commit->size = 0;
+  for (size_t i = 0; i < commit->max_size; i++)
+    commit->key_val[i] = NULL;
   return commit;
 }
 

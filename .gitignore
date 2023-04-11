@@ -1,8 +1,8 @@
 *.o
 .DS_Store
 .vscode
-mygit
 *.t
 unit_tests
 .mygit
 testing
+mygit.out

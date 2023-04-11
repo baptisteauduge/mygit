@@ -16,6 +16,8 @@
 #include <work_tree/save_content_and_work_tree.h>
 #include <work_tree/save_get_file_work_tree.h>
 #include <work_tree/work_tree.h>
+#include <commit/create_blob_of_commit.h>
+#include <commit/convert_str_commit.h>
 
 int main(void)
 {
@@ -49,14 +51,24 @@ int main(void)
   // free_work_tree(wt);
   // free(hash);
 
-  work_tree_t *wt = file_to_work_tree(
-      ".mygit/blobs/66/"
-      "ccc2baf81bf82cab7baaf9bcea8a0f28bc6492251d5f95153421dac8b27de8.t");
-  char *str = convert_work_tree_to_str(wt);
-  printf("%s\n", str);
-  printf("aaa\n");
-  restore_work_tree(wt, ".");
-  free_work_tree(wt);
-  free(str);
+  // work_tree_t *wt = file_to_work_tree(
+  //     ".mygit/objects/08/"
+  //     "8e693e95dc0bf274ff6afd748cf304e17383adbdfa9f513c1e3d11ab51bfe1.t");
+  // char *str = convert_work_tree_to_str(wt);
+  // printf("%s\n", str);
+  // printf("aaa\n");
+  // restore_work_tree(wt, ".");
+  // free_work_tree(wt);
+  // free(str);
+
+  // commit_t *commit = create_commit_with_tree_key_val("123456789012345678901234");
+  // char *commit_str = convert_commit_to_str(commit);
+  // printf("%s\n", commit_str);
+  // free(commit_str);
+  // char *blobPath = create_blob_of_commit(commit);
+  // printf("Blob path %s\n", blobPath);
+  // free(blobPath);
+  // free_commit(commit);
+  
   return 0;
 }

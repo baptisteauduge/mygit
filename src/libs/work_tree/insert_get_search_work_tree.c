@@ -5,8 +5,8 @@
 //    insert_get_search_work_tree.c
 
 #include "work_tree/insert_get_search_work_tree.h"
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
 // Returns -1 if not in the work_tree
 int index_in_work_tree(const work_tree_t *wt, const char *name)
@@ -37,6 +37,7 @@ static int set_hash_or_null(const char *hash, work_file_t *wf)
   return 1;
 }
 
+// Returns -1 if error, 0 if already in the work_tree, 1 if added
 int append_work_tree(work_tree_t *wt, const char *name, const char *hash,
                      mode_t mode)
 {

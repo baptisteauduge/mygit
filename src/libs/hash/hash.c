@@ -51,19 +51,9 @@ void put_hash_of_source_in_dest(const char *source, const char *dest)
 unsigned long commit_hash_func(const char *str)
 {
   unsigned long hash = 5381;
-  char *str_cpy = NULL;
   int c;
 
-  if (!str)
-    return 0;
-  str_cpy = strdup(str);
-  if (!str_cpy)
-    return 0;
-  c = *str_cpy++;
-  while (c) {
-    hash = ((hash << 5) + hash) + c;
-    c = *str_cpy++;
-  }
-  free(str_cpy);
+  while ((c = *str++))
+    hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
   return hash;
 }

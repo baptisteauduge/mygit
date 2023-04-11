@@ -5,6 +5,7 @@
 //    create_blob.h
 
 #include "file/create_blob.h"
+#include "utils/constants.h"
 #include "file/constants_file.h"
 #include "file/copy_file.h"
 #include "file/list_files.h"
@@ -52,7 +53,7 @@ char *get_dir_from_hash(const char *hash)
   dir[0] = hash[0];
   dir[1] = hash[1];
   dir[2] = '/';
-  dir_prefixed = add_prefix_dir(dir, DIR_BLOBS);
+  dir_prefixed = add_prefix_dir(dir, MYGIT_DIR_BLOBS);
   if (!dir_prefixed)
     return NULL;
   free(dir);
@@ -76,7 +77,7 @@ char *get_path_from_hash(const char *hash)
   for (int i = 3; i < len_hash + 1; ++i) {
     dir[i] = hash[i - 1];
   }
-  realloc_and_concat_before(DIR_BLOBS, &dir);
+  realloc_and_concat_before(MYGIT_DIR_BLOBS, &dir);
   return dir;
 }
 
