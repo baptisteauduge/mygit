@@ -34,7 +34,7 @@ int list_refs_handle_args(int argc, char **argv)
   (void)argv;
   if (str_all_ref == NULL)
     return 1;
-  printf("Here is all your refs:\n%s\n", str_all_ref);
+  printf("Here is all your refs:\n%s", str_all_ref);
   free(str_all_ref);
   return 0;
 }
