@@ -69,27 +69,26 @@ static char *fill_new_commit_create_blob_and_get_hash(commit_t *new_commit,
   return create_blob_of_commit(new_commit);
 }
 
-int mygit_commit(const char *branch_name, const char *message)
+char *mygit_commit(const char *branch_name, const char *message)
 {
   int pre_checks = 0;
   commit_t *new_commit = NULL;
   char *hash_new_commit = NULL;
 
   if (!branch_name)
-    return 0;
+    return NULL;
   pre_checks = check_if_refs_exists() && check_if_branch_exists(branch_name) &&
                check_if_head_is_in_branch(branch_name);
   if (!pre_checks)
-    return 0;
+    return NULL;
   new_commit = get_commit_from_added();
   if (!new_commit)
-    return 0;
+    return NULL;
   hash_new_commit = fill_new_commit_create_blob_and_get_hash(
       new_commit, message, branch_name);
   free_commit(new_commit);
   if (!hash_new_commit)
-    return 0;
+    return NULL;
   set_head_and_branch_hash_last_commit(branch_name, hash_new_commit);
-  free(hash_new_commit);
-  return 1;
+  return hash_new_commit;
 }
