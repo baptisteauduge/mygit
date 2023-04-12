@@ -12,7 +12,7 @@
 #include "file/read_write_file.h"
 #include "mygit/mygit_commit_pre_checks.h"
 #include "refs/refs_utils.h"
-#include "utils/constants.h"
+#include "utils/utils.h"
 #include "work_tree/save_content_and_work_tree.h"
 #include "work_tree/save_get_file_work_tree.h"
 #include <stdio.h>
@@ -24,7 +24,7 @@ static work_tree_t *get_added_work_tree_and_delete(void)
   work_tree_t *work_tree = NULL;
 
   if (!does_file_exists(MYGIT_PATH_ADD)) {
-    fprintf(stderr, "Error: no files added\n");
+    LOG_ERROR("Error: no files added\n");
     return NULL;
   }
   work_tree = file_to_work_tree(MYGIT_PATH_ADD);
@@ -69,25 +69,27 @@ static char *fill_new_commit_create_blob_and_get_hash(commit_t *new_commit,
   return create_blob_of_commit(new_commit);
 }
 
-void mygit_commit(const char *branch_name, const char *message)
+int mygit_commit(const char *branch_name, const char *message)
 {
   int pre_checks = 0;
   commit_t *new_commit = NULL;
   char *hash_new_commit = NULL;
 
   if (!branch_name)
-    return;
+    return 0;
   pre_checks = check_if_refs_exists() && check_if_branch_exists(branch_name) &&
                check_if_head_is_in_branch(branch_name);
   if (!pre_checks)
-    return;
+    return 0;
   new_commit = get_commit_from_added();
   if (!new_commit)
-    return;
+    return 0;
   hash_new_commit = fill_new_commit_create_blob_and_get_hash(
       new_commit, message, branch_name);
   free_commit(new_commit);
   if (!hash_new_commit)
-    return;
+    return 0;
   set_head_and_branch_hash_last_commit(branch_name, hash_new_commit);
+  free(hash_new_commit);
+  return 1;
 }

@@ -7,6 +7,7 @@
 #ifndef MYGIT_ADD_H
 #define MYGIT_ADD_H
 
-void mygit_add(const char *file);
+char *get_mygit_list_add_str(void);
+int mygit_add(const char *file);
 
 #endif

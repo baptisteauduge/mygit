@@ -8,7 +8,8 @@
 #define REFS_H
 
 void create_or_update_ref(const char *ref_name, const char *hash);
-void delete_ref(const char *ref_name);
+int delete_ref(const char *ref_name);
+char *get_str_all_ref();
 char *get_ref(const char *ref_name);
 
 #endif

@@ -10,6 +10,6 @@
 #define COMMIT_PARENT_KEY "predecessor"
 #define COMMIT_MESSAGE_KEY "message"
 
-void mygit_commit(const char *branch_name, const char *message);
+int mygit_commit(const char *branch_name, const char *message);
 
 #endif

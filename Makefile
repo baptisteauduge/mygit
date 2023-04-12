@@ -40,9 +40,11 @@ SRC						=						src/libs/cell/cell.c															\
 													src/init/init.c																		\
 													src/refs/refs.c																		\
 													src/refs/refs_utils.c															\
+													src/mygit/mygit_handle_args.c											\
+													src/mygit/mygit_handle_args_actions.c							\
 													src/mygit/mygit_add.c															\
 													src/mygit/mygit_commit.c													\
-													src/mygit/mygit_commit_pre_check.c								\
+													src/mygit/mygit_commit_pre_check.c													
 
 OBJ						=						$(SRC:.c=.o)
 

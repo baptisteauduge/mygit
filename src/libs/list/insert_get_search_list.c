@@ -5,6 +5,7 @@
 //    insert_get_search_list.c
 
 #include "list/insert_get_search_list.h"
+#include "utils/utils.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -27,7 +28,7 @@ cell_t *get_index_of_list(list_t *list, int pos)
   for (int i = 0; i < pos && iter; ++i)
     iter = iter->next;
   if (!iter)
-    fprintf(stderr, ERROR_INDEX_OUT_OF_RANGE);
+    LOG_ERROR(ERROR_INDEX_OUT_OF_RANGE);
   return iter;
 }
 

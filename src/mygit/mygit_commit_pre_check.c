@@ -4,11 +4,12 @@
 // File description:
 //    mygit_commit_pre_checks.c
 
+#include "file/get_path_absolute.h"
 #include "file/list_files.h"
 #include "file/read_write_file.h"
 #include "mygit/mygit_commit_pre_checks.h"
 #include "refs/refs_utils.h"
-#include "utils/constants.h"
+#include "utils/utils.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -17,7 +18,7 @@
 int check_if_refs_exists(void)
 {
   if (!does_file_exists(MYGIT_DIR_REFS)) {
-    fprintf(stderr, "Error: no refs found, please init a repository first\n");
+    LOG_ERROR("Error: no refs found, please init a repository first\n");
     return 0;
   }
   return 1;
@@ -28,7 +29,9 @@ int check_if_branch_exists(const char *branch_name)
 {
   char *branch_path = NULL;
 
-  branch_path = get_branch_path(branch_name);
+  branch_path = get_path_absolute(MYGIT_DIR_REFS, branch_name);
+  if (!branch_path)
+    return 0;
   if (!does_file_exists(branch_path)) {
     fprintf(stderr, "Error: branch %s does not exists\n", branch_name);
     free(branch_path);
@@ -43,10 +46,10 @@ static int get_head_and_branch_hash(char **head_hash, char **branch_hash,
 {
   char *branch_path = NULL;
 
-  *head_hash = get_file_content(MYGIT_DIR_REFS "HEAD");
+  *head_hash = get_file_content(MYGIT_DIR_REFS "/" MYGIT_FILE_REF_HEAD);
   if (!head_hash)
     return 0;
-  branch_path = get_branch_path(branch_name);
+  branch_path = get_path_absolute(MYGIT_DIR_REFS, branch_name);
   if (!branch_path) {
     free(*head_hash);
     return 0;
