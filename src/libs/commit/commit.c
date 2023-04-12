@@ -43,7 +43,7 @@ commit_t *create_commit_with_tree_key_val(const char *hash)
 
 void free_commit(commit_t *commit)
 {
-  for (size_t i = 0; i < commit->size; i++)
+  for (size_t i = 0; i < commit->max_size; i++)
     free_key_val(commit->key_val[i]);
   free(commit->key_val);
   free(commit);
