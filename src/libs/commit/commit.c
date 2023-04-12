@@ -37,7 +37,7 @@ commit_t *create_commit_with_tree_key_val(const char *hash)
   commit = create_and_init_empty_commit();
   if (!commit)
     return NULL;
-  insert_key_val_in_commit(commit, COMMIT_KEY_CONTAINS_HASH, hash);
+  insert_key_val_in_commit(commit, COMMIT_KEY_HASH, hash);
   return commit;
 }
 

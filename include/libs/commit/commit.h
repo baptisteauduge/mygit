@@ -8,7 +8,7 @@
 #define COMMIT_H
 
 #define COMMIT_KEY_VAL_MAX_SIZE 10
-#define COMMIT_KEY_CONTAINS_HASH "tree"
+#define COMMIT_KEY_HASH "tree"
 #define COMMIT_KEY_PARENT "predecessor"
 #define COMMIT_KEY_MESSAGE "message"
 
