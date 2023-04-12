@@ -21,6 +21,7 @@ int init_handle_args(int argc, char **argv)
   (void)argc;
   (void)argv;
   init_all();
+  printf("MyGit initialized\n");
   return 0;
 }
 
