@@ -4,8 +4,8 @@
 // File description:
 //    convert_str_list.c
 
-#include "list/convert_str_list.h"
-#include "list/insert_get_search_list.h"
+#include "libs/list/convert_str_list.h"
+#include "libs/list/insert_get_search_list.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

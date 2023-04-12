@@ -4,9 +4,9 @@
 // File description:
 //    get_path_absolute.c
 
+#include "libs/file/get_path_absolute.h"
 #include <stdlib.h>
 #include <string.h>
-#include "file/get_path_absolute.h"
 
 char *get_path_absolute(const char *path, const char *filename)
 {

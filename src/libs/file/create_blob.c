@@ -4,13 +4,13 @@
 // File description:
 //    create_blob.h
 
-#include "file/create_blob.h"
-#include "utils/utils.h"
-#include "file/constants_file.h"
-#include "file/copy_file.h"
-#include "file/list_files.h"
-#include "hash/hash.h"
+#include "libs/file/create_blob.h"
+#include "libs/file/constants_file.h"
+#include "libs/file/copy_file.h"
+#include "libs/file/list_files.h"
+#include "libs/hash/hash.h"
 #include "utils/realloc_and_concat.h"
+#include "utils/utils.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

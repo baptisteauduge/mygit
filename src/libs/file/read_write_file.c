@@ -4,8 +4,8 @@
 // File description:
 //    read_write_file.c
 
-#include "file/read_write_file.h"
-#include "file/constants_file.h"
+#include "libs/file/read_write_file.h"
+#include "libs/file/constants_file.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

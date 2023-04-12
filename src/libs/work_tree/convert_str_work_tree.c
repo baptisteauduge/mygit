@@ -4,9 +4,9 @@
 // File description:
 //    convert_str_work_tree.c
 
-#include "work_tree/convert_str_work_tree.h"
-#include "work_file/convert_str_work_file.h"
-#include "work_tree/insert_get_search_work_tree.h"
+#include "libs/work_tree/convert_str_work_tree.h"
+#include "libs/work_file/convert_str_work_file.h"
+#include "libs/work_tree/insert_get_search_work_tree.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

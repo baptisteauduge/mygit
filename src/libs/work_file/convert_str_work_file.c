@@ -4,8 +4,8 @@
 // File description:
 //    convert_str_work_file.c
 
-#include "work_file/convert_str_work_file.h"
-#include "work_file/work_file.h"
+#include "libs/work_file/convert_str_work_file.h"
+#include "libs/work_file/work_file.h"
 #include "utils/get_content_or_dash_str.h"
 #include <stdio.h>
 #include <stdlib.h>

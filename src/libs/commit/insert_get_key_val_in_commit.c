@@ -4,8 +4,8 @@
 // File description:
 //    insert_key_val_in_commit.c
 
-#include "commit/insert_key_val_in_commit.h"
-#include "hash/hash.h"
+#include "libs/commit/insert_key_val_in_commit.h"
+#include "libs/hash/hash.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

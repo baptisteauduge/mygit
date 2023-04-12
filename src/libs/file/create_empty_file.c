@@ -4,8 +4,8 @@
 // File description:
 //    create_empty_file.c
 
-#include "file/create_empty_file.h"
-#include "file/constants_file.h"
+#include "libs/file/create_empty_file.h"
+#include "libs/file/constants_file.h"
 #include <stdio.h>
 
 void create_empty_file(const char *file_name) {

@@ -4,10 +4,10 @@
 // File description:
 //    save_get_file_list.c
 
-#include "list/save_get_file_list.h"
-#include "file/constants_file.h"
-#include "file/read_write_file.h"
-#include "list/convert_str_list.h"
+#include "libs/list/save_get_file_list.h"
+#include "libs/file/constants_file.h"
+#include "libs/file/read_write_file.h"
+#include "libs/list/convert_str_list.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

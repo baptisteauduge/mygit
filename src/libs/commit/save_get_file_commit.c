@@ -4,10 +4,10 @@
 // File description:
 //    save_get_file_commit.c
 
-#include "commit/save_get_file_commit.h"
-#include "commit/convert_str_commit.h"
-#include "file/constants_file.h"
-#include "file/read_write_file.h"
+#include "libs/commit/save_get_file_commit.h"
+#include "libs/commit/convert_str_commit.h"
+#include "libs/file/constants_file.h"
+#include "libs/file/read_write_file.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

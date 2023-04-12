@@ -4,9 +4,9 @@
 // File description:
 //    list_files.c
 
-#include "file/list_files.h"
-#include "list/insert_get_search_list.h"
-#include "list/list.h"
+#include "libs/file/list_files.h"
+#include "libs/list/insert_get_search_list.h"
+#include "libs/list/list.h"
 #include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>

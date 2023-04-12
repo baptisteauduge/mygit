@@ -4,8 +4,8 @@
 // File description:
 //    rights_file.c
 
-#include "file/rights_file.h"
-#include "file/list_files.h"
+#include "libs/file/rights_file.h"
+#include "libs/file/list_files.h"
 #include <stdio.h>
 
 mode_t get_chmod(const char *path)

@@ -5,10 +5,10 @@
 //    refs.c
 
 #include "refs/refs.h"
-#include "file/constants_file.h"
-#include "file/get_path_absolute.h"
-#include "file/list_files.h"
-#include "file/read_write_file.h"
+#include "libs/file/constants_file.h"
+#include "libs/file/get_path_absolute.h"
+#include "libs/file/list_files.h"
+#include "libs/file/read_write_file.h"
 #include "utils/utils.h"
 #include <stdio.h>
 #include <stdlib.h>

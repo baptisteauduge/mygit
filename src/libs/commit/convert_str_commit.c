@@ -4,10 +4,10 @@
 // File description:
 //    convert_str_commit.c
 
-#include "commit/convert_str_commit.h"
-#include "commit/commit.h"
-#include "commit/insert_key_val_in_commit.h"
-#include "key_val/convert_str_key_val.h"
+#include "libs/commit/convert_str_commit.h"
+#include "libs/commit/commit.h"
+#include "libs/commit/insert_key_val_in_commit.h"
+#include "libs/key_val/convert_str_key_val.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -28,7 +28,7 @@ size_t get_size_commit_to_str(commit_t *commit)
 }
 
 static void get_each_key_val_str_and_iter(commit_t *commit, char **str_commit,
-                                           size_t size_str_commit)
+                                          size_t size_str_commit)
 {
   key_val_t *key_val = NULL;
   char *str_key_val = NULL;

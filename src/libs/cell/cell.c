@@ -4,7 +4,7 @@
 // File description:
 //    cell.c
 
-#include "cell/cell.h"
+#include "libs/cell/cell.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

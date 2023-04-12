@@ -4,11 +4,11 @@
 // File description:
 //    mygit_handle_args_actions.c
 
-#include "file/get_path_absolute.h"
-#include "file/list_files.h"
+#include "add/mygit_add.h"
+#include "commit/mygit_commit.h"
 #include "init/init.h"
-#include "mygit/mygit_add.h"
-#include "mygit/mygit_commit.h"
+#include "libs/file/get_path_absolute.h"
+#include "libs/file/list_files.h"
 #include "refs/refs.h"
 #include "utils/utils.h"
 #include <stdio.h>

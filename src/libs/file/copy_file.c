@@ -4,8 +4,8 @@
 // File description:
 //    copy_files.c
 
-#include "file/copy_file.h"
-#include "file/constants_file.h"
+#include "libs/file/copy_file.h"
+#include "libs/file/constants_file.h"
 #include <stdio.h>
 
 static int open_file_read_write_and_print_error(const char *path_read,

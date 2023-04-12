@@ -4,7 +4,7 @@
 // File description:
 //    work_tree.c
 
-#include "work_tree/work_tree.h"
+#include "libs/work_tree/work_tree.h"
 #include <stdlib.h>
 
 work_tree_t *create_and_init_work_tree()

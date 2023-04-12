@@ -4,13 +4,13 @@
 // File description:
 //    restore_work_tree.c
 
-#include "work_tree/restore_work_tree.h"
-#include "file/copy_file.h"
-#include "file/create_blob.h"
-#include "file/get_path_absolute.h"
-#include "file/list_files.h"
-#include "file/rights_file.h"
-#include "work_tree/save_get_file_work_tree.h"
+#include "libs/work_tree/restore_work_tree.h"
+#include "libs/file/copy_file.h"
+#include "libs/file/create_blob.h"
+#include "libs/file/get_path_absolute.h"
+#include "libs/file/list_files.h"
+#include "libs/file/rights_file.h"
+#include "libs/work_tree/save_get_file_work_tree.h"
 #include <stdlib.h>
 #include <string.h>
 

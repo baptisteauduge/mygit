@@ -4,7 +4,7 @@
 // File description:
 //    list.c
 
-#include "list/list.h"
+#include "libs/list/list.h"
 #include <stdio.h>
 #include <stdlib.h>
 

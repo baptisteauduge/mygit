@@ -4,14 +4,14 @@
 // File description
 //    save_content_and_work_tree.c
 
-#include "work_tree/save_content_and_work_tree.h"
-#include "file/create_blob.h"
-#include "file/get_path_absolute.h"
-#include "file/list_files.h"
-#include "file/rights_file.h"
-#include "list/add_prefix_all_list.h"
-#include "work_tree/create_blob_of_work_tree.h"
-#include "work_tree/insert_get_search_work_tree.h"
+#include "libs/work_tree/save_content_and_work_tree.h"
+#include "libs/file/create_blob.h"
+#include "libs/file/get_path_absolute.h"
+#include "libs/file/list_files.h"
+#include "libs/file/rights_file.h"
+#include "libs/list/add_prefix_all_list.h"
+#include "libs/work_tree/create_blob_of_work_tree.h"
+#include "libs/work_tree/insert_get_search_work_tree.h"
 #include <stdlib.h>
 #include <string.h>
 

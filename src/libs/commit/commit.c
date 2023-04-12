@@ -4,11 +4,11 @@
 // File description:
 //    commit.c
 
-#include "commit/commit.h"
-#include "commit/insert_key_val_in_commit.h"
-#include "hash/hash.h"
-#include <stdlib.h>
+#include "libs/commit/commit.h"
+#include "libs/commit/insert_key_val_in_commit.h"
+#include "libs/hash/hash.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 commit_t *create_and_init_empty_commit(void)
 {

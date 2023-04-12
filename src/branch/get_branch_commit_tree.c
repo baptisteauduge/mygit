@@ -5,10 +5,10 @@
 //    get_branch_commit_tree.c
 
 #include "branch/get_branch_commit_tree.h"
-#include "commit/insert_key_val_in_commit.h"
-#include "commit/save_get_file_commit.h"
-#include "file/create_blob.h"
-#include "list/insert_get_search_list.h"
+#include "libs/commit/insert_key_val_in_commit.h"
+#include "libs/commit/save_get_file_commit.h"
+#include "libs/file/create_blob.h"
+#include "libs/list/insert_get_search_list.h"
 #include "refs/refs.h"
 #include "utils/realloc_and_concat.h"
 #include <stdio.h>

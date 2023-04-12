@@ -4,13 +4,14 @@
 // File description:
 //    create_blob_of_commit.c
 
-#include "commit/create_blob_of_commit.h"
-#include "commit/convert_str_commit.h"
-#include "file/create_blob.h"
-#include "file/create_temp_and_write.h"
+#include "libs/commit/create_blob_of_commit.h"
+#include "libs/commit/convert_str_commit.h"
+#include "libs/file/create_blob.h"
+#include "libs/file/create_temp_and_write.h"
 #include <stdlib.h>
 
-char *create_blob_of_commit(commit_t *commit) {
+char *create_blob_of_commit(commit_t *commit)
+{
   char *commit_str = NULL;
   char tmp_filename[] = "/tmp/XXXXXX";
 

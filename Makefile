@@ -28,8 +28,8 @@ SRC						=						src/libs/cell/cell.c															\
 													src/libs/work_tree/create_blob_of_work_tree.c			\
 													src/libs/work_tree/save_content_and_work_tree.c 	\
 													src/libs/work_tree/restore_work_tree.c 						\
-													src/libs/utils/realloc_and_concat.c								\
-													src/libs/utils/get_content_or_dash_str.c					\
+													src/utils/realloc_and_concat.c										\
+													src/utils/get_content_or_dash_str.c								\
 													src/libs/key_val/key_val.c												\
 													src/libs/key_val/convert_str_key_val.c						\
 													src/libs/commit/commit.c													\
@@ -42,11 +42,12 @@ SRC						=						src/libs/cell/cell.c															\
 													src/refs/refs_utils.c															\
 													src/mygit/mygit_handle_args.c											\
 													src/mygit/mygit_handle_args_actions.c							\
-													src/mygit/mygit_add.c															\
-													src/mygit/mygit_commit.c													\
-													src/mygit/mygit_commit_pre_check.c								\
+													src/add/mygit_add.c																\
+													src/commit/mygit_commit.c													\
+													src/commit/mygit_commit_pre_check.c								\
 													src/branch/create_list_branches.c									\
-													src/branch/get_branch_commit_tree.c
+													src/branch/get_branch_commit_tree.c								\
+													src/checkout/mygit_checkout_branch.c
 
 
 OBJ						=						$(SRC:.c=.o)

@@ -5,10 +5,10 @@
 //    init.c
 
 #include "init/init.h"
-#include "file/copy_file.h"
-#include "file/create_empty_file.h"
-#include "file/list_files.h"
-#include "file/read_write_file.h"
+#include "libs/file/copy_file.h"
+#include "libs/file/create_empty_file.h"
+#include "libs/file/list_files.h"
+#include "libs/file/read_write_file.h"
 #include "utils/utils.h"
 #include <sys/stat.h>
 

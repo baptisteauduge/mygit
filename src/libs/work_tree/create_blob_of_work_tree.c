@@ -4,11 +4,11 @@
 // File description:
 //    create_blob_of_work_tree.c
 
-#include "work_tree/create_blob_of_work_tree.h"
-#include "work_tree/convert_str_work_tree.h"
-#include "file/constants_file.h"
-#include "file/create_blob.h"
-#include "file/create_temp_and_write.h"
+#include "libs/work_tree/create_blob_of_work_tree.h"
+#include "libs/work_tree/convert_str_work_tree.h"
+#include "libs/file/constants_file.h"
+#include "libs/file/create_blob.h"
+#include "libs/file/create_temp_and_write.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
