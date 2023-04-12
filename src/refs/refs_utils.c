@@ -37,6 +37,6 @@ void set_head_and_branch_hash_last_commit(const char *branch_name,
   if (!branch_path)
     return;
   write_file_content(branch_path, hash);
-  write_file_content(MYGIT_DIR_REFS "/" MYGIT_FILE_REF_HEAD, branch_path);
+  write_file_content(MYGIT_DIR_REFS "/" MYGIT_FILE_REF_HEAD, hash);
   free(branch_path);
 }
