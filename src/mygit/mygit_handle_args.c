@@ -21,9 +21,9 @@ int mygit_handle_args(int argc, char **argv)
   int nb_actions = 8;
 
   for (int i = 0; i < nb_actions; ++i) {
-    if (strcmp(argv[2], actions_names[i]) == 0)
+    if (strcmp(argv[1], actions_names[i]) == 0)
       return actions_func[i](argc, argv);
   }
-  fprintf(stderr, "Error: bad usage, %s is not an available action\n", argv[2]);
+  fprintf(stderr, "Error: bad usage, %s is not an available action\n", argv[1]);
   return 1;
 }
