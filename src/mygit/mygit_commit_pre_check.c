@@ -33,7 +33,7 @@ int check_if_branch_exists(const char *branch_name)
   if (!branch_path)
     return 0;
   if (!does_file_exists(branch_path)) {
-    fprintf(stderr, "Error: branch %s does not exists\n", branch_name);
+    fprintf(stderr, "Error: branch `%s` does not exists\n", branch_name);
     free(branch_path);
     return 0;
   }
@@ -73,7 +73,7 @@ int check_if_head_is_in_branch(const char *branch_name)
   if (!get_head_and_branch_hash(&head_hash, &branch_hash, branch_name))
     return 0;
   if (strcmp(head_hash, branch_hash) != 0) {
-    fprintf(stderr, "Error: HEAD is not in branch %s\n", branch_name);
+    fprintf(stderr, "Error: HEAD is not in branch `%s`\n", branch_name);
     free(head_hash);
     free(branch_hash);
     return 0;
