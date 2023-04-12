@@ -1,13 +1,14 @@
 // MyGit Project
 //
-// get_branch_commit_tree_str.c
+// get_branch_commit_tree.c
 // File description:
-//    get_branch_commit_tree_str.c
+//    get_branch_commit_tree.c
 
-#include "branch/get_branch_commit_tree_str.h"
+#include "branch/get_branch_commit_tree.h"
 #include "commit/insert_key_val_in_commit.h"
 #include "commit/save_get_file_commit.h"
 #include "file/create_blob.h"
+#include "list/insert_get_search_list.h"
 #include "refs/refs.h"
 #include "utils/realloc_and_concat.h"
 #include <stdio.h>
@@ -81,4 +82,42 @@ void print_branch_commit_tree(char *branch)
     return;
   printf("%s\n", branch_commit_tree_str);
   free(branch_commit_tree_str);
+}
+
+static void append_list_commit_parent_rec(list_t *list, const char *hash)
+{
+  commit_t *commit = NULL;
+  char *parent_hash = NULL;
+
+  if (!hash || !list)
+    return;
+  commit = get_commit_from_hash(hash);
+  if (!commit)
+    return;
+  create_and_insert_cell_in_list(list, hash);
+  parent_hash = get_value_from_key_in_commit(commit, COMMIT_KEY_PARENT);
+  free_commit(commit);
+  append_list_commit_parent_rec(list, parent_hash);
+  if (parent_hash)
+    free(parent_hash);
+}
+
+list_t *get_commit_from_branch_list(const char *branch_name)
+{
+  char *current_branch_head = NULL;
+  list_t *list_commit = NULL;
+
+  if (!branch_name)
+    return NULL;
+  current_branch_head = get_ref(branch_name);
+  if (!current_branch_head)
+    return NULL;
+  list_commit = create_init_list();
+  if (!list_commit) {
+    free(current_branch_head);
+    return NULL;
+  }
+  append_list_commit_parent_rec(list_commit, current_branch_head);
+  free(current_branch_head);
+  return list_commit;
 }
