@@ -16,7 +16,7 @@ int index_in_work_tree(const work_tree_t *wt, const char *name)
     return -1;
 
   for (size_t i = 0; i < wt->size; ++i) {
-    diff_strcmp = strcmp(wt->tab[0].name, name);
+    diff_strcmp = strcmp(wt->tab[i].name, name);
     if (diff_strcmp == 0)
       return i;
   }

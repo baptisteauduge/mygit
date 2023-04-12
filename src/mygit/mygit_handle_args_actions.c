@@ -34,7 +34,7 @@ int list_refs_handle_args(int argc, char **argv)
   (void)argv;
   if (str_all_ref == NULL)
     return 1;
-  printf("Here is all your refs:\n%s", str_all_ref);
+  printf("%s", str_all_ref);
   free(str_all_ref);
   return 0;
 }
@@ -43,53 +43,54 @@ int create_ref_handle_args(int argc, char **argv)
 {
   char *ref_path = NULL;
 
-  if (argc < 5) {
-    LOG_ERROR("Error: bad usage\nUsage: mygit create-ref "
-              "<ref> <commit>\n");
+  if (argc < 4) {
+    LOG_ERROR("Usage: mygit create-ref <ref> <hash>\n");
     return 1;
   }
-  ref_path = get_path_absolute(MYGIT_DIR_REFS, argv[3]);
+  ref_path = get_path_absolute(MYGIT_DIR_REFS, argv[2]);
   if (ref_path == NULL)
     return 1;
   if (does_file_exists(ref_path)) {
-    LOG_ERROR("Error: ref already exists, delete it before\n");
+    fprintf(stderr, "Error: ref '%s' already exists, delete it before\n",
+            argv[2]);
     free(ref_path);
     return 1;
   }
   free(ref_path);
-  create_or_update_ref(argv[3], argv[4]);
-  printf("Ref %s created\n", argv[3]);
+  create_or_update_ref(argv[2], argv[3]);
+  printf("Ref '%s' created\n", argv[2]);
   return 0;
 }
 
 int delete_ref_handle_args(int argc, char **argv)
 {
-  if (argc < 4) {
-    LOG_ERROR("Error: bad usage\nUsage: mygit delete-ref <ref>\n");
+  if (argc < 3) {
+    LOG_ERROR("Usage: mygit delete-ref <ref>\n");
     return 1;
   }
-  if (!delete_ref(argv[3])) {
-    LOG_ERROR("Error: can't delete ref\n");
+  if (!delete_ref(argv[2])) {
+    fprintf(stderr, "Error: can't delete ref '%s'\n", argv[2]);
     return 1;
   }
-  printf("Ref %s deleted\n", argv[3]);
+  printf("Ref '%s' deleted\n", argv[2]);
   return 0;
 }
 
 int add_handle_args(int argc, char **argv)
-{
+{ 
+  int ret = 0;
+
   if (argc < 3) {
-    fprintf(
-        stderr,
-        "Error: bad usage\nUsage: mygit add <elem> [<elem2> <elem3> ...]\n");
+    LOG_ERROR("Usage: mygit add <elem> [<elem2> <elem3> ...]\n");
     return 1;
   }
-  for (int i = 3; i < argc; i++) {
+  for (int i = 2; i < argc; i++) {
     if (!mygit_add(argv[i]))
-      return 1;
-    printf("File %s added\n", argv[i]);
+      ret = 1;
+    else
+      printf("File '%s' added\n", argv[i]);
   }
-  return 0;
+  return ret;
 }
 
 // Note: the lines (void)argc; (void)argv; are used to avoid warnings
@@ -104,7 +105,7 @@ int list_add_handle_args(int argc, char **argv)
               "because you didn't add any file yet\n");
     return 1;
   }
-  printf("Here is all your added files and directories:\n%s\n", str_list_add);
+  printf("%s\n", str_list_add);
   free(str_list_add);
   return 0;
 }
@@ -125,27 +126,32 @@ int clear_add_handle_args(int argc, char **argv)
 
 int commit_handle_args(int argc, char **argv)
 {
+  char *commit_hash = NULL;
+
   if (argc < 3) {
-    LOG_ERROR(
-        "Error: bad usage\nUsage: mygit commit <branch> [-m <message>]\n");
+    LOG_ERROR("Usage: mygit commit <branch> [-m <message>]\n");
     return 1;
   }
   if (argc == 3) {
-    if (!mygit_commit(argv[2], NULL)) {
+    commit_hash = mygit_commit(argv[2], NULL);
+    if (!commit_hash) {
       LOG_ERROR("Error: can't commit\n");
       return 1;
     }
-    printf("Commit done\n");
+    printf("Commit '%s' created\n", commit_hash);
+    free(commit_hash);
     return 0;
   }
   if (argc >= 5 && strcmp(argv[3], "-m")) {
-    if (!mygit_commit(argv[2], argv[4])) {
+    commit_hash = mygit_commit(argv[2], argv[4]);
+    if (!commit_hash) {
       LOG_ERROR("Error: can't commit\n");
       return 1;
     }
-    printf("Commit done\n");
+    printf("Commit '%s' created\n", commit_hash);
+    free(commit_hash);
     return 0;
   }
-  LOG_ERROR("Error: bad usage\nUsage: mygit commit <branch> [-m <message>]\n");
+  LOG_ERROR("Usage: mygit commit <branch> [-m <message>]\n");
   return 1;
 }

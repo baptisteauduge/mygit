@@ -51,9 +51,9 @@ int mygit_add(const char *file)
     ret = 1;
   }
   else if (append_wt_ret == 0)
-    fprintf(stderr, "Error: file %s already added", file);
+    fprintf(stderr, "Error: file '%s' already added\n", file);
   else
-    fprintf(stderr, "Error: could not add file %s", file);
+    fprintf(stderr, "Error: could not add file '%s'\n", file);
   free_work_tree(work_tree);
   return ret;
 }
