@@ -73,8 +73,6 @@ static void browse_str_and_add_key_val_to_commit(char *str, commit_t *commit)
     str_key = strsep(&str_key_val, ":");
     str_value = str_key_val;
     insert_key_val_in_commit(commit, str_key, str_value);
-    free(str_key);
-    free(str_value);
     str_key_val = strsep(&str, "\n");
   }
 }

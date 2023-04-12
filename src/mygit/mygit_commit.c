@@ -62,10 +62,10 @@ static char *fill_new_commit_create_blob_and_get_hash(commit_t *new_commit,
   if (!hash_last_commit)
     return NULL;
   if (strcmp(hash_last_commit, "") != 0)
-    insert_key_val_in_commit(new_commit, COMMIT_PARENT_KEY, hash_last_commit);
+    insert_key_val_in_commit(new_commit, COMMIT_KEY_PARENT, hash_last_commit);
   free(hash_last_commit);
   if (message)
-    insert_key_val_in_commit(new_commit, COMMIT_MESSAGE_KEY, message);
+    insert_key_val_in_commit(new_commit, COMMIT_KEY_MESSAGE, message);
   return create_blob_of_commit(new_commit);
 }
 

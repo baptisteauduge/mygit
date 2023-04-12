@@ -11,8 +11,10 @@
 
 int main(int argc, char **argv)
 {
-  if (argc < 2)
+  if (argc < 2) {
     LOG_ERROR("Error: bad usage\n");
+    return 1;
+  }
   else
     return mygit_handle_args(argc, argv);
 }

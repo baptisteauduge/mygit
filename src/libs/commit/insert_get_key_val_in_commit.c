@@ -6,9 +6,9 @@
 
 #include "commit/insert_key_val_in_commit.h"
 #include "hash/hash.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
 
 // Insert a key value pair in a commit, using the hash table
 // implementation and linear probing to resolve collisions.
@@ -47,7 +47,7 @@ char *get_value_from_key_in_commit(commit_t *commit, char *key)
   for (size_t i = 0; i < commit->max_size; ++i) {
     if (commit->key_val[hash_key] &&
         !strcmp(commit->key_val[hash_key]->key, key))
-      return commit->key_val[hash_key]->value;
+      return strdup(commit->key_val[hash_key]->value);
     hash_key = (hash_key + 1) % commit->max_size;
   }
   return NULL;

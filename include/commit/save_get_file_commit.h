@@ -10,5 +10,6 @@
 #include "commit/commit.h"
 
 void save_commit_to_file(commit_t *commit, const char *path);
+commit_t *get_commit_from_file(const char *path);
 
 #endif

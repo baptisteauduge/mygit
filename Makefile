@@ -44,7 +44,10 @@ SRC						=						src/libs/cell/cell.c															\
 													src/mygit/mygit_handle_args_actions.c							\
 													src/mygit/mygit_add.c															\
 													src/mygit/mygit_commit.c													\
-													src/mygit/mygit_commit_pre_check.c													
+													src/mygit/mygit_commit_pre_check.c								\
+													src/branch/create_list_branches.c									\
+													src/branch/get_branch_commit_tree_str.c
+
 
 OBJ						=						$(SRC:.c=.o)
 

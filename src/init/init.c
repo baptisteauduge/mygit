@@ -8,6 +8,7 @@
 #include "file/copy_file.h"
 #include "file/create_empty_file.h"
 #include "file/list_files.h"
+#include "file/read_write_file.h"
 #include "utils/utils.h"
 #include <sys/stat.h>
 
@@ -16,6 +17,13 @@ void init_all(void)
   init_mygit();
   init_blobs();
   init_refs();
+  init_current_branch();
+}
+
+void init_current_branch(void)
+{
+  if (!does_file_exists(MYGIT_PATH_CURRENT_BRANCH))
+    write_file_content(MYGIT_PATH_CURRENT_BRANCH, MYGIT_DEFAULT_BRANCH);
 }
 
 void init_mygit(void)
