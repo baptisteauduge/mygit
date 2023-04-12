@@ -8,5 +8,6 @@
 #define MYGIT_COMMIT_H
 
 char *mygit_commit(const char *branch_name, const char *message);
+list_t *get_list_all_commits(void);
 
 #endif

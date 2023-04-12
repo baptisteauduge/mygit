@@ -57,3 +57,32 @@ int create_and_insert_cell_in_list(list_t *list, const char *data)
   insert_cell_at_begging_list(list, new_cell);
   return 1;
 }
+
+static void insert_data_in_list_without_duplicate(list_t *new_list,
+                                                  list_t *old_list)
+{
+  cell_t *iter = NULL;
+
+  if (!new_list || !old_list)
+    return;
+  iter = *old_list;
+  while (iter) {
+    if (!search_data_in_list(new_list, iter->data))
+      create_and_insert_cell_in_list(new_list, iter->data);
+  }
+}
+
+// Warning: List1 and list2 are not free at the end of the function !
+list_t *concat_list_without_duplicate(list_t *list1, list_t *list2)
+{
+  list_t *new_list = NULL;
+
+  if (!list1 || !list2)
+    return NULL;
+  new_list = create_init_list();
+  if (!new_list)
+    return NULL;
+  insert_data_in_list_without_duplicate(new_list, list1);
+  insert_data_in_list_without_duplicate(new_list, list2);
+  return new_list;
+}

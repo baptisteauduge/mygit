@@ -5,11 +5,13 @@
 //    mygit_commit.c
 
 #include "mygit/mygit_commit.h"
+#include "branch/get_branch_commit_tree.h"
 #include "commit/commit.h"
 #include "commit/create_blob_of_commit.h"
 #include "commit/insert_key_val_in_commit.h"
 #include "file/list_files.h"
 #include "file/read_write_file.h"
+#include "list/insert_get_search_list.h"
 #include "mygit/mygit_commit_pre_checks.h"
 #include "refs/refs_utils.h"
 #include "utils/utils.h"
@@ -91,4 +93,46 @@ char *mygit_commit(const char *branch_name, const char *message)
     return NULL;
   set_head_and_branch_hash_last_commit(branch_name, hash_new_commit);
   return hash_new_commit;
+}
+
+static int get_commits_from_ref_and_append_list(list_t **list_all_commits,
+                                                const char *ref)
+{
+  list_t *list_current_commits = NULL;
+  list_t *tmp = NULL;
+
+  list_current_commits = get_commit_from_branch_list(ref);
+  if (!list_current_commits)
+    return 0;
+  tmp = concat_list_without_duplicate(*list_all_commits, list_current_commits);
+  if (!tmp) {
+    free_list(list_current_commits);
+    return 0;
+  }
+  free_list(*list_all_commits);
+  free_list(list_current_commits);
+  *list_all_commits = tmp;
+  return 1;
+}
+
+list_t *get_list_all_commits(void)
+{
+  list_t *list_all_refs = get_list_files_and_dir(MYGIT_DIR_REFS);
+  cell_t *current_ref = NULL;
+  list_t *list_all_commits = NULL;
+
+  if (!list_all_refs)
+    return NULL;
+  current_ref = *list_all_refs;
+  while (current_ref) {
+    if (!get_commits_from_ref_and_append_list(&list_all_commits,
+                                              current_ref->data)) {
+      free_list(list_all_refs);
+      free_list(list_all_commits);
+      return NULL;
+    }
+    current_ref = current_ref->next;
+  }
+  free_list(list_all_refs);
+  return list_all_commits;
 }
