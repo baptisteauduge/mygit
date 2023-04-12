@@ -49,7 +49,8 @@ SRC						=						src/libs/cell/cell.c															\
 													src/branch/get_branch_commit_tree.c								\
 													src/checkout/mygit_checkout_branch.c							\
 													src/libs/commit/restore_commit.c									\
-													src/libs/commit/get_work_tree_commit.c
+													src/libs/commit/get_work_tree_commit.c						\
+													src/libs/list/filter_list_prefix.c
 
 
 OBJ						=						$(SRC:.c=.o)
