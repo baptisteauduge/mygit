@@ -10,6 +10,7 @@
 #include "libs/file/get_path_absolute.h"
 #include "libs/file/read_write_file.h"
 #include "utils/utils.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 void mygit_checkout_branch(const char *branch_name)
@@ -30,6 +31,7 @@ void mygit_checkout_branch(const char *branch_name)
   }
   write_file_content(MYGIT_FILE_REF_HEAD, hash_last_commit);
   restore_commit_from_hash(hash_last_commit);
+  printf("Switched to branch '%s'\n", branch_name);
   free(hash_last_commit);
   free(new_branch_path);
   return;
