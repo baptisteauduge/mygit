@@ -29,7 +29,7 @@ SRC						=						src/libs/cell/cell.c															\
 													src/libs/work_tree/save_content_and_work_tree.c 	\
 													src/libs/work_tree/restore_work_tree.c 						\
 													src/libs/utils/realloc_and_concat.c								\
-													src/libs/utils/get_content_or_empty_str.c					\
+													src/libs/utils/get_content_or_dash_str.c					\
 													src/libs/key_val/key_val.c												\
 													src/libs/key_val/convert_str_key_val.c						\
 													src/libs/commit/commit.c													\

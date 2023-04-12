@@ -6,7 +6,7 @@
 
 #include "work_file/convert_str_work_file.h"
 #include "work_file/work_file.h"
-#include "utils/get_content_or_empty_str.h"
+#include "utils/get_content_or_dash_str.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -19,8 +19,8 @@ size_t size_work_file_to_str(const work_file_t *wf)
 
   if (!wf)
     return 0;
-  name = get_content_or_empty_str(wf->name);
-  hash = get_content_or_empty_str(wf->hash);
+  name = get_content_or_dash_str(wf->name);
+  hash = get_content_or_dash_str(wf->hash);
   size_wf += strlen(name);
   size_wf += strlen(hash);
   size_wf += MODE_MAX_SIZE_STR;
@@ -39,8 +39,8 @@ char *convert_work_file_to_str(const work_file_t *wf)
   wf_str = calloc(sizeof(char), size_wf_str);
   if (!wf_str)
     return NULL;
-  name = get_content_or_empty_str(wf->name);
-  hash = get_content_or_empty_str(wf->hash);
+  name = get_content_or_dash_str(wf->name);
+  hash = get_content_or_dash_str(wf->hash);
   if (snprintf(wf_str, size_wf_str, "%s\t%s\t%ho", name, hash, wf->mode) < 0) {
     free(wf_str);
     return NULL;
@@ -48,9 +48,9 @@ char *convert_work_file_to_str(const work_file_t *wf)
   return wf_str;
 }
 
-static void set_to_null_if_empty(char **str)
+static void set_to_null_if_dash(char **str)
 {
-  if (strcmp(*str, "") == 0) {
+  if (strcmp(*str, "-") == 0) {
     free(*str);
     *str = NULL;
   }
@@ -70,10 +70,10 @@ int get_content_str_work_file(const char *str, char **name, char **hash, mode_t 
     free(*name);
     return 0;
   }
-  if (sscanf(str, "%s\t%s\t%ho", *name, *hash, mode) != 3)
+  if (sscanf(str, "%s\t%s\t%ho", *name, *hash, mode) < 2)
     return 0;
-  set_to_null_if_empty(name);
-  set_to_null_if_empty(hash);
+  set_to_null_if_dash(name);
+  set_to_null_if_dash(hash);
   return 1;
 }
 
