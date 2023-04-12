@@ -14,6 +14,7 @@
 #include <stdlib.h>
 
 // TODO: List files in a directory
+// TODO: Print only the filename
 char *get_mygit_list_add_str(void)
 {
   work_tree_t *work_tree = file_to_work_tree(MYGIT_PATH_ADD);

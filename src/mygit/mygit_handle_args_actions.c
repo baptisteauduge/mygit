@@ -77,7 +77,7 @@ int delete_ref_handle_args(int argc, char **argv)
 }
 
 int add_handle_args(int argc, char **argv)
-{ 
+{
   int ret = 0;
 
   if (argc < 3) {
@@ -115,13 +115,13 @@ int clear_add_handle_args(int argc, char **argv)
 {
   (void)argc;
   (void)argv;
-  if (!remove(MYGIT_PATH_ADD)) {
-    LOG_ERROR("Error: can't clear list of added files\n It's probably "
-              "because you didn't add any file yet\n");
-    return 1;
+  if (remove(MYGIT_PATH_ADD) == 0) {
+    printf("List of added files cleared\n");
+    return 0;
   }
-  printf("List of added files cleared\n");
-  return 0;
+  LOG_ERROR("Error: can't clear list of added files\n It's probably "
+            "because you didn't add any file yet\n");
+  return 1;
 }
 
 int commit_handle_args(int argc, char **argv)
@@ -142,7 +142,7 @@ int commit_handle_args(int argc, char **argv)
     free(commit_hash);
     return 0;
   }
-  if (argc >= 5 && strcmp(argv[3], "-m")) {
+  if (argc >= 5 && !strcmp(argv[3], "-m")) {
     commit_hash = mygit_commit(argv[2], argv[4]);
     if (!commit_hash) {
       LOG_ERROR("Error: can't commit\n");
