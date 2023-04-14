@@ -10,8 +10,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Insert a key value pair in a commit, using the hash table
-// implementation and linear probing to resolve collisions.
 void insert_key_val_in_commit(commit_t *commit, const char *key,
                               const char *value)
 {
@@ -34,9 +32,6 @@ void insert_key_val_in_commit(commit_t *commit, const char *key,
   ++(commit->size);
 }
 
-// Get the value associated with a key in a commit.
-// Using the hash table implementation and linear probing to resolve
-// collisions.
 char *get_value_from_key_in_commit(commit_t *commit, char *key)
 {
   int hash_key = -1;

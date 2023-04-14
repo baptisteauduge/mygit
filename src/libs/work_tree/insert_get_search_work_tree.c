@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Returns -1 if not in the work_tree
 int index_in_work_tree(const work_tree_t *wt, const char *name)
 {
   int diff_strcmp = 0;

@@ -8,10 +8,8 @@
 #include "libs/file/constants_file.h"
 #include <stdio.h>
 
-static int open_file_read_write_and_print_error(const char *path_read,
-                                                FILE **file_read,
-                                                const char *path_write,
-                                                FILE **file_write)
+static int open_file_read_write(const char *path_read, FILE **file_read,
+                                const char *path_write, FILE **file_write)
 {
   *file_read = fopen(path_read, READ_MODE);
   if (!*file_read)
@@ -30,8 +28,7 @@ int copy_file(const char *to, const char *from)
   FILE *file_from = NULL;
   int c_read = EOF;
 
-  if (!to || !from ||
-      !open_file_read_write_and_print_error(from, &file_from, to, &file_to))
+  if (!to || !from || !open_file_read_write(from, &file_from, to, &file_to))
     return 0;
   c_read = fgetc(file_from);
   while (c_read != EOF) {

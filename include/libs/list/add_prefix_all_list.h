@@ -9,6 +9,12 @@
 
 #include "libs/list/list.h"
 
+/**
+ * @brief Add a prefix to all the elements of the list
+ *
+ * @param list The list to modify
+ * @param prefix The prefix to add
+ */
 void add_prefix_all_list(list_t *list, const char *prefix);
 
 #endif

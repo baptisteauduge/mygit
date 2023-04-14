@@ -32,19 +32,18 @@ cell_t *get_index_of_list(list_t *list, int pos)
   return iter;
 }
 
-cell_t *search_data_in_list(list_t *list, const char *str)
+cell_t *search_data_in_list(list_t *list, const char *data)
 {
   cell_t *iter = NULL;
 
-  if (!list || !str)
+  if (!list || !data)
     return NULL;
   iter = *list;
-  while (iter && strcmp(iter->data, str))
+  while (iter && strcmp(iter->data, data))
     iter = iter->next;
   return iter;
 }
 
-// Returns 0 if error, 1 if success
 int create_and_insert_cell_in_list(list_t *list, const char *data)
 {
   cell_t *new_cell = NULL;
@@ -73,7 +72,6 @@ static void insert_data_in_list_without_duplicate(list_t *new_list,
   }
 }
 
-// Warning: List1 and list2 are not free at the end of the function !
 list_t *concat_list_without_duplicate(list_t *list1, list_t *list2)
 {
   list_t *new_list = NULL;

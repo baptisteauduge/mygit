@@ -101,7 +101,7 @@ int add_handle_args(int argc, char **argv)
 // Note: the lines (void)argc; (void)argv; are used to avoid warnings
 int list_add_handle_args(int argc, char **argv)
 {
-  char *str_list_add = get_mygit_list_add_str();
+  char *str_list_add = mygit_list_add_str();
   (void)argc;
   (void)argv;
 

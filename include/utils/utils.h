@@ -7,6 +7,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+// Constants
 #define MYGIT_DIR_RIGTHS 0755
 #define MYGIT_FILE_RIGHTS 0755
 #define MYGIT_DIR ".mygit/"
@@ -17,6 +18,8 @@
 #define MYGIT_PATH_ADD ".mygit/.add"
 #define MYGIT_PATH_CURRENT_BRANCH ".mygit/.current_branch"
 #define PREFIX_PATH "."
+
+// Log macros
 #define LOG_ERROR(...) fprintf(stderr, __VA_ARGS__)
 #define LOG_INFO(...) printf(__VA_ARGS__)
 

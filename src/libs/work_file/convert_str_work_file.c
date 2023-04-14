@@ -57,8 +57,9 @@ static void set_to_null_if_dash(char **str)
 }
 
 // Due to a non support in MacOS of %ms, in sscanf
-// we use %s and then we allocate the memory
-int get_content_str_work_file(const char *str, char **name, char **hash, mode_t *mode)
+// we use %s and we allocate the memory
+int get_content_str_work_file(const char *str, char **name, char **hash,
+                              mode_t *mode)
 {
   if (!name || !hash || !mode || !str)
     return 0;

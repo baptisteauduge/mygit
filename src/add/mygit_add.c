@@ -16,7 +16,7 @@
 
 // TODO: List files in a directory
 // TODO: Print only the filename
-char *get_mygit_list_add_str(void)
+char *mygit_list_add_str(void)
 {
   work_tree_t *work_tree = file_to_work_tree(MYGIT_PATH_ADD);
   char *str = NULL;
@@ -39,23 +39,21 @@ int mygit_add(const char *file)
 {
   work_tree_t *work_tree = NULL;
   int append_wt_ret = 0;
-  int ret = 0;
 
   if (!file || !does_file_exists(file))
     return 0;
   work_tree = get_add_work_tree_or_init();
   if (!work_tree)
     return 0;
-
   append_wt_ret = append_work_tree(work_tree, file, NULL, 0);
   if (append_wt_ret) {
     work_tree_to_file(work_tree, MYGIT_PATH_ADD);
-    ret = 1;
+    return 1;
   }
-  else if (append_wt_ret == 0)
+  if (append_wt_ret == 0)
     fprintf(stderr, "Error: file '%s' already added\n", file);
   else
     fprintf(stderr, "Error: could not add file '%s'\n", file);
   free_work_tree(work_tree);
-  return ret;
+  return 0;
 }
