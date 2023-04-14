@@ -15,5 +15,10 @@ int add_handle_args(int argc, char **argv);
 int list_add_handle_args(int argc, char **argv);
 int clear_add_handle_args(int argc, char **argv);
 int commit_handle_args(int argc, char **argv);
+int current_branch_handle_args(int argc, char **argv);
+int branch_handle_args(int argc, char **argv);
+int branch_print_handle_args(int argc, char **argv);
+int checkout_branch_handle_args(int argc, char **argv);
+int checkout_commit_handle_args(int argc, char **argv);
 
 #endif

@@ -36,6 +36,8 @@ static void get_predecessors_and_concat_rec(char **branch_str, const char *hash)
   if (!hash || !branch_str)
     return;
   commit = get_commit_from_hash(hash);
+  if (!commit)
+    return;
   realloc_and_concat_after(branch_str, hash);
   predecessor_hash = get_value_from_key_in_commit(commit, COMMIT_KEY_PARENT);
   message = get_value_from_key_in_commit(commit, COMMIT_KEY_MESSAGE);

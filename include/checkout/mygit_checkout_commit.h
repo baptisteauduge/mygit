@@ -7,6 +7,6 @@
 #ifndef MYGIT_CHECKOUT_COMMIT_H
 #define MYGIT_CHECKOUT_COMMIT_H
 
-void mygit_checkout_commit(char *pattern);
+int mygit_checkout_commit(char *pattern);
 
 #endif

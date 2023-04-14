@@ -15,8 +15,9 @@
 #define MYGIT_FILE_REF_HEAD "HEAD"
 #define MYGIT_DEFAULT_BRANCH "master"
 #define MYGIT_PATH_ADD ".mygit/.add"
-#define MYGIT_PATH_CURRENT_BRANCH "./mygit/.current_branch"
+#define MYGIT_PATH_CURRENT_BRANCH ".mygit/.current_branch"
 #define PREFIX_PATH "."
-#define LOG_ERROR(msg) fprintf(stderr, "%s", msg)
+#define LOG_ERROR(...) fprintf(stderr, __VA_ARGS__)
+#define LOG_INFO(...) printf(__VA_ARGS__)
 
 #endif

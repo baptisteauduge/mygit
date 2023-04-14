@@ -69,6 +69,7 @@ static void insert_data_in_list_without_duplicate(list_t *new_list,
   while (iter) {
     if (!search_data_in_list(new_list, iter->data))
       create_and_insert_cell_in_list(new_list, iter->data);
+    iter = iter->next;
   }
 }
 

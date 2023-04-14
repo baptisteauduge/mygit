@@ -7,6 +7,6 @@
 #ifndef MYGIT_CHECKOUT_BRANCH_H
 #define MYGIT_CHECKOUT_BRANCH_H
 
-void mygit_checkout_branch(const char *branch_name);
+int mygit_checkout_branch(const char *branch_name);
 
 #endif

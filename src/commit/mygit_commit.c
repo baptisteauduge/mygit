@@ -123,6 +123,11 @@ list_t *get_list_all_commits(void)
 
   if (!list_all_refs)
     return NULL;
+  list_all_commits = create_init_list();
+  if (!list_all_commits) {
+    free_list(list_all_refs);
+    return NULL;
+  }
   current_ref = *list_all_refs;
   while (current_ref) {
     if (!get_commits_from_ref_and_append_list(&list_all_commits,

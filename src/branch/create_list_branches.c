@@ -29,7 +29,7 @@ int create_branch_if_not_exists(const char *branch)
   char *head_hash = NULL;
 
   if (!branch || does_branch_exists(branch))
-    return 0;
+    return -1;
   head_hash = get_ref(MYGIT_FILE_REF_HEAD);
   if (!head_hash)
     return 0;
