@@ -36,6 +36,6 @@ int mygit_handle_args(int argc, char **argv)
     if (strcmp(argv[1], actions_names[i]) == 0)
       return actions_func[i](argc, argv);
   }
-  fprintf(stderr, "Error: bad usage, %s is not an available action\n", argv[1]);
+  fprintf(stderr, "Error: bad usage, `%s` is not an available action\n", argv[1]);
   return 1;
 }

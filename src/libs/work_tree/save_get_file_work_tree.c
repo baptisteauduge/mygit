@@ -34,7 +34,7 @@ int work_tree_to_file(const work_tree_t *wt, const char *path)
 
 work_tree_t *file_to_work_tree(const char *path)
 {
-  char *file_content;
+  char *file_content = NULL;
   work_tree_t *wt = NULL;
 
   if (!path)

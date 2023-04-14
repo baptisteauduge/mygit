@@ -4,77 +4,79 @@
 ## File description:
 ## Makefile for MyGit project
 
-SRC						=						src/libs/cell/cell.c															\
-													src/libs/list/convert_str_list.c									\
-													src/libs/list/insert_get_search_list.c						\
-													src/libs/list/list.c															\
-													src/libs/list/save_get_file_list.c								\
-													src/libs/list/add_prefix_all_list.c								\
-													src/libs/file/read_write_file.c										\
-													src/libs/file/copy_file.c													\
-													src/libs/file/create_blob.c												\
-													src/libs/file/list_files.c												\
-													src/libs/file/rights_file.c												\
-													src/libs/file/get_path_absolute.c									\
-													src/libs/file/create_temp_and_write.c							\
-													src/libs/file/create_empty_file.c									\
-													src/libs/hash/hash.c															\
-													src/libs/work_file/work_file.c										\
-													src/libs/work_file/convert_str_work_file.c				\
-													src/libs/work_tree/work_tree.c										\
-													src/libs/work_tree/convert_str_work_tree.c				\
-													src/libs/work_tree/insert_get_search_work_tree.c	\
-													src/libs/work_tree/save_get_file_work_tree.c			\
-													src/libs/work_tree/create_blob_of_work_tree.c			\
-													src/libs/work_tree/save_content_and_work_tree.c 	\
-													src/libs/work_tree/restore_work_tree.c 						\
-													src/utils/realloc_and_concat.c										\
-													src/utils/get_content_or_dash_str.c								\
-													src/libs/key_val/key_val.c												\
-													src/libs/key_val/convert_str_key_val.c						\
-													src/libs/commit/commit.c													\
-													src/libs/commit/insert_get_key_val_in_commit.c 		\
-													src/libs/commit/convert_str_commit.c							\
-													src/libs/commit/save_get_file_commit.c						\
-													src/libs/commit/create_blob_of_commit.c						\
-													src/init/init.c																		\
-													src/refs/refs.c																		\
-													src/refs/refs_utils.c															\
-													src/mygit/mygit_handle_args.c											\
-													src/mygit/mygit_handle_args_actions.c							\
-													src/add/mygit_add.c																\
-													src/commit/mygit_commit.c													\
-													src/commit/mygit_commit_pre_check.c								\
-													src/branch/create_list_branches.c									\
-													src/branch/get_branch_commit_tree.c								\
-													src/checkout/mygit_checkout_branch.c							\
-													src/libs/commit/restore_commit.c									\
-													src/libs/commit/get_work_tree_commit.c						\
-													src/libs/list/filter_list_prefix.c								\
-													src/checkout/mygit_checkout_commit.c	
+SRC					=		src/libs/cell/cell.c															\
+								src/libs/list/convert_str_list.c									\
+								src/libs/list/insert_get_search_list.c						\
+								src/libs/list/list.c															\
+								src/libs/list/save_get_file_list.c								\
+								src/libs/list/add_prefix_all_list.c								\
+								src/libs/list/filter_list_prefix.c								\
+								src/libs/hash/hash.c															\
+								src/libs/file/read_write_file.c										\
+								src/libs/file/copy_file.c													\
+								src/libs/file/create_blob.c												\
+								src/libs/file/list_files.c												\
+								src/libs/file/rights_file.c												\
+								src/libs/file/get_path_absolute.c									\
+								src/libs/file/create_temp_and_write.c							\
+								src/libs/file/create_empty_file.c									\
+								src/libs/work_file/work_file.c										\
+								src/libs/work_file/convert_str_work_file.c				\
+								src/libs/work_tree/work_tree.c										\
+								src/libs/work_tree/convert_str_work_tree.c				\
+								src/libs/work_tree/insert_get_search_work_tree.c	\
+								src/libs/work_tree/save_get_file_work_tree.c			\
+								src/libs/work_tree/create_blob_of_work_tree.c			\
+								src/libs/work_tree/save_content_and_work_tree.c 	\
+								src/libs/work_tree/restore_work_tree.c 						\
+								src/libs/key_val/key_val.c												\
+								src/libs/key_val/convert_str_key_val.c						\
+								src/libs/commit/commit.c													\
+								src/libs/commit/insert_get_key_val_in_commit.c 		\
+								src/libs/commit/convert_str_commit.c							\
+								src/libs/commit/save_get_file_commit.c						\
+								src/libs/commit/create_blob_of_commit.c						\
+								src/libs/commit/restore_commit.c									\
+								src/libs/commit/get_work_tree_commit.c						\
+								src/init/init.c																		\
+								src/add/mygit_add.c																\
+								src/refs/refs.c																		\
+								src/refs/refs_utils.c															\
+								src/branch/create_list_branches.c									\
+								src/branch/get_branch_commit_tree.c								\
+				  			src/checkout/mygit_checkout_branch.c							\
+								src/checkout/mygit_checkout_commit.c							\
+								src/commit/mygit_commit.c													\
+								src/commit/mygit_commit_pre_check.c								\
+								src/merge/mygit_merge_work_trees.c								\
+								src/mygit/mygit_handle_args.c											\
+								src/mygit/mygit_handle_args_actions.c							\
+								src/utils/realloc_and_concat.c										\
+								src/utils/get_content_or_dash_str.c								\
 
 
-OBJ						=						$(SRC:.c=.o)
+OBJ					=		$(SRC:.c=.o)
 
-OBJ_TEST			=						$(SRC_TEST:.c=.o)
+OBJ_TEST		=		$(SRC_TEST:.c=.o)
 
-NAME					=						mygit.out
+NAME				=		mygit.out
 
-TEST_NAME			=						unit_tests
+TEST_NAME		=		unit_tests
 
-CC						=						gcc
+CC					=		gcc
 
-CFLAGS				=						-Wall -Wextra -Werror
+CFLAGS			=		-Wall -Wextra -Werror
 
-CPPFLAGS			=						-I./include 
+CPPFLAGS		=		-I./include 
 
 all: $(NAME)
 
 $(NAME): $(OBJ) main.o
 	$(CC) -o $(NAME) $(CFLAGS) $(CPPFLAGS) $(OBJ) main.o
 
+tests: CPPFLAGS += -lcriterion --coverage
 tests: $(OBJ) tests.o
-	$(CC) -o $(TEST_NAME) $(CPPFLAGS) $(CFLAGS) $(OBJ) tests.o -lcriterion --coverage
+	$(CC) -o $(TEST_NAME) $(CPPFLAGS) $(CFLAGS) $(OBJ) tests.o
 
 
 main.o: src/main.c
