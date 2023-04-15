@@ -43,4 +43,12 @@ void print_branch_commit_tree(char *branch);
  */
 list_t *get_commit_from_branch_list(const char *branch_name);
 
+/**
+ * @brief Get the last commit from branch name
+ * 
+ * @param branch_name The name of the branch
+ * @return commit_t* The last commit of the branch or NULL if the branch doesn't exist
+ */
+commit_t *get_last_commit_from_branch(const char *branch_name);
+
 #endif

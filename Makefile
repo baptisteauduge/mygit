@@ -49,7 +49,9 @@ SRC					=		src/libs/cell/cell.c															\
 								src/commit/mygit_commit.c													\
 								src/commit/mygit_commit_pre_check.c								\
 								src/merge/mygit_merge_work_trees.c								\
+								src/merge/mygit_merge_or_get_conflicts.c					\
 								src/merge/mygit_merge.c														\
+								src/merge/mygit_create_delation_commit.c					\
 								src/mygit/mygit_handle_args.c											\
 								src/mygit/mygit_handle_args_actions.c							\
 								src/utils/realloc_and_concat.c										\

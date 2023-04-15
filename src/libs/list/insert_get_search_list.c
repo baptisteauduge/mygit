@@ -32,7 +32,7 @@ cell_t *get_index_of_list(list_t *list, int pos)
   return iter;
 }
 
-cell_t *search_data_in_list(list_t *list, const char *data)
+cell_t *search_data_in_list(const list_t *list, const char *data)
 {
   cell_t *iter = NULL;
 

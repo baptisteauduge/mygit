@@ -7,19 +7,14 @@
 #ifndef MYGIT_MERGE_H
 #define MYGIT_MERGE_H
 
-#include "libs/list/list.h"
-
 /**
- * @brief
- * Function that merge the current branch with the remote branch if there is no
- * conflicts if there is conflicts, it will return the list of the conflicted
- * files
+ * @brief Function used to merge the provided branch with the current branch.
+ * If there is conflits, the function will ask the user to resolve them.
  *
- * @param remote_branch the name of the remote branch to merge
- * @param message the message of the merge commit (could be NULL)
- * @return list_t* the list of the conflicted files (if there is, else it will
- * be empty)
+ * @param branch The name of the branch to merge with the current branch.
+ * @param message (Optional) The commit deletion message. (Default: "mygit:
+ * deletion commit")
  */
-list_t *mygit_merge(const char *remote_branch, const char *message);
+void mygit_merge(const char *branch, const char *message);
 
 #endif

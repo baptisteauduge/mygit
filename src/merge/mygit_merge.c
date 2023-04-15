@@ -6,85 +6,120 @@
 
 #include "merge/mygit_merge.h"
 #include "branch/create_list_branches.h"
-#include "libs/commit/commit.h"
-#include "libs/commit/create_blob_of_commit.h"
-#include "libs/commit/insert_key_val_in_commit.h"
-#include "libs/work_tree/restore_work_tree.h"
-#include "libs/work_tree/save_content_and_work_tree.h"
-#include "libs/work_tree/work_tree.h"
-#include "merge/mygit_merge_work_trees.h"
-#include "refs/refs.h"
+#include "libs/list/insert_get_search_list.h"
+#include "libs/list/list.h"
+#include "merge/mygit_create_delation_commit.h"
+#include "merge/mygit_merge_or_get_conflicts.h"
 #include "utils/utils.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-// We can safely don't verify the return value of all the functions
-// because all functions don't raise errors if they receives bad parameters
-// and for the "homemade" free_functions, we don't care if the pointer is NULLs
-// This functions doesn't respect the 25 lines rule because it's a little bit
-// complicated to split it in multiple functions. It's not a good practice to
-// split a function in multiple functions if it's not possible to do it without
-// losing the readability of the code
-list_t *mygit_merge(const char *remote_branch, const char *message)
+static void mygit_keep_other_branch_changes(const list_t *conflicts,
+                                            const char *message)
 {
-  work_tree_t *wt_curr_br = NULL;
-  work_tree_t *wt_remote_br = NULL;
-  work_tree_t *wt_merged = NULL;
-  char *hash_wt_merged = NULL;
-  char *curr_branch = NULL;
-  list_t *conflicted_files = NULL;
-  commit_t *commit_merge = NULL;
-  char *ref_curr_branch = NULL;
-  char *ref_remote_branch = NULL;
-  char *hash_commit = NULL;
+  char *current_branch = NULL;
 
-  if (!remote_branch)
-    return NULL;
-  // Get the current branch and init the conflicted files list
-  curr_branch = get_current_branch();
-  wt_curr_br = get_work_tree_from_branch(curr_branch);
-  wt_remote_br = get_work_tree_from_branch(remote_branch);
-  conflicted_files = create_init_list();
-  wt_merged =
-      mygit_merge_work_trees(wt_curr_br, wt_remote_br, &conflicted_files);
-  // If there is conflict, we returns the list of conflicted files and free
-  // memory
-  if (*conflicted_files) {
-    free_work_tree(wt_curr_br);
-    free_work_tree(wt_remote_br);
-    free_work_tree(wt_merged);
-    free(curr_branch);
-    return conflicted_files;
+  if (!conflicts)
+    return;
+  current_branch = get_current_branch();
+  if (!current_branch)
+    return;
+  mygit_create_deletion_commit(current_branch, conflicts, message);
+  free(current_branch);
+}
+
+static int mygit_get_yes_no_answer(void)
+{
+  char answer = 0;
+
+  while (answer != 'y' && answer != 'n') {
+    scanf("%c\n", &answer);
+    if (answer != 'y' && answer != 'n')
+      LOG_ERROR("Invalid answer. Please choose between 'y' and 'n' :\n");
   }
-  // If there is no conflict, we can save the work tree and create the merge
-  // commit
-  hash_wt_merged = save_content_and_work_tree(wt_merged, PREFIX_PATH);
-  commit_merge = create_commit_with_tree_key_val(hash_wt_merged);
-  // We update the keys of the commit to match with the merge commit
-  ref_remote_branch = get_ref(remote_branch);
-  ref_curr_branch = get_ref(curr_branch);
-  if (message)
-    insert_key_val_in_commit(commit_merge, COMMIT_KEY_MESSAGE, message);
-  insert_key_val_in_commit(commit_merge, COMMIT_KEY_MERGED_PARENT,
-                           ref_remote_branch);
-  insert_key_val_in_commit(commit_merge, COMMIT_KEY_PARENT, ref_curr_branch);
-  // We create the blob of the commit and update the refs
-  hash_commit = create_blob_of_commit(commit_merge);
-  create_or_update_ref(curr_branch, hash_commit);
-  create_or_update_ref(MYGIT_FILE_REF_HEAD, hash_commit);
-  // We delete the merged branch and restore the work tree of the current branch
-  delete_ref(remote_branch);
-  restore_work_tree(wt_merged, PREFIX_PATH);
-  // We free memory and return NULL because there is no conflict
-  free_work_tree(wt_curr_br);
-  free_work_tree(wt_remote_br);
-  free_work_tree(wt_merged);
-  free_commit(commit_merge);
-  free(hash_wt_merged);
-  free(hash_commit);
-  free(ref_curr_branch);
-  free(ref_curr_branch);
-  free(curr_branch);
-  free(conflicted_files);
-  return NULL;
+  return answer == 'y';
+}
+
+static void mygit_choose_for_each_file(const list_t *conflicts,
+                                       const char *message, const char *branch)
+{
+  list_t *conflicts_delete_current_br = NULL;
+  list_t *conflicts_delete_other_br = NULL;
+  cell_t *current_cell = NULL;
+
+  if (!conflicts || !branch)
+    return;
+  conflicts_delete_current_br = create_init_list();
+  conflicts_delete_other_br = create_init_list();
+  if (!conflicts_delete_current_br || !conflicts_delete_other_br)
+    return;
+  current_cell = *conflicts;
+  while (current_cell) {
+    LOG_INFO("Do you want to keep the current branch changes for '%s' ? (y/n)",
+             current_cell->data);
+    if (mygit_get_yes_no_answer()) {
+      create_and_insert_cell_in_list(conflicts_delete_other_br,
+                                     current_cell->data);
+    }
+    else {
+      create_and_insert_cell_in_list(conflicts_delete_current_br,
+                                     current_cell->data);
+    }
+    current_cell = current_cell->next;
+  }
+  mygit_create_deletion_commit(branch, conflicts_delete_other_br, message);
+  mygit_keep_other_branch_changes(conflicts_delete_current_br, message);
+  free_list(conflicts_delete_current_br);
+  free_list(conflicts_delete_other_br);
+}
+
+static void mygit_handle_answer(const char *branch, const list_t *conflicts,
+                                const char *message)
+{
+  int answer = 0;
+
+  while (answer < 1 || answer > 3) {
+    scanf("%d\n", &answer);
+    if (answer < 1 || answer > 3)
+      LOG_ERROR("Invalid answer. Please choose between 1 and 3.\nYour choice:");
+  }
+  if (answer == 1) {
+    mygit_create_deletion_commit(branch, conflicts, message);
+  }
+  else if (answer == 2) {
+    mygit_keep_other_branch_changes(conflicts, message);
+  }
+  else {
+    mygit_choose_for_each_file(conflicts, message, branch);
+  }
+  mygit_merge(branch, message);
+}
+
+static void mygit_handle_conflicts(const char *branch, const list_t *conflicts,
+                                   const char *message)
+{
+  if (!conflicts)
+    return;
+
+  LOG_INFO(
+      "What do you want to do ?\n1) Keep the current branch changes\n2) "
+      "Keep the '%s' branch changes\n3) Choose for each file\nYour choice:",
+      branch);
+  mygit_handle_answer(branch, conflicts, message);
+}
+
+void mygit_merge(const char *branch, const char *message)
+{
+  list_t *conflicts = NULL;
+
+  if (!branch)
+    return;
+  conflicts = mygit_merge_or_get_conflicts(branch, message);
+  if (conflicts) {
+    LOG_ERROR("There is conflicts between the branches that you are trying to "
+              "merge.\n");
+    mygit_handle_conflicts(branch, conflicts, message);
+    free_list(conflicts);
+  }
+  LOG_INFO("Merge done.\n");
 }

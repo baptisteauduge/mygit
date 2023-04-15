@@ -5,6 +5,7 @@
 //    get_branch_commit_tree.c
 
 #include "branch/get_branch_commit_tree.h"
+#include "branch/create_list_branches.h"
 #include "libs/commit/insert_key_val_in_commit.h"
 #include "libs/commit/save_get_file_commit.h"
 #include "libs/file/create_blob.h"
@@ -124,4 +125,19 @@ list_t *get_commit_from_branch_list(const char *branch_name)
   append_list_commit_parent_rec(list_commit, current_branch_head);
   free(current_branch_head);
   return list_commit;
+}
+
+commit_t *get_last_commit_from_branch(const char *branch_name)
+{
+  char *hash_commit = NULL;
+  commit_t *commit = NULL;
+
+  if (!branch_name || !does_branch_exists(branch_name))
+    return NULL;
+  hash_commit = get_ref(branch_name);
+  if (!hash_commit)
+    return NULL;
+  commit = get_commit_from_hash(hash_commit);
+  free(hash_commit);
+  return commit;
 }

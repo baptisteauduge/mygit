@@ -53,7 +53,7 @@ cell_t *get_index_of_list(list_t *list, int pos);
  * @return cell_t* The cell which contains the data or NULL if the data is not
  * found
  */
-cell_t *search_data_in_list(list_t *list, const char *data);
+cell_t *search_data_in_list(const list_t *list, const char *data);
 
 /**
  * @brief Concat the two list without duplicate. The two list are not modified.
