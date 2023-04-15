@@ -124,4 +124,13 @@ int checkout_branch_handle_args(int argc, char **argv);
  */
 int checkout_commit_handle_args(int argc, char **argv);
 
+/**
+ * @brief Handle the arguments of the merge command.
+ *
+ * @param argc The number of arguments.
+ * @param argv The arguments.
+ * @return int The return code of the command.
+ */
+int merge_handle_args(int argc, char **argv);
+
 #endif

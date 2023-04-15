@@ -14,6 +14,7 @@
 #include "init/init.h"
 #include "libs/file/get_path_absolute.h"
 #include "libs/file/list_files.h"
+#include "merge/mygit_merge.h"
 #include "refs/refs.h"
 #include "utils/utils.h"
 #include <stdio.h>
@@ -249,4 +250,19 @@ int checkout_commit_handle_args(int argc, char **argv)
   }
   LOG_INFO("You are now on commit matching the pattern '%s'\n", argv[2]);
   return 1;
+}
+
+int merge_handle_args(int argc, char **argv)
+{
+
+  if (argc < 3) {
+    LOG_ERROR("Usage: mygit merge <branch> [<message>]\n");
+    return 1;
+  }
+  if (argc == 3) {
+    mygit_merge(argv[2], NULL);
+    return 0;
+  }
+  mygit_merge(argv[2], argv[3]);
+  return 0;
 }
