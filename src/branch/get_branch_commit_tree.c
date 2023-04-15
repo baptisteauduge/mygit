@@ -14,11 +14,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static commit_t *get_commit_from_hash(const char *hash)
+commit_t *get_commit_from_hash(const char *hash)
 {
   char *commit_path = NULL;
   commit_t *commit = NULL;
 
+  if (!hash)
+    return NULL;
   commit_path = get_path_from_hash(hash);
   if (!commit_path)
     return NULL;

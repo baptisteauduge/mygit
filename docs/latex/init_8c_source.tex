@@ -1,0 +1,54 @@
+\doxysection{init.\+c}
+\label{init_8c_source}\index{src/init/init.c@{src/init/init.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ init.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ init.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}init/init.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/file/copy\_file.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}libs/file/create\_empty\_file.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}libs/file/list\_files.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}libs/file/read\_write\_file.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}utils/utils.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <sys/stat.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keywordtype}{void}\ init\_all(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ init\_mygit();}
+\DoxyCodeLine{00018\ \ \ init\_blobs();}
+\DoxyCodeLine{00019\ \ \ init\_refs();}
+\DoxyCodeLine{00020\ \ \ init\_current\_branch();}
+\DoxyCodeLine{00021\ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{void}\ init\_current\_branch(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordflow}{if}\ (!does\_file\_exists(MYGIT\_PATH\_CURRENT\_BRANCH))}
+\DoxyCodeLine{00026\ \ \ \ \ write\_file\_content(MYGIT\_PATH\_CURRENT\_BRANCH,\ MYGIT\_DEFAULT\_BRANCH);}
+\DoxyCodeLine{00027\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ init\_mygit(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordflow}{if}\ (!does\_file\_exists(MYGIT\_DIR))}
+\DoxyCodeLine{00032\ \ \ \ \ mkdir(MYGIT\_DIR,\ MYGIT\_DIR\_RIGTHS);}
+\DoxyCodeLine{00033\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keywordtype}{void}\ init\_blobs(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordflow}{if}\ (!does\_file\_exists(MYGIT\_DIR\_BLOBS))}
+\DoxyCodeLine{00038\ \ \ \ \ mkdir(MYGIT\_DIR\_BLOBS,\ MYGIT\_DIR\_RIGTHS);}
+\DoxyCodeLine{00039\ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keywordtype}{void}\ init\_refs(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00042\ \{}
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordflow}{if}\ (!does\_file\_exists(MYGIT\_DIR\_REFS))\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ mkdir(MYGIT\_DIR\_REFS,\ MYGIT\_DIR\_RIGTHS);}
+\DoxyCodeLine{00045\ \ \ \ \ create\_empty\_file(MYGIT\_DIR\_REFS\ \textcolor{stringliteral}{"{}/"{}}\ MYGIT\_FILE\_REF\_HEAD);}
+\DoxyCodeLine{00046\ \ \ \ \ create\_empty\_file(MYGIT\_DIR\_REFS\ \textcolor{stringliteral}{"{}/"{}}\ MYGIT\_DEFAULT\_BRANCH);}
+\DoxyCodeLine{00047\ \ \ \}}
+\DoxyCodeLine{00048\ \}}
+
+\end{DoxyCode}

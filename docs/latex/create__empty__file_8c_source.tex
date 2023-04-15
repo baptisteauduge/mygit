@@ -1,0 +1,24 @@
+\doxysection{create\+\_\+empty\+\_\+file.\+c}
+\label{create__empty__file_8c_source}\index{src/libs/file/create\_empty\_file.c@{src/libs/file/create\_empty\_file.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ create\_empty\_file.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ create\_empty\_file.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/file/create\_empty\_file.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/file/constants\_file.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{void}\ create\_empty\_file(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *file\_name)}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ \textcolor{keywordflow}{if}\ (!file\_name)}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ FILE\ *file\ =\ fopen(file\_name,\ WRITE\_MODE);}
+\DoxyCodeLine{00017\ \ \ fclose(file);}
+\DoxyCodeLine{00018\ \}}
+
+\end{DoxyCode}

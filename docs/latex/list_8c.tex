@@ -1,0 +1,51 @@
+\doxysection{src/libs/list/list.c File Reference}
+\label{list_8c}\index{src/libs/list/list.c@{src/libs/list/list.c}}
+{\ttfamily \#include \char`\"{}libs/list/list.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ list\+\_\+t} $\ast$ \textbf{ create\+\_\+init\+\_\+list} (void)
+\begin{DoxyCompactList}\small\item\em Create a init list (empty list with a NULL pointer) \end{DoxyCompactList}\item 
+void \textbf{ free\+\_\+list} (\textbf{ list\+\_\+t} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Free the list and all the cells in the list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{list_8c_a54582f1d975ab79128075441e4cb57fe}} 
+\index{list.c@{list.c}!create\_init\_list@{create\_init\_list}}
+\index{create\_init\_list@{create\_init\_list}!list.c@{list.c}}
+\doxysubsubsection{create\_init\_list()}
+{\footnotesize\ttfamily \textbf{ list\+\_\+t} $\ast$ create\+\_\+init\+\_\+list (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Create a init list (empty list with a NULL pointer) 
+
+\begin{DoxyReturn}{Returns}
+list\+\_\+t$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 11} of file \textbf{ list.\+c}.
+
+\mbox{\label{list_8c_a1759d6da9aa1478aae92ff7b3ab7df45}} 
+\index{list.c@{list.c}!free\_list@{free\_list}}
+\index{free\_list@{free\_list}!list.c@{list.c}}
+\doxysubsubsection{free\_list()}
+{\footnotesize\ttfamily void free\+\_\+list (\begin{DoxyParamCaption}\item[{\textbf{ list\+\_\+t} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Free the list and all the cells in the list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The list to free \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 22} of file \textbf{ list.\+c}.
+

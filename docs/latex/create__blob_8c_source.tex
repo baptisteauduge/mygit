@@ -1,0 +1,129 @@
+\doxysection{create\+\_\+blob.\+c}
+\label{create__blob_8c_source}\index{src/libs/file/create\_blob.c@{src/libs/file/create\_blob.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ create\_blob.h}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ create\_blob.h}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/file/create\_blob.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/file/constants\_file.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}libs/file/copy\_file.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}libs/file/list\_files.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}libs/hash/hash.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}utils/realloc\_and\_concat.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}utils/utils.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <sys/stat.h>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ *add\_prefix\_dir(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *dir)}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordtype}{char}\ *path\_prefixed\ =\ NULL;}
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordtype}{size\_t}\ len\_path\_file\ =\ 0;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ path\_prefixed\ =\ strdup(path);}
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordflow}{if}\ (!path\_prefixed)}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00027\ \ \ len\_path\_file\ =\ strlen(path);}
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordflow}{if}\ (path\_prefixed[0]\ ==\ \textcolor{charliteral}{'.'}\ \&\&\ path\_prefixed[1]\ ==\ \textcolor{charliteral}{'/'})\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ memmove(path\_prefixed,\ path\_prefixed\ +\ 2,\ len\_path\_file\ -\/\ 1);}
+\DoxyCodeLine{00030\ \ \ \ \ realloc\_and\_concat\_before(dir,\ \&path\_prefixed);}
+\DoxyCodeLine{00031\ \ \ \ \ realloc\_and\_concat\_before(\textcolor{stringliteral}{"{}./"{}},\ \&path\_prefixed);}
+\DoxyCodeLine{00032\ \ \ \}}
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ realloc\_and\_concat\_before(dir,\ \&path\_prefixed);}
+\DoxyCodeLine{00035\ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordflow}{return}\ path\_prefixed;}
+\DoxyCodeLine{00037\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keywordtype}{char}\ *get\_dir\_from\_hash(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hash)}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordtype}{int}\ len\_hash\ =\ 0;}
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordtype}{char}\ *dir\ =\ NULL;}
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordtype}{char}\ *dir\_prefixed\ =\ NULL;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordflow}{if}\ (!hash)}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00047\ \ \ len\_hash\ =\ strlen(hash);}
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordflow}{if}\ (len\_hash\ <\ 2)}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00050\ \ \ dir\ =\ calloc(4,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00051\ \ \ \textcolor{keywordflow}{if}\ (!dir)}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00053\ \ \ dir[0]\ =\ hash[0];}
+\DoxyCodeLine{00054\ \ \ dir[1]\ =\ hash[1];}
+\DoxyCodeLine{00055\ \ \ dir[2]\ =\ \textcolor{charliteral}{'/'};}
+\DoxyCodeLine{00056\ \ \ dir\_prefixed\ =\ add\_prefix\_dir(dir,\ MYGIT\_DIR\_BLOBS);}
+\DoxyCodeLine{00057\ \ \ \textcolor{keywordflow}{if}\ (!dir\_prefixed)}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00059\ \ \ free(dir);}
+\DoxyCodeLine{00060\ \ \ \textcolor{keywordflow}{return}\ dir\_prefixed;}
+\DoxyCodeLine{00061\ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keywordtype}{char}\ *get\_path\_from\_hash(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hash)}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \ \ \textcolor{keywordtype}{int}\ len\_hash\ =\ 0;}
+\DoxyCodeLine{00066\ \ \ \textcolor{keywordtype}{char}\ *dir\ =\ NULL;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \textcolor{keywordflow}{if}\ (!hash)}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00070\ \ \ len\_hash\ =\ strlen(hash);}
+\DoxyCodeLine{00071\ \ \ dir\ =\ calloc(len\_hash\ +\ 2,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00072\ \ \ \textcolor{keywordflow}{if}\ (!dir)}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00074\ \ \ dir[0]\ =\ hash[0];}
+\DoxyCodeLine{00075\ \ \ dir[1]\ =\ hash[1];}
+\DoxyCodeLine{00076\ \ \ dir[2]\ =\ \textcolor{charliteral}{'/'};}
+\DoxyCodeLine{00077\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 3;\ i\ <\ len\_hash\ +\ 1;\ ++i)\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ dir[i]\ =\ hash[i\ -\/\ 1];}
+\DoxyCodeLine{00079\ \ \ \}}
+\DoxyCodeLine{00080\ \ \ realloc\_and\_concat\_before(MYGIT\_DIR\_BLOBS,\ \&dir);}
+\DoxyCodeLine{00081\ \ \ \textcolor{keywordflow}{return}\ dir;}
+\DoxyCodeLine{00082\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ get\_hash\_and\_path\_with\_extension\_if\_exists(}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path\_file,\ \textcolor{keywordtype}{char}\ **hash,\ \textcolor{keywordtype}{char}\ **path,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *file\_extension)}
+\DoxyCodeLine{00086\ \{}
+\DoxyCodeLine{00087\ \ \ \textcolor{keywordflow}{if}\ (!path\_file\ ||\ !does\_file\_exists(path\_file)\ ||\ !hash\ ||\ !path)}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00089\ \ \ *hash\ =\ get\_sha256\_of\_file(path\_file);}
+\DoxyCodeLine{00090\ \ \ \textcolor{keywordflow}{if}\ (!*hash)}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00092\ \ \ realloc\_and\_concat\_after(hash,\ file\_extension);}
+\DoxyCodeLine{00093\ \ \ *path\ =\ get\_path\_from\_hash(*hash);}
+\DoxyCodeLine{00094\ \ \ \textcolor{keywordflow}{if}\ (!*path)\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ free(*hash);}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00097\ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00099\ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{keywordtype}{char}\ *create\_blob\_file\_and\_get\_hash(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path\_file,}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *file\_extension)}
+\DoxyCodeLine{00103\ \{}
+\DoxyCodeLine{00104\ \ \ \textcolor{keywordtype}{char}\ *hash\ =\ NULL;}
+\DoxyCodeLine{00105\ \ \ \textcolor{keywordtype}{char}\ *path\ =\ NULL;}
+\DoxyCodeLine{00106\ \ \ \textcolor{keywordtype}{char}\ *dir\ =\ NULL;}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \textcolor{keywordflow}{if}\ (!path\_file\ ||\ !does\_file\_exists(path\_file))}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00110\ \ \ \textcolor{keywordflow}{if}\ (!get\_hash\_and\_path\_with\_extension\_if\_exists(path\_file,\ \&hash,\ \&path,}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\_extension))}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00113\ \ \ dir\ =\ get\_dir\_from\_hash(hash);}
+\DoxyCodeLine{00114\ \ \ \textcolor{keywordflow}{if}\ (!dir)}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00116\ \ \ \textcolor{keywordflow}{if}\ (!does\_file\_exists(dir))}
+\DoxyCodeLine{00117\ \ \ \ \ mkdir(dir,\ S\_IRWXU);}
+\DoxyCodeLine{00118\ \ \ \textcolor{keywordflow}{if}\ (!copy\_file(path,\ path\_file))}
+\DoxyCodeLine{00119\ \ \ \ \ remove(dir);}
+\DoxyCodeLine{00120\ \ \ free(path);}
+\DoxyCodeLine{00121\ \ \ free(dir);}
+\DoxyCodeLine{00122\ \ \ \textcolor{keywordflow}{return}\ hash;}
+\DoxyCodeLine{00123\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,98 @@
+\doxysection{convert\+\_\+str\+\_\+list.\+c}
+\label{convert__str__list_8c_source}\index{src/libs/list/convert\_str\_list.c@{src/libs/list/convert\_str\_list.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ convert\_str\_list.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ convert\_str\_list.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/list/convert\_str\_list.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/list/insert\_get\_search\_list.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keywordtype}{size\_t}\ size\_list\_to\_str(list\_t\ *list)}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ cell\_t\ *iter\ =\ NULL;}
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordtype}{size\_t}\ size\ =\ 0;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordflow}{if}\ (!list)}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00020\ \ \ iter\ =\ *list;}
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordflow}{while}\ (iter)\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ size\ +=\ strlen(cell\_to\_string(iter));}
+\DoxyCodeLine{00023\ \ \ \ \ iter\ =\ iter-\/>next;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{if}\ (iter)}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ size\ +=\ strlen(SEPARATOR\_LIST\_STRING);}
+\DoxyCodeLine{00026\ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordflow}{return}\ size;}
+\DoxyCodeLine{00028\ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ browse\_list\_and\_concat\_cells(list\_t\ *list,\ \textcolor{keywordtype}{char}\ *list\_str,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ str\_size)}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ cell\_t\ *cell\ =\ NULL;}
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordtype}{char}\ *cell\_str\ =\ NULL;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ cell\ =\ *list;}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordflow}{while}\ (cell)\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ cell\_str\ =\ cell\_to\_string(cell);}
+\DoxyCodeLine{00039\ \ \ \ \ strlcat(list\_str,\ cell\_str,\ str\_size);}
+\DoxyCodeLine{00040\ \ \ \ \ cell\ =\ cell-\/>next;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{if}\ (cell)}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ strlcat(list\_str,\ SEPARATOR\_LIST\_STRING,\ str\_size);}
+\DoxyCodeLine{00043\ \ \ \}}
+\DoxyCodeLine{00044\ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{keywordtype}{char}\ *list\_to\_str(list\_t\ *list)}
+\DoxyCodeLine{00047\ \{}
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordtype}{char}\ *list\_str\ =\ NULL;}
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordtype}{size\_t}\ str\_size\ =\ 0;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{keywordflow}{if}\ (!list)}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00053\ \ \ str\_size\ =\ size\_list\_to\_str(list)\ +\ 1;}
+\DoxyCodeLine{00054\ \ \ list\_str\ =\ calloc(str\_size,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00055\ \ \ \textcolor{keywordflow}{if}\ (!list\_str)}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00057\ \ \ browse\_list\_and\_concat\_cells(list,\ list\_str,\ str\_size);}
+\DoxyCodeLine{00058\ \ \ \textcolor{keywordflow}{return}\ list\_str;}
+\DoxyCodeLine{00059\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ separate\_str\_and\_insert\_in\_list(list\_t\ *list,\ \textcolor{keywordtype}{char}\ **str)}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ \textcolor{keywordtype}{char}\ *token\ =\ NULL;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ token\ =\ strsep(str,\ SEPARATOR\_LIST\_STRING);}
+\DoxyCodeLine{00066\ \ \ \textcolor{keywordflow}{while}\ (token)\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ create\_and\_insert\_cell\_in\_list(list,\ token);}
+\DoxyCodeLine{00068\ \ \ \ \ token\ =\ strsep(str,\ SEPARATOR\_LIST\_STRING);}
+\DoxyCodeLine{00069\ \ \ \}}
+\DoxyCodeLine{00070\ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ list\_t\ *str\_to\_list(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str)}
+\DoxyCodeLine{00073\ \{}
+\DoxyCodeLine{00074\ \ \ list\_t\ *list\ =\ NULL;}
+\DoxyCodeLine{00075\ \ \ \textcolor{keywordtype}{char}\ *str\_copy\ =\ NULL;}
+\DoxyCodeLine{00076\ \ \ \textcolor{keywordtype}{char}\ *str\_copy\_pointer\ =\ NULL;}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \textcolor{keywordflow}{if}\ (!str)}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00080\ \ \ list\ =\ create\_init\_list();}
+\DoxyCodeLine{00081\ \ \ \textcolor{keywordflow}{if}\ (!list)}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00083\ \ \ str\_copy\ =\ strdup(str);}
+\DoxyCodeLine{00084\ \ \ str\_copy\_pointer\ =\ str\_copy;}
+\DoxyCodeLine{00085\ \ \ \textcolor{keywordflow}{if}\ (!str\_copy)\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ free\_list(list);}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00088\ \ \ \}}
+\DoxyCodeLine{00089\ \ \ separate\_str\_and\_insert\_in\_list(list,\ \&str\_copy);}
+\DoxyCodeLine{00090\ \ \ free(str\_copy\_pointer);}
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordflow}{return}\ list;}
+\DoxyCodeLine{00092\ \}}
+
+\end{DoxyCode}

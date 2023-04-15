@@ -1,0 +1,361 @@
+\doxysection{src/mygit/mygit\+\_\+handle\+\_\+args\+\_\+actions.c File Reference}
+\label{mygit__handle__args__actions_8c}\index{src/mygit/mygit\_handle\_args\_actions.c@{src/mygit/mygit\_handle\_args\_actions.c}}
+{\ttfamily \#include \char`\"{}mygit/mygit\+\_\+handle\+\_\+args\+\_\+actions.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}add/mygit\+\_\+add.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}branch/create\+\_\+list\+\_\+branches.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}branch/get\+\_\+branch\+\_\+commit\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}checkout/mygit\+\_\+checkout\+\_\+branch.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}checkout/mygit\+\_\+checkout\+\_\+commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}commit/mygit\+\_\+commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}init/init.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/get\+\_\+path\+\_\+absolute.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/list\+\_\+files.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}refs/refs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/utils.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ init\+\_\+handle\+\_\+args} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Handle the arguments of the init command. \end{DoxyCompactList}\item 
+int \textbf{ list\+\_\+refs\+\_\+handle\+\_\+args} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Handle the arguments of the list-\/refs command. \end{DoxyCompactList}\item 
+int \textbf{ create\+\_\+ref\+\_\+handle\+\_\+args} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Handle the arguments of the create-\/ref command. \end{DoxyCompactList}\item 
+int \textbf{ delete\+\_\+ref\+\_\+handle\+\_\+args} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Handle the arguments of the delete-\/ref command. \end{DoxyCompactList}\item 
+int \textbf{ add\+\_\+handle\+\_\+args} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Handle the arguments of the add command. \end{DoxyCompactList}\item 
+int \textbf{ list\+\_\+add\+\_\+handle\+\_\+args} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Handle the arguments of the list-\/add command. \end{DoxyCompactList}\item 
+int \textbf{ clear\+\_\+add\+\_\+handle\+\_\+args} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Handle the arguments of the clear-\/add command. \end{DoxyCompactList}\item 
+int \textbf{ commit\+\_\+handle\+\_\+args} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Handle the arguments of the commit command. \end{DoxyCompactList}\item 
+int \textbf{ current\+\_\+branch\+\_\+handle\+\_\+args} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Handle the arguments of the current-\/branch command. \end{DoxyCompactList}\item 
+int \textbf{ branch\+\_\+handle\+\_\+args} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Handle the arguments of the branch command. \end{DoxyCompactList}\item 
+int \textbf{ branch\+\_\+print\+\_\+handle\+\_\+args} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Handle the arguments of the branch-\/print command. \end{DoxyCompactList}\item 
+int \textbf{ checkout\+\_\+branch\+\_\+handle\+\_\+args} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Handle the arguments of the checkout-\/branch command. \end{DoxyCompactList}\item 
+int \textbf{ checkout\+\_\+commit\+\_\+handle\+\_\+args} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Handle the arguments of the checkout-\/commit command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{mygit__handle__args__actions_8c_a10ed173772f79123e811c153271dddfa}} 
+\index{mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}!add\_handle\_args@{add\_handle\_args}}
+\index{add\_handle\_args@{add\_handle\_args}!mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}}
+\doxysubsubsection{add\_handle\_args()}
+{\footnotesize\ttfamily int add\+\_\+handle\+\_\+args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Handle the arguments of the add command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of arguments. \\
+\hline
+{\em argv} & The arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The return code of the command. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 84} of file \textbf{ mygit\+\_\+handle\+\_\+args\+\_\+actions.\+c}.
+
+\mbox{\label{mygit__handle__args__actions_8c_a999ced11bc562e8e982e405455cbef32}} 
+\index{mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}!branch\_handle\_args@{branch\_handle\_args}}
+\index{branch\_handle\_args@{branch\_handle\_args}!mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}}
+\doxysubsubsection{branch\_handle\_args()}
+{\footnotesize\ttfamily int branch\+\_\+handle\+\_\+args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Handle the arguments of the branch command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of arguments. \\
+\hline
+{\em argv} & The arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The return code of the command. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 180} of file \textbf{ mygit\+\_\+handle\+\_\+args\+\_\+actions.\+c}.
+
+\mbox{\label{mygit__handle__args__actions_8c_a5535152e6774ddedc7634be4f0684040}} 
+\index{mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}!branch\_print\_handle\_args@{branch\_print\_handle\_args}}
+\index{branch\_print\_handle\_args@{branch\_print\_handle\_args}!mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}}
+\doxysubsubsection{branch\_print\_handle\_args()}
+{\footnotesize\ttfamily int branch\+\_\+print\+\_\+handle\+\_\+args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Handle the arguments of the branch-\/print command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of arguments. \\
+\hline
+{\em argv} & The arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The return code of the command. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 201} of file \textbf{ mygit\+\_\+handle\+\_\+args\+\_\+actions.\+c}.
+
+\mbox{\label{mygit__handle__args__actions_8c_a0db8081249aad34ca08a789fbce67d4c}} 
+\index{mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}!checkout\_branch\_handle\_args@{checkout\_branch\_handle\_args}}
+\index{checkout\_branch\_handle\_args@{checkout\_branch\_handle\_args}!mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}}
+\doxysubsubsection{checkout\_branch\_handle\_args()}
+{\footnotesize\ttfamily int checkout\+\_\+branch\+\_\+handle\+\_\+args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Handle the arguments of the checkout-\/branch command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of arguments. \\
+\hline
+{\em argv} & The arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The return code of the command. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 214} of file \textbf{ mygit\+\_\+handle\+\_\+args\+\_\+actions.\+c}.
+
+\mbox{\label{mygit__handle__args__actions_8c_ad18167e7d8a7639cffc6afb8656bf0de}} 
+\index{mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}!checkout\_commit\_handle\_args@{checkout\_commit\_handle\_args}}
+\index{checkout\_commit\_handle\_args@{checkout\_commit\_handle\_args}!mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}}
+\doxysubsubsection{checkout\_commit\_handle\_args()}
+{\footnotesize\ttfamily int checkout\+\_\+commit\+\_\+handle\+\_\+args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Handle the arguments of the checkout-\/commit command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of arguments. \\
+\hline
+{\em argv} & The arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The return code of the command. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 235} of file \textbf{ mygit\+\_\+handle\+\_\+args\+\_\+actions.\+c}.
+
+\mbox{\label{mygit__handle__args__actions_8c_a00dce8f6919e752284fa02d7200e0a79}} 
+\index{mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}!clear\_add\_handle\_args@{clear\_add\_handle\_args}}
+\index{clear\_add\_handle\_args@{clear\_add\_handle\_args}!mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}}
+\doxysubsubsection{clear\_add\_handle\_args()}
+{\footnotesize\ttfamily int clear\+\_\+add\+\_\+handle\+\_\+args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Handle the arguments of the clear-\/add command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of arguments. \\
+\hline
+{\em argv} & The arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The return code of the command. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 119} of file \textbf{ mygit\+\_\+handle\+\_\+args\+\_\+actions.\+c}.
+
+\mbox{\label{mygit__handle__args__actions_8c_a80e60b2a5ea8d59fcd07248a88add64e}} 
+\index{mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}!commit\_handle\_args@{commit\_handle\_args}}
+\index{commit\_handle\_args@{commit\_handle\_args}!mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}}
+\doxysubsubsection{commit\_handle\_args()}
+{\footnotesize\ttfamily int commit\+\_\+handle\+\_\+args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Handle the arguments of the commit command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of arguments. \\
+\hline
+{\em argv} & The arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The return code of the command. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 133} of file \textbf{ mygit\+\_\+handle\+\_\+args\+\_\+actions.\+c}.
+
+\mbox{\label{mygit__handle__args__actions_8c_a96005c0e52f25b01c365d0afac5dda23}} 
+\index{mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}!create\_ref\_handle\_args@{create\_ref\_handle\_args}}
+\index{create\_ref\_handle\_args@{create\_ref\_handle\_args}!mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}}
+\doxysubsubsection{create\_ref\_handle\_args()}
+{\footnotesize\ttfamily int create\+\_\+ref\+\_\+handle\+\_\+args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Handle the arguments of the create-\/ref command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of arguments. \\
+\hline
+{\em argv} & The arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The return code of the command. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 48} of file \textbf{ mygit\+\_\+handle\+\_\+args\+\_\+actions.\+c}.
+
+\mbox{\label{mygit__handle__args__actions_8c_a0871390416738633daa9d8e2a6ccee5d}} 
+\index{mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}!current\_branch\_handle\_args@{current\_branch\_handle\_args}}
+\index{current\_branch\_handle\_args@{current\_branch\_handle\_args}!mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}}
+\doxysubsubsection{current\_branch\_handle\_args()}
+{\footnotesize\ttfamily int current\+\_\+branch\+\_\+handle\+\_\+args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Handle the arguments of the current-\/branch command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of arguments. \\
+\hline
+{\em argv} & The arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The return code of the command. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 165} of file \textbf{ mygit\+\_\+handle\+\_\+args\+\_\+actions.\+c}.
+
+\mbox{\label{mygit__handle__args__actions_8c_a7f5417d533ac08c739c14f11b41ecf40}} 
+\index{mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}!delete\_ref\_handle\_args@{delete\_ref\_handle\_args}}
+\index{delete\_ref\_handle\_args@{delete\_ref\_handle\_args}!mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}}
+\doxysubsubsection{delete\_ref\_handle\_args()}
+{\footnotesize\ttfamily int delete\+\_\+ref\+\_\+handle\+\_\+args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Handle the arguments of the delete-\/ref command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of arguments. \\
+\hline
+{\em argv} & The arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The return code of the command. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 70} of file \textbf{ mygit\+\_\+handle\+\_\+args\+\_\+actions.\+c}.
+
+\mbox{\label{mygit__handle__args__actions_8c_a2fb316040138f38c865b5f3a51effe45}} 
+\index{mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}!init\_handle\_args@{init\_handle\_args}}
+\index{init\_handle\_args@{init\_handle\_args}!mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}}
+\doxysubsubsection{init\_handle\_args()}
+{\footnotesize\ttfamily int init\+\_\+handle\+\_\+args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Handle the arguments of the init command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of arguments. \\
+\hline
+{\em argv} & The arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The return code of the command. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 24} of file \textbf{ mygit\+\_\+handle\+\_\+args\+\_\+actions.\+c}.
+
+\mbox{\label{mygit__handle__args__actions_8c_ae35a5fa450c78f352555a95fdf7c9cb2}} 
+\index{mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}!list\_add\_handle\_args@{list\_add\_handle\_args}}
+\index{list\_add\_handle\_args@{list\_add\_handle\_args}!mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}}
+\doxysubsubsection{list\_add\_handle\_args()}
+{\footnotesize\ttfamily int list\+\_\+add\+\_\+handle\+\_\+args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Handle the arguments of the list-\/add command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of arguments. \\
+\hline
+{\em argv} & The arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The return code of the command. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 102} of file \textbf{ mygit\+\_\+handle\+\_\+args\+\_\+actions.\+c}.
+
+\mbox{\label{mygit__handle__args__actions_8c_a137150d5e3fca35a851d28bcbaa0a046}} 
+\index{mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}!list\_refs\_handle\_args@{list\_refs\_handle\_args}}
+\index{list\_refs\_handle\_args@{list\_refs\_handle\_args}!mygit\_handle\_args\_actions.c@{mygit\_handle\_args\_actions.c}}
+\doxysubsubsection{list\_refs\_handle\_args()}
+{\footnotesize\ttfamily int list\+\_\+refs\+\_\+handle\+\_\+args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Handle the arguments of the list-\/refs command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of arguments. \\
+\hline
+{\em argv} & The arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The return code of the command. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 35} of file \textbf{ mygit\+\_\+handle\+\_\+args\+\_\+actions.\+c}.
+

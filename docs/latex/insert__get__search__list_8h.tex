@@ -1,0 +1,155 @@
+\doxysection{include/libs/list/insert\+\_\+get\+\_\+search\+\_\+list.h File Reference}
+\label{insert__get__search__list_8h}\index{include/libs/list/insert\_get\_search\_list.h@{include/libs/list/insert\_get\_search\_list.h}}
+{\ttfamily \#include \char`\"{}libs/cell/cell.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/list/list.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ ERROR\+\_\+\+INDEX\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RANGE}~\char`\"{}Error, index out of range\textbackslash{}n\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ insert\+\_\+cell\+\_\+at\+\_\+begging\+\_\+list} (\textbf{ list\+\_\+t} $\ast$list, \textbf{ cell\+\_\+t} $\ast$cell)
+\begin{DoxyCompactList}\small\item\em Insert a cell at the begging of the list. The cell is not copied, the pointer is used. \end{DoxyCompactList}\item 
+int \textbf{ create\+\_\+and\+\_\+insert\+\_\+cell\+\_\+in\+\_\+list} (\textbf{ list\+\_\+t} $\ast$list, const char $\ast$data)
+\begin{DoxyCompactList}\small\item\em Create and insert cell in list at the begging of the list. The data is copied in the cell. \end{DoxyCompactList}\item 
+\textbf{ cell\+\_\+t} $\ast$ \textbf{ get\+\_\+index\+\_\+of\+\_\+list} (\textbf{ list\+\_\+t} $\ast$list, int pos)
+\begin{DoxyCompactList}\small\item\em Get the the element at the index pos in the list. The index start at 0. If the index is out of range, the function print an error message and return NULL. \end{DoxyCompactList}\item 
+\textbf{ cell\+\_\+t} $\ast$ \textbf{ search\+\_\+data\+\_\+in\+\_\+list} (\textbf{ list\+\_\+t} $\ast$list, const char $\ast$data)
+\begin{DoxyCompactList}\small\item\em Get the the cell which contains the data in the list. The data is compared with the data of the cell. If the data is not found, the function return NULL. \end{DoxyCompactList}\item 
+\textbf{ list\+\_\+t} $\ast$ \textbf{ concat\+\_\+list\+\_\+without\+\_\+duplicate} (\textbf{ list\+\_\+t} $\ast$list1, \textbf{ list\+\_\+t} $\ast$list2)
+\begin{DoxyCompactList}\small\item\em Concat the two list without duplicate. The two list are not modified. The returned list is a new one and must be freed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\label{insert__get__search__list_8h_aae0a6192c9041a5d58f64b3b80658925}} 
+\index{insert\_get\_search\_list.h@{insert\_get\_search\_list.h}!ERROR\_INDEX\_OUT\_OF\_RANGE@{ERROR\_INDEX\_OUT\_OF\_RANGE}}
+\index{ERROR\_INDEX\_OUT\_OF\_RANGE@{ERROR\_INDEX\_OUT\_OF\_RANGE}!insert\_get\_search\_list.h@{insert\_get\_search\_list.h}}
+\doxysubsubsection{ERROR\_INDEX\_OUT\_OF\_RANGE}
+{\footnotesize\ttfamily \#define ERROR\+\_\+\+INDEX\+\_\+\+OUT\+\_\+\+OF\+\_\+\+RANGE~\char`\"{}Error, index out of range\textbackslash{}n\char`\"{}}
+
+
+
+Definition at line \textbf{ 10} of file \textbf{ insert\+\_\+get\+\_\+search\+\_\+list.\+h}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{insert__get__search__list_8h_a0619f67a0b46ba972e93b2e68bfde311}} 
+\index{insert\_get\_search\_list.h@{insert\_get\_search\_list.h}!concat\_list\_without\_duplicate@{concat\_list\_without\_duplicate}}
+\index{concat\_list\_without\_duplicate@{concat\_list\_without\_duplicate}!insert\_get\_search\_list.h@{insert\_get\_search\_list.h}}
+\doxysubsubsection{concat\_list\_without\_duplicate()}
+{\footnotesize\ttfamily \textbf{ list\+\_\+t} $\ast$ concat\+\_\+list\+\_\+without\+\_\+duplicate (\begin{DoxyParamCaption}\item[{\textbf{ list\+\_\+t} $\ast$}]{list1,  }\item[{\textbf{ list\+\_\+t} $\ast$}]{list2 }\end{DoxyParamCaption})}
+
+
+
+Concat the two list without duplicate. The two list are not modified. The returned list is a new one and must be freed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list1} & The first list \\
+\hline
+{\em list2} & The second list \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list\+\_\+t$\ast$ The new list or NULL if any error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 75} of file \textbf{ insert\+\_\+get\+\_\+search\+\_\+list.\+c}.
+
+\mbox{\label{insert__get__search__list_8h_a1be1b5c2c454699aca99e84fcdace9a5}} 
+\index{insert\_get\_search\_list.h@{insert\_get\_search\_list.h}!create\_and\_insert\_cell\_in\_list@{create\_and\_insert\_cell\_in\_list}}
+\index{create\_and\_insert\_cell\_in\_list@{create\_and\_insert\_cell\_in\_list}!insert\_get\_search\_list.h@{insert\_get\_search\_list.h}}
+\doxysubsubsection{create\_and\_insert\_cell\_in\_list()}
+{\footnotesize\ttfamily int create\+\_\+and\+\_\+insert\+\_\+cell\+\_\+in\+\_\+list (\begin{DoxyParamCaption}\item[{\textbf{ list\+\_\+t} $\ast$}]{list,  }\item[{const char $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Create and insert cell in list at the begging of the list. The data is copied in the cell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The list to modify \\
+\hline
+{\em data} & The data to insert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if success, 0 if any error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 47} of file \textbf{ insert\+\_\+get\+\_\+search\+\_\+list.\+c}.
+
+\mbox{\label{insert__get__search__list_8h_a42be3f4e27c86e5f4e2191644ce0f558}} 
+\index{insert\_get\_search\_list.h@{insert\_get\_search\_list.h}!get\_index\_of\_list@{get\_index\_of\_list}}
+\index{get\_index\_of\_list@{get\_index\_of\_list}!insert\_get\_search\_list.h@{insert\_get\_search\_list.h}}
+\doxysubsubsection{get\_index\_of\_list()}
+{\footnotesize\ttfamily \textbf{ cell\+\_\+t} $\ast$ get\+\_\+index\+\_\+of\+\_\+list (\begin{DoxyParamCaption}\item[{\textbf{ list\+\_\+t} $\ast$}]{list,  }\item[{int}]{pos }\end{DoxyParamCaption})}
+
+
+
+Get the the element at the index pos in the list. The index start at 0. If the index is out of range, the function print an error message and return NULL. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The list to get the element from \\
+\hline
+{\em pos} & The index of the element to get \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+cell\+\_\+t$\ast$ The element at the index pos or NULL if the index is out of range 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 21} of file \textbf{ insert\+\_\+get\+\_\+search\+\_\+list.\+c}.
+
+\mbox{\label{insert__get__search__list_8h_a55e22d79f276a5c213ee45890d64632f}} 
+\index{insert\_get\_search\_list.h@{insert\_get\_search\_list.h}!insert\_cell\_at\_begging\_list@{insert\_cell\_at\_begging\_list}}
+\index{insert\_cell\_at\_begging\_list@{insert\_cell\_at\_begging\_list}!insert\_get\_search\_list.h@{insert\_get\_search\_list.h}}
+\doxysubsubsection{insert\_cell\_at\_begging\_list()}
+{\footnotesize\ttfamily void insert\+\_\+cell\+\_\+at\+\_\+begging\+\_\+list (\begin{DoxyParamCaption}\item[{\textbf{ list\+\_\+t} $\ast$}]{list,  }\item[{\textbf{ cell\+\_\+t} $\ast$}]{cell }\end{DoxyParamCaption})}
+
+
+
+Insert a cell at the begging of the list. The cell is not copied, the pointer is used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The list to modify \\
+\hline
+{\em cell} & The cell to insert \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 13} of file \textbf{ insert\+\_\+get\+\_\+search\+\_\+list.\+c}.
+
+\mbox{\label{insert__get__search__list_8h_ab5c6c77e1dcf3318a077d2f8e59cae52}} 
+\index{insert\_get\_search\_list.h@{insert\_get\_search\_list.h}!search\_data\_in\_list@{search\_data\_in\_list}}
+\index{search\_data\_in\_list@{search\_data\_in\_list}!insert\_get\_search\_list.h@{insert\_get\_search\_list.h}}
+\doxysubsubsection{search\_data\_in\_list()}
+{\footnotesize\ttfamily \textbf{ cell\+\_\+t} $\ast$ search\+\_\+data\+\_\+in\+\_\+list (\begin{DoxyParamCaption}\item[{\textbf{ list\+\_\+t} $\ast$}]{list,  }\item[{const char $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Get the the cell which contains the data in the list. The data is compared with the data of the cell. If the data is not found, the function return NULL. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The list to get the element from \\
+\hline
+{\em data} & The data to search \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+cell\+\_\+t$\ast$ The cell which contains the data or NULL if the data is not found 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 35} of file \textbf{ insert\+\_\+get\+\_\+search\+\_\+list.\+c}.
+

@@ -1,0 +1,60 @@
+\doxysection{src/add/mygit\+\_\+add.c File Reference}
+\label{mygit__add_8c}\index{src/add/mygit\_add.c@{src/add/mygit\_add.c}}
+{\ttfamily \#include \char`\"{}add/mygit\+\_\+add.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/list\+\_\+files.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/work\+\_\+tree/convert\+\_\+str\+\_\+work\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/work\+\_\+tree/insert\+\_\+get\+\_\+search\+\_\+work\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/work\+\_\+tree/save\+\_\+get\+\_\+file\+\_\+work\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/work\+\_\+tree/work\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/utils.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \textbf{ mygit\+\_\+list\+\_\+add\+\_\+str} (void)
+\begin{DoxyCompactList}\small\item\em List all the files added. \end{DoxyCompactList}\item 
+int \textbf{ mygit\+\_\+add} (const char $\ast$file)
+\begin{DoxyCompactList}\small\item\em Add a file to the preparation area (aka staging area, i.\+e. the list of files to commit) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{mygit__add_8c_a05c3125c8b9df4dd9f523461c01c3ec5}} 
+\index{mygit\_add.c@{mygit\_add.c}!mygit\_add@{mygit\_add}}
+\index{mygit\_add@{mygit\_add}!mygit\_add.c@{mygit\_add.c}}
+\doxysubsubsection{mygit\_add()}
+{\footnotesize\ttfamily int mygit\+\_\+add (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file }\end{DoxyParamCaption})}
+
+
+
+Add a file to the preparation area (aka staging area, i.\+e. the list of files to commit) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The path to the file to add \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 if success, 1 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 38} of file \textbf{ mygit\+\_\+add.\+c}.
+
+\mbox{\label{mygit__add_8c_a0f42c4535d6b000e6fb752aad1a8382a}} 
+\index{mygit\_add.c@{mygit\_add.c}!mygit\_list\_add\_str@{mygit\_list\_add\_str}}
+\index{mygit\_list\_add\_str@{mygit\_list\_add\_str}!mygit\_add.c@{mygit\_add.c}}
+\doxysubsubsection{mygit\_list\_add\_str()}
+{\footnotesize\ttfamily char $\ast$ mygit\+\_\+list\+\_\+add\+\_\+str (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+List all the files added. 
+
+\begin{DoxyReturn}{Returns}
+char$\ast$ A string containing all the files added 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 19} of file \textbf{ mygit\+\_\+add.\+c}.
+

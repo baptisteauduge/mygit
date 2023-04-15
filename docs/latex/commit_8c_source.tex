@@ -1,0 +1,56 @@
+\doxysection{commit.\+c}
+\label{commit_8c_source}\index{src/libs/commit/commit.c@{src/libs/commit/commit.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ commit.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ commit.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/commit/commit.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/commit/insert\_key\_val\_in\_commit.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}libs/hash/hash.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ commit\_t\ *create\_and\_init\_empty\_commit(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ commit\_t\ *commit\ =\ malloc(\textcolor{keyword}{sizeof}(commit\_t));}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordflow}{if}\ (!commit)}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00019\ \ \ commit-\/>size\ =\ 0;}
+\DoxyCodeLine{00020\ \ \ commit-\/>max\_size\ =\ COMMIT\_KEY\_VAL\_MAX\_SIZE;}
+\DoxyCodeLine{00021\ \ \ commit-\/>key\_val\ =\ malloc(\textcolor{keyword}{sizeof}(key\_val\_t\ *)\ *\ commit-\/>max\_size);}
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordflow}{if}\ (!commit-\/>key\_val)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ free(commit);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00025\ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ commit-\/>max\_size;\ i++)}
+\DoxyCodeLine{00027\ \ \ \ \ commit-\/>key\_val[i]\ =\ NULL;}
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordflow}{return}\ commit;}
+\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ commit\_t\ *create\_commit\_with\_tree\_key\_val(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hash)}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ commit\_t\ *commit;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordflow}{if}\ (!hash)}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00037\ \ \ commit\ =\ create\_and\_init\_empty\_commit();}
+\DoxyCodeLine{00038\ \ \ \textcolor{keywordflow}{if}\ (!commit)}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00040\ \ \ insert\_key\_val\_in\_commit(commit,\ COMMIT\_KEY\_HASH,\ hash);}
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordflow}{return}\ commit;}
+\DoxyCodeLine{00042\ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keywordtype}{void}\ free\_commit(commit\_t\ *commit)}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ commit-\/>max\_size;\ i++)}
+\DoxyCodeLine{00047\ \ \ \ \ free\_key\_val(commit-\/>key\_val[i]);}
+\DoxyCodeLine{00048\ \ \ free(commit-\/>key\_val);}
+\DoxyCodeLine{00049\ \ \ free(commit);}
+\DoxyCodeLine{00050\ \}}
+
+\end{DoxyCode}

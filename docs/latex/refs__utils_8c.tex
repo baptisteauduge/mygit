@@ -1,0 +1,61 @@
+\doxysection{src/refs/refs\+\_\+utils.c File Reference}
+\label{refs__utils_8c}\index{src/refs/refs\_utils.c@{src/refs/refs\_utils.c}}
+{\ttfamily \#include \char`\"{}refs/refs\+\_\+utils.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/get\+\_\+path\+\_\+absolute.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/read\+\_\+write\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/utils.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \textbf{ get\+\_\+hash\+\_\+from\+\_\+last\+\_\+commit\+\_\+in\+\_\+branch} (const char $\ast$branch\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Get the hash from last commit in branch given in parameter. \end{DoxyCompactList}\item 
+void \textbf{ set\+\_\+head\+\_\+and\+\_\+branch\+\_\+hash\+\_\+last\+\_\+commit} (const char $\ast$branch\+\_\+name, const char $\ast$hash)
+\begin{DoxyCompactList}\small\item\em Set the head and branch the branch last commit to the given hash. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{refs__utils_8c_a19e3618f168b13925d7c1df08d42827b}} 
+\index{refs\_utils.c@{refs\_utils.c}!get\_hash\_from\_last\_commit\_in\_branch@{get\_hash\_from\_last\_commit\_in\_branch}}
+\index{get\_hash\_from\_last\_commit\_in\_branch@{get\_hash\_from\_last\_commit\_in\_branch}!refs\_utils.c@{refs\_utils.c}}
+\doxysubsubsection{get\_hash\_from\_last\_commit\_in\_branch()}
+{\footnotesize\ttfamily char $\ast$ get\+\_\+hash\+\_\+from\+\_\+last\+\_\+commit\+\_\+in\+\_\+branch (\begin{DoxyParamCaption}\item[{const char $\ast$}]{branch\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Get the hash from last commit in branch given in parameter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch\+\_\+name} & The name of the branch. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The hash of the last commit in the branch. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 14} of file \textbf{ refs\+\_\+utils.\+c}.
+
+\mbox{\label{refs__utils_8c_a23930bc6c5f87c9815386a086a49b17f}} 
+\index{refs\_utils.c@{refs\_utils.c}!set\_head\_and\_branch\_hash\_last\_commit@{set\_head\_and\_branch\_hash\_last\_commit}}
+\index{set\_head\_and\_branch\_hash\_last\_commit@{set\_head\_and\_branch\_hash\_last\_commit}!refs\_utils.c@{refs\_utils.c}}
+\doxysubsubsection{set\_head\_and\_branch\_hash\_last\_commit()}
+{\footnotesize\ttfamily void set\+\_\+head\+\_\+and\+\_\+branch\+\_\+hash\+\_\+last\+\_\+commit (\begin{DoxyParamCaption}\item[{const char $\ast$}]{branch\+\_\+name,  }\item[{const char $\ast$}]{hash }\end{DoxyParamCaption})}
+
+
+
+Set the head and branch the branch last commit to the given hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch\+\_\+name} & The name of the branch. \\
+\hline
+{\em hash} & The hash of the last commit in the branch. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 29} of file \textbf{ refs\+\_\+utils.\+c}.
+

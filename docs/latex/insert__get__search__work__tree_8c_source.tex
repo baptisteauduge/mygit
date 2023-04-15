@@ -1,0 +1,64 @@
+\doxysection{insert\+\_\+get\+\_\+search\+\_\+work\+\_\+tree.\+c}
+\label{insert__get__search__work__tree_8c_source}\index{src/libs/work\_tree/insert\_get\_search\_work\_tree.c@{src/libs/work\_tree/insert\_get\_search\_work\_tree.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ insert\_get\_search\_work\_tree.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ insert\_get\_search\_work\_tree.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/insert\_get\_search\_work\_tree.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{int}\ index\_in\_work\_tree(\textcolor{keyword}{const}\ work\_tree\_t\ *wt,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name)}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ \textcolor{keywordtype}{int}\ diff\_strcmp\ =\ 0;}
+\DoxyCodeLine{00014\ \ \ \textcolor{keywordflow}{if}\ (!wt)}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ wt-\/>size;\ ++i)\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ diff\_strcmp\ =\ strcmp(wt-\/>tab[i].name,\ name);}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{if}\ (diff\_strcmp\ ==\ 0)}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ i;}
+\DoxyCodeLine{00021\ \ \ \}}
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00023\ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ set\_hash\_or\_null(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hash,\ work\_file\_t\ *wf)}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordflow}{if}\ (hash)\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ wf-\/>hash\ =\ strdup(hash);}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{if}\ (!wf-\/>hash)\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ free(wf-\/>name);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \ \ \}}
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00035\ \ \ \ \ wf-\/>hash\ =\ NULL;}
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00037\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ Returns\ -\/1\ if\ error,\ 0\ if\ already\ in\ the\ work\_tree,\ 1\ if\ added}}
+\DoxyCodeLine{00040\ \textcolor{keywordtype}{int}\ append\_work\_tree(work\_tree\_t\ *wt,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hash,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mode\_t\ mode)}
+\DoxyCodeLine{00042\ \{}
+\DoxyCodeLine{00043\ \ \ work\_file\_t\ *wf\_to\_treat\ =\ NULL;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordflow}{if}\ (!wt\ ||\ wt-\/>size\ >=\ wt-\/>max\_size\ ||\ !name)}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordflow}{if}\ (index\_in\_work\_tree(wt,\ name)\ >=\ 0)}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00049\ \ \ wf\_to\_treat\ =\ \&wt-\/>tab[wt-\/>size];}
+\DoxyCodeLine{00050\ \ \ wf\_to\_treat-\/>name\ =\ strdup(name);}
+\DoxyCodeLine{00051\ \ \ \textcolor{keywordflow}{if}\ (!wf\_to\_treat-\/>name)}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00053\ \ \ wf\_to\_treat-\/>mode\ =\ mode;}
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordflow}{if}\ (set\_hash\_or\_null(hash,\ wf\_to\_treat)\ ==\ -\/1)}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00056\ \ \ ++wt-\/>size;}
+\DoxyCodeLine{00057\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00058\ \}}
+
+\end{DoxyCode}

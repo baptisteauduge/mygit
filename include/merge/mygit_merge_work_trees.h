@@ -1,11 +1,11 @@
 // MyGit Project
 //
-// mygit_merge.h
+// mygit_merge_work_trees.h
 // File description:
-//    mygit_merge.h
+//    mygit_merge_work_trees.h
 
-#ifndef MYGIT_MERGE_H
-#define MYGIT_MERGE_H
+#ifndef MYGIT_MERGE_WORK_TREES_H
+#define MYGIT_MERGE_WORK_TREES_H
 
 #include "libs/list/list.h"
 #include "libs/work_tree/work_tree.h"
@@ -17,7 +17,7 @@
  *
  * @param wt1 The first work tree
  * @param wt2 The second work tree
- * @param conflicts The list of conflicts (should be initialized before)
+ * @param conflicts The list of conflicts (could be not init before)
  * @return work_tree_t* The result of the merge (without conflicts)
  */
 work_tree_t *mygit_merge_work_trees(work_tree_t *wt1, work_tree_t *wt2,

@@ -1,0 +1,57 @@
+\doxysection{include/libs/commit/convert\+\_\+str\+\_\+commit.h File Reference}
+\label{convert__str__commit_8h}\index{include/libs/commit/convert\_str\_commit.h@{include/libs/commit/convert\_str\_commit.h}}
+{\ttfamily \#include \char`\"{}libs/commit/commit.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \textbf{ convert\+\_\+commit\+\_\+to\+\_\+str} (\textbf{ commit\+\_\+t} $\ast$commit)
+\begin{DoxyCompactList}\small\item\em Convert the commit provided to a string. The string is allocated, and must be freed by the caller. The string is formatted as follow\+: \char`\"{}\+KEY1\+:\+VALUE1\textbackslash{}n\+KEY2=\+VALUE2\textbackslash{}n\+KEY3=\+VALUE3\textbackslash{}n\char`\"{} etc. The format between newlines is defined in the \doxyref{convert\+\_\+key\+\_\+val\+\_\+to\+\_\+str}{p.}{convert__str__key__val_8h_afdae6579be28eef93ac75e42690ba33f} function. \end{DoxyCompactList}\item 
+\textbf{ commit\+\_\+t} $\ast$ \textbf{ convert\+\_\+str\+\_\+to\+\_\+commit} (const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Convert the string provided to a commit. The string must be formatted as follow\+: \char`\"{}\+KEY1\+:\+VALUE1\textbackslash{}n\+KEY2=\+VALUE2\textbackslash{}n\+KEY3=\+VALUE3\textbackslash{}n\char`\"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{convert__str__commit_8h_acbea4b8f3286439f39aa65d404787c90}} 
+\index{convert\_str\_commit.h@{convert\_str\_commit.h}!convert\_commit\_to\_str@{convert\_commit\_to\_str}}
+\index{convert\_commit\_to\_str@{convert\_commit\_to\_str}!convert\_str\_commit.h@{convert\_str\_commit.h}}
+\doxysubsubsection{convert\_commit\_to\_str()}
+{\footnotesize\ttfamily char $\ast$ convert\+\_\+commit\+\_\+to\+\_\+str (\begin{DoxyParamCaption}\item[{\textbf{ commit\+\_\+t} $\ast$}]{commit }\end{DoxyParamCaption})}
+
+
+
+Convert the commit provided to a string. The string is allocated, and must be freed by the caller. The string is formatted as follow\+: \char`\"{}\+KEY1\+:\+VALUE1\textbackslash{}n\+KEY2=\+VALUE2\textbackslash{}n\+KEY3=\+VALUE3\textbackslash{}n\char`\"{} etc. The format between newlines is defined in the \doxyref{convert\+\_\+key\+\_\+val\+\_\+to\+\_\+str}{p.}{convert__str__key__val_8h_afdae6579be28eef93ac75e42690ba33f} function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em commit} & The commit to convert to a string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The string representing the commit. NULL if an error occurred. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 50} of file \textbf{ convert\+\_\+str\+\_\+commit.\+c}.
+
+\mbox{\label{convert__str__commit_8h_a034b536fea6bb8bb9d9f0f417d1b1158}} 
+\index{convert\_str\_commit.h@{convert\_str\_commit.h}!convert\_str\_to\_commit@{convert\_str\_to\_commit}}
+\index{convert\_str\_to\_commit@{convert\_str\_to\_commit}!convert\_str\_commit.h@{convert\_str\_commit.h}}
+\doxysubsubsection{convert\_str\_to\_commit()}
+{\footnotesize\ttfamily \textbf{ commit\+\_\+t} $\ast$ convert\+\_\+str\+\_\+to\+\_\+commit (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Convert the string provided to a commit. The string must be formatted as follow\+: \char`\"{}\+KEY1\+:\+VALUE1\textbackslash{}n\+KEY2=\+VALUE2\textbackslash{}n\+KEY3=\+VALUE3\textbackslash{}n\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to convert to a commit. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+commit\+\_\+t$\ast$ The commit representing the string. NULL if an error occurred. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 80} of file \textbf{ convert\+\_\+str\+\_\+commit.\+c}.
+

@@ -1,0 +1,75 @@
+\doxysection{include/commit/mygit\+\_\+commit\+\_\+pre\+\_\+checks.h File Reference}
+\label{mygit__commit__pre__checks_8h}\index{include/commit/mygit\_commit\_pre\_checks.h@{include/commit/mygit\_commit\_pre\_checks.h}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ check\+\_\+if\+\_\+refs\+\_\+exists} (void)
+\begin{DoxyCompactList}\small\item\em Check if the refs directory exists. If it does not, the function will print a message, to inform the user that the repository is not initialized. \end{DoxyCompactList}\item 
+int \textbf{ check\+\_\+if\+\_\+branch\+\_\+exists} (const char $\ast$branch\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Check if the branch exists. If it does not, the function will print a message, to inform the user that the branch does not exists. \end{DoxyCompactList}\item 
+int \textbf{ check\+\_\+if\+\_\+head\+\_\+is\+\_\+in\+\_\+branch} (const char $\ast$branch\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Check if the HEAD is in the branch provided. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{mygit__commit__pre__checks_8h_aad17b8c85c28ce3a2180a55bf3420f4a}} 
+\index{mygit\_commit\_pre\_checks.h@{mygit\_commit\_pre\_checks.h}!check\_if\_branch\_exists@{check\_if\_branch\_exists}}
+\index{check\_if\_branch\_exists@{check\_if\_branch\_exists}!mygit\_commit\_pre\_checks.h@{mygit\_commit\_pre\_checks.h}}
+\doxysubsubsection{check\_if\_branch\_exists()}
+{\footnotesize\ttfamily int check\+\_\+if\+\_\+branch\+\_\+exists (\begin{DoxyParamCaption}\item[{const char $\ast$}]{branch\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Check if the branch exists. If it does not, the function will print a message, to inform the user that the branch does not exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch\+\_\+name} & The name of the branch \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the branch exists, 0 otherwise (i.\+e. the branch does not exist or there is an error) 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 28} of file \textbf{ mygit\+\_\+commit\+\_\+pre\+\_\+check.\+c}.
+
+\mbox{\label{mygit__commit__pre__checks_8h_a0b893b02dd2e428c8bbcc8c36f27232e}} 
+\index{mygit\_commit\_pre\_checks.h@{mygit\_commit\_pre\_checks.h}!check\_if\_head\_is\_in\_branch@{check\_if\_head\_is\_in\_branch}}
+\index{check\_if\_head\_is\_in\_branch@{check\_if\_head\_is\_in\_branch}!mygit\_commit\_pre\_checks.h@{mygit\_commit\_pre\_checks.h}}
+\doxysubsubsection{check\_if\_head\_is\_in\_branch()}
+{\footnotesize\ttfamily int check\+\_\+if\+\_\+head\+\_\+is\+\_\+in\+\_\+branch (\begin{DoxyParamCaption}\item[{const char $\ast$}]{branch\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Check if the HEAD is in the branch provided. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch\+\_\+name} & The name of the branch \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the HEAD is in the branch, 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 68} of file \textbf{ mygit\+\_\+commit\+\_\+pre\+\_\+check.\+c}.
+
+\mbox{\label{mygit__commit__pre__checks_8h_a99709572222fc30bb23c0caea21b33ac}} 
+\index{mygit\_commit\_pre\_checks.h@{mygit\_commit\_pre\_checks.h}!check\_if\_refs\_exists@{check\_if\_refs\_exists}}
+\index{check\_if\_refs\_exists@{check\_if\_refs\_exists}!mygit\_commit\_pre\_checks.h@{mygit\_commit\_pre\_checks.h}}
+\doxysubsubsection{check\_if\_refs\_exists()}
+{\footnotesize\ttfamily int check\+\_\+if\+\_\+refs\+\_\+exists (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Check if the refs directory exists. If it does not, the function will print a message, to inform the user that the repository is not initialized. 
+
+\begin{DoxyReturn}{Returns}
+int 1 if the refs directory exists, 0 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 18} of file \textbf{ mygit\+\_\+commit\+\_\+pre\+\_\+check.\+c}.
+

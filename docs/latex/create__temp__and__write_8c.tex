@@ -1,0 +1,39 @@
+\doxysection{src/libs/file/create\+\_\+temp\+\_\+and\+\_\+write.c File Reference}
+\label{create__temp__and__write_8c}\index{src/libs/file/create\_temp\_and\_write.c@{src/libs/file/create\_temp\_and\_write.c}}
+{\ttfamily \#include \char`\"{}libs/file/create\+\_\+temp\+\_\+and\+\_\+write.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/constants\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ create\+\_\+temp\+\_\+file\+\_\+and\+\_\+write\+\_\+in\+\_\+it} (char $\ast$content, char $\ast$tmp\+\_\+filename)
+\begin{DoxyCompactList}\small\item\em Create a temp file and write in it the content provided. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{create__temp__and__write_8c_a843c6ecc43a2a4cf4b818fac105fe95a}} 
+\index{create\_temp\_and\_write.c@{create\_temp\_and\_write.c}!create\_temp\_file\_and\_write\_in\_it@{create\_temp\_file\_and\_write\_in\_it}}
+\index{create\_temp\_file\_and\_write\_in\_it@{create\_temp\_file\_and\_write\_in\_it}!create\_temp\_and\_write.c@{create\_temp\_and\_write.c}}
+\doxysubsubsection{create\_temp\_file\_and\_write\_in\_it()}
+{\footnotesize\ttfamily int create\+\_\+temp\+\_\+file\+\_\+and\+\_\+write\+\_\+in\+\_\+it (\begin{DoxyParamCaption}\item[{char $\ast$}]{content,  }\item[{char $\ast$}]{tmp\+\_\+filename }\end{DoxyParamCaption})}
+
+
+
+Create a temp file and write in it the content provided. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em content} & The content to write in the file \\
+\hline
+{\em tmp\+\_\+filename} & The path of the file to create \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the file was created and written, 0 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 13} of file \textbf{ create\+\_\+temp\+\_\+and\+\_\+write.\+c}.
+

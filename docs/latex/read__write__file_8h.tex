@@ -1,0 +1,100 @@
+\doxysection{include/libs/file/read\+\_\+write\+\_\+file.h File Reference}
+\label{read__write__file_8h}\index{include/libs/file/read\_write\_file.h@{include/libs/file/read\_write\_file.h}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \textbf{ get\+\_\+first\+\_\+line} (const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Get the first line of the file. \end{DoxyCompactList}\item 
+char $\ast$ \textbf{ get\+\_\+file\+\_\+content} (const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Get the content of the file. \end{DoxyCompactList}\item 
+void \textbf{ remove\+\_\+new\+\_\+line\+\_\+if\+\_\+exists} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Remove the first occurence of the new line character in the string. \end{DoxyCompactList}\item 
+void \textbf{ write\+\_\+file\+\_\+content} (const char $\ast$path, const char $\ast$content)
+\begin{DoxyCompactList}\small\item\em Write the content in the file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{read__write__file_8h_a145bb2e1e9982d55e722eb0d1d8a5fb6}} 
+\index{read\_write\_file.h@{read\_write\_file.h}!get\_file\_content@{get\_file\_content}}
+\index{get\_file\_content@{get\_file\_content}!read\_write\_file.h@{read\_write\_file.h}}
+\doxysubsubsection{get\_file\_content()}
+{\footnotesize\ttfamily char $\ast$ get\+\_\+file\+\_\+content (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Get the content of the file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The content of the file or NULL if any error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 51} of file \textbf{ read\+\_\+write\+\_\+file.\+c}.
+
+\mbox{\label{read__write__file_8h_afe05bc68f1dbdcb6a16c03228c89f3b3}} 
+\index{read\_write\_file.h@{read\_write\_file.h}!get\_first\_line@{get\_first\_line}}
+\index{get\_first\_line@{get\_first\_line}!read\_write\_file.h@{read\_write\_file.h}}
+\doxysubsubsection{get\_first\_line()}
+{\footnotesize\ttfamily char $\ast$ get\+\_\+first\+\_\+line (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Get the first line of the file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The first line of the file or NULL if any error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 13} of file \textbf{ read\+\_\+write\+\_\+file.\+c}.
+
+\mbox{\label{read__write__file_8h_af8cb802a3c5b1e159bb129d513819988}} 
+\index{read\_write\_file.h@{read\_write\_file.h}!remove\_new\_line\_if\_exists@{remove\_new\_line\_if\_exists}}
+\index{remove\_new\_line\_if\_exists@{remove\_new\_line\_if\_exists}!read\_write\_file.h@{read\_write\_file.h}}
+\doxysubsubsection{remove\_new\_line\_if\_exists()}
+{\footnotesize\ttfamily void remove\+\_\+new\+\_\+line\+\_\+if\+\_\+exists (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Remove the first occurence of the new line character in the string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to remove the new line character \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 78} of file \textbf{ read\+\_\+write\+\_\+file.\+c}.
+
+\mbox{\label{read__write__file_8h_abf2681e882e04a303598e02496841e4a}} 
+\index{read\_write\_file.h@{read\_write\_file.h}!write\_file\_content@{write\_file\_content}}
+\index{write\_file\_content@{write\_file\_content}!read\_write\_file.h@{read\_write\_file.h}}
+\doxysubsubsection{write\_file\_content()}
+{\footnotesize\ttfamily void write\+\_\+file\+\_\+content (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path,  }\item[{const char $\ast$}]{content }\end{DoxyParamCaption})}
+
+
+
+Write the content in the file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the file \\
+\hline
+{\em content} & The content to write in the file \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 89} of file \textbf{ read\+\_\+write\+\_\+file.\+c}.
+

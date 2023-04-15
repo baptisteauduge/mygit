@@ -1,0 +1,77 @@
+\doxysection{src/libs/commit/commit.c File Reference}
+\label{commit_8c}\index{src/libs/commit/commit.c@{src/libs/commit/commit.c}}
+{\ttfamily \#include \char`\"{}libs/commit/commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/commit/insert\+\_\+key\+\_\+val\+\_\+in\+\_\+commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/hash/hash.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ commit\+\_\+t} $\ast$ \textbf{ create\+\_\+and\+\_\+init\+\_\+empty\+\_\+commit} (void)
+\begin{DoxyCompactList}\small\item\em Create a and init empty commit object (i.\+e. a commit with no key\+\_\+val\+\_\+t pointers set to other than NULL) \end{DoxyCompactList}\item 
+\textbf{ commit\+\_\+t} $\ast$ \textbf{ create\+\_\+commit\+\_\+with\+\_\+tree\+\_\+key\+\_\+val} (const char $\ast$hash)
+\begin{DoxyCompactList}\small\item\em Create a commit object with the hash provided. The commit object will contain a key\+\_\+val\+\_\+t pointer with the key \char`\"{}\+COMMIT\+\_\+\+KEY\+\_\+\+HASH\char`\"{} (that is defined in \doxyref{commit.\+h}{p.}{commit_8h}) and the value provided as hash. \end{DoxyCompactList}\item 
+void \textbf{ free\+\_\+commit} (\textbf{ commit\+\_\+t} $\ast$commit)
+\begin{DoxyCompactList}\small\item\em Free the commit provided. The key\+\_\+val\+\_\+t pointers contained in the commit are also freed (using \doxyref{free\+\_\+key\+\_\+val}{p.}{key__val_8h_aa4b09aaa39cb40ed0aaf10b5d8c5c9b9}). (So, the value associated as values are also freed) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{commit_8c_a1b7c673978213bd43fc595fa6a7ea23d}} 
+\index{commit.c@{commit.c}!create\_and\_init\_empty\_commit@{create\_and\_init\_empty\_commit}}
+\index{create\_and\_init\_empty\_commit@{create\_and\_init\_empty\_commit}!commit.c@{commit.c}}
+\doxysubsubsection{create\_and\_init\_empty\_commit()}
+{\footnotesize\ttfamily \textbf{ commit\+\_\+t} $\ast$ create\+\_\+and\+\_\+init\+\_\+empty\+\_\+commit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Create a and init empty commit object (i.\+e. a commit with no key\+\_\+val\+\_\+t pointers set to other than NULL) 
+
+\begin{DoxyReturn}{Returns}
+commit\+\_\+t$\ast$ The commit created, NULL if an error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 13} of file \textbf{ commit.\+c}.
+
+\mbox{\label{commit_8c_aa5e5a88050cb4858e10308b1bd4c44e3}} 
+\index{commit.c@{commit.c}!create\_commit\_with\_tree\_key\_val@{create\_commit\_with\_tree\_key\_val}}
+\index{create\_commit\_with\_tree\_key\_val@{create\_commit\_with\_tree\_key\_val}!commit.c@{commit.c}}
+\doxysubsubsection{create\_commit\_with\_tree\_key\_val()}
+{\footnotesize\ttfamily \textbf{ commit\+\_\+t} $\ast$ create\+\_\+commit\+\_\+with\+\_\+tree\+\_\+key\+\_\+val (\begin{DoxyParamCaption}\item[{const char $\ast$}]{hash }\end{DoxyParamCaption})}
+
+
+
+Create a commit object with the hash provided. The commit object will contain a key\+\_\+val\+\_\+t pointer with the key \char`\"{}\+COMMIT\+\_\+\+KEY\+\_\+\+HASH\char`\"{} (that is defined in \doxyref{commit.\+h}{p.}{commit_8h}) and the value provided as hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash} & The hash of the the Work Tree related to the commit \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+commit\+\_\+t$\ast$ The commit created, NULL if an error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 31} of file \textbf{ commit.\+c}.
+
+\mbox{\label{commit_8c_adb9af96f568dfa4194fecee35adce146}} 
+\index{commit.c@{commit.c}!free\_commit@{free\_commit}}
+\index{free\_commit@{free\_commit}!commit.c@{commit.c}}
+\doxysubsubsection{free\_commit()}
+{\footnotesize\ttfamily void free\+\_\+commit (\begin{DoxyParamCaption}\item[{\textbf{ commit\+\_\+t} $\ast$}]{commit }\end{DoxyParamCaption})}
+
+
+
+Free the commit provided. The key\+\_\+val\+\_\+t pointers contained in the commit are also freed (using \doxyref{free\+\_\+key\+\_\+val}{p.}{key__val_8h_aa4b09aaa39cb40ed0aaf10b5d8c5c9b9}). (So, the value associated as values are also freed) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em commit} & The commit to free \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 44} of file \textbf{ commit.\+c}.
+

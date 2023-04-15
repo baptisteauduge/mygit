@@ -1,0 +1,74 @@
+\doxysection{list\+\_\+files.\+c}
+\label{list__files_8c_source}\index{src/libs/file/list\_files.c@{src/libs/file/list\_files.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ list\_files.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ list\_files.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/file/list\_files.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/list/insert\_get\_search\_list.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}libs/list/list.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <dirent.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <sys/stat.h>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ read\_dir\_and\_fill\_list(DIR\ *dir,\ list\_t\ *list)}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \textcolor{keyword}{struct\ }dirent\ *next\_dir\ =\ NULL;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ next\_dir\ =\ readdir(dir);}
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordflow}{while}\ (next\_dir)\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(next\_dir-\/>d\_name,\ \textcolor{stringliteral}{"{}.."{}})\ !=\ 0\ \&\&}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ strcmp(next\_dir-\/>d\_name,\ \textcolor{stringliteral}{"{}."{}})\ !=\ 0)\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!create\_and\_insert\_cell\_in\_list(list,\ next\_dir-\/>d\_name))}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00026\ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \ \ next\_dir\ =\ readdir(dir);}
+\DoxyCodeLine{00028\ \ \ \}}
+\DoxyCodeLine{00029\ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00030\ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ list\_t\ *get\_list\_files\_and\_dir(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path)}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \ \ list\_t\ *list\ =\ NULL;}
+\DoxyCodeLine{00035\ \ \ DIR\ *dir\ =\ NULL;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordflow}{if}\ (!path)}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00039\ \ \ dir\ =\ opendir(path);}
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordflow}{if}\ (!dir)}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00042\ \ \ list\ =\ create\_init\_list();}
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordflow}{if}\ (!list)}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00045\ \ \ read\_dir\_and\_fill\_list(dir,\ list);}
+\DoxyCodeLine{00046\ \ \ closedir(dir);}
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordflow}{return}\ list;}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{int}\ does\_file\_exists(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *file)}
+\DoxyCodeLine{00051\ \{}
+\DoxyCodeLine{00052\ \ \ \textcolor{keyword}{struct\ }stat\ buffer\ =\ \{0\};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordflow}{if}\ (!file)}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordflow}{return}\ (stat(file,\ \&buffer)\ ==\ 0);}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keywordtype}{int}\ is\_file(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *file)}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \textcolor{keyword}{struct\ }stat\ buffer\ =\ \{0\};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \textcolor{keywordflow}{if}\ (!file)}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00065\ \ \ \textcolor{keywordflow}{if}\ (stat(file,\ \&buffer)\ ==\ -\/1)}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordflow}{return}\ S\_ISREG(buffer.st\_mode);}
+\DoxyCodeLine{00068\ \}}
+
+\end{DoxyCode}

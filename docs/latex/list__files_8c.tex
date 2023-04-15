@@ -1,0 +1,88 @@
+\doxysection{src/libs/file/list\+\_\+files.c File Reference}
+\label{list__files_8c}\index{src/libs/file/list\_files.c@{src/libs/file/list\_files.c}}
+{\ttfamily \#include \char`\"{}libs/file/list\+\_\+files.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/list/insert\+\_\+get\+\_\+search\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/list/list.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$dirent.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ list\+\_\+t} $\ast$ \textbf{ get\+\_\+list\+\_\+files\+\_\+and\+\_\+dir} (const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Get the list files and dir in the provided path. \end{DoxyCompactList}\item 
+int \textbf{ does\+\_\+file\+\_\+exists} (const char $\ast$file)
+\begin{DoxyCompactList}\small\item\em Check if the file exists or not (or the directory) \end{DoxyCompactList}\item 
+int \textbf{ is\+\_\+file} (const char $\ast$file)
+\begin{DoxyCompactList}\small\item\em Check if the provided path is a file (or a directory) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{list__files_8c_ae4c47525c43ccb88a96f54bc42e4dff1}} 
+\index{list\_files.c@{list\_files.c}!does\_file\_exists@{does\_file\_exists}}
+\index{does\_file\_exists@{does\_file\_exists}!list\_files.c@{list\_files.c}}
+\doxysubsubsection{does\_file\_exists()}
+{\footnotesize\ttfamily int does\+\_\+file\+\_\+exists (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Check if the file exists or not (or the directory) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the file exists, 0 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 50} of file \textbf{ list\+\_\+files.\+c}.
+
+\mbox{\label{list__files_8c_a4f9f33ce2874571dc587f71e6b028b9a}} 
+\index{list\_files.c@{list\_files.c}!get\_list\_files\_and\_dir@{get\_list\_files\_and\_dir}}
+\index{get\_list\_files\_and\_dir@{get\_list\_files\_and\_dir}!list\_files.c@{list\_files.c}}
+\doxysubsubsection{get\_list\_files\_and\_dir()}
+{\footnotesize\ttfamily \textbf{ list\+\_\+t} $\ast$ get\+\_\+list\+\_\+files\+\_\+and\+\_\+dir (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Get the list files and dir in the provided path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the directory \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list\+\_\+t$\ast$ The list of files and directories in the path provided or NULL if any error occured 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 32} of file \textbf{ list\+\_\+files.\+c}.
+
+\mbox{\label{list__files_8c_a1e0fc3bcdab6a4563fb00dce005607ff}} 
+\index{list\_files.c@{list\_files.c}!is\_file@{is\_file}}
+\index{is\_file@{is\_file}!list\_files.c@{list\_files.c}}
+\doxysubsubsection{is\_file()}
+{\footnotesize\ttfamily int is\+\_\+file (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file }\end{DoxyParamCaption})}
+
+
+
+Check if the provided path is a file (or a directory) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The path to the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the path is a file, 0 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 59} of file \textbf{ list\+\_\+files.\+c}.
+

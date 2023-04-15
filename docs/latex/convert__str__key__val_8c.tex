@@ -1,0 +1,61 @@
+\doxysection{src/libs/key\+\_\+val/convert\+\_\+str\+\_\+key\+\_\+val.c File Reference}
+\label{convert__str__key__val_8c}\index{src/libs/key\_val/convert\_str\_key\_val.c@{src/libs/key\_val/convert\_str\_key\_val.c}}
+{\ttfamily \#include \char`\"{}libs/key\+\_\+val/convert\+\_\+str\+\_\+key\+\_\+val.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/get\+\_\+content\+\_\+or\+\_\+dash\+\_\+str.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \textbf{ convert\+\_\+key\+\_\+val\+\_\+to\+\_\+str} (\textbf{ key\+\_\+val\+\_\+t} $\ast$key\+\_\+val)
+\begin{DoxyCompactList}\small\item\em Convert a key\+\_\+val\+\_\+t to a string, the string is allocated and must be freed. The format is \char`\"{}key\+:value\char`\"{}. \end{DoxyCompactList}\item 
+\textbf{ key\+\_\+val\+\_\+t} $\ast$ \textbf{ convert\+\_\+str\+\_\+to\+\_\+key\+\_\+val} (const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Convert a string to a key\+\_\+val\+\_\+t, the key\+\_\+val\+\_\+t is allocated and must be freed. The required format is \char`\"{}key\+:value\char`\"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{convert__str__key__val_8c_afdae6579be28eef93ac75e42690ba33f}} 
+\index{convert\_str\_key\_val.c@{convert\_str\_key\_val.c}!convert\_key\_val\_to\_str@{convert\_key\_val\_to\_str}}
+\index{convert\_key\_val\_to\_str@{convert\_key\_val\_to\_str}!convert\_str\_key\_val.c@{convert\_str\_key\_val.c}}
+\doxysubsubsection{convert\_key\_val\_to\_str()}
+{\footnotesize\ttfamily char $\ast$ convert\+\_\+key\+\_\+val\+\_\+to\+\_\+str (\begin{DoxyParamCaption}\item[{\textbf{ key\+\_\+val\+\_\+t} $\ast$}]{key\+\_\+val }\end{DoxyParamCaption})}
+
+
+
+Convert a key\+\_\+val\+\_\+t to a string, the string is allocated and must be freed. The format is \char`\"{}key\+:value\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key\+\_\+val} & The key\+\_\+val\+\_\+t to convert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The string converted 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 13} of file \textbf{ convert\+\_\+str\+\_\+key\+\_\+val.\+c}.
+
+\mbox{\label{convert__str__key__val_8c_a496e3549443178bd1d2e312a582ecfd2}} 
+\index{convert\_str\_key\_val.c@{convert\_str\_key\_val.c}!convert\_str\_to\_key\_val@{convert\_str\_to\_key\_val}}
+\index{convert\_str\_to\_key\_val@{convert\_str\_to\_key\_val}!convert\_str\_key\_val.c@{convert\_str\_key\_val.c}}
+\doxysubsubsection{convert\_str\_to\_key\_val()}
+{\footnotesize\ttfamily \textbf{ key\+\_\+val\+\_\+t} $\ast$ convert\+\_\+str\+\_\+to\+\_\+key\+\_\+val (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Convert a string to a key\+\_\+val\+\_\+t, the key\+\_\+val\+\_\+t is allocated and must be freed. The required format is \char`\"{}key\+:value\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to convert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+key\+\_\+val\+\_\+t$\ast$ The key\+\_\+val\+\_\+t converted or NULL if any error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 45} of file \textbf{ convert\+\_\+str\+\_\+key\+\_\+val.\+c}.
+

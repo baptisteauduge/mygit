@@ -1,0 +1,42 @@
+\doxysection{src/merge/mygit\+\_\+merge\+\_\+work\+\_\+trees.c File Reference}
+\label{mygit__merge__work__trees_8c}\index{src/merge/mygit\_merge\_work\_trees.c@{src/merge/mygit\_merge\_work\_trees.c}}
+{\ttfamily \#include \char`\"{}merge/mygit\+\_\+merge\+\_\+work\+\_\+trees.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/list/insert\+\_\+get\+\_\+search\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/list/list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/work\+\_\+tree/insert\+\_\+get\+\_\+search\+\_\+work\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/work\+\_\+tree/work\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ work\+\_\+tree\+\_\+t} $\ast$ \textbf{ mygit\+\_\+merge\+\_\+work\+\_\+trees} (\textbf{ work\+\_\+tree\+\_\+t} $\ast$wt1, \textbf{ work\+\_\+tree\+\_\+t} $\ast$wt2, \textbf{ list\+\_\+t} $\ast$$\ast$conflicts)
+\begin{DoxyCompactList}\small\item\em Merge two work trees, and return the result. If there is any conflict, the conflicts are stored in the conflicts list and are not present in the result. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{mygit__merge__work__trees_8c_a1076ce9f9d6e5c38bc56fe125124aa90}} 
+\index{mygit\_merge\_work\_trees.c@{mygit\_merge\_work\_trees.c}!mygit\_merge\_work\_trees@{mygit\_merge\_work\_trees}}
+\index{mygit\_merge\_work\_trees@{mygit\_merge\_work\_trees}!mygit\_merge\_work\_trees.c@{mygit\_merge\_work\_trees.c}}
+\doxysubsubsection{mygit\_merge\_work\_trees()}
+{\footnotesize\ttfamily \textbf{ work\+\_\+tree\+\_\+t} $\ast$ mygit\+\_\+merge\+\_\+work\+\_\+trees (\begin{DoxyParamCaption}\item[{\textbf{ work\+\_\+tree\+\_\+t} $\ast$}]{wt1,  }\item[{\textbf{ work\+\_\+tree\+\_\+t} $\ast$}]{wt2,  }\item[{\textbf{ list\+\_\+t} $\ast$$\ast$}]{conflicts }\end{DoxyParamCaption})}
+
+
+
+Merge two work trees, and return the result. If there is any conflict, the conflicts are stored in the conflicts list and are not present in the result. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wt1} & The first work tree \\
+\hline
+{\em wt2} & The second work tree \\
+\hline
+{\em conflicts} & The list of conflicts (could be not init before) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+work\+\_\+tree\+\_\+t$\ast$ The result of the merge (without conflicts) 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 52} of file \textbf{ mygit\+\_\+merge\+\_\+work\+\_\+trees.\+c}.
+

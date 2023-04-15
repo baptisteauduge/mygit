@@ -1,0 +1,62 @@
+\doxysection{src/libs/commit/get\+\_\+work\+\_\+tree\+\_\+commit.c File Reference}
+\label{get__work__tree__commit_8c}\index{src/libs/commit/get\_work\_tree\_commit.c@{src/libs/commit/get\_work\_tree\_commit.c}}
+{\ttfamily \#include \char`\"{}libs/commit/get\+\_\+work\+\_\+tree\+\_\+commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}branch/get\+\_\+branch\+\_\+commit\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/commit/insert\+\_\+key\+\_\+val\+\_\+in\+\_\+commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/create\+\_\+blob.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/work\+\_\+tree/save\+\_\+get\+\_\+file\+\_\+work\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ work\+\_\+tree\+\_\+t} $\ast$ \textbf{ get\+\_\+work\+\_\+tree\+\_\+from\+\_\+commit} (\textbf{ commit\+\_\+t} $\ast$commit)
+\begin{DoxyCompactList}\small\item\em Get the work tree from commit object. The function is based on the \doxyref{get\+\_\+value\+\_\+from\+\_\+key\+\_\+in\+\_\+commit}{p.}{insert__key__val__in__commit_8h_ace97e9529dc2e2bfafb9f08d3321e498} function the \doxyref{file\+\_\+to\+\_\+work\+\_\+tree}{p.}{save__get__file__work__tree_8h_a7b03cfd472fcad45da83f363f3d5dcb8} function. Note that the work tree hash must be stored in the commit object with the key \doxyref{COMMIT\+\_\+\+KEY\+\_\+\+HASH}{p.}{commit_8h_a0d158d2533597331f6d32e4888d81b4e}. \end{DoxyCompactList}\item 
+\textbf{ work\+\_\+tree\+\_\+t} $\ast$ \textbf{ get\+\_\+work\+\_\+tree\+\_\+from\+\_\+commit\+\_\+hash} (const char $\ast$commit\+\_\+hash)
+\begin{DoxyCompactList}\small\item\em Get the work tree from commit hash. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{get__work__tree__commit_8c_aef0d71e4aa492fe30613975c48426c18}} 
+\index{get\_work\_tree\_commit.c@{get\_work\_tree\_commit.c}!get\_work\_tree\_from\_commit@{get\_work\_tree\_from\_commit}}
+\index{get\_work\_tree\_from\_commit@{get\_work\_tree\_from\_commit}!get\_work\_tree\_commit.c@{get\_work\_tree\_commit.c}}
+\doxysubsubsection{get\_work\_tree\_from\_commit()}
+{\footnotesize\ttfamily \textbf{ work\+\_\+tree\+\_\+t} $\ast$ get\+\_\+work\+\_\+tree\+\_\+from\+\_\+commit (\begin{DoxyParamCaption}\item[{\textbf{ commit\+\_\+t} $\ast$}]{commit }\end{DoxyParamCaption})}
+
+
+
+Get the work tree from commit object. The function is based on the \doxyref{get\+\_\+value\+\_\+from\+\_\+key\+\_\+in\+\_\+commit}{p.}{insert__key__val__in__commit_8h_ace97e9529dc2e2bfafb9f08d3321e498} function the \doxyref{file\+\_\+to\+\_\+work\+\_\+tree}{p.}{save__get__file__work__tree_8h_a7b03cfd472fcad45da83f363f3d5dcb8} function. Note that the work tree hash must be stored in the commit object with the key \doxyref{COMMIT\+\_\+\+KEY\+\_\+\+HASH}{p.}{commit_8h_a0d158d2533597331f6d32e4888d81b4e}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em commit} & The commit to get the work tree from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+work\+\_\+tree\+\_\+t$\ast$ The work tree. NULL if an error occurred. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 14} of file \textbf{ get\+\_\+work\+\_\+tree\+\_\+commit.\+c}.
+
+\mbox{\label{get__work__tree__commit_8c_a2b529b5312a9d84f2aec149631bb7427}} 
+\index{get\_work\_tree\_commit.c@{get\_work\_tree\_commit.c}!get\_work\_tree\_from\_commit\_hash@{get\_work\_tree\_from\_commit\_hash}}
+\index{get\_work\_tree\_from\_commit\_hash@{get\_work\_tree\_from\_commit\_hash}!get\_work\_tree\_commit.c@{get\_work\_tree\_commit.c}}
+\doxysubsubsection{get\_work\_tree\_from\_commit\_hash()}
+{\footnotesize\ttfamily \textbf{ work\+\_\+tree\+\_\+t} $\ast$ get\+\_\+work\+\_\+tree\+\_\+from\+\_\+commit\+\_\+hash (\begin{DoxyParamCaption}\item[{const char $\ast$}]{commit\+\_\+hash }\end{DoxyParamCaption})}
+
+
+
+Get the work tree from commit hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em commit\+\_\+hash} & The hash of the commit to get the work tree from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+work\+\_\+tree\+\_\+t$\ast$ The work tree. NULL if an error occurred. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 36} of file \textbf{ get\+\_\+work\+\_\+tree\+\_\+commit.\+c}.
+

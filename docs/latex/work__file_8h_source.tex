@@ -1,0 +1,31 @@
+\doxysection{work\+\_\+file.\+h}
+\label{work__file_8h_source}\index{include/libs/work\_file/work\_file.h@{include/libs/work\_file/work\_file.h}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ work\_file.h}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ work\_file.h}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ WORK\_FILE\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ WORK\_FILE\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ MODE\_MAX\_SIZE\_STR\ 4}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ TAB\_SIZE\ 1}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <sys/stat.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }work\_file\_s\ \{}
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordtype}{char}\ *name;}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordtype}{char}\ *hash;}
+\DoxyCodeLine{00027\ \ \ mode\_t\ mode;}
+\DoxyCodeLine{00028\ \}\ work\_file\_t;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00040\ work\_file\_t\ *create\_work\_file(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hash,\ mode\_t\ mode);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00048\ \textcolor{keywordtype}{void}\ free\_work\_file(work\_file\_t\ *wf);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

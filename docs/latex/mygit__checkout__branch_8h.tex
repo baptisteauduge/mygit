@@ -1,0 +1,32 @@
+\doxysection{include/checkout/mygit\+\_\+checkout\+\_\+branch.h File Reference}
+\label{mygit__checkout__branch_8h}\index{include/checkout/mygit\_checkout\_branch.h@{include/checkout/mygit\_checkout\_branch.h}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ mygit\+\_\+checkout\+\_\+branch} (const char $\ast$branch\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Function used to checkout to a branch (i.\+e. change the current branch, i.\+e. change the HEAD and restore the working directory) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{mygit__checkout__branch_8h_a1adacfccc14add60e61da09f3e3c7188}} 
+\index{mygit\_checkout\_branch.h@{mygit\_checkout\_branch.h}!mygit\_checkout\_branch@{mygit\_checkout\_branch}}
+\index{mygit\_checkout\_branch@{mygit\_checkout\_branch}!mygit\_checkout\_branch.h@{mygit\_checkout\_branch.h}}
+\doxysubsubsection{mygit\_checkout\_branch()}
+{\footnotesize\ttfamily int mygit\+\_\+checkout\+\_\+branch (\begin{DoxyParamCaption}\item[{const char $\ast$}]{branch\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Function used to checkout to a branch (i.\+e. change the current branch, i.\+e. change the HEAD and restore the working directory) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch\+\_\+name} & The name of the branch \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int -\/1 if the branch does not exists, 0 if there is an error, 1 if the branch has been checked out 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 16} of file \textbf{ mygit\+\_\+checkout\+\_\+branch.\+c}.
+

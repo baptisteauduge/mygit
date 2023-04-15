@@ -1,0 +1,35 @@
+\doxysection{include/libs/list/filter\+\_\+list\+\_\+prefix.h File Reference}
+\label{filter__list__prefix_8h}\index{include/libs/list/filter\_list\_prefix.h@{include/libs/list/filter\_list\_prefix.h}}
+{\ttfamily \#include \char`\"{}libs/list/list.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ list\+\_\+t} $\ast$ \textbf{ filter\+\_\+list\+\_\+prefix} (const \textbf{ list\+\_\+t} $\ast$list, char $\ast$pattern)
+\begin{DoxyCompactList}\small\item\em Filter the list to get only the elements that start with the pattern provided. The returned list is a new one and msut be freed. The given list is not modified. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{filter__list__prefix_8h_a2f2247ddb81148d5d09ace91c0e183fb}} 
+\index{filter\_list\_prefix.h@{filter\_list\_prefix.h}!filter\_list\_prefix@{filter\_list\_prefix}}
+\index{filter\_list\_prefix@{filter\_list\_prefix}!filter\_list\_prefix.h@{filter\_list\_prefix.h}}
+\doxysubsubsection{filter\_list\_prefix()}
+{\footnotesize\ttfamily \textbf{ list\+\_\+t} $\ast$ filter\+\_\+list\+\_\+prefix (\begin{DoxyParamCaption}\item[{const \textbf{ list\+\_\+t} $\ast$}]{list,  }\item[{char $\ast$}]{pattern }\end{DoxyParamCaption})}
+
+
+
+Filter the list to get only the elements that start with the pattern provided. The returned list is a new one and msut be freed. The given list is not modified. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The list to filter \\
+\hline
+{\em pattern} & The pattern to filter the list \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list\+\_\+t$\ast$ The filtered list or NULL if any error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 27} of file \textbf{ filter\+\_\+list\+\_\+prefix.\+c}.
+

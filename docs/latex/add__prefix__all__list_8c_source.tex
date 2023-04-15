@@ -1,0 +1,28 @@
+\doxysection{add\+\_\+prefix\+\_\+all\+\_\+list.\+c}
+\label{add__prefix__all__list_8c_source}\index{src/libs/list/add\_prefix\_all\_list.c@{src/libs/list/add\_prefix\_all\_list.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ add\_prefix\_all\_list.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ add\_prefix\_all\_list.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/list/add\_prefix\_all\_list.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}utils/realloc\_and\_concat.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{void}\ add\_prefix\_all\_list(list\_t\ *list,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *prefix)}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ cell\_t\ *iter\ =\ NULL;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \textcolor{keywordflow}{if}\ (!list\ ||\ !prefix)}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00017\ \ \ iter\ =\ *list;}
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordflow}{while}\ (iter)\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ realloc\_and\_concat\_before(prefix,\ \&iter-\/>data);}
+\DoxyCodeLine{00020\ \ \ \ \ iter\ =\ iter-\/>next;}
+\DoxyCodeLine{00021\ \ \ \}}
+\DoxyCodeLine{00022\ \}}
+
+\end{DoxyCode}

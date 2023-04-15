@@ -1,0 +1,35 @@
+\doxysection{include/merge/mygit\+\_\+merge.h File Reference}
+\label{mygit__merge_8h}\index{include/merge/mygit\_merge.h@{include/merge/mygit\_merge.h}}
+{\ttfamily \#include \char`\"{}libs/list/list.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ list\+\_\+t} $\ast$ \textbf{ mygit\+\_\+merge} (const char $\ast$remote\+\_\+branch, const char $\ast$message)
+\begin{DoxyCompactList}\small\item\em Function that merge the current branch with the remote branch if there is no conflicts if there is conflicts, it will return the list of the conflicted files. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{mygit__merge_8h_ab5ae2470fd69f5ba436f08b4a27d0aac}} 
+\index{mygit\_merge.h@{mygit\_merge.h}!mygit\_merge@{mygit\_merge}}
+\index{mygit\_merge@{mygit\_merge}!mygit\_merge.h@{mygit\_merge.h}}
+\doxysubsubsection{mygit\_merge()}
+{\footnotesize\ttfamily \textbf{ list\+\_\+t} $\ast$ mygit\+\_\+merge (\begin{DoxyParamCaption}\item[{const char $\ast$}]{remote\+\_\+branch,  }\item[{const char $\ast$}]{message }\end{DoxyParamCaption})}
+
+
+
+Function that merge the current branch with the remote branch if there is no conflicts if there is conflicts, it will return the list of the conflicted files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em remote\+\_\+branch} & the name of the remote branch to merge \\
+\hline
+{\em message} & the message of the merge commit (could be NULL) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list\+\_\+t$\ast$ the list of the conflicted files (if there is, else it will be empty) 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 28} of file \textbf{ mygit\+\_\+merge.\+c}.
+

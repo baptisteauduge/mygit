@@ -1,0 +1,184 @@
+\doxysection{include/libs/commit/commit.h File Reference}
+\label{commit_8h}\index{include/libs/commit/commit.h@{include/libs/commit/commit.h}}
+{\ttfamily \#include \char`\"{}libs/key\+\_\+val/key\+\_\+val.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ hash\+\_\+table\+\_\+s}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ COMMIT\+\_\+\+KEY\+\_\+\+VAL\+\_\+\+MAX\+\_\+\+SIZE}~10
+\item 
+\#define \textbf{ COMMIT\+\_\+\+KEY\+\_\+\+HASH}~\char`\"{}tree\char`\"{}
+\item 
+\#define \textbf{ COMMIT\+\_\+\+KEY\+\_\+\+PARENT}~\char`\"{}predecessor\char`\"{}
+\item 
+\#define \textbf{ COMMIT\+\_\+\+KEY\+\_\+\+MESSAGE}~\char`\"{}message\char`\"{}
+\item 
+\#define \textbf{ COMMIT\+\_\+\+KEY\+\_\+\+MERGED\+\_\+\+PARENT}~\char`\"{}merged\+\_\+predecessor\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \textbf{ hash\+\_\+table\+\_\+s} \textbf{ hash\+\_\+table\+\_\+t}
+\item 
+typedef \textbf{ hash\+\_\+table\+\_\+t} \textbf{ commit\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A commit is a hash table. The key is the name of the key, i.\+e. the hash of the work tree is associated with the key \char`\"{}\+COMMIT\+\_\+\+KEY\+\_\+\+HASH\char`\"{} (that is defined in \doxyref{commit.\+h}{p.}{commit_8h}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ commit\+\_\+t} $\ast$ \textbf{ create\+\_\+and\+\_\+init\+\_\+empty\+\_\+commit} (void)
+\begin{DoxyCompactList}\small\item\em Create a and init empty commit object (i.\+e. a commit with no key\+\_\+val\+\_\+t pointers set to other than NULL) \end{DoxyCompactList}\item 
+\textbf{ commit\+\_\+t} $\ast$ \textbf{ create\+\_\+commit\+\_\+with\+\_\+tree\+\_\+key\+\_\+val} (const char $\ast$hash)
+\begin{DoxyCompactList}\small\item\em Create a commit object with the hash provided. The commit object will contain a key\+\_\+val\+\_\+t pointer with the key \char`\"{}\+COMMIT\+\_\+\+KEY\+\_\+\+HASH\char`\"{} (that is defined in \doxyref{commit.\+h}{p.}{commit_8h}) and the value provided as hash. \end{DoxyCompactList}\item 
+void \textbf{ free\+\_\+commit} (\textbf{ commit\+\_\+t} $\ast$commit)
+\begin{DoxyCompactList}\small\item\em Free the commit provided. The key\+\_\+val\+\_\+t pointers contained in the commit are also freed (using \doxyref{free\+\_\+key\+\_\+val}{p.}{key__val_8h_aa4b09aaa39cb40ed0aaf10b5d8c5c9b9}). (So, the value associated as values are also freed) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\label{commit_8h_a0d158d2533597331f6d32e4888d81b4e}} 
+\index{commit.h@{commit.h}!COMMIT\_KEY\_HASH@{COMMIT\_KEY\_HASH}}
+\index{COMMIT\_KEY\_HASH@{COMMIT\_KEY\_HASH}!commit.h@{commit.h}}
+\doxysubsubsection{COMMIT\_KEY\_HASH}
+{\footnotesize\ttfamily \#define COMMIT\+\_\+\+KEY\+\_\+\+HASH~\char`\"{}tree\char`\"{}}
+
+
+
+Definition at line \textbf{ 11} of file \textbf{ commit.\+h}.
+
+\mbox{\label{commit_8h_adfbd17f2ffa02dc5094feb3655f49b81}} 
+\index{commit.h@{commit.h}!COMMIT\_KEY\_MERGED\_PARENT@{COMMIT\_KEY\_MERGED\_PARENT}}
+\index{COMMIT\_KEY\_MERGED\_PARENT@{COMMIT\_KEY\_MERGED\_PARENT}!commit.h@{commit.h}}
+\doxysubsubsection{COMMIT\_KEY\_MERGED\_PARENT}
+{\footnotesize\ttfamily \#define COMMIT\+\_\+\+KEY\+\_\+\+MERGED\+\_\+\+PARENT~\char`\"{}merged\+\_\+predecessor\char`\"{}}
+
+
+
+Definition at line \textbf{ 14} of file \textbf{ commit.\+h}.
+
+\mbox{\label{commit_8h_a3bd1874cd6615dfd402418d99409d7e8}} 
+\index{commit.h@{commit.h}!COMMIT\_KEY\_MESSAGE@{COMMIT\_KEY\_MESSAGE}}
+\index{COMMIT\_KEY\_MESSAGE@{COMMIT\_KEY\_MESSAGE}!commit.h@{commit.h}}
+\doxysubsubsection{COMMIT\_KEY\_MESSAGE}
+{\footnotesize\ttfamily \#define COMMIT\+\_\+\+KEY\+\_\+\+MESSAGE~\char`\"{}message\char`\"{}}
+
+
+
+Definition at line \textbf{ 13} of file \textbf{ commit.\+h}.
+
+\mbox{\label{commit_8h_a892df0484f9446d75e1f792e0f7eb0b9}} 
+\index{commit.h@{commit.h}!COMMIT\_KEY\_PARENT@{COMMIT\_KEY\_PARENT}}
+\index{COMMIT\_KEY\_PARENT@{COMMIT\_KEY\_PARENT}!commit.h@{commit.h}}
+\doxysubsubsection{COMMIT\_KEY\_PARENT}
+{\footnotesize\ttfamily \#define COMMIT\+\_\+\+KEY\+\_\+\+PARENT~\char`\"{}predecessor\char`\"{}}
+
+
+
+Definition at line \textbf{ 12} of file \textbf{ commit.\+h}.
+
+\mbox{\label{commit_8h_a3c396bdc9a70bc403271a9d563f5d9c3}} 
+\index{commit.h@{commit.h}!COMMIT\_KEY\_VAL\_MAX\_SIZE@{COMMIT\_KEY\_VAL\_MAX\_SIZE}}
+\index{COMMIT\_KEY\_VAL\_MAX\_SIZE@{COMMIT\_KEY\_VAL\_MAX\_SIZE}!commit.h@{commit.h}}
+\doxysubsubsection{COMMIT\_KEY\_VAL\_MAX\_SIZE}
+{\footnotesize\ttfamily \#define COMMIT\+\_\+\+KEY\+\_\+\+VAL\+\_\+\+MAX\+\_\+\+SIZE~10}
+
+
+
+Definition at line \textbf{ 10} of file \textbf{ commit.\+h}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\label{commit_8h_ab7517409893a1481a65e23703f792b8e}} 
+\index{commit.h@{commit.h}!commit\_t@{commit\_t}}
+\index{commit\_t@{commit\_t}!commit.h@{commit.h}}
+\doxysubsubsection{commit\_t}
+{\footnotesize\ttfamily typedef \textbf{ hash\+\_\+table\+\_\+t} \textbf{ commit\+\_\+t}}
+
+
+
+A commit is a hash table. The key is the name of the key, i.\+e. the hash of the work tree is associated with the key \char`\"{}\+COMMIT\+\_\+\+KEY\+\_\+\+HASH\char`\"{} (that is defined in \doxyref{commit.\+h}{p.}{commit_8h}). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key\+\_\+val} & The array of key\+\_\+val\+\_\+t pointers \\
+\hline
+{\em max\+\_\+size} & The maximum size of the array (i.\+e. the number of key\+\_\+val\+\_\+t pointers that can be stored in the array) \\
+\hline
+{\em size} & The current size of the array (i.\+e. the number of key\+\_\+val\+\_\+t pointers that are currently stored in the array, and that are not NULL) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 36} of file \textbf{ commit.\+h}.
+
+\mbox{\label{commit_8h_a4b5b8cc5fa97c5c57b30eb70c81c8204}} 
+\index{commit.h@{commit.h}!hash\_table\_t@{hash\_table\_t}}
+\index{hash\_table\_t@{hash\_table\_t}!commit.h@{commit.h}}
+\doxysubsubsection{hash\_table\_t}
+{\footnotesize\ttfamily typedef struct \textbf{ hash\+\_\+table\+\_\+s} \textbf{ hash\+\_\+table\+\_\+t}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{commit_8h_a1b7c673978213bd43fc595fa6a7ea23d}} 
+\index{commit.h@{commit.h}!create\_and\_init\_empty\_commit@{create\_and\_init\_empty\_commit}}
+\index{create\_and\_init\_empty\_commit@{create\_and\_init\_empty\_commit}!commit.h@{commit.h}}
+\doxysubsubsection{create\_and\_init\_empty\_commit()}
+{\footnotesize\ttfamily \textbf{ commit\+\_\+t} $\ast$ create\+\_\+and\+\_\+init\+\_\+empty\+\_\+commit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Create a and init empty commit object (i.\+e. a commit with no key\+\_\+val\+\_\+t pointers set to other than NULL) 
+
+\begin{DoxyReturn}{Returns}
+commit\+\_\+t$\ast$ The commit created, NULL if an error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 13} of file \textbf{ commit.\+c}.
+
+\mbox{\label{commit_8h_aa5e5a88050cb4858e10308b1bd4c44e3}} 
+\index{commit.h@{commit.h}!create\_commit\_with\_tree\_key\_val@{create\_commit\_with\_tree\_key\_val}}
+\index{create\_commit\_with\_tree\_key\_val@{create\_commit\_with\_tree\_key\_val}!commit.h@{commit.h}}
+\doxysubsubsection{create\_commit\_with\_tree\_key\_val()}
+{\footnotesize\ttfamily \textbf{ commit\+\_\+t} $\ast$ create\+\_\+commit\+\_\+with\+\_\+tree\+\_\+key\+\_\+val (\begin{DoxyParamCaption}\item[{const char $\ast$}]{hash }\end{DoxyParamCaption})}
+
+
+
+Create a commit object with the hash provided. The commit object will contain a key\+\_\+val\+\_\+t pointer with the key \char`\"{}\+COMMIT\+\_\+\+KEY\+\_\+\+HASH\char`\"{} (that is defined in \doxyref{commit.\+h}{p.}{commit_8h}) and the value provided as hash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash} & The hash of the the Work Tree related to the commit \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+commit\+\_\+t$\ast$ The commit created, NULL if an error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 31} of file \textbf{ commit.\+c}.
+
+\mbox{\label{commit_8h_adb9af96f568dfa4194fecee35adce146}} 
+\index{commit.h@{commit.h}!free\_commit@{free\_commit}}
+\index{free\_commit@{free\_commit}!commit.h@{commit.h}}
+\doxysubsubsection{free\_commit()}
+{\footnotesize\ttfamily void free\+\_\+commit (\begin{DoxyParamCaption}\item[{\textbf{ commit\+\_\+t} $\ast$}]{commit }\end{DoxyParamCaption})}
+
+
+
+Free the commit provided. The key\+\_\+val\+\_\+t pointers contained in the commit are also freed (using \doxyref{free\+\_\+key\+\_\+val}{p.}{key__val_8h_aa4b09aaa39cb40ed0aaf10b5d8c5c9b9}). (So, the value associated as values are also freed) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em commit} & The commit to free \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 44} of file \textbf{ commit.\+c}.
+

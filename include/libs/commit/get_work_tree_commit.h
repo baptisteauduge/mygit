@@ -21,4 +21,12 @@
  */
 work_tree_t *get_work_tree_from_commit(commit_t *commit);
 
+/**
+ * @brief Get the work tree from commit hash.
+ * 
+ * @param commit_hash The hash of the commit to get the work tree from.
+ * @return work_tree_t* The work tree. NULL if an error occurred.
+ */
+work_tree_t *get_work_tree_from_commit_hash(const char *commit_hash);
+
 #endif

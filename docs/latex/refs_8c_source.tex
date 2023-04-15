@@ -1,0 +1,114 @@
+\doxysection{refs.\+c}
+\label{refs_8c_source}\index{src/refs/refs.c@{src/refs/refs.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ refs.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ refs.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}refs/refs.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/file/constants\_file.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}libs/file/get\_path\_absolute.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}libs/file/list\_files.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}libs/file/read\_write\_file.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}utils/utils.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}\ create\_or\_update\_ref(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *ref\_name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hash)}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordtype}{char}\ *refs\_path\ =\ NULL;}
+\DoxyCodeLine{00020\ \ \ FILE\ *refs\_file\ =\ NULL;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordflow}{if}\ (ref\_name\ ==\ NULL\ ||\ hash\ ==\ NULL)}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00024\ \ \ refs\_path\ =\ get\_path\_absolute(MYGIT\_DIR\_REFS,\ ref\_name);}
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordflow}{if}\ (refs\_path\ ==\ NULL)}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00027\ \ \ refs\_file\ =\ fopen(refs\_path,\ WRITE\_MODE);}
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordflow}{if}\ (refs\_file\ ==\ NULL)}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00030\ \ \ fprintf(refs\_file,\ \textcolor{stringliteral}{"{}\%s"{}},\ hash);}
+\DoxyCodeLine{00031\ \ \ fclose(refs\_file);}
+\DoxyCodeLine{00032\ \ \ free(refs\_path);}
+\DoxyCodeLine{00033\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keywordtype}{int}\ delete\_ref(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *ref\_name)}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordtype}{char}\ *refs\_path\ =\ NULL;}
+\DoxyCodeLine{00038\ \ \ \textcolor{keywordtype}{int}\ ret\ =\ 0;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordflow}{if}\ (!ref\_name)}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00042\ \ \ refs\_path\ =\ get\_path\_absolute(MYGIT\_DIR\_REFS,\ ref\_name);}
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordflow}{if}\ (!refs\_path)}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00045\ \ \ ret\ =\ remove(refs\_path);}
+\DoxyCodeLine{00046\ \ \ free(refs\_path);}
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordflow}{return}\ ret\ ==\ 0;}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{char}\ *get\_ref(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *ref\_name)}
+\DoxyCodeLine{00051\ \{}
+\DoxyCodeLine{00052\ \ \ \textcolor{keywordtype}{char}\ *refs\_path\ =\ NULL;}
+\DoxyCodeLine{00053\ \ \ \textcolor{keywordtype}{char}\ *ref\_content\ =\ NULL;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{keywordflow}{if}\ (!ref\_name)}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00057\ \ \ refs\_path\ =\ get\_path\_absolute(MYGIT\_DIR\_REFS,\ ref\_name);}
+\DoxyCodeLine{00058\ \ \ \textcolor{keywordflow}{if}\ (!refs\_path)}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00060\ \ \ ref\_content\ =\ get\_file\_content(refs\_path);}
+\DoxyCodeLine{00061\ \ \ free(refs\_path);}
+\DoxyCodeLine{00062\ \ \ \textcolor{keywordflow}{return}\ ref\_content;}
+\DoxyCodeLine{00063\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ concat\_ref\_name\_hash(\textcolor{keywordtype}{char}\ **str\_all\_ref,\ \textcolor{keywordtype}{size\_t}\ *size\_str\_all\_ref,}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *ref\_name)}
+\DoxyCodeLine{00067\ \{}
+\DoxyCodeLine{00068\ \ \ \textcolor{keywordtype}{char}\ *hash\_ref\ =\ NULL;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ hash\_ref\ =\ get\_ref(ref\_name);}
+\DoxyCodeLine{00071\ \ \ *size\_str\_all\_ref\ +=\ strlen(ref\_name)\ +\ 1;}
+\DoxyCodeLine{00072\ \ \ \textcolor{keywordflow}{if}\ (!hash\_ref)}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00074\ \ \ *size\_str\_all\_ref\ +=\ strlen(hash\_ref)\ +\ 1;}
+\DoxyCodeLine{00075\ \ \ \textcolor{keywordflow}{if}\ (!*str\_all\_ref)}
+\DoxyCodeLine{00076\ \ \ \ \ *str\_all\_ref\ =\ malloc(*size\_str\_all\_ref\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00077\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00078\ \ \ \ \ *str\_all\_ref\ =\ realloc(*str\_all\_ref,\ *size\_str\_all\_ref\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00079\ \ \ strncat(*str\_all\_ref,\ ref\_name,\ *size\_str\_all\_ref);}
+\DoxyCodeLine{00080\ \ \ strncat(*str\_all\_ref,\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}},\ *size\_str\_all\_ref);}
+\DoxyCodeLine{00081\ \ \ strncat(*str\_all\_ref,\ hash\_ref,\ *size\_str\_all\_ref);}
+\DoxyCodeLine{00082\ \ \ strncat(*str\_all\_ref,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ *size\_str\_all\_ref);}
+\DoxyCodeLine{00083\ \ \ free(hash\_ref);}
+\DoxyCodeLine{00084\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00085\ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{keywordtype}{char}\ *get\_str\_all\_ref()}
+\DoxyCodeLine{00088\ \{}
+\DoxyCodeLine{00089\ \ \ list\_t\ *list\_ref\_path\ =\ get\_list\_files\_and\_dir(MYGIT\_DIR\_REFS);}
+\DoxyCodeLine{00090\ \ \ cell\_t\ *iter\ =\ NULL;}
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordtype}{char}\ *str\_name\_ref\ =\ NULL;}
+\DoxyCodeLine{00092\ \ \ \textcolor{keywordtype}{char}\ *str\_all\_ref\ =\ NULL;}
+\DoxyCodeLine{00093\ \ \ \textcolor{keywordtype}{size\_t}\ size\_str\_all\_ref\ =\ 0;}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \textcolor{keywordflow}{if}\ (!list\_ref\_path)}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00097\ \ \ iter\ =\ *list\_ref\_path;}
+\DoxyCodeLine{00098\ \ \ \textcolor{keywordflow}{while}\ (iter)\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ str\_name\_ref\ =\ iter-\/>data;}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{if}\ (!concat\_ref\_name\_hash(\&str\_all\_ref,\ \&size\_str\_all\_ref,\ str\_name\_ref))\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ free\_list(list\_ref\_path);}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ str\_all\_ref;}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ iter\ =\ iter-\/>next;}
+\DoxyCodeLine{00105\ \ \ \}}
+\DoxyCodeLine{00106\ \ \ free\_list(list\_ref\_path);}
+\DoxyCodeLine{00107\ \ \ \textcolor{keywordflow}{return}\ str\_all\_ref;}
+\DoxyCodeLine{00108\ \}}
+
+\end{DoxyCode}

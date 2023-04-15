@@ -1,0 +1,93 @@
+\doxysection{src/libs/file/create\+\_\+blob.c File Reference}
+\label{create__blob_8c}\index{src/libs/file/create\_blob.c@{src/libs/file/create\_blob.c}}
+{\ttfamily \#include \char`\"{}libs/file/create\+\_\+blob.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/constants\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/copy\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/list\+\_\+files.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/hash/hash.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/realloc\+\_\+and\+\_\+concat.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/utils.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \textbf{ get\+\_\+dir\+\_\+from\+\_\+hash} (const char $\ast$hash)
+\begin{DoxyCompactList}\small\item\em Get the dir from hash object. The function is based on the \doxyref{MYGIT\+\_\+\+DIR\+\_\+\+BLOBS}{p.}{utils_8h_a7825808f30306bc84ff9f98a7b9efad3} constant. \end{DoxyCompactList}\item 
+char $\ast$ \textbf{ get\+\_\+path\+\_\+from\+\_\+hash} (const char $\ast$hash)
+\begin{DoxyCompactList}\small\item\em Get the path from hash object. The function is based on the \doxyref{MYGIT\+\_\+\+DIR\+\_\+\+BLOBS}{p.}{utils_8h_a7825808f30306bc84ff9f98a7b9efad3} constant. \end{DoxyCompactList}\item 
+char $\ast$ \textbf{ create\+\_\+blob\+\_\+file\+\_\+and\+\_\+get\+\_\+hash} (const char $\ast$path\+\_\+file, const char $\ast$file\+\_\+extension)
+\begin{DoxyCompactList}\small\item\em Create a blob file in the dir given by the \doxyref{get\+\_\+path\+\_\+from\+\_\+hash}{p.}{create__blob_8h_af95c1809bc63a17ea003d6b61d5c4bd2} function and get hash of the file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{create__blob_8c_a3de69d35bce6b2d133b9c9c48e56dd7b}} 
+\index{create\_blob.c@{create\_blob.c}!create\_blob\_file\_and\_get\_hash@{create\_blob\_file\_and\_get\_hash}}
+\index{create\_blob\_file\_and\_get\_hash@{create\_blob\_file\_and\_get\_hash}!create\_blob.c@{create\_blob.c}}
+\doxysubsubsection{create\_blob\_file\_and\_get\_hash()}
+{\footnotesize\ttfamily char $\ast$ create\+\_\+blob\+\_\+file\+\_\+and\+\_\+get\+\_\+hash (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path\+\_\+file,  }\item[{const char $\ast$}]{file\+\_\+extension }\end{DoxyParamCaption})}
+
+
+
+Create a blob file in the dir given by the \doxyref{get\+\_\+path\+\_\+from\+\_\+hash}{p.}{create__blob_8h_af95c1809bc63a17ea003d6b61d5c4bd2} function and get hash of the file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+file} & The path of the file to create the blob from. \\
+\hline
+{\em file\+\_\+extension} & Optional ! The extension to add to the blob file. (e.\+g. usually .c for commits, .t for work trees, etc.) If NULL, no extension is added. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The hash of the blob file. NULL if an error occurred. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 101} of file \textbf{ create\+\_\+blob.\+c}.
+
+\mbox{\label{create__blob_8c_a83a36240372bfd46bb0f1daa3e7929cd}} 
+\index{create\_blob.c@{create\_blob.c}!get\_dir\_from\_hash@{get\_dir\_from\_hash}}
+\index{get\_dir\_from\_hash@{get\_dir\_from\_hash}!create\_blob.c@{create\_blob.c}}
+\doxysubsubsection{get\_dir\_from\_hash()}
+{\footnotesize\ttfamily char $\ast$ get\+\_\+dir\+\_\+from\+\_\+hash (\begin{DoxyParamCaption}\item[{const char $\ast$}]{hash }\end{DoxyParamCaption})}
+
+
+
+Get the dir from hash object. The function is based on the \doxyref{MYGIT\+\_\+\+DIR\+\_\+\+BLOBS}{p.}{utils_8h_a7825808f30306bc84ff9f98a7b9efad3} constant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash} & The hash to get the dir from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The dir. NULL if an error occurred. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 39} of file \textbf{ create\+\_\+blob.\+c}.
+
+\mbox{\label{create__blob_8c_af95c1809bc63a17ea003d6b61d5c4bd2}} 
+\index{create\_blob.c@{create\_blob.c}!get\_path\_from\_hash@{get\_path\_from\_hash}}
+\index{get\_path\_from\_hash@{get\_path\_from\_hash}!create\_blob.c@{create\_blob.c}}
+\doxysubsubsection{get\_path\_from\_hash()}
+{\footnotesize\ttfamily char $\ast$ get\+\_\+path\+\_\+from\+\_\+hash (\begin{DoxyParamCaption}\item[{const char $\ast$}]{hash }\end{DoxyParamCaption})}
+
+
+
+Get the path from hash object. The function is based on the \doxyref{MYGIT\+\_\+\+DIR\+\_\+\+BLOBS}{p.}{utils_8h_a7825808f30306bc84ff9f98a7b9efad3} constant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash} & The hash to get the path from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The path. NULL if an error occurred. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 63} of file \textbf{ create\+\_\+blob.\+c}.
+

@@ -1,0 +1,62 @@
+\doxysection{src/libs/list/save\+\_\+get\+\_\+file\+\_\+list.c File Reference}
+\label{save__get__file__list_8c}\index{src/libs/list/save\_get\_file\_list.c@{src/libs/list/save\_get\_file\_list.c}}
+{\ttfamily \#include \char`\"{}libs/list/save\+\_\+get\+\_\+file\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/constants\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/read\+\_\+write\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/list/convert\+\_\+str\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ save\+\_\+list\+\_\+to\+\_\+file} (\textbf{ list\+\_\+t} $\ast$list, const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Save a list to a file using the \doxyref{list\+\_\+to\+\_\+str}{p.}{convert__str__list_8h_a1433633cfc138598e097b6f74e5f6567} function. \end{DoxyCompactList}\item 
+\textbf{ list\+\_\+t} $\ast$ \textbf{ get\+\_\+list\+\_\+from\+\_\+file} (const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Get the list from file using the \doxyref{str\+\_\+to\+\_\+list}{p.}{convert__str__list_8h_a50eebaffb4cd80370ae9acc7915a3fb4} function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{save__get__file__list_8c_af7eb4320c97951926f7e74a5a1e4cbf6}} 
+\index{save\_get\_file\_list.c@{save\_get\_file\_list.c}!get\_list\_from\_file@{get\_list\_from\_file}}
+\index{get\_list\_from\_file@{get\_list\_from\_file}!save\_get\_file\_list.c@{save\_get\_file\_list.c}}
+\doxysubsubsection{get\_list\_from\_file()}
+{\footnotesize\ttfamily \textbf{ list\+\_\+t} $\ast$ get\+\_\+list\+\_\+from\+\_\+file (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Get the list from file using the \doxyref{str\+\_\+to\+\_\+list}{p.}{convert__str__list_8h_a50eebaffb4cd80370ae9acc7915a3fb4} function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list\+\_\+t$\ast$ The list from the file or NULL if an error occurred. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 33} of file \textbf{ save\+\_\+get\+\_\+file\+\_\+list.\+c}.
+
+\mbox{\label{save__get__file__list_8c_a049cfcd347be8c304a67c5aa8451040a}} 
+\index{save\_get\_file\_list.c@{save\_get\_file\_list.c}!save\_list\_to\_file@{save\_list\_to\_file}}
+\index{save\_list\_to\_file@{save\_list\_to\_file}!save\_get\_file\_list.c@{save\_get\_file\_list.c}}
+\doxysubsubsection{save\_list\_to\_file()}
+{\footnotesize\ttfamily void save\+\_\+list\+\_\+to\+\_\+file (\begin{DoxyParamCaption}\item[{\textbf{ list\+\_\+t} $\ast$}]{list,  }\item[{const char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Save a list to a file using the \doxyref{list\+\_\+to\+\_\+str}{p.}{convert__str__list_8h_a1433633cfc138598e097b6f74e5f6567} function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The list to save. \\
+\hline
+{\em path} & The path to the file. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 15} of file \textbf{ save\+\_\+get\+\_\+file\+\_\+list.\+c}.
+

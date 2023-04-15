@@ -1,0 +1,54 @@
+\doxysection{save\+\_\+get\+\_\+file\+\_\+work\+\_\+tree.\+c}
+\label{save__get__file__work__tree_8c_source}\index{src/libs/work\_tree/save\_get\_file\_work\_tree.c@{src/libs/work\_tree/save\_get\_file\_work\_tree.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ save\_get\_file\_work\_tree.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ save\_get\_file\_work\_tree.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/save\_get\_file\_work\_tree.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/file/constants\_file.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}libs/file/read\_write\_file.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/convert\_str\_work\_tree.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keywordtype}{int}\ work\_tree\_to\_file(\textcolor{keyword}{const}\ work\_tree\_t\ *wt,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path)}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ FILE\ *f\ =\ NULL;}
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordtype}{char}\ *work\_tree\_str\ =\ NULL;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordflow}{if}\ (!wt\ ||\ !path)}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00021\ \ \ f\ =\ fopen(path,\ WRITE\_MODE);}
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordflow}{if}\ (!f)}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00024\ \ \ work\_tree\_str\ =\ convert\_work\_tree\_to\_str(wt);}
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordflow}{if}\ (!work\_tree\_str)\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ fclose(f);}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00028\ \ \ \}}
+\DoxyCodeLine{00029\ \ \ fprintf(f,\ \textcolor{stringliteral}{"{}\%s\(\backslash\)n"{}},\ work\_tree\_str);}
+\DoxyCodeLine{00030\ \ \ fclose(f);}
+\DoxyCodeLine{00031\ \ \ free(work\_tree\_str);}
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00033\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ work\_tree\_t\ *file\_to\_work\_tree(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path)}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordtype}{char}\ *file\_content\ =\ NULL;}
+\DoxyCodeLine{00038\ \ \ work\_tree\_t\ *wt\ =\ NULL;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordflow}{if}\ (!path)}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00042\ \ \ file\_content\ =\ get\_file\_content(path);}
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordflow}{if}\ (!file\_content)}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00045\ \ \ wt\ =\ convert\_str\_to\_work\_tree(file\_content);}
+\DoxyCodeLine{00046\ \ \ free(file\_content);}
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordflow}{return}\ wt;}
+\DoxyCodeLine{00048\ \}}
+
+\end{DoxyCode}

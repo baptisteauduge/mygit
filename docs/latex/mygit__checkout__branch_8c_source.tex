@@ -1,0 +1,44 @@
+\doxysection{mygit\+\_\+checkout\+\_\+branch.\+c}
+\label{mygit__checkout__branch_8c_source}\index{src/checkout/mygit\_checkout\_branch.c@{src/checkout/mygit\_checkout\_branch.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ mygit\_checkout\_branch.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ mygit\_checkout\_branch.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}checkout/mygit\_checkout\_branch.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}branch/create\_list\_branches.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}libs/commit/restore\_commit.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}libs/file/get\_path\_absolute.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}libs/file/read\_write\_file.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}utils/utils.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keywordtype}{int}\ mygit\_checkout\_branch(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *branch\_name)}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordtype}{char}\ *hash\_last\_commit\ =\ NULL;}
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordtype}{char}\ *new\_branch\_path\ =\ NULL;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordflow}{if}\ (!branch\_name\ ||\ !does\_branch\_exists(branch\_name))}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00023\ \ \ write\_file\_content(MYGIT\_PATH\_CURRENT\_BRANCH,\ branch\_name);}
+\DoxyCodeLine{00024\ \ \ new\_branch\_path\ =\ get\_path\_absolute(MYGIT\_DIR\_REFS,\ branch\_name);}
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordflow}{if}\ (!new\_branch\_path)}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00027\ \ \ hash\_last\_commit\ =\ get\_file\_content(new\_branch\_path);}
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordflow}{if}\ (!hash\_last\_commit)\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ free(new\_branch\_path);}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00031\ \ \ \}}
+\DoxyCodeLine{00032\ \ \ write\_file\_content(MYGIT\_DIR\_REFS\ \textcolor{stringliteral}{"{}/"{}}\ MYGIT\_FILE\_REF\_HEAD,\ hash\_last\_commit);}
+\DoxyCodeLine{00033\ \ \ restore\_commit\_from\_hash(hash\_last\_commit);}
+\DoxyCodeLine{00034\ \ \ printf(\textcolor{stringliteral}{"{}Switched\ to\ branch\ '\%s'\(\backslash\)n"{}},\ branch\_name);}
+\DoxyCodeLine{00035\ \ \ free(hash\_last\_commit);}
+\DoxyCodeLine{00036\ \ \ free(new\_branch\_path);}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00038\ \}}
+
+\end{DoxyCode}

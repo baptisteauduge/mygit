@@ -1,0 +1,35 @@
+\doxysection{rights\+\_\+file.\+c}
+\label{rights__file_8c_source}\index{src/libs/file/rights\_file.c@{src/libs/file/rights\_file.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ rights\_file.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ rights\_file.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/file/rights\_file.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/file/list\_files.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ mode\_t\ get\_chmod(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path)}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ \textcolor{keyword}{struct\ }stat\ ret\ =\ \{0\};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \textcolor{keywordflow}{if}\ (!path\ ||\ !does\_file\_exists(path))}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordflow}{if}\ (stat(path,\ \&ret)\ ==\ -\/1)}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordflow}{return}\ ret.st\_mode\ \&\ 0777;}
+\DoxyCodeLine{00020\ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{int}\ set\_chmod(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path,\ mode\_t\ mode)}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \textcolor{keywordflow}{if}\ (!path\ ||\ !does\_file\_exists(path))}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordflow}{if}\ (chmod(path,\ mode)\ ==\ -\/1)}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00029\ \}}
+
+\end{DoxyCode}

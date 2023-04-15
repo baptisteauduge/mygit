@@ -1,0 +1,106 @@
+\doxysection{read\+\_\+write\+\_\+file.\+c}
+\label{read__write__file_8c_source}\index{src/libs/file/read\_write\_file.c@{src/libs/file/read\_write\_file.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ read\_write\_file.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ read\_write\_file.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/file/read\_write\_file.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/file/constants\_file.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keywordtype}{char}\ *get\_first\_line(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path)}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ FILE\ *file\ =\ NULL;}
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordtype}{char}\ *line\ =\ NULL;}
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordtype}{size\_t}\ len\ =\ 0;}
+\DoxyCodeLine{00018\ \ \ ssize\_t\ size\_read\ =\ 0;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \textcolor{keywordflow}{if}\ (!path)}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00022\ \ \ file\ =\ fopen(path,\ READ\_MODE);}
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordflow}{if}\ (!file)}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00025\ \ \ size\_read\ =\ getline(\&line,\ \&len,\ file);}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordflow}{if}\ (size\_read\ ==\ -\/1)}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00028\ \ \ fclose(file);}
+\DoxyCodeLine{00029\ \ \ \textcolor{keywordflow}{return}\ line;}
+\DoxyCodeLine{00030\ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ realloc\_and\_strcat(\textcolor{keywordtype}{char}\ **content,\ ssize\_t\ size\_read,\ \textcolor{keywordtype}{char}\ **line)}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordtype}{size\_t}\ size\_content\ =\ 0;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordflow}{if}\ (!content\ ||\ !line\ ||\ !*line)}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00038\ \ \ \textcolor{keywordflow}{if}\ (!*content)}
+\DoxyCodeLine{00039\ \ \ \ \ *content\ =\ strdup(*line);}
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ size\_content\ =\ strlen(*content);}
+\DoxyCodeLine{00042\ \ \ \ \ *content\ =\ realloc(*content,\ size\_content\ +\ size\_read\ +\ 1);}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{if}\ (!*content)}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00045\ \ \ \ \ strncat(*content,\ *line,\ size\_content\ +\ size\_read\ +\ 1);}
+\DoxyCodeLine{00046\ \ \ \}}
+\DoxyCodeLine{00047\ \ \ free(*line);}
+\DoxyCodeLine{00048\ \ \ *line\ =\ NULL;}
+\DoxyCodeLine{00049\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keywordtype}{char}\ *get\_file\_content(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path)}
+\DoxyCodeLine{00052\ \{}
+\DoxyCodeLine{00053\ \ \ FILE\ *file\ =\ NULL;}
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordtype}{char}\ *content\ =\ NULL;}
+\DoxyCodeLine{00055\ \ \ \textcolor{keywordtype}{char}\ *line\ =\ NULL;}
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordtype}{size\_t}\ len\ =\ 0;}
+\DoxyCodeLine{00057\ \ \ ssize\_t\ size\_read\ =\ 0;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordflow}{if}\ (!path)}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00061\ \ \ file\ =\ fopen(path,\ READ\_MODE);}
+\DoxyCodeLine{00062\ \ \ \textcolor{keywordflow}{if}\ (!file)}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00064\ \ \ size\_read\ =\ getline(\&line,\ \&len,\ file);}
+\DoxyCodeLine{00065\ \ \ \textcolor{keywordflow}{if}\ (size\_read\ ==\ -\/1\ \&\&\ line)\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ fclose(file);}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{return}\ line;}
+\DoxyCodeLine{00068\ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \textcolor{keywordflow}{while}\ (size\_read\ !=\ -\/1)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ realloc\_and\_strcat(\&content,\ size\_read,\ \&line);}
+\DoxyCodeLine{00071\ \ \ \ \ size\_read\ =\ getline(\&line,\ \&len,\ file);}
+\DoxyCodeLine{00072\ \ \ \}}
+\DoxyCodeLine{00073\ \ \ free(line);}
+\DoxyCodeLine{00074\ \ \ fclose(file);}
+\DoxyCodeLine{00075\ \ \ \textcolor{keywordflow}{return}\ content;}
+\DoxyCodeLine{00076\ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keywordtype}{void}\ remove\_new\_line\_if\_exists(\textcolor{keywordtype}{char}\ *str)}
+\DoxyCodeLine{00079\ \{}
+\DoxyCodeLine{00080\ \ \ \textcolor{keywordtype}{char}\ *newline\ =\ NULL;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \textcolor{keywordflow}{if}\ (!str)}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00084\ \ \ newline\ =\ strchr(str,\ \textcolor{charliteral}{'\(\backslash\)n'});}
+\DoxyCodeLine{00085\ \ \ \textcolor{keywordflow}{if}\ (newline)}
+\DoxyCodeLine{00086\ \ \ \ \ *newline\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00087\ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keywordtype}{void}\ write\_file\_content(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *content)}
+\DoxyCodeLine{00090\ \{}
+\DoxyCodeLine{00091\ \ \ FILE\ *file\ =\ NULL;}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \textcolor{keywordflow}{if}\ (!path\ ||\ !content)}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00095\ \ \ file\ =\ fopen(path,\ WRITE\_MODE);}
+\DoxyCodeLine{00096\ \ \ \textcolor{keywordflow}{if}\ (!file)}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00098\ \ \ fputs(content,\ file);}
+\DoxyCodeLine{00099\ \ \ fclose(file);}
+\DoxyCodeLine{00100\ \}}
+
+\end{DoxyCode}

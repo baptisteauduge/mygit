@@ -1,0 +1,42 @@
+\doxysection{list.\+c}
+\label{list_8c_source}\index{src/libs/list/list.c@{src/libs/list/list.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ list.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ list.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/list/list.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ list\_t\ *create\_init\_list(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ list\_t\ *\textcolor{keyword}{new}\ =\ NULL;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \textcolor{keyword}{new}\ =\ malloc(\textcolor{keyword}{sizeof}(list\_t));}
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keyword}{new})}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00018\ \ \ *\textcolor{keyword}{new}\ =\ NULL;}
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new};}
+\DoxyCodeLine{00020\ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{void}\ free\_list(list\_t\ *list)}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ cell\_t\ *iter\ =\ NULL;}
+\DoxyCodeLine{00025\ \ \ cell\_t\ *tmp\ =\ NULL;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordflow}{if}\ (!list)}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00029\ \ \ iter\ =\ *list;}
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordflow}{while}\ (iter)\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ tmp\ =\ iter;}
+\DoxyCodeLine{00032\ \ \ \ \ iter\ =\ iter-\/>next;}
+\DoxyCodeLine{00033\ \ \ \ \ free\_cell(tmp);}
+\DoxyCodeLine{00034\ \ \ \}}
+\DoxyCodeLine{00035\ \ \ free(list);}
+\DoxyCodeLine{00036\ \}}
+
+\end{DoxyCode}

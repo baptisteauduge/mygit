@@ -1,0 +1,51 @@
+\doxysection{filter\+\_\+list\+\_\+prefix.\+c}
+\label{filter__list__prefix_8c_source}\index{src/libs/list/filter\_list\_prefix.c@{src/libs/list/filter\_list\_prefix.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ filter\_list\_prefix.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ filter\_list\_prefix.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/list/filter\_list\_prefix.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/list/insert\_get\_search\_list.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ is\_prefix(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *pattern)}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \textcolor{keywordtype}{size\_t}\ len\_pattern\ =\ 0;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordflow}{if}\ (!str\ ||\ !pattern)}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00018\ \ \ len\_pattern\ =\ strlen(pattern);}
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordflow}{if}\ (strncmp(str,\ pattern,\ len\_pattern)\ ==\ 0)}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00022\ \}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ Return\ a\ new\ list\ when\ the\ data\ of\ cell\ is\ matching\ the\ pattern}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ (means\ that\ the\ first\ chars\ of\ data\ are\ the\ same\ as\ pattern)}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ Warning:\ the\ passed\ list\ is\ not\ freed}}
+\DoxyCodeLine{00027\ list\_t\ *filter\_list\_prefix(\textcolor{keyword}{const}\ list\_t\ *list,\ \textcolor{keywordtype}{char}\ *pattern)}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \ \ list\_t\ *new\_list\ =\ NULL;}
+\DoxyCodeLine{00030\ \ \ cell\_t\ *iter\ =\ NULL;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordflow}{if}\ (!list\ ||\ !pattern)}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00034\ \ \ new\_list\ =\ create\_init\_list();}
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordflow}{if}\ (!new\_list)}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00037\ \ \ iter\ =\ *list;}
+\DoxyCodeLine{00038\ \ \ \textcolor{keywordflow}{while}\ (iter)\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_prefix(iter-\/>data,\ pattern))}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ create\_and\_insert\_cell\_in\_list(new\_list,\ iter-\/>data);}
+\DoxyCodeLine{00041\ \ \ \ \ iter\ =\ iter-\/>next;}
+\DoxyCodeLine{00042\ \ \ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \textcolor{keywordflow}{return}\ new\_list;}
+\DoxyCodeLine{00045\ \}}
+
+\end{DoxyCode}

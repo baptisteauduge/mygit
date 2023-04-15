@@ -1,0 +1,100 @@
+\doxysection{include/libs/list/convert\+\_\+str\+\_\+list.h File Reference}
+\label{convert__str__list_8h}\index{include/libs/list/convert\_str\_list.h@{include/libs/list/convert\_str\_list.h}}
+{\ttfamily \#include \char`\"{}libs/list/list.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ SEPARATOR\+\_\+\+LIST\+\_\+\+STRING}~\char`\"{}$\vert$\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \textbf{ size\+\_\+list\+\_\+to\+\_\+str} (\textbf{ list\+\_\+t} $\ast$list)
+\begin{DoxyCompactList}\small\item\em The size required to store the list in a string. The size is calculated with the size of the elements of the list and the size of the separator. \end{DoxyCompactList}\item 
+char $\ast$ \textbf{ list\+\_\+to\+\_\+str} (\textbf{ list\+\_\+t} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Convert a list to a string, the string is allocated and must be freed. The format is \char`\"{}element1$\vert$element2$\vert$element3$\vert$...\char`\"{} where the separator is defined by \doxyref{SEPARATOR\+\_\+\+LIST\+\_\+\+STRING}{p.}{convert__str__list_8h_aab78db21daf05ea47dec7a48d35d913e} constant. \end{DoxyCompactList}\item 
+\textbf{ list\+\_\+t} $\ast$ \textbf{ str\+\_\+to\+\_\+list} (const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Convert a string to a list. The required format is \char`\"{}element1$\vert$element2$\vert$element3$\vert$...\char`\"{} where the separator is defined by \doxyref{SEPARATOR\+\_\+\+LIST\+\_\+\+STRING}{p.}{convert__str__list_8h_aab78db21daf05ea47dec7a48d35d913e} constant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\label{convert__str__list_8h_aab78db21daf05ea47dec7a48d35d913e}} 
+\index{convert\_str\_list.h@{convert\_str\_list.h}!SEPARATOR\_LIST\_STRING@{SEPARATOR\_LIST\_STRING}}
+\index{SEPARATOR\_LIST\_STRING@{SEPARATOR\_LIST\_STRING}!convert\_str\_list.h@{convert\_str\_list.h}}
+\doxysubsubsection{SEPARATOR\_LIST\_STRING}
+{\footnotesize\ttfamily \#define SEPARATOR\+\_\+\+LIST\+\_\+\+STRING~\char`\"{}$\vert$\char`\"{}}
+
+
+
+Definition at line \textbf{ 10} of file \textbf{ convert\+\_\+str\+\_\+list.\+h}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{convert__str__list_8h_a1433633cfc138598e097b6f74e5f6567}} 
+\index{convert\_str\_list.h@{convert\_str\_list.h}!list\_to\_str@{list\_to\_str}}
+\index{list\_to\_str@{list\_to\_str}!convert\_str\_list.h@{convert\_str\_list.h}}
+\doxysubsubsection{list\_to\_str()}
+{\footnotesize\ttfamily char $\ast$ list\+\_\+to\+\_\+str (\begin{DoxyParamCaption}\item[{\textbf{ list\+\_\+t} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Convert a list to a string, the string is allocated and must be freed. The format is \char`\"{}element1$\vert$element2$\vert$element3$\vert$...\char`\"{} where the separator is defined by \doxyref{SEPARATOR\+\_\+\+LIST\+\_\+\+STRING}{p.}{convert__str__list_8h_aab78db21daf05ea47dec7a48d35d913e} constant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The list to convert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The string converted or NULL if any error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 46} of file \textbf{ convert\+\_\+str\+\_\+list.\+c}.
+
+\mbox{\label{convert__str__list_8h_a974a1f125fff8e58f3b48f42a2c8e763}} 
+\index{convert\_str\_list.h@{convert\_str\_list.h}!size\_list\_to\_str@{size\_list\_to\_str}}
+\index{size\_list\_to\_str@{size\_list\_to\_str}!convert\_str\_list.h@{convert\_str\_list.h}}
+\doxysubsubsection{size\_list\_to\_str()}
+{\footnotesize\ttfamily size\+\_\+t size\+\_\+list\+\_\+to\+\_\+str (\begin{DoxyParamCaption}\item[{\textbf{ list\+\_\+t} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+The size required to store the list in a string. The size is calculated with the size of the elements of the list and the size of the separator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The list to get the size from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size\+\_\+t The size required to store the list in a string. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 13} of file \textbf{ convert\+\_\+str\+\_\+list.\+c}.
+
+\mbox{\label{convert__str__list_8h_a50eebaffb4cd80370ae9acc7915a3fb4}} 
+\index{convert\_str\_list.h@{convert\_str\_list.h}!str\_to\_list@{str\_to\_list}}
+\index{str\_to\_list@{str\_to\_list}!convert\_str\_list.h@{convert\_str\_list.h}}
+\doxysubsubsection{str\_to\_list()}
+{\footnotesize\ttfamily \textbf{ list\+\_\+t} $\ast$ str\+\_\+to\+\_\+list (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Convert a string to a list. The required format is \char`\"{}element1$\vert$element2$\vert$element3$\vert$...\char`\"{} where the separator is defined by \doxyref{SEPARATOR\+\_\+\+LIST\+\_\+\+STRING}{p.}{convert__str__list_8h_aab78db21daf05ea47dec7a48d35d913e} constant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to convert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list\+\_\+t$\ast$ The list converted or NULL if any error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 72} of file \textbf{ convert\+\_\+str\+\_\+list.\+c}.
+

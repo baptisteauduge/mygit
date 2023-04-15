@@ -1,0 +1,45 @@
+\doxysection{work\+\_\+file.\+c}
+\label{work__file_8c_source}\index{src/libs/work\_file/work\_file.c@{src/libs/work\_file/work\_file.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ work\_file.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ work\_file.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/work\_file/work\_file.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ work\_file\_t\ *create\_work\_file(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hash,\ mode\_t\ mode)\ \{}
+\DoxyCodeLine{00013\ \ \ work\_file\_t\ *new\_wf\ =\ NULL;}
+\DoxyCodeLine{00014\ \ \ }
+\DoxyCodeLine{00015\ \ \ \textcolor{keywordflow}{if}\ (!name)}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00017\ \ \ new\_wf\ =\ malloc(\textcolor{keyword}{sizeof}(work\_file\_t));}
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordflow}{if}\ (!new\_wf)}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00020\ \ \ new\_wf-\/>name\ =\ strdup(name);}
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordflow}{if}\ (!new\_wf-\/>name)\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ free(new\_wf);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00024\ \ \ \}}
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordflow}{if}\ (!hash)}
+\DoxyCodeLine{00026\ \ \ \ \ new\_wf-\/>hash\ =\ NULL;}
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00028\ \ \ \ \ new\_wf-\/>hash\ =\ strdup(hash);}
+\DoxyCodeLine{00029\ \ \ new\_wf-\/>mode\ =\ mode;}
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordflow}{return}\ new\_wf;}
+\DoxyCodeLine{00031\ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{void}\ free\_work\_file(work\_file\_t\ *wf)\ \{}
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordflow}{if}\ (!wf)}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00036\ \ \ free(wf-\/>name);}
+\DoxyCodeLine{00037\ \ \ free(wf-\/>hash);}
+\DoxyCodeLine{00038\ \ \ free(wf);}
+\DoxyCodeLine{00039\ \}}
+
+\end{DoxyCode}

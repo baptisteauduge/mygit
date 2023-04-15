@@ -11,6 +11,7 @@
 #define COMMIT_KEY_HASH "tree"
 #define COMMIT_KEY_PARENT "predecessor"
 #define COMMIT_KEY_MESSAGE "message"
+#define COMMIT_KEY_MERGED_PARENT "merged_predecessor"
 
 #include "libs/key_val/key_val.h"
 #include <stddef.h>

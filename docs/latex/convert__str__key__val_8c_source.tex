@@ -1,0 +1,71 @@
+\doxysection{convert\+\_\+str\+\_\+key\+\_\+val.\+c}
+\label{convert__str__key__val_8c_source}\index{src/libs/key\_val/convert\_str\_key\_val.c@{src/libs/key\_val/convert\_str\_key\_val.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ convert\_str\_key\_val.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ convert\_str\_key\_val.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/key\_val/convert\_str\_key\_val.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}utils/get\_content\_or\_dash\_str.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keywordtype}{char}\ *convert\_key\_val\_to\_str(key\_val\_t\ *key\_val)}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \textcolor{keywordtype}{char}\ *str\_key\_val\ =\ NULL;}
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordtype}{size\_t}\ size\_key\_val\_str\ =\ 0;}
+\DoxyCodeLine{00017\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *key\ =\ NULL;}
+\DoxyCodeLine{00018\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *value\ =\ NULL;}
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordtype}{int}\ nb\_set\ =\ 0;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordflow}{if}\ (!key\_val)}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00023\ \ \ key\ =\ get\_content\_or\_dash\_str(key\_val-\/>key);}
+\DoxyCodeLine{00024\ \ \ value\ =\ get\_content\_or\_dash\_str(key\_val-\/>value);}
+\DoxyCodeLine{00025\ \ \ size\_key\_val\_str\ =\ strlen(key)\ +\ strlen(value)\ +\ 3;}
+\DoxyCodeLine{00026\ \ \ str\_key\_val\ =\ calloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}),\ size\_key\_val\_str);}
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordflow}{if}\ (!str\_key\_val)}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00029\ \ \ nb\_set\ =\ snprintf(str\_key\_val,\ size\_key\_val\_str,\ \textcolor{stringliteral}{"{}\%s:\%s"{}},\ key,\ value);}
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordflow}{if}\ (nb\_set\ <\ 0)\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ free(str\_key\_val);}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00033\ \ \ \}}
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordflow}{return}\ str\_key\_val;}
+\DoxyCodeLine{00035\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ set\_to\_null\_if\_dash(\textcolor{keywordtype}{char}\ **str)}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordflow}{if}\ (strcmp(*str,\ \textcolor{stringliteral}{"{}-\/"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ free(*str);}
+\DoxyCodeLine{00041\ \ \ \ \ *str\ =\ NULL;}
+\DoxyCodeLine{00042\ \ \ \}}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ key\_val\_t\ *convert\_str\_to\_key\_val(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str)}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \ \ key\_val\_t\ *key\_val\ =\ NULL;}
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordtype}{char}\ *key\ =\ NULL;}
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordtype}{char}\ *value\ =\ NULL;}
+\DoxyCodeLine{00050\ \ \ \textcolor{keywordtype}{char}\ *str\_cpy\ =\ NULL;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \textcolor{keywordflow}{if}\ (!str)}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00054\ \ \ str\_cpy\ =\ strdup(str);}
+\DoxyCodeLine{00055\ \ \ \textcolor{keywordflow}{if}\ (!str\_cpy)}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00057\ \ \ key\ =\ strsep(\&str\_cpy,\ \textcolor{stringliteral}{"{}:"{}});}
+\DoxyCodeLine{00058\ \ \ set\_to\_null\_if\_dash(\&key);}
+\DoxyCodeLine{00059\ \ \ value\ =\ str\_cpy;}
+\DoxyCodeLine{00060\ \ \ set\_to\_null\_if\_dash(\&value);}
+\DoxyCodeLine{00061\ \ \ key\_val\ =\ create\_key\_val(key,\ value);}
+\DoxyCodeLine{00062\ \ \ free(key);}
+\DoxyCodeLine{00063\ \ \ free(str\_cpy);}
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordflow}{return}\ key\_val;}
+\DoxyCodeLine{00065\ \}}
+
+\end{DoxyCode}

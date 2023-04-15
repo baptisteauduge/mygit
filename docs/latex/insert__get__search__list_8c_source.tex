@@ -1,0 +1,93 @@
+\doxysection{insert\+\_\+get\+\_\+search\+\_\+list.\+c}
+\label{insert__get__search__list_8c_source}\index{src/libs/list/insert\_get\_search\_list.c@{src/libs/list/insert\_get\_search\_list.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ insert\_get\_search\_list.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ insert\_get\_search\_list.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/list/insert\_get\_search\_list.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}utils/utils.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keywordtype}{void}\ insert\_cell\_at\_begging\_list(list\_t\ *list,\ cell\_t\ *cell)}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \textcolor{keywordflow}{if}\ (!list\ ||\ !cell)}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00017\ \ \ cell-\/>next\ =\ *list;}
+\DoxyCodeLine{00018\ \ \ *list\ =\ cell;}
+\DoxyCodeLine{00019\ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ cell\_t\ *get\_index\_of\_list(list\_t\ *list,\ \textcolor{keywordtype}{int}\ pos)}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \ \ cell\_t\ *iter\ =\ NULL;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordflow}{if}\ (!list)}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00027\ \ \ iter\ =\ *list;}
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ pos\ \&\&\ iter;\ ++i)}
+\DoxyCodeLine{00029\ \ \ \ \ iter\ =\ iter-\/>next;}
+\DoxyCodeLine{00030\ \ \ if\ (!iter)}
+\DoxyCodeLine{00031\ \ \ \ \ LOG\_ERROR(ERROR\_INDEX\_OUT\_OF\_RANGE);}
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordflow}{return}\ iter;}
+\DoxyCodeLine{00033\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ cell\_t\ *search\_data\_in\_list(list\_t\ *list,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *data)}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ cell\_t\ *iter\ =\ NULL;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordflow}{if}\ (!list\ ||\ !data)}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00041\ \ \ iter\ =\ *list;}
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordflow}{while}\ (iter\ \&\&\ strcmp(iter-\/>data,\ data))}
+\DoxyCodeLine{00043\ \ \ \ \ iter\ =\ iter-\/>next;}
+\DoxyCodeLine{00044\ \ \ \textcolor{keywordflow}{return}\ iter;}
+\DoxyCodeLine{00045\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keywordtype}{int}\ create\_and\_insert\_cell\_in\_list(list\_t\ *list,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *data)}
+\DoxyCodeLine{00048\ \{}
+\DoxyCodeLine{00049\ \ \ cell\_t\ *new\_cell\ =\ NULL;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{keywordflow}{if}\ (!list\ ||\ !data)}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00053\ \ \ new\_cell\ =\ build\_cell(data);}
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordflow}{if}\ (!new\_cell)}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00056\ \ \ insert\_cell\_at\_begging\_list(list,\ new\_cell);}
+\DoxyCodeLine{00057\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00058\ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ insert\_data\_in\_list\_without\_duplicate(list\_t\ *new\_list,}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ list\_t\ *old\_list)}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ cell\_t\ *iter\ =\ NULL;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \textcolor{keywordflow}{if}\ (!new\_list\ ||\ !old\_list)}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00067\ \ \ iter\ =\ *old\_list;}
+\DoxyCodeLine{00068\ \ \ \textcolor{keywordflow}{while}\ (iter)\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{if}\ (!search\_data\_in\_list(new\_list,\ iter-\/>data))}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ create\_and\_insert\_cell\_in\_list(new\_list,\ iter-\/>data);}
+\DoxyCodeLine{00071\ \ \ \ \ iter\ =\ iter-\/>next;}
+\DoxyCodeLine{00072\ \ \ \}}
+\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ list\_t\ *concat\_list\_without\_duplicate(list\_t\ *list1,\ list\_t\ *list2)}
+\DoxyCodeLine{00076\ \{}
+\DoxyCodeLine{00077\ \ \ list\_t\ *new\_list\ =\ NULL;}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \textcolor{keywordflow}{if}\ (!list1\ ||\ !list2)}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00081\ \ \ new\_list\ =\ create\_init\_list();}
+\DoxyCodeLine{00082\ \ \ \textcolor{keywordflow}{if}\ (!new\_list)}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00084\ \ \ insert\_data\_in\_list\_without\_duplicate(new\_list,\ list1);}
+\DoxyCodeLine{00085\ \ \ insert\_data\_in\_list\_without\_duplicate(new\_list,\ list2);}
+\DoxyCodeLine{00086\ \ \ \textcolor{keywordflow}{return}\ new\_list;}
+\DoxyCodeLine{00087\ \}}
+
+\end{DoxyCode}

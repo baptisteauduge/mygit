@@ -1,0 +1,152 @@
+\doxysection{include/utils/utils.h File Reference}
+\label{utils_8h}\index{include/utils/utils.h@{include/utils/utils.h}}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ MYGIT\+\_\+\+DIR\+\_\+\+RIGTHS}~0755
+\item 
+\#define \textbf{ MYGIT\+\_\+\+FILE\+\_\+\+RIGHTS}~0755
+\item 
+\#define \textbf{ MYGIT\+\_\+\+DIR}~\char`\"{}.mygit/\char`\"{}
+\item 
+\#define \textbf{ MYGIT\+\_\+\+DIR\+\_\+\+BLOBS}~\char`\"{}.mygit/objects/\char`\"{}
+\item 
+\#define \textbf{ MYGIT\+\_\+\+DIR\+\_\+\+REFS}~\char`\"{}.mygit/refs\char`\"{}
+\item 
+\#define \textbf{ MYGIT\+\_\+\+FILE\+\_\+\+REF\+\_\+\+HEAD}~\char`\"{}HEAD\char`\"{}
+\item 
+\#define \textbf{ MYGIT\+\_\+\+DEFAULT\+\_\+\+BRANCH}~\char`\"{}master\char`\"{}
+\item 
+\#define \textbf{ MYGIT\+\_\+\+PATH\+\_\+\+ADD}~\char`\"{}.mygit/.add\char`\"{}
+\item 
+\#define \textbf{ MYGIT\+\_\+\+PATH\+\_\+\+CURRENT\+\_\+\+BRANCH}~\char`\"{}.mygit/.current\+\_\+branch\char`\"{}
+\item 
+\#define \textbf{ PREFIX\+\_\+\+PATH}~\char`\"{}.\char`\"{}
+\item 
+\#define \textbf{ LOG\+\_\+\+ERROR}(...)~fprintf(stderr, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\item 
+\#define \textbf{ LOG\+\_\+\+INFO}(...)~printf(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\label{utils_8h_ad4a9117ce894e3319e903142347a0f63}} 
+\index{utils.h@{utils.h}!LOG\_ERROR@{LOG\_ERROR}}
+\index{LOG\_ERROR@{LOG\_ERROR}!utils.h@{utils.h}}
+\doxysubsubsection{LOG\_ERROR}
+{\footnotesize\ttfamily \#define LOG\+\_\+\+ERROR(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~fprintf(stderr, \+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+
+
+Definition at line \textbf{ 23} of file \textbf{ utils.\+h}.
+
+\mbox{\label{utils_8h_a378e28bfcb78d17285210d6bbb70a083}} 
+\index{utils.h@{utils.h}!LOG\_INFO@{LOG\_INFO}}
+\index{LOG\_INFO@{LOG\_INFO}!utils.h@{utils.h}}
+\doxysubsubsection{LOG\_INFO}
+{\footnotesize\ttfamily \#define LOG\+\_\+\+INFO(\begin{DoxyParamCaption}\item[{}]{... }\end{DoxyParamCaption})~printf(\+\_\+\+\_\+\+VA\+\_\+\+ARGS\+\_\+\+\_\+)}
+
+
+
+Definition at line \textbf{ 24} of file \textbf{ utils.\+h}.
+
+\mbox{\label{utils_8h_aa7fc359e4489c1248811300ce9dd4877}} 
+\index{utils.h@{utils.h}!MYGIT\_DEFAULT\_BRANCH@{MYGIT\_DEFAULT\_BRANCH}}
+\index{MYGIT\_DEFAULT\_BRANCH@{MYGIT\_DEFAULT\_BRANCH}!utils.h@{utils.h}}
+\doxysubsubsection{MYGIT\_DEFAULT\_BRANCH}
+{\footnotesize\ttfamily \#define MYGIT\+\_\+\+DEFAULT\+\_\+\+BRANCH~\char`\"{}master\char`\"{}}
+
+
+
+Definition at line \textbf{ 17} of file \textbf{ utils.\+h}.
+
+\mbox{\label{utils_8h_a46979be86b71d88e27832b2749bb040c}} 
+\index{utils.h@{utils.h}!MYGIT\_DIR@{MYGIT\_DIR}}
+\index{MYGIT\_DIR@{MYGIT\_DIR}!utils.h@{utils.h}}
+\doxysubsubsection{MYGIT\_DIR}
+{\footnotesize\ttfamily \#define MYGIT\+\_\+\+DIR~\char`\"{}.mygit/\char`\"{}}
+
+
+
+Definition at line \textbf{ 13} of file \textbf{ utils.\+h}.
+
+\mbox{\label{utils_8h_a7825808f30306bc84ff9f98a7b9efad3}} 
+\index{utils.h@{utils.h}!MYGIT\_DIR\_BLOBS@{MYGIT\_DIR\_BLOBS}}
+\index{MYGIT\_DIR\_BLOBS@{MYGIT\_DIR\_BLOBS}!utils.h@{utils.h}}
+\doxysubsubsection{MYGIT\_DIR\_BLOBS}
+{\footnotesize\ttfamily \#define MYGIT\+\_\+\+DIR\+\_\+\+BLOBS~\char`\"{}.mygit/objects/\char`\"{}}
+
+
+
+Definition at line \textbf{ 14} of file \textbf{ utils.\+h}.
+
+\mbox{\label{utils_8h_ac359cec1188c180f19301bfcd4917744}} 
+\index{utils.h@{utils.h}!MYGIT\_DIR\_REFS@{MYGIT\_DIR\_REFS}}
+\index{MYGIT\_DIR\_REFS@{MYGIT\_DIR\_REFS}!utils.h@{utils.h}}
+\doxysubsubsection{MYGIT\_DIR\_REFS}
+{\footnotesize\ttfamily \#define MYGIT\+\_\+\+DIR\+\_\+\+REFS~\char`\"{}.mygit/refs\char`\"{}}
+
+
+
+Definition at line \textbf{ 15} of file \textbf{ utils.\+h}.
+
+\mbox{\label{utils_8h_a6de9a0ed6e07445c8d590cc7183bf740}} 
+\index{utils.h@{utils.h}!MYGIT\_DIR\_RIGTHS@{MYGIT\_DIR\_RIGTHS}}
+\index{MYGIT\_DIR\_RIGTHS@{MYGIT\_DIR\_RIGTHS}!utils.h@{utils.h}}
+\doxysubsubsection{MYGIT\_DIR\_RIGTHS}
+{\footnotesize\ttfamily \#define MYGIT\+\_\+\+DIR\+\_\+\+RIGTHS~0755}
+
+
+
+Definition at line \textbf{ 11} of file \textbf{ utils.\+h}.
+
+\mbox{\label{utils_8h_afcdfd23bddcff6a50864e5237a597628}} 
+\index{utils.h@{utils.h}!MYGIT\_FILE\_REF\_HEAD@{MYGIT\_FILE\_REF\_HEAD}}
+\index{MYGIT\_FILE\_REF\_HEAD@{MYGIT\_FILE\_REF\_HEAD}!utils.h@{utils.h}}
+\doxysubsubsection{MYGIT\_FILE\_REF\_HEAD}
+{\footnotesize\ttfamily \#define MYGIT\+\_\+\+FILE\+\_\+\+REF\+\_\+\+HEAD~\char`\"{}HEAD\char`\"{}}
+
+
+
+Definition at line \textbf{ 16} of file \textbf{ utils.\+h}.
+
+\mbox{\label{utils_8h_a310acf5ccc0bed4ed52cf554b6e78d73}} 
+\index{utils.h@{utils.h}!MYGIT\_FILE\_RIGHTS@{MYGIT\_FILE\_RIGHTS}}
+\index{MYGIT\_FILE\_RIGHTS@{MYGIT\_FILE\_RIGHTS}!utils.h@{utils.h}}
+\doxysubsubsection{MYGIT\_FILE\_RIGHTS}
+{\footnotesize\ttfamily \#define MYGIT\+\_\+\+FILE\+\_\+\+RIGHTS~0755}
+
+
+
+Definition at line \textbf{ 12} of file \textbf{ utils.\+h}.
+
+\mbox{\label{utils_8h_ab26ac5f112ff538d1d428a71792089ef}} 
+\index{utils.h@{utils.h}!MYGIT\_PATH\_ADD@{MYGIT\_PATH\_ADD}}
+\index{MYGIT\_PATH\_ADD@{MYGIT\_PATH\_ADD}!utils.h@{utils.h}}
+\doxysubsubsection{MYGIT\_PATH\_ADD}
+{\footnotesize\ttfamily \#define MYGIT\+\_\+\+PATH\+\_\+\+ADD~\char`\"{}.mygit/.add\char`\"{}}
+
+
+
+Definition at line \textbf{ 18} of file \textbf{ utils.\+h}.
+
+\mbox{\label{utils_8h_a954cc467eb130a9cd95340181e6d830e}} 
+\index{utils.h@{utils.h}!MYGIT\_PATH\_CURRENT\_BRANCH@{MYGIT\_PATH\_CURRENT\_BRANCH}}
+\index{MYGIT\_PATH\_CURRENT\_BRANCH@{MYGIT\_PATH\_CURRENT\_BRANCH}!utils.h@{utils.h}}
+\doxysubsubsection{MYGIT\_PATH\_CURRENT\_BRANCH}
+{\footnotesize\ttfamily \#define MYGIT\+\_\+\+PATH\+\_\+\+CURRENT\+\_\+\+BRANCH~\char`\"{}.mygit/.current\+\_\+branch\char`\"{}}
+
+
+
+Definition at line \textbf{ 19} of file \textbf{ utils.\+h}.
+
+\mbox{\label{utils_8h_a354b5d05fc8b0e99bc553935ab90bbc1}} 
+\index{utils.h@{utils.h}!PREFIX\_PATH@{PREFIX\_PATH}}
+\index{PREFIX\_PATH@{PREFIX\_PATH}!utils.h@{utils.h}}
+\doxysubsubsection{PREFIX\_PATH}
+{\footnotesize\ttfamily \#define PREFIX\+\_\+\+PATH~\char`\"{}.\char`\"{}}
+
+
+
+Definition at line \textbf{ 20} of file \textbf{ utils.\+h}.
+

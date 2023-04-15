@@ -1,0 +1,61 @@
+\doxysection{src/libs/file/rights\+\_\+file.c File Reference}
+\label{rights__file_8c}\index{src/libs/file/rights\_file.c@{src/libs/file/rights\_file.c}}
+{\ttfamily \#include \char`\"{}libs/file/rights\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/list\+\_\+files.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+mode\+\_\+t \textbf{ get\+\_\+chmod} (const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Get the chmod of the file (i.\+e. the rights) \end{DoxyCompactList}\item 
+int \textbf{ set\+\_\+chmod} (const char $\ast$path, mode\+\_\+t mode)
+\begin{DoxyCompactList}\small\item\em Set the chmod of the file (i.\+e. the rights) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{rights__file_8c_a87ad5c88cf9d55041b7eb4d3e88e01b8}} 
+\index{rights\_file.c@{rights\_file.c}!get\_chmod@{get\_chmod}}
+\index{get\_chmod@{get\_chmod}!rights\_file.c@{rights\_file.c}}
+\doxysubsubsection{get\_chmod()}
+{\footnotesize\ttfamily mode\+\_\+t get\+\_\+chmod (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Get the chmod of the file (i.\+e. the rights) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mode\+\_\+t The modes of the file 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 11} of file \textbf{ rights\+\_\+file.\+c}.
+
+\mbox{\label{rights__file_8c_ae35dd748511ff0541a1dfa3bfef9c61b}} 
+\index{rights\_file.c@{rights\_file.c}!set\_chmod@{set\_chmod}}
+\index{set\_chmod@{set\_chmod}!rights\_file.c@{rights\_file.c}}
+\doxysubsubsection{set\_chmod()}
+{\footnotesize\ttfamily int set\+\_\+chmod (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path,  }\item[{mode\+\_\+t}]{mode }\end{DoxyParamCaption})}
+
+
+
+Set the chmod of the file (i.\+e. the rights) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the file \\
+\hline
+{\em mode} & The mode to set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the chmod was set, 0 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 22} of file \textbf{ rights\+\_\+file.\+c}.
+

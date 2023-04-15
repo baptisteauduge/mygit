@@ -1,0 +1,53 @@
+\doxysection{save\+\_\+get\+\_\+file\+\_\+list.\+c}
+\label{save__get__file__list_8c_source}\index{src/libs/list/save\_get\_file\_list.c@{src/libs/list/save\_get\_file\_list.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ save\_get\_file\_list.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ save\_get\_file\_list.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/list/save\_get\_file\_list.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/file/constants\_file.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}libs/file/read\_write\_file.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}libs/list/convert\_str\_list.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keywordtype}{void}\ save\_list\_to\_file(list\_t\ *list,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path)}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ FILE\ *file;}
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordtype}{char}\ *list\_str;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \textcolor{keywordflow}{if}\ (!list\ ||\ !path)}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00022\ \ \ file\ =\ fopen(path,\ WRITE\_MODE);}
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordflow}{if}\ (!file)}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00025\ \ \ list\_str\ =\ list\_to\_str(list);}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordflow}{if}\ (!list\_str)}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00028\ \ \ fprintf(file,\ \textcolor{stringliteral}{"{}\%s\(\backslash\)n"{}},\ list\_str);}
+\DoxyCodeLine{00029\ \ \ fclose(file);}
+\DoxyCodeLine{00030\ \ \ free(list\_str);}
+\DoxyCodeLine{00031\ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ list\_t\ *get\_list\_from\_file(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path)}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordtype}{char}\ *first\_line\_file\ =\ NULL;}
+\DoxyCodeLine{00036\ \ \ list\_t\ *list\ =\ NULL;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \textcolor{keywordflow}{if}\ (!path)}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00040\ \ \ first\_line\_file\ =\ get\_first\_line(path);}
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordflow}{if}\ (!first\_line\_file)}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00043\ \ \ remove\_new\_line\_if\_exists(first\_line\_file);}
+\DoxyCodeLine{00044\ \ \ list\ =\ str\_to\_list(first\_line\_file);}
+\DoxyCodeLine{00045\ \ \ free(first\_line\_file);}
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordflow}{return}\ list;}
+\DoxyCodeLine{00047\ \}}
+
+\end{DoxyCode}

@@ -7,7 +7,16 @@
 #ifndef GET_BRANCH_COMMIT_TREE_H
 #define GET_BRANCH_COMMIT_TREE_H
 
+#include "libs/commit/commit.h"
 #include "libs/list/list.h"
+
+/**
+ * @brief Get the commit from his hash
+ *
+ * @param hash The hash of the commit
+ * @return commit_t* The commit corresponding to the given hash
+ */
+commit_t *get_commit_from_hash(const char *hash);
 
 /**
  * @brief Get a list of all the commits of a branch, from the last to the first,

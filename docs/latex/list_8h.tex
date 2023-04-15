@@ -1,0 +1,67 @@
+\doxysection{include/libs/list/list.h File Reference}
+\label{list_8h}\index{include/libs/list/list.h@{include/libs/list/list.h}}
+{\ttfamily \#include \char`\"{}libs/cell/cell.\+h\char`\"{}}\newline
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \textbf{ cell\+\_\+t} $\ast$ \textbf{ list\+\_\+t}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ list\+\_\+t} $\ast$ \textbf{ create\+\_\+init\+\_\+list} (void)
+\begin{DoxyCompactList}\small\item\em Create a init list (empty list with a NULL pointer) \end{DoxyCompactList}\item 
+void \textbf{ free\+\_\+list} (\textbf{ list\+\_\+t} $\ast$list)
+\begin{DoxyCompactList}\small\item\em Free the list and all the cells in the list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\label{list_8h_ab897ee3d3fb19193413ff0d2bfc33727}} 
+\index{list.h@{list.h}!list\_t@{list\_t}}
+\index{list\_t@{list\_t}!list.h@{list.h}}
+\doxysubsubsection{list\_t}
+{\footnotesize\ttfamily typedef \textbf{ cell\+\_\+t}$\ast$ \textbf{ list\+\_\+t}}
+
+
+
+Definition at line \textbf{ 12} of file \textbf{ list.\+h}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{list_8h_a54582f1d975ab79128075441e4cb57fe}} 
+\index{list.h@{list.h}!create\_init\_list@{create\_init\_list}}
+\index{create\_init\_list@{create\_init\_list}!list.h@{list.h}}
+\doxysubsubsection{create\_init\_list()}
+{\footnotesize\ttfamily \textbf{ list\+\_\+t} $\ast$ create\+\_\+init\+\_\+list (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Create a init list (empty list with a NULL pointer) 
+
+\begin{DoxyReturn}{Returns}
+list\+\_\+t$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 11} of file \textbf{ list.\+c}.
+
+\mbox{\label{list_8h_a1759d6da9aa1478aae92ff7b3ab7df45}} 
+\index{list.h@{list.h}!free\_list@{free\_list}}
+\index{free\_list@{free\_list}!list.h@{list.h}}
+\doxysubsubsection{free\_list()}
+{\footnotesize\ttfamily void free\+\_\+list (\begin{DoxyParamCaption}\item[{\textbf{ list\+\_\+t} $\ast$}]{list }\end{DoxyParamCaption})}
+
+
+
+Free the list and all the cells in the list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The list to free \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 22} of file \textbf{ list.\+c}.
+

@@ -1,0 +1,56 @@
+\doxysection{include/mygit/mygit\+\_\+handle\+\_\+args.h File Reference}
+\label{mygit__handle__args_8h}\index{include/mygit/mygit\_handle\_args.h@{include/mygit/mygit\_handle\_args.h}}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef int($\ast$ \textbf{ handle\+\_\+args\+\_\+func}) (int, char $\ast$$\ast$)
+\begin{DoxyCompactList}\small\item\em The function type of the handle\+\_\+args functions. The function will handle the arguments of the mygit command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ mygit\+\_\+handle\+\_\+args} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Handle the arguments of the mygit command. The function will call the function corresponding to the command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\label{mygit__handle__args_8h_a70773dc18c891081b24bc9bdf0d078c7}} 
+\index{mygit\_handle\_args.h@{mygit\_handle\_args.h}!handle\_args\_func@{handle\_args\_func}}
+\index{handle\_args\_func@{handle\_args\_func}!mygit\_handle\_args.h@{mygit\_handle\_args.h}}
+\doxysubsubsection{handle\_args\_func}
+{\footnotesize\ttfamily typedef int($\ast$ handle\+\_\+args\+\_\+func) (int, char $\ast$$\ast$)}
+
+
+
+The function type of the handle\+\_\+args functions. The function will handle the arguments of the mygit command. 
+
+
+
+Definition at line \textbf{ 14} of file \textbf{ mygit\+\_\+handle\+\_\+args.\+h}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{mygit__handle__args_8h_a8657eb9ac5d48feedeb3bf6eb9f4b665}} 
+\index{mygit\_handle\_args.h@{mygit\_handle\_args.h}!mygit\_handle\_args@{mygit\_handle\_args}}
+\index{mygit\_handle\_args@{mygit\_handle\_args}!mygit\_handle\_args.h@{mygit\_handle\_args.h}}
+\doxysubsubsection{mygit\_handle\_args()}
+{\footnotesize\ttfamily int mygit\+\_\+handle\+\_\+args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Handle the arguments of the mygit command. The function will call the function corresponding to the command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of arguments. \\
+\hline
+{\em argv} & The arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The return code of the command. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 12} of file \textbf{ mygit\+\_\+handle\+\_\+args.\+c}.
+

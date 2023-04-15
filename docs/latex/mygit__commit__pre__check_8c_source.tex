@@ -1,0 +1,90 @@
+\doxysection{mygit\+\_\+commit\+\_\+pre\+\_\+check.\+c}
+\label{mygit__commit__pre__check_8c_source}\index{src/commit/mygit\_commit\_pre\_check.c@{src/commit/mygit\_commit\_pre\_check.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ mygit\_commit\_pre\_checks.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ mygit\_commit\_pre\_checks.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}commit/mygit\_commit\_pre\_checks.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/file/get\_path\_absolute.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}libs/file/list\_files.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}libs/file/read\_write\_file.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}refs/refs\_utils.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}utils/utils.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ Check\ if\ refs\ exists\ print\ error\ message\ if\ not}}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{int}\ check\_if\_refs\_exists(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \textcolor{keywordflow}{if}\ (!does\_file\_exists(MYGIT\_DIR\_REFS))\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ no\ refs\ found,\ please\ init\ a\ repository\ first\(\backslash\)n"{}});}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00023\ \ \ \}}
+\DoxyCodeLine{00024\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00025\ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ Check\ if\ branch\ exists\ print\ error\ message\ if\ not}}
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{int}\ check\_if\_branch\_exists(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *branch\_name)}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordtype}{char}\ *branch\_path\ =\ NULL;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ branch\_path\ =\ get\_path\_absolute(MYGIT\_DIR\_REFS,\ branch\_name);}
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordflow}{if}\ (!branch\_path)}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordflow}{if}\ (!does\_file\_exists(branch\_path))\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Error:\ branch\ `\%s`\ does\ not\ exists\(\backslash\)n"{}},\ branch\_name);}
+\DoxyCodeLine{00037\ \ \ \ \ free(branch\_path);}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00039\ \ \ \}}
+\DoxyCodeLine{00040\ \ \ free(branch\_path);}
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00042\ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ get\_head\_and\_branch\_hash(\textcolor{keywordtype}{char}\ **head\_hash,\ \textcolor{keywordtype}{char}\ **branch\_hash,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *branch\_name)}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordtype}{char}\ *branch\_path\ =\ NULL;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ *head\_hash\ =\ get\_file\_content(MYGIT\_DIR\_REFS\ \textcolor{stringliteral}{"{}/"{}}\ MYGIT\_FILE\_REF\_HEAD);}
+\DoxyCodeLine{00050\ \ \ \textcolor{keywordflow}{if}\ (!head\_hash)}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00052\ \ \ branch\_path\ =\ get\_path\_absolute(MYGIT\_DIR\_REFS,\ branch\_name);}
+\DoxyCodeLine{00053\ \ \ \textcolor{keywordflow}{if}\ (!branch\_path)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ free(*head\_hash);}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00056\ \ \ \}}
+\DoxyCodeLine{00057\ \ \ *branch\_hash\ =\ get\_file\_content(branch\_path);}
+\DoxyCodeLine{00058\ \ \ \textcolor{keywordflow}{if}\ (!*branch\_hash)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ free(*head\_hash);}
+\DoxyCodeLine{00060\ \ \ \ \ free(branch\_path);}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00062\ \ \ \}}
+\DoxyCodeLine{00063\ \ \ free(branch\_path);}
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ Check\ if\ HEAD\ is\ in\ provided\ branch\ print\ error\ message\ if\ not}}
+\DoxyCodeLine{00068\ \textcolor{keywordtype}{int}\ check\_if\_head\_is\_in\_branch(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *branch\_name)}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \ \ \textcolor{keywordtype}{char}\ *head\_hash\ =\ NULL;}
+\DoxyCodeLine{00071\ \ \ \textcolor{keywordtype}{char}\ *branch\_hash\ =\ NULL;}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \textcolor{keywordflow}{if}\ (!get\_head\_and\_branch\_hash(\&head\_hash,\ \&branch\_hash,\ branch\_name))}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00075\ \ \ \textcolor{keywordflow}{if}\ (strcmp(head\_hash,\ branch\_hash)\ !=\ 0)\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Error:\ HEAD\ is\ not\ in\ branch\ `\%s`\(\backslash\)n"{}},\ branch\_name);}
+\DoxyCodeLine{00077\ \ \ \ \ free(head\_hash);}
+\DoxyCodeLine{00078\ \ \ \ \ free(branch\_hash);}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00080\ \ \ \}}
+\DoxyCodeLine{00081\ \ \ free(head\_hash);}
+\DoxyCodeLine{00082\ \ \ free(branch\_hash);}
+\DoxyCodeLine{00083\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00084\ \}}
+
+\end{DoxyCode}

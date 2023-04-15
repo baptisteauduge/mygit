@@ -1,0 +1,102 @@
+\doxysection{restore\+\_\+work\+\_\+tree.\+c}
+\label{restore__work__tree_8c_source}\index{src/libs/work\_tree/restore\_work\_tree.c@{src/libs/work\_tree/restore\_work\_tree.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ restore\_work\_tree.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ restore\_work\_tree.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/restore\_work\_tree.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/file/copy\_file.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}libs/file/create\_blob.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}libs/file/get\_path\_absolute.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}libs/file/list\_files.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}libs/file/rights\_file.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/save\_get\_file\_work\_tree.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ is\_save\_file(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path)}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordtype}{size\_t}\ len\ =\ 0;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordflow}{if}\ (!path)}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordflow}{if}\ (!is\_file(path))}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00025\ \ \ len\ =\ strlen(path);}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordflow}{if}\ (path[len\ -\/\ 2]\ ==\ \textcolor{charliteral}{'.'}\ \&\&\ path[len\ -\/\ 1]\ ==\ \textcolor{charliteral}{'t'})}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ set\_content\_file\_mode\_and\_hash(work\_file\_t\ *wf,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path\_blob,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path)}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordtype}{char}\ *path\_absolue\_file\ =\ NULL;}
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordflow}{if}\ (!wf\ ||\ !path\_blob\ ||\ !path)}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00038\ \ \ path\_absolue\_file\ =\ get\_path\_absolute(path,\ wf-\/>name);}
+\DoxyCodeLine{00039\ \ \ copy\_file(path\_absolue\_file,\ path\_blob);}
+\DoxyCodeLine{00040\ \ \ set\_chmod(path\_absolue\_file,\ wf-\/>mode);}
+\DoxyCodeLine{00041\ \ \ free(path\_absolue\_file);}
+\DoxyCodeLine{00042\ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ create\_dir\_if\_doesnt\_exist(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mode\_t\ mode)}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordtype}{char}\ *path\_absolute\_dir\ =\ NULL;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordflow}{if}\ (!path\ ||\ !name)}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00051\ \ \ path\_absolute\_dir\ =\ get\_path\_absolute(path,\ name);}
+\DoxyCodeLine{00052\ \ \ \textcolor{keywordflow}{if}\ (!does\_file\_exists(path\_absolute\_dir))}
+\DoxyCodeLine{00053\ \ \ \ \ mkdir(path\_absolute\_dir,\ mode);}
+\DoxyCodeLine{00054\ \ \ free(path\_absolute\_dir);}
+\DoxyCodeLine{00055\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ load\_work\_tree\_and\_iterate(\textcolor{keyword}{const}\ work\_file\_t\ *wf,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path\_absolute\_blob,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path)}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ work\_tree\_t\ *wt\_new\ =\ NULL;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \textcolor{keywordflow}{if}\ (!wf\ ||\ !path\_absolute\_blob\ ||\ !path)}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00065\ \ \ wt\_new\ =\ file\_to\_work\_tree(path\_absolute\_blob);}
+\DoxyCodeLine{00066\ \ \ \textcolor{keywordflow}{if}\ (!wt\_new)}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00068\ \ \ create\_dir\_if\_doesnt\_exist(path,\ wf-\/>name,\ wf-\/>mode);}
+\DoxyCodeLine{00069\ \ \ restore\_work\_tree(wt\_new,\ path);}
+\DoxyCodeLine{00070\ \ \ free\_work\_tree(wt\_new);}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keywordtype}{void}\ restore\_work\_tree(work\_tree\_t\ *wt,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path)}
+\DoxyCodeLine{00074\ \{}
+\DoxyCodeLine{00075\ \ \ work\_file\_t\ *wf\ =\ NULL;}
+\DoxyCodeLine{00076\ \ \ \textcolor{keywordtype}{char}\ *path\_absolute\_blob\ =\ NULL;}
+\DoxyCodeLine{00077\ \ \ \textcolor{keywordtype}{char}\ *path\_blob\ =\ NULL;}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \textcolor{keywordflow}{if}\ (!wt\ ||\ !path)}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00081\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ wt-\/>size;\ ++i)\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ wf\ =\ \&wt-\/>tab[i];}
+\DoxyCodeLine{00083\ \ \ \ \ path\_blob\ =\ get\_path\_from\_hash(wf-\/>hash);}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{if}\ (!path\_blob)}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00086\ \ \ \ \ path\_absolute\_blob\ =\ get\_path\_absolute(path,\ path\_blob);}
+\DoxyCodeLine{00087\ \ \ \ \ free(path\_blob);}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{if}\ (!path\_absolute\_blob)}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_save\_file(path\_absolute\_blob))}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ set\_content\_file\_mode\_and\_hash(wf,\ path\_absolute\_blob,\ path);}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ load\_work\_tree\_and\_iterate(wf,\ path\_absolute\_blob,\ path);}
+\DoxyCodeLine{00094\ \ \ \ \ free(path\_absolute\_blob);}
+\DoxyCodeLine{00095\ \ \ \}}
+\DoxyCodeLine{00096\ \}}
+
+\end{DoxyCode}

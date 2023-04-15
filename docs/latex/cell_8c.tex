@@ -1,0 +1,76 @@
+\doxysection{src/libs/cell/cell.c File Reference}
+\label{cell_8c}\index{src/libs/cell/cell.c@{src/libs/cell/cell.c}}
+{\ttfamily \#include \char`\"{}libs/cell/cell.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ cell\+\_\+t} $\ast$ \textbf{ build\+\_\+cell} (const char $\ast$data)
+\begin{DoxyCompactList}\small\item\em Build a cell with the data provided, the data is copied in the cell. The next cell is set to NULL. \end{DoxyCompactList}\item 
+void \textbf{ free\+\_\+cell} (\textbf{ cell\+\_\+t} $\ast$cell)
+\begin{DoxyCompactList}\small\item\em Free the cell provided. The data contained in the cell is also freed. \end{DoxyCompactList}\item 
+char $\ast$ \textbf{ cell\+\_\+to\+\_\+string} (const \textbf{ cell\+\_\+t} $\ast$cell)
+\begin{DoxyCompactList}\small\item\em Convert the cell provided to a string. The string is allocated, and must be freed by the caller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{cell_8c_a097f890598f89d0a60c57b6546624d3d}} 
+\index{cell.c@{cell.c}!build\_cell@{build\_cell}}
+\index{build\_cell@{build\_cell}!cell.c@{cell.c}}
+\doxysubsubsection{build\_cell()}
+{\footnotesize\ttfamily \textbf{ cell\+\_\+t} $\ast$ build\+\_\+cell (\begin{DoxyParamCaption}\item[{const char $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Build a cell with the data provided, the data is copied in the cell. The next cell is set to NULL. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to copy in the cell \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+cell\+\_\+t$\ast$ The cell created, NULL if an error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 12} of file \textbf{ cell.\+c}.
+
+\mbox{\label{cell_8c_ae214ef466869f53c6b2dbf1ef489ff72}} 
+\index{cell.c@{cell.c}!cell\_to\_string@{cell\_to\_string}}
+\index{cell\_to\_string@{cell\_to\_string}!cell.c@{cell.c}}
+\doxysubsubsection{cell\_to\_string()}
+{\footnotesize\ttfamily char $\ast$ cell\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{const \textbf{ cell\+\_\+t} $\ast$}]{cell }\end{DoxyParamCaption})}
+
+
+
+Convert the cell provided to a string. The string is allocated, and must be freed by the caller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cell} & The cell to convert to a string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The string representing the cell, NULL if an error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 37} of file \textbf{ cell.\+c}.
+
+\mbox{\label{cell_8c_a8e1be7dc678b7edad9810f46d690d266}} 
+\index{cell.c@{cell.c}!free\_cell@{free\_cell}}
+\index{free\_cell@{free\_cell}!cell.c@{cell.c}}
+\doxysubsubsection{free\_cell()}
+{\footnotesize\ttfamily void free\+\_\+cell (\begin{DoxyParamCaption}\item[{\textbf{ cell\+\_\+t} $\ast$}]{cell }\end{DoxyParamCaption})}
+
+
+
+Free the cell provided. The data contained in the cell is also freed. 
+
+
+
+Definition at line \textbf{ 29} of file \textbf{ cell.\+c}.
+

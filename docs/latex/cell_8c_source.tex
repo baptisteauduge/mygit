@@ -1,0 +1,48 @@
+\doxysection{cell.\+c}
+\label{cell_8c_source}\index{src/libs/cell/cell.c@{src/libs/cell/cell.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ cell.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ cell.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/cell/cell.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ cell\_t\ *build\_cell(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *data)}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ cell\_t\ *new\_cell\ =\ NULL;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordflow}{if}\ (!data)}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00018\ \ \ new\_cell\ =\ malloc(\textcolor{keyword}{sizeof}(cell\_t));}
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordflow}{if}\ (!new\_cell)}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00021\ \ \ new\_cell-\/>data\ =\ strdup(data);}
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordflow}{if}\ (!new\_cell-\/>data)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ free(new\_cell);}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00025\ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordflow}{return}\ new\_cell;}
+\DoxyCodeLine{00027\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ free\_cell(cell\_t\ *cell)}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordflow}{if}\ (!cell)}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00033\ \ \ free(cell-\/>data);}
+\DoxyCodeLine{00034\ \ \ free(cell);}
+\DoxyCodeLine{00035\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{char}\ *cell\_to\_string(\textcolor{keyword}{const}\ cell\_t\ *cell)}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordflow}{if}\ (!cell)}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordflow}{return}\ cell-\/>data;}
+\DoxyCodeLine{00042\ \}}
+
+\end{DoxyCode}

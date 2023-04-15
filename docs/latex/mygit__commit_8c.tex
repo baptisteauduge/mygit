@@ -1,0 +1,69 @@
+\doxysection{src/commit/mygit\+\_\+commit.c File Reference}
+\label{mygit__commit_8c}\index{src/commit/mygit\_commit.c@{src/commit/mygit\_commit.c}}
+{\ttfamily \#include \char`\"{}commit/mygit\+\_\+commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}branch/get\+\_\+branch\+\_\+commit\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}commit/mygit\+\_\+commit\+\_\+pre\+\_\+checks.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/commit/commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/commit/create\+\_\+blob\+\_\+of\+\_\+commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/commit/insert\+\_\+key\+\_\+val\+\_\+in\+\_\+commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/list\+\_\+files.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/read\+\_\+write\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/list/insert\+\_\+get\+\_\+search\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/work\+\_\+tree/save\+\_\+content\+\_\+and\+\_\+work\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/work\+\_\+tree/save\+\_\+get\+\_\+file\+\_\+work\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}refs/refs\+\_\+utils.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/utils.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \textbf{ mygit\+\_\+commit} (const char $\ast$branch\+\_\+name, const char $\ast$message)
+\begin{DoxyCompactList}\small\item\em Commit the files in the staging area to the branch provided. The function will create a new commit object, and update the branch to point to the new commit. The function will also update the HEAD to point to the new commit. To commit, you must be in the branch you want to commit to. If you are not, the function will print a message, to inform the user that he is not in the branch he wants to commit to. If the branch does not exist, the function will print a message, to inform the user that the branch does not exist. If the staging area is empty, the function will print a message, to inform the user that there is nothing to commit. If you don\textquotesingle{}t want to provide a message, let the message parameter to NULL. \end{DoxyCompactList}\item 
+\textbf{ list\+\_\+t} $\ast$ \textbf{ get\+\_\+list\+\_\+all\+\_\+commits} (void)
+\begin{DoxyCompactList}\small\item\em Get the list of all commits in the repository. There is no order in the list. The list doesn\textquotesingle{}t contains duplicates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{mygit__commit_8c_a96a9c63c0e105473b8a5d3a3fb9edf06}} 
+\index{mygit\_commit.c@{mygit\_commit.c}!get\_list\_all\_commits@{get\_list\_all\_commits}}
+\index{get\_list\_all\_commits@{get\_list\_all\_commits}!mygit\_commit.c@{mygit\_commit.c}}
+\doxysubsubsection{get\_list\_all\_commits()}
+{\footnotesize\ttfamily \textbf{ list\+\_\+t} $\ast$ get\+\_\+list\+\_\+all\+\_\+commits (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get the list of all commits in the repository. There is no order in the list. The list doesn\textquotesingle{}t contains duplicates. 
+
+\begin{DoxyReturn}{Returns}
+list\+\_\+t$\ast$ The list of all commits in the repository, NULL if an error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 118} of file \textbf{ mygit\+\_\+commit.\+c}.
+
+\mbox{\label{mygit__commit_8c_a0d7d70362b52f23a6c1140d8a90b4003}} 
+\index{mygit\_commit.c@{mygit\_commit.c}!mygit\_commit@{mygit\_commit}}
+\index{mygit\_commit@{mygit\_commit}!mygit\_commit.c@{mygit\_commit.c}}
+\doxysubsubsection{mygit\_commit()}
+{\footnotesize\ttfamily char $\ast$ mygit\+\_\+commit (\begin{DoxyParamCaption}\item[{const char $\ast$}]{branch\+\_\+name,  }\item[{const char $\ast$}]{message }\end{DoxyParamCaption})}
+
+
+
+Commit the files in the staging area to the branch provided. The function will create a new commit object, and update the branch to point to the new commit. The function will also update the HEAD to point to the new commit. To commit, you must be in the branch you want to commit to. If you are not, the function will print a message, to inform the user that he is not in the branch he wants to commit to. If the branch does not exist, the function will print a message, to inform the user that the branch does not exist. If the staging area is empty, the function will print a message, to inform the user that there is nothing to commit. If you don\textquotesingle{}t want to provide a message, let the message parameter to NULL. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch\+\_\+name} & The name of the branch to commit to \\
+\hline
+{\em message} & Optional message to add to the commit (can be NULL) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The hash of the new commit if the commit was successful, NULL otherwise (the commit was not successful) 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 74} of file \textbf{ mygit\+\_\+commit.\+c}.
+

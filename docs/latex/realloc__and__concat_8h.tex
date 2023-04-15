@@ -1,0 +1,54 @@
+\doxysection{include/utils/realloc\+\_\+and\+\_\+concat.h File Reference}
+\label{realloc__and__concat_8h}\index{include/utils/realloc\_and\_concat.h@{include/utils/realloc\_and\_concat.h}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ realloc\+\_\+and\+\_\+concat\+\_\+after} (char $\ast$$\ast$base, const char $\ast$extension)
+\begin{DoxyCompactList}\small\item\em Reallocate the memory of the base string and concatenate the extension string at the end of the base string. \end{DoxyCompactList}\item 
+void \textbf{ realloc\+\_\+and\+\_\+concat\+\_\+before} (const char $\ast$prefix, char $\ast$$\ast$base)
+\begin{DoxyCompactList}\small\item\em Reallocate the memory of the base string and concatenate the prefix string at the beginning of the base string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{realloc__and__concat_8h_afc4012a35e0afd9888c4f6fd43dc5284}} 
+\index{realloc\_and\_concat.h@{realloc\_and\_concat.h}!realloc\_and\_concat\_after@{realloc\_and\_concat\_after}}
+\index{realloc\_and\_concat\_after@{realloc\_and\_concat\_after}!realloc\_and\_concat.h@{realloc\_and\_concat.h}}
+\doxysubsubsection{realloc\_and\_concat\_after()}
+{\footnotesize\ttfamily void realloc\+\_\+and\+\_\+concat\+\_\+after (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{base,  }\item[{const char $\ast$}]{extension }\end{DoxyParamCaption})}
+
+
+
+Reallocate the memory of the base string and concatenate the extension string at the end of the base string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em base} & The string to concatenate, will be reallocated. \\
+\hline
+{\em extension} & The string to concatenate at the end of the base string. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 11} of file \textbf{ realloc\+\_\+and\+\_\+concat.\+c}.
+
+\mbox{\label{realloc__and__concat_8h_a7f2b02e637044e97d7508ef65da13994}} 
+\index{realloc\_and\_concat.h@{realloc\_and\_concat.h}!realloc\_and\_concat\_before@{realloc\_and\_concat\_before}}
+\index{realloc\_and\_concat\_before@{realloc\_and\_concat\_before}!realloc\_and\_concat.h@{realloc\_and\_concat.h}}
+\doxysubsubsection{realloc\_and\_concat\_before()}
+{\footnotesize\ttfamily void realloc\+\_\+and\+\_\+concat\+\_\+before (\begin{DoxyParamCaption}\item[{const char $\ast$}]{prefix,  }\item[{char $\ast$$\ast$}]{base }\end{DoxyParamCaption})}
+
+
+
+Reallocate the memory of the base string and concatenate the prefix string at the beginning of the base string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prefix} & The string to concatenate at the beginning of the base string. \\
+\hline
+{\em base} & The string to concatenate, will be reallocated. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 31} of file \textbf{ realloc\+\_\+and\+\_\+concat.\+c}.
+

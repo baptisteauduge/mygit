@@ -1,0 +1,149 @@
+\doxysection{mygit\+\_\+commit.\+c}
+\label{mygit__commit_8c_source}\index{src/commit/mygit\_commit.c@{src/commit/mygit\_commit.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ mygit\_commit.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ mygit\_commit.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}commit/mygit\_commit.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}branch/get\_branch\_commit\_tree.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}commit/mygit\_commit\_pre\_checks.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}libs/commit/commit.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}libs/commit/create\_blob\_of\_commit.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}libs/commit/insert\_key\_val\_in\_commit.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}libs/file/list\_files.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}libs/file/read\_write\_file.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}libs/list/insert\_get\_search\_list.h"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/save\_content\_and\_work\_tree.h"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/save\_get\_file\_work\_tree.h"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}refs/refs\_utils.h"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}utils/utils.h"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{static}\ work\_tree\_t\ *get\_added\_work\_tree\_and\_delete(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \ \ work\_tree\_t\ *work\_tree\ =\ NULL;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordflow}{if}\ (!does\_file\_exists(MYGIT\_PATH\_ADD))\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ no\ files\ added\(\backslash\)n"{}});}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00031\ \ \ \}}
+\DoxyCodeLine{00032\ \ \ work\_tree\ =\ file\_to\_work\_tree(MYGIT\_PATH\_ADD);}
+\DoxyCodeLine{00033\ \ \ remove(MYGIT\_PATH\_ADD);}
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordflow}{return}\ work\_tree;}
+\DoxyCodeLine{00035\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{static}\ commit\_t\ *get\_commit\_from\_added(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ commit\_t\ *commit\ =\ NULL;}
+\DoxyCodeLine{00040\ \ \ work\_tree\_t\ *work\_tree\ =\ NULL;}
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordtype}{char}\ *hash\_work\_tree\ =\ NULL;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ work\_tree\ =\ get\_added\_work\_tree\_and\_delete();}
+\DoxyCodeLine{00044\ \ \ \textcolor{keywordflow}{if}\ (!work\_tree)}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00046\ \ \ hash\_work\_tree\ =\ save\_content\_and\_work\_tree(work\_tree,\ PREFIX\_PATH);}
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordflow}{if}\ (!hash\_work\_tree)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ free\_work\_tree(work\_tree);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00050\ \ \ \}}
+\DoxyCodeLine{00051\ \ \ commit\ =\ create\_commit\_with\_tree\_key\_val(hash\_work\_tree);}
+\DoxyCodeLine{00052\ \ \ free(hash\_work\_tree);}
+\DoxyCodeLine{00053\ \ \ free\_work\_tree(work\_tree);}
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordflow}{return}\ commit;}
+\DoxyCodeLine{00055\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ *fill\_new\_commit\_create\_blob\_and\_get\_hash(commit\_t\ *new\_commit,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *message,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *branch\_name)}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \textcolor{keywordtype}{char}\ *hash\_last\_commit\ =\ NULL;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ hash\_last\_commit\ =\ get\_hash\_from\_last\_commit\_in\_branch(branch\_name);}
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordflow}{if}\ (!hash\_last\_commit)}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00066\ \ \ \textcolor{keywordflow}{if}\ (strcmp(hash\_last\_commit,\ \textcolor{stringliteral}{"{}"{}})\ !=\ 0)}
+\DoxyCodeLine{00067\ \ \ \ \ insert\_key\_val\_in\_commit(new\_commit,\ COMMIT\_KEY\_PARENT,\ hash\_last\_commit);}
+\DoxyCodeLine{00068\ \ \ free(hash\_last\_commit);}
+\DoxyCodeLine{00069\ \ \ \textcolor{keywordflow}{if}\ (message)}
+\DoxyCodeLine{00070\ \ \ \ \ insert\_key\_val\_in\_commit(new\_commit,\ COMMIT\_KEY\_MESSAGE,\ message);}
+\DoxyCodeLine{00071\ \ \ \textcolor{keywordflow}{return}\ create\_blob\_of\_commit(new\_commit);}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keywordtype}{char}\ *mygit\_commit(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *branch\_name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *message)}
+\DoxyCodeLine{00075\ \{}
+\DoxyCodeLine{00076\ \ \ \textcolor{keywordtype}{int}\ pre\_checks\ =\ 0;}
+\DoxyCodeLine{00077\ \ \ commit\_t\ *new\_commit\ =\ NULL;}
+\DoxyCodeLine{00078\ \ \ \textcolor{keywordtype}{char}\ *hash\_new\_commit\ =\ NULL;}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \textcolor{keywordflow}{if}\ (!branch\_name)}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00082\ \ \ pre\_checks\ =\ check\_if\_refs\_exists()\ \&\&\ check\_if\_branch\_exists(branch\_name)\ \&\&}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\_if\_head\_is\_in\_branch(branch\_name);}
+\DoxyCodeLine{00084\ \ \ \textcolor{keywordflow}{if}\ (!pre\_checks)}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00086\ \ \ new\_commit\ =\ get\_commit\_from\_added();}
+\DoxyCodeLine{00087\ \ \ \textcolor{keywordflow}{if}\ (!new\_commit)}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00089\ \ \ hash\_new\_commit\ =\ fill\_new\_commit\_create\_blob\_and\_get\_hash(}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ new\_commit,\ message,\ branch\_name);}
+\DoxyCodeLine{00091\ \ \ free\_commit(new\_commit);}
+\DoxyCodeLine{00092\ \ \ \textcolor{keywordflow}{if}\ (!hash\_new\_commit)}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00094\ \ \ set\_head\_and\_branch\_hash\_last\_commit(branch\_name,\ hash\_new\_commit);}
+\DoxyCodeLine{00095\ \ \ \textcolor{keywordflow}{return}\ hash\_new\_commit;}
+\DoxyCodeLine{00096\ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ get\_commits\_from\_ref\_and\_append\_list(list\_t\ **list\_all\_commits,}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *ref)}
+\DoxyCodeLine{00100\ \{}
+\DoxyCodeLine{00101\ \ \ list\_t\ *list\_current\_commits\ =\ NULL;}
+\DoxyCodeLine{00102\ \ \ list\_t\ *tmp\ =\ NULL;}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ list\_current\_commits\ =\ get\_commit\_from\_branch\_list(ref);}
+\DoxyCodeLine{00105\ \ \ \textcolor{keywordflow}{if}\ (!list\_current\_commits)}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00107\ \ \ tmp\ =\ concat\_list\_without\_duplicate(*list\_all\_commits,\ list\_current\_commits);}
+\DoxyCodeLine{00108\ \ \ \textcolor{keywordflow}{if}\ (!tmp)\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ free\_list(list\_current\_commits);}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00111\ \ \ \}}
+\DoxyCodeLine{00112\ \ \ free\_list(*list\_all\_commits);}
+\DoxyCodeLine{00113\ \ \ free\_list(list\_current\_commits);}
+\DoxyCodeLine{00114\ \ \ *list\_all\_commits\ =\ tmp;}
+\DoxyCodeLine{00115\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00116\ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ list\_t\ *get\_list\_all\_commits(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00119\ \{}
+\DoxyCodeLine{00120\ \ \ list\_t\ *list\_all\_refs\ =\ get\_list\_files\_and\_dir(MYGIT\_DIR\_REFS);}
+\DoxyCodeLine{00121\ \ \ cell\_t\ *current\_ref\ =\ NULL;}
+\DoxyCodeLine{00122\ \ \ list\_t\ *list\_all\_commits\ =\ NULL;}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \textcolor{keywordflow}{if}\ (!list\_all\_refs)}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00126\ \ \ list\_all\_commits\ =\ create\_init\_list();}
+\DoxyCodeLine{00127\ \ \ \textcolor{keywordflow}{if}\ (!list\_all\_commits)\ \{}
+\DoxyCodeLine{00128\ \ \ \ \ free\_list(list\_all\_refs);}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00130\ \ \ \}}
+\DoxyCodeLine{00131\ \ \ current\_ref\ =\ *list\_all\_refs;}
+\DoxyCodeLine{00132\ \ \ \textcolor{keywordflow}{while}\ (current\_ref)\ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordflow}{if}\ (!get\_commits\_from\_ref\_and\_append\_list(\&list\_all\_commits,}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_ref-\/>data))\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ free\_list(list\_all\_refs);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ free\_list(list\_all\_commits);}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \ \ current\_ref\ =\ current\_ref-\/>next;}
+\DoxyCodeLine{00140\ \ \ \}}
+\DoxyCodeLine{00141\ \ \ free\_list(list\_all\_refs);}
+\DoxyCodeLine{00142\ \ \ \textcolor{keywordflow}{return}\ list\_all\_commits;}
+\DoxyCodeLine{00143\ \}}
+
+\end{DoxyCode}

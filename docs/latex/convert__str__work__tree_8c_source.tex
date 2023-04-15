@@ -1,0 +1,113 @@
+\doxysection{convert\+\_\+str\+\_\+work\+\_\+tree.\+c}
+\label{convert__str__work__tree_8c_source}\index{src/libs/work\_tree/convert\_str\_work\_tree.c@{src/libs/work\_tree/convert\_str\_work\_tree.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ convert\_str\_work\_tree.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ convert\_str\_work\_tree.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/convert\_str\_work\_tree.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/work\_file/convert\_str\_work\_file.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/insert\_get\_search\_work\_tree.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keywordtype}{size\_t}\ size\_work\_tree\_to\_str(\textcolor{keyword}{const}\ work\_tree\_t\ *wf)}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordtype}{size\_t}\ size\_wt\ =\ 0;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordflow}{if}\ (!wf\ ||\ !wf-\/>tab)}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00020\ \ \ size\_wt\ =\ size\_work\_file\_to\_str(wf-\/>tab)\ *\ wf-\/>size;}
+\DoxyCodeLine{00021\ \ \ size\_wt\ +=\ wf-\/>size;}
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordflow}{return}\ size\_wt;}
+\DoxyCodeLine{00023\ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ browse\_wt\_and\_convert(\textcolor{keyword}{const}\ work\_tree\_t\ *wt,\ \textcolor{keywordtype}{char}\ *str\_wt,\ \textcolor{keywordtype}{size\_t}\ str\_wt\_size)}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordtype}{char}\ *str\_wf\ =\ NULL;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \textcolor{keywordflow}{if}\ (!wt\ ||\ !str\_wt)}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ wt-\/>size;\ i++)\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ str\_wf\ =\ convert\_work\_file\_to\_str(\&wt-\/>tab[i]);}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{if}\ (!str\_wf)}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00035\ \ \ \ \ strlcat(str\_wt,\ str\_wf,\ str\_wt\_size);}
+\DoxyCodeLine{00036\ \ \ \ \ free(str\_wf);}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ !=\ wt-\/>size\ -\/\ 1)}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ strlcat(str\_wt,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ str\_wt\_size);}
+\DoxyCodeLine{00039\ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00041\ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keywordtype}{char}\ *convert\_work\_tree\_to\_str(\textcolor{keyword}{const}\ work\_tree\_t\ *wt)}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordtype}{size\_t}\ str\_wt\_size\ =\ 0;}
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordtype}{char}\ *str\_wt\ =\ NULL;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordflow}{if}\ (!wt)}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00050\ \ \ str\_wt\_size\ =\ size\_work\_tree\_to\_str(wt)\ +\ 1;}
+\DoxyCodeLine{00051\ \ \ str\_wt\ =\ calloc(str\_wt\_size,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00052\ \ \ \textcolor{keywordflow}{if}\ (!str\_wt)}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordflow}{if}\ (!browse\_wt\_and\_convert(wt,\ str\_wt,\ str\_wt\_size))\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ free(str\_wt);}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00057\ \ \ \}}
+\DoxyCodeLine{00058\ \ \ \textcolor{keywordflow}{return}\ str\_wt;}
+\DoxyCodeLine{00059\ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ browse\_string\_and\_append\_wt(work\_tree\_t\ *wt,\ \textcolor{keywordtype}{char}\ **str\_cpy)}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ \textcolor{keywordtype}{char}\ *token\ =\ NULL;}
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordtype}{char}\ *name\ =\ NULL;}
+\DoxyCodeLine{00065\ \ \ \textcolor{keywordtype}{char}\ *hash\ =\ NULL;}
+\DoxyCodeLine{00066\ \ \ mode\_t\ mode\ =\ 0;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ token\ =\ strsep(str\_cpy,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00069\ \ \ \textcolor{keywordflow}{while}\ (token\ \&\&\ strcmp(token,\ \textcolor{stringliteral}{"{}"{}})\ !=\ 0)\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{if}\ (!get\_content\_str\_work\_file(token,\ \&name,\ \&hash,\ \&mode))}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{if}\ (append\_work\_tree(wt,\ name,\ hash,\ mode)\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ free(name);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ free(hash);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ free(name);}
+\DoxyCodeLine{00078\ \ \ \ \ free(hash);}
+\DoxyCodeLine{00079\ \ \ \ \ token\ =\ strsep(str\_cpy,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00080\ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00082\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ work\_tree\_t\ *convert\_str\_to\_work\_tree(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str)}
+\DoxyCodeLine{00085\ \{}
+\DoxyCodeLine{00086\ \ \ work\_tree\_t\ *wt\ =\ NULL;}
+\DoxyCodeLine{00087\ \ \ \textcolor{keywordtype}{char}\ *str\_cpy\ =\ NULL;}
+\DoxyCodeLine{00088\ \ \ \textcolor{keywordtype}{char}\ *str\_cpy\_pointer\ =\ NULL;}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \textcolor{keywordflow}{if}\ (!str)}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00092\ \ \ str\_cpy\ =\ strdup(str);}
+\DoxyCodeLine{00093\ \ \ str\_cpy\_pointer\ =\ str\_cpy;}
+\DoxyCodeLine{00094\ \ \ \textcolor{keywordflow}{if}\ (!str\_cpy)}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00096\ \ \ wt\ =\ create\_and\_init\_work\_tree();}
+\DoxyCodeLine{00097\ \ \ \textcolor{keywordflow}{if}\ (!wt)\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ free(str\_cpy);}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00100\ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \textcolor{keywordflow}{if}\ (!browse\_string\_and\_append\_wt(wt,\ \&str\_cpy))\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ free\_work\_tree(wt);}
+\DoxyCodeLine{00103\ \ \ \ \ wt\ =\ NULL;}
+\DoxyCodeLine{00104\ \ \ \}}
+\DoxyCodeLine{00105\ \ \ free(str\_cpy\_pointer);}
+\DoxyCodeLine{00106\ \ \ \textcolor{keywordflow}{return}\ wt;}
+\DoxyCodeLine{00107\ \}}
+
+\end{DoxyCode}

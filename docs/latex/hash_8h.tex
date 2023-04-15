@@ -1,0 +1,79 @@
+\doxysection{include/libs/hash/hash.h File Reference}
+\label{hash_8h}\index{include/libs/hash/hash.h@{include/libs/hash/hash.h}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \textbf{ get\+\_\+sha256\+\_\+of\+\_\+file} (const char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em Get the sha256 of file. \end{DoxyCompactList}\item 
+void \textbf{ put\+\_\+hash\+\_\+of\+\_\+source\+\_\+in\+\_\+dest} (const char $\ast$source, const char $\ast$dest)
+\begin{DoxyCompactList}\small\item\em Get the sha256 of the content of the file source and put it in the file dest) \end{DoxyCompactList}\item 
+unsigned long \textbf{ commit\+\_\+hash\+\_\+func} (const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Hash function used for the commit hash table. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{hash_8h_a61a76a9eb4db666371209d6559d3f59a}} 
+\index{hash.h@{hash.h}!commit\_hash\_func@{commit\_hash\_func}}
+\index{commit\_hash\_func@{commit\_hash\_func}!hash.h@{hash.h}}
+\doxysubsubsection{commit\_hash\_func()}
+{\footnotesize\ttfamily unsigned long commit\+\_\+hash\+\_\+func (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Hash function used for the commit hash table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to hash \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned long The hash of the string 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 51} of file \textbf{ hash.\+c}.
+
+\mbox{\label{hash_8h_a53d0ac48fc0e6a389560b917f22c90e7}} 
+\index{hash.h@{hash.h}!get\_sha256\_of\_file@{get\_sha256\_of\_file}}
+\index{get\_sha256\_of\_file@{get\_sha256\_of\_file}!hash.h@{hash.h}}
+\doxysubsubsection{get\_sha256\_of\_file()}
+{\footnotesize\ttfamily char $\ast$ get\+\_\+sha256\+\_\+of\+\_\+file (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+
+
+Get the sha256 of file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The path to the file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The sha256 of the file or NULL if any error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 15} of file \textbf{ hash.\+c}.
+
+\mbox{\label{hash_8h_aba029d9b9a6ebf1d016a94158571983e}} 
+\index{hash.h@{hash.h}!put\_hash\_of\_source\_in\_dest@{put\_hash\_of\_source\_in\_dest}}
+\index{put\_hash\_of\_source\_in\_dest@{put\_hash\_of\_source\_in\_dest}!hash.h@{hash.h}}
+\doxysubsubsection{put\_hash\_of\_source\_in\_dest()}
+{\footnotesize\ttfamily void put\+\_\+hash\+\_\+of\+\_\+source\+\_\+in\+\_\+dest (\begin{DoxyParamCaption}\item[{const char $\ast$}]{source,  }\item[{const char $\ast$}]{dest }\end{DoxyParamCaption})}
+
+
+
+Get the sha256 of the content of the file source and put it in the file dest) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & The path to the source file \\
+\hline
+{\em dest} & The path to the dest file \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 36} of file \textbf{ hash.\+c}.
+

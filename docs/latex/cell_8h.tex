@@ -1,0 +1,102 @@
+\doxysection{include/libs/cell/cell.h File Reference}
+\label{cell_8h}\index{include/libs/cell/cell.h@{include/libs/cell/cell.h}}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ cell\+\_\+s}
+\begin{DoxyCompactList}\small\item\em A cell is a node in a linked list. It contains a pointer to the next cell, and a pointer to the data contained in the cell. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \textbf{ cell\+\_\+s} \textbf{ cell\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A cell is a node in a linked list. It contains a pointer to the next cell, and a pointer to the data contained in the cell. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ cell\+\_\+t} $\ast$ \textbf{ build\+\_\+cell} (const char $\ast$data)
+\begin{DoxyCompactList}\small\item\em Build a cell with the data provided, the data is copied in the cell. The next cell is set to NULL. \end{DoxyCompactList}\item 
+void \textbf{ free\+\_\+cell} (\textbf{ cell\+\_\+t} $\ast$cell)
+\begin{DoxyCompactList}\small\item\em Free the cell provided. The data contained in the cell is also freed. \end{DoxyCompactList}\item 
+char $\ast$ \textbf{ cell\+\_\+to\+\_\+string} (const \textbf{ cell\+\_\+t} $\ast$cell)
+\begin{DoxyCompactList}\small\item\em Convert the cell provided to a string. The string is allocated, and must be freed by the caller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\label{cell_8h_a784e6ed82bfcd5bed1d1729d8afd6e19}} 
+\index{cell.h@{cell.h}!cell\_t@{cell\_t}}
+\index{cell\_t@{cell\_t}!cell.h@{cell.h}}
+\doxysubsubsection{cell\_t}
+{\footnotesize\ttfamily typedef struct \textbf{ cell\+\_\+s} \textbf{ cell\+\_\+t}}
+
+
+
+A cell is a node in a linked list. It contains a pointer to the next cell, and a pointer to the data contained in the cell. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data contained in the cell \\
+\hline
+{\em next} & The next cell in the linked list \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{cell_8h_a097f890598f89d0a60c57b6546624d3d}} 
+\index{cell.h@{cell.h}!build\_cell@{build\_cell}}
+\index{build\_cell@{build\_cell}!cell.h@{cell.h}}
+\doxysubsubsection{build\_cell()}
+{\footnotesize\ttfamily \textbf{ cell\+\_\+t} $\ast$ build\+\_\+cell (\begin{DoxyParamCaption}\item[{const char $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Build a cell with the data provided, the data is copied in the cell. The next cell is set to NULL. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to copy in the cell \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+cell\+\_\+t$\ast$ The cell created, NULL if an error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 12} of file \textbf{ cell.\+c}.
+
+\mbox{\label{cell_8h_ae214ef466869f53c6b2dbf1ef489ff72}} 
+\index{cell.h@{cell.h}!cell\_to\_string@{cell\_to\_string}}
+\index{cell\_to\_string@{cell\_to\_string}!cell.h@{cell.h}}
+\doxysubsubsection{cell\_to\_string()}
+{\footnotesize\ttfamily char $\ast$ cell\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{const \textbf{ cell\+\_\+t} $\ast$}]{cell }\end{DoxyParamCaption})}
+
+
+
+Convert the cell provided to a string. The string is allocated, and must be freed by the caller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cell} & The cell to convert to a string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The string representing the cell, NULL if an error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 37} of file \textbf{ cell.\+c}.
+
+\mbox{\label{cell_8h_a8e1be7dc678b7edad9810f46d690d266}} 
+\index{cell.h@{cell.h}!free\_cell@{free\_cell}}
+\index{free\_cell@{free\_cell}!cell.h@{cell.h}}
+\doxysubsubsection{free\_cell()}
+{\footnotesize\ttfamily void free\+\_\+cell (\begin{DoxyParamCaption}\item[{\textbf{ cell\+\_\+t} $\ast$}]{cell }\end{DoxyParamCaption})}
+
+
+
+Free the cell provided. The data contained in the cell is also freed. 
+
+
+
+Definition at line \textbf{ 29} of file \textbf{ cell.\+c}.
+

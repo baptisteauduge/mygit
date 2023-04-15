@@ -1,0 +1,39 @@
+\doxysection{src/checkout/mygit\+\_\+checkout\+\_\+commit.c File Reference}
+\label{mygit__checkout__commit_8c}\index{src/checkout/mygit\_checkout\_commit.c@{src/checkout/mygit\_checkout\_commit.c}}
+{\ttfamily \#include \char`\"{}checkout/mygit\+\_\+checkout\+\_\+commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}commit/mygit\+\_\+commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/commit/restore\+\_\+commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/read\+\_\+write\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/list/filter\+\_\+list\+\_\+prefix.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/utils.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ mygit\+\_\+checkout\+\_\+commit} (char $\ast$pattern)
+\begin{DoxyCompactList}\small\item\em Function used to checkout to a commit (i.\+e. change the current branch, i.\+e. change the HEAD and restore the working directory) using a pattern, the pattern should match the first characters of the commit hash. If the pattern matches more than one commit, the functions will not checkout to any commit, but will print the list of commits matching the pattern. If the pattern matches only one commit, the function will checkout to this commit. If the pattern does not match any commit, the function will not do anything, will print an error message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{mygit__checkout__commit_8c_a44134dfa665ca7c6f9858a0cf810b8ad}} 
+\index{mygit\_checkout\_commit.c@{mygit\_checkout\_commit.c}!mygit\_checkout\_commit@{mygit\_checkout\_commit}}
+\index{mygit\_checkout\_commit@{mygit\_checkout\_commit}!mygit\_checkout\_commit.c@{mygit\_checkout\_commit.c}}
+\doxysubsubsection{mygit\_checkout\_commit()}
+{\footnotesize\ttfamily int mygit\+\_\+checkout\+\_\+commit (\begin{DoxyParamCaption}\item[{char $\ast$}]{pattern }\end{DoxyParamCaption})}
+
+
+
+Function used to checkout to a commit (i.\+e. change the current branch, i.\+e. change the HEAD and restore the working directory) using a pattern, the pattern should match the first characters of the commit hash. If the pattern matches more than one commit, the functions will not checkout to any commit, but will print the list of commits matching the pattern. If the pattern matches only one commit, the function will checkout to this commit. If the pattern does not match any commit, the function will not do anything, will print an error message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pattern} & The pattern of the commit \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the commit as been checked out, 0 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 34} of file \textbf{ mygit\+\_\+checkout\+\_\+commit.\+c}.
+

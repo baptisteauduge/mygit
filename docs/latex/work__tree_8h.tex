@@ -1,0 +1,100 @@
+\doxysection{include/libs/work\+\_\+tree/work\+\_\+tree.h File Reference}
+\label{work__tree_8h}\index{include/libs/work\_tree/work\_tree.h@{include/libs/work\_tree/work\_tree.h}}
+{\ttfamily \#include \char`\"{}libs/work\+\_\+file/work\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ work\+\_\+tree\+\_\+s}
+\begin{DoxyCompactList}\small\item\em The work\+\_\+tree structure. It contains a table of work\+\_\+file\+\_\+t and the size of the table. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ WORK\+\_\+\+TREE\+\_\+\+MAX\+\_\+\+SIZE}~100
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \textbf{ work\+\_\+tree\+\_\+s} \textbf{ work\+\_\+tree\+\_\+t}
+\begin{DoxyCompactList}\small\item\em The work\+\_\+tree structure. It contains a table of work\+\_\+file\+\_\+t and the size of the table. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ work\+\_\+tree\+\_\+t} $\ast$ \textbf{ create\+\_\+and\+\_\+init\+\_\+work\+\_\+tree} ()
+\begin{DoxyCompactList}\small\item\em Create a and init work tree with the \doxyref{WORK\+\_\+\+TREE\+\_\+\+MAX\+\_\+\+SIZE}{p.}{work__tree_8h_ad727273f3c0c261a24b1939da1d39611} constant as max\+\_\+size (tab is allocated at this size). \end{DoxyCompactList}\item 
+void \textbf{ free\+\_\+work\+\_\+tree} (\textbf{ work\+\_\+tree\+\_\+t} $\ast$wt)
+\begin{DoxyCompactList}\small\item\em Free the work\+\_\+tree and all the work\+\_\+file\+\_\+t in the table. The work\+\_\+files are freed cleanly, and the data contained in the work\+\_\+files are freed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\label{work__tree_8h_ad727273f3c0c261a24b1939da1d39611}} 
+\index{work\_tree.h@{work\_tree.h}!WORK\_TREE\_MAX\_SIZE@{WORK\_TREE\_MAX\_SIZE}}
+\index{WORK\_TREE\_MAX\_SIZE@{WORK\_TREE\_MAX\_SIZE}!work\_tree.h@{work\_tree.h}}
+\doxysubsubsection{WORK\_TREE\_MAX\_SIZE}
+{\footnotesize\ttfamily \#define WORK\+\_\+\+TREE\+\_\+\+MAX\+\_\+\+SIZE~100}
+
+
+
+Definition at line \textbf{ 10} of file \textbf{ work\+\_\+tree.\+h}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\label{work__tree_8h_a14a37ab925fb21e48c39ce229c718c22}} 
+\index{work\_tree.h@{work\_tree.h}!work\_tree\_t@{work\_tree\_t}}
+\index{work\_tree\_t@{work\_tree\_t}!work\_tree.h@{work\_tree.h}}
+\doxysubsubsection{work\_tree\_t}
+{\footnotesize\ttfamily typedef struct \textbf{ work\+\_\+tree\+\_\+s} \textbf{ work\+\_\+tree\+\_\+t}}
+
+
+
+The work\+\_\+tree structure. It contains a table of work\+\_\+file\+\_\+t and the size of the table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tab} & The table of work\+\_\+file\+\_\+t. \\
+\hline
+{\em max\+\_\+size} & The maximum size of the table. \\
+\hline
+{\em size} & The size of the table. (the number of work\+\_\+file\+\_\+t in the table) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{work__tree_8h_a743367b27b96a0a18c477a7fe66963cf}} 
+\index{work\_tree.h@{work\_tree.h}!create\_and\_init\_work\_tree@{create\_and\_init\_work\_tree}}
+\index{create\_and\_init\_work\_tree@{create\_and\_init\_work\_tree}!work\_tree.h@{work\_tree.h}}
+\doxysubsubsection{create\_and\_init\_work\_tree()}
+{\footnotesize\ttfamily \textbf{ work\+\_\+tree\+\_\+t} $\ast$ create\+\_\+and\+\_\+init\+\_\+work\+\_\+tree (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Create a and init work tree with the \doxyref{WORK\+\_\+\+TREE\+\_\+\+MAX\+\_\+\+SIZE}{p.}{work__tree_8h_ad727273f3c0c261a24b1939da1d39611} constant as max\+\_\+size (tab is allocated at this size). 
+
+\begin{DoxyReturn}{Returns}
+work\+\_\+tree\+\_\+t$\ast$ The work\+\_\+tree or NULL if an error occurred. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 10} of file \textbf{ work\+\_\+tree.\+c}.
+
+\mbox{\label{work__tree_8h_a842205955ae97abc8a20d9e5755af98a}} 
+\index{work\_tree.h@{work\_tree.h}!free\_work\_tree@{free\_work\_tree}}
+\index{free\_work\_tree@{free\_work\_tree}!work\_tree.h@{work\_tree.h}}
+\doxysubsubsection{free\_work\_tree()}
+{\footnotesize\ttfamily void free\+\_\+work\+\_\+tree (\begin{DoxyParamCaption}\item[{\textbf{ work\+\_\+tree\+\_\+t} $\ast$}]{wt }\end{DoxyParamCaption})}
+
+
+
+Free the work\+\_\+tree and all the work\+\_\+file\+\_\+t in the table. The work\+\_\+files are freed cleanly, and the data contained in the work\+\_\+files are freed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wt} & The work\+\_\+tree to free. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 27} of file \textbf{ work\+\_\+tree.\+c}.
+

@@ -1,0 +1,85 @@
+\doxysection{include/libs/key\+\_\+val/key\+\_\+val.h File Reference}
+\label{key__val_8h}\index{include/libs/key\_val/key\_val.h@{include/libs/key\_val/key\_val.h}}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ key\+\_\+val\+\_\+s}
+\begin{DoxyCompactList}\small\item\em A pair key/value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \textbf{ key\+\_\+val\+\_\+s} \textbf{ key\+\_\+val\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A pair key/value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ key\+\_\+val\+\_\+t} $\ast$ \textbf{ create\+\_\+key\+\_\+val} (const char $\ast$key, const char $\ast$value)
+\begin{DoxyCompactList}\small\item\em Create a key value pair (key and value will be copied) \end{DoxyCompactList}\item 
+void \textbf{ free\+\_\+key\+\_\+val} (\textbf{ key\+\_\+val\+\_\+t} $\ast$key\+\_\+val)
+\begin{DoxyCompactList}\small\item\em Free the key value pair. The key and value will be freed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\label{key__val_8h_a5b434accd1766f22d32714114afb7aa7}} 
+\index{key\_val.h@{key\_val.h}!key\_val\_t@{key\_val\_t}}
+\index{key\_val\_t@{key\_val\_t}!key\_val.h@{key\_val.h}}
+\doxysubsubsection{key\_val\_t}
+{\footnotesize\ttfamily typedef struct \textbf{ key\+\_\+val\+\_\+s} \textbf{ key\+\_\+val\+\_\+t}}
+
+
+
+A pair key/value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key \\
+\hline
+{\em value} & The value associated to the key \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{key__val_8h_a9d06541c89fc3c82c2b6c9da20a4d91c}} 
+\index{key\_val.h@{key\_val.h}!create\_key\_val@{create\_key\_val}}
+\index{create\_key\_val@{create\_key\_val}!key\_val.h@{key\_val.h}}
+\doxysubsubsection{create\_key\_val()}
+{\footnotesize\ttfamily \textbf{ key\+\_\+val\+\_\+t} $\ast$ create\+\_\+key\+\_\+val (\begin{DoxyParamCaption}\item[{const char $\ast$}]{key,  }\item[{const char $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+
+Create a key value pair (key and value will be copied) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key of the pair \\
+\hline
+{\em value} & The value of the pair \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+key\+\_\+val\+\_\+t$\ast$ The key value pair created or NULL if any error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 11} of file \textbf{ key\+\_\+val.\+c}.
+
+\mbox{\label{key__val_8h_aa4b09aaa39cb40ed0aaf10b5d8c5c9b9}} 
+\index{key\_val.h@{key\_val.h}!free\_key\_val@{free\_key\_val}}
+\index{free\_key\_val@{free\_key\_val}!key\_val.h@{key\_val.h}}
+\doxysubsubsection{free\_key\_val()}
+{\footnotesize\ttfamily void free\+\_\+key\+\_\+val (\begin{DoxyParamCaption}\item[{\textbf{ key\+\_\+val\+\_\+t} $\ast$}]{key\+\_\+val }\end{DoxyParamCaption})}
+
+
+
+Free the key value pair. The key and value will be freed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key\+\_\+val} & The key value pair to free \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 34} of file \textbf{ key\+\_\+val.\+c}.
+

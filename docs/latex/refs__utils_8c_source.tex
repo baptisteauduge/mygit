@@ -1,0 +1,48 @@
+\doxysection{refs\+\_\+utils.\+c}
+\label{refs__utils_8c_source}\index{src/refs/refs\_utils.c@{src/refs/refs\_utils.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ refs\_utils.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ refs\_utils.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}refs/refs\_utils.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/file/get\_path\_absolute.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}libs/file/read\_write\_file.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}utils/utils.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keywordtype}{char}\ *get\_hash\_from\_last\_commit\_in\_branch(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *branch\_name)}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordtype}{char}\ *branch\_path\ =\ NULL;}
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordtype}{char}\ *hash\ =\ NULL;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordflow}{if}\ (!branch\_name)}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00021\ \ \ branch\_path\ =\ get\_path\_absolute(MYGIT\_DIR\_REFS,\ branch\_name);}
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordflow}{if}\ (!branch\_path)}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00024\ \ \ hash\ =\ get\_file\_content(branch\_path);}
+\DoxyCodeLine{00025\ \ \ free(branch\_path);}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordflow}{return}\ hash;}
+\DoxyCodeLine{00027\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ set\_head\_and\_branch\_hash\_last\_commit(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *branch\_name,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hash)}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordtype}{char}\ *branch\_path\ =\ NULL;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordflow}{if}\ (!branch\_name\ ||\ !hash)}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00036\ \ \ branch\_path\ =\ get\_path\_absolute(MYGIT\_DIR\_REFS,\ branch\_name);}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordflow}{if}\ (!branch\_path)}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00039\ \ \ write\_file\_content(branch\_path,\ hash);}
+\DoxyCodeLine{00040\ \ \ write\_file\_content(MYGIT\_DIR\_REFS\ \textcolor{stringliteral}{"{}/"{}}\ MYGIT\_FILE\_REF\_HEAD,\ hash);}
+\DoxyCodeLine{00041\ \ \ free(branch\_path);}
+\DoxyCodeLine{00042\ \}}
+
+\end{DoxyCode}

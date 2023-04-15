@@ -1,0 +1,44 @@
+\doxysection{src/libs/work\+\_\+tree/save\+\_\+content\+\_\+and\+\_\+work\+\_\+tree.c File Reference}
+\label{save__content__and__work__tree_8c}\index{src/libs/work\_tree/save\_content\_and\_work\_tree.c@{src/libs/work\_tree/save\_content\_and\_work\_tree.c}}
+{\ttfamily \#include \char`\"{}libs/work\+\_\+tree/save\+\_\+content\+\_\+and\+\_\+work\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/create\+\_\+blob.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/get\+\_\+path\+\_\+absolute.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/list\+\_\+files.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/rights\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/list/add\+\_\+prefix\+\_\+all\+\_\+list.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/work\+\_\+tree/create\+\_\+blob\+\_\+of\+\_\+work\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/work\+\_\+tree/insert\+\_\+get\+\_\+search\+\_\+work\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \textbf{ save\+\_\+content\+\_\+and\+\_\+work\+\_\+tree} (\textbf{ work\+\_\+tree\+\_\+t} $\ast$wt, const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Create blob of all the files in the work\+\_\+tree, put the hash of the blob in the work\+\_\+tree and save the work\+\_\+tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{save__content__and__work__tree_8c_a05bbe7b07a2fb0ecaf45b9e77d9e080f}} 
+\index{save\_content\_and\_work\_tree.c@{save\_content\_and\_work\_tree.c}!save\_content\_and\_work\_tree@{save\_content\_and\_work\_tree}}
+\index{save\_content\_and\_work\_tree@{save\_content\_and\_work\_tree}!save\_content\_and\_work\_tree.c@{save\_content\_and\_work\_tree.c}}
+\doxysubsubsection{save\_content\_and\_work\_tree()}
+{\footnotesize\ttfamily char $\ast$ save\+\_\+content\+\_\+and\+\_\+work\+\_\+tree (\begin{DoxyParamCaption}\item[{\textbf{ work\+\_\+tree\+\_\+t} $\ast$}]{wt,  }\item[{const char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Create blob of all the files in the work\+\_\+tree, put the hash of the blob in the work\+\_\+tree and save the work\+\_\+tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wt} & The work\+\_\+tree to save. \\
+\hline
+{\em path} & The path where the work\+\_\+tree must be saved. (usually the path of the repository (or \char`\"{}.\char`\"{}) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The hash of the blob of the work\+\_\+tree. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 68} of file \textbf{ save\+\_\+content\+\_\+and\+\_\+work\+\_\+tree.\+c}.
+

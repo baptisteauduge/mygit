@@ -1,0 +1,64 @@
+\doxysection{src/libs/commit/insert\+\_\+get\+\_\+key\+\_\+val\+\_\+in\+\_\+commit.c File Reference}
+\label{insert__get__key__val__in__commit_8c}\index{src/libs/commit/insert\_get\_key\_val\_in\_commit.c@{src/libs/commit/insert\_get\_key\_val\_in\_commit.c}}
+{\ttfamily \#include \char`\"{}libs/commit/insert\+\_\+key\+\_\+val\+\_\+in\+\_\+commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/hash/hash.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ insert\+\_\+key\+\_\+val\+\_\+in\+\_\+commit} (\textbf{ commit\+\_\+t} $\ast$commit, const char $\ast$key, const char $\ast$value)
+\begin{DoxyCompactList}\small\item\em Insert a key value pair in the commit object. The key and value are copied in the commit object. The key and the value are copied in the commit object. We are using a hash table implementation with linear probing to resolve collisions. \end{DoxyCompactList}\item 
+char $\ast$ \textbf{ get\+\_\+value\+\_\+from\+\_\+key\+\_\+in\+\_\+commit} (\textbf{ commit\+\_\+t} $\ast$commit, char $\ast$key)
+\begin{DoxyCompactList}\small\item\em Get the value from key in commit object. The function is based on the hash table implementation with linear probing to resolve collisions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{insert__get__key__val__in__commit_8c_ace97e9529dc2e2bfafb9f08d3321e498}} 
+\index{insert\_get\_key\_val\_in\_commit.c@{insert\_get\_key\_val\_in\_commit.c}!get\_value\_from\_key\_in\_commit@{get\_value\_from\_key\_in\_commit}}
+\index{get\_value\_from\_key\_in\_commit@{get\_value\_from\_key\_in\_commit}!insert\_get\_key\_val\_in\_commit.c@{insert\_get\_key\_val\_in\_commit.c}}
+\doxysubsubsection{get\_value\_from\_key\_in\_commit()}
+{\footnotesize\ttfamily char $\ast$ get\+\_\+value\+\_\+from\+\_\+key\+\_\+in\+\_\+commit (\begin{DoxyParamCaption}\item[{\textbf{ commit\+\_\+t} $\ast$}]{commit,  }\item[{char $\ast$}]{key }\end{DoxyParamCaption})}
+
+
+
+Get the value from key in commit object. The function is based on the hash table implementation with linear probing to resolve collisions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em commit} & The commit to get the value from. \\
+\hline
+{\em key} & The key to get the value from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The value. NULL if an error occurred. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 35} of file \textbf{ insert\+\_\+get\+\_\+key\+\_\+val\+\_\+in\+\_\+commit.\+c}.
+
+\mbox{\label{insert__get__key__val__in__commit_8c_a2af63ddc86ab0e749cdf2f78a5ecc586}} 
+\index{insert\_get\_key\_val\_in\_commit.c@{insert\_get\_key\_val\_in\_commit.c}!insert\_key\_val\_in\_commit@{insert\_key\_val\_in\_commit}}
+\index{insert\_key\_val\_in\_commit@{insert\_key\_val\_in\_commit}!insert\_get\_key\_val\_in\_commit.c@{insert\_get\_key\_val\_in\_commit.c}}
+\doxysubsubsection{insert\_key\_val\_in\_commit()}
+{\footnotesize\ttfamily void insert\+\_\+key\+\_\+val\+\_\+in\+\_\+commit (\begin{DoxyParamCaption}\item[{\textbf{ commit\+\_\+t} $\ast$}]{commit,  }\item[{const char $\ast$}]{key,  }\item[{const char $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+
+Insert a key value pair in the commit object. The key and value are copied in the commit object. The key and the value are copied in the commit object. We are using a hash table implementation with linear probing to resolve collisions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em commit} & The commit to insert the key value pair in. \\
+\hline
+{\em key} & The key to insert. \\
+\hline
+{\em value} & The value to insert. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 13} of file \textbf{ insert\+\_\+get\+\_\+key\+\_\+val\+\_\+in\+\_\+commit.\+c}.
+

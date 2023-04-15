@@ -1,0 +1,67 @@
+\doxysection{src/libs/work\+\_\+tree/insert\+\_\+get\+\_\+search\+\_\+work\+\_\+tree.c File Reference}
+\label{insert__get__search__work__tree_8c}\index{src/libs/work\_tree/insert\_get\_search\_work\_tree.c@{src/libs/work\_tree/insert\_get\_search\_work\_tree.c}}
+{\ttfamily \#include \char`\"{}libs/work\+\_\+tree/insert\+\_\+get\+\_\+search\+\_\+work\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ index\+\_\+in\+\_\+work\+\_\+tree} (const \textbf{ work\+\_\+tree\+\_\+t} $\ast$wt, const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Returns the index of the work\+\_\+file with the name \char`\"{}name\char`\"{} in the work\+\_\+tree. Returns -\/1 if the work\+\_\+file is not in the work\+\_\+tree. \end{DoxyCompactList}\item 
+int \textbf{ append\+\_\+work\+\_\+tree} (\textbf{ work\+\_\+tree\+\_\+t} $\ast$wt, const char $\ast$name, const char $\ast$hash, mode\+\_\+t mode)
+\begin{DoxyCompactList}\small\item\em Append a work\+\_\+tree with given in parameter. The work\+\_\+tree must be created with the \doxyref{create\+\_\+and\+\_\+init\+\_\+work\+\_\+tree}{p.}{work__tree_8h_a743367b27b96a0a18c477a7fe66963cf} function. Please provide a NULL hash if the file is not tracked. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{insert__get__search__work__tree_8c_a08e1ae15f79a0216e688c9e284c64ccc}} 
+\index{insert\_get\_search\_work\_tree.c@{insert\_get\_search\_work\_tree.c}!append\_work\_tree@{append\_work\_tree}}
+\index{append\_work\_tree@{append\_work\_tree}!insert\_get\_search\_work\_tree.c@{insert\_get\_search\_work\_tree.c}}
+\doxysubsubsection{append\_work\_tree()}
+{\footnotesize\ttfamily int append\+\_\+work\+\_\+tree (\begin{DoxyParamCaption}\item[{\textbf{ work\+\_\+tree\+\_\+t} $\ast$}]{wt,  }\item[{const char $\ast$}]{name,  }\item[{const char $\ast$}]{hash,  }\item[{mode\+\_\+t}]{mode }\end{DoxyParamCaption})}
+
+
+
+Append a work\+\_\+tree with given in parameter. The work\+\_\+tree must be created with the \doxyref{create\+\_\+and\+\_\+init\+\_\+work\+\_\+tree}{p.}{work__tree_8h_a743367b27b96a0a18c477a7fe66963cf} function. Please provide a NULL hash if the file is not tracked. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wt} & The work\+\_\+tree to append. \\
+\hline
+{\em name} & The name of the file. \\
+\hline
+{\em hash} & Optional, the hash of the file. (NULL if the file is not tracked) \\
+\hline
+{\em mode} & The mode of the file. (See stat, provide 0 if the file is not tracked) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the work\+\_\+tree was appended, 0 if the work\+\_\+file was already in the work\+\_\+tree, -\/1 if an error occurred. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 40} of file \textbf{ insert\+\_\+get\+\_\+search\+\_\+work\+\_\+tree.\+c}.
+
+\mbox{\label{insert__get__search__work__tree_8c_ab8404a6ab42dfda265a426874852e4f7}} 
+\index{insert\_get\_search\_work\_tree.c@{insert\_get\_search\_work\_tree.c}!index\_in\_work\_tree@{index\_in\_work\_tree}}
+\index{index\_in\_work\_tree@{index\_in\_work\_tree}!insert\_get\_search\_work\_tree.c@{insert\_get\_search\_work\_tree.c}}
+\doxysubsubsection{index\_in\_work\_tree()}
+{\footnotesize\ttfamily int index\+\_\+in\+\_\+work\+\_\+tree (\begin{DoxyParamCaption}\item[{const \textbf{ work\+\_\+tree\+\_\+t} $\ast$}]{wt,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Returns the index of the work\+\_\+file with the name \char`\"{}name\char`\"{} in the work\+\_\+tree. Returns -\/1 if the work\+\_\+file is not in the work\+\_\+tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wt} & The work\+\_\+tree to search in. \\
+\hline
+{\em name} & The name of the work\+\_\+file to search. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The index of the work\+\_\+file or -\/1 if the work\+\_\+file is not in th work\+\_\+tree. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 11} of file \textbf{ insert\+\_\+get\+\_\+search\+\_\+work\+\_\+tree.\+c}.
+

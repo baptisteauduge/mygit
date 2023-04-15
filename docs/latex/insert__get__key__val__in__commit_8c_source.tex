@@ -1,0 +1,55 @@
+\doxysection{insert\+\_\+get\+\_\+key\+\_\+val\+\_\+in\+\_\+commit.\+c}
+\label{insert__get__key__val__in__commit_8c_source}\index{src/libs/commit/insert\_get\_key\_val\_in\_commit.c@{src/libs/commit/insert\_get\_key\_val\_in\_commit.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ insert\_key\_val\_in\_commit.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ insert\_key\_val\_in\_commit.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/commit/insert\_key\_val\_in\_commit.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/hash/hash.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keywordtype}{void}\ insert\_key\_val\_in\_commit(commit\_t\ *commit,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *key,}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *value)}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordtype}{int}\ hash\_key\ =\ -\/1;}
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordtype}{int}\ index\_insert\ =\ -\/1;}
+\DoxyCodeLine{00018\ \ \ key\_val\_t\ *new\_key\_val\ =\ NULL;}
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordtype}{int}\ i;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordflow}{if}\ (!commit\ ||\ commit-\/>size\ >=\ commit-\/>max\_size\ ||\ !key\ ||\ !value)}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00023\ \ \ hash\_key\ =\ commit\_hash\_func(key)\ \%\ commit-\/>max\_size;}
+\DoxyCodeLine{00024\ \ \ index\_insert\ =\ hash\_key;}
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordflow}{for}\ (i\ =\ 0;\ commit-\/>key\_val[index\_insert]\ !=\ NULL;\ ++i)\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ index\_insert\ =\ (hash\_key\ +\ i)\ \%\ commit-\/>max\_size;}
+\DoxyCodeLine{00027\ \ \ \}}
+\DoxyCodeLine{00028\ \ \ new\_key\_val\ =\ create\_key\_val(key,\ value);}
+\DoxyCodeLine{00029\ \ \ \textcolor{keywordflow}{if}\ (!new\_key\_val)}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00031\ \ \ commit-\/>key\_val[index\_insert]\ =\ new\_key\_val;}
+\DoxyCodeLine{00032\ \ \ ++(commit-\/>size);}
+\DoxyCodeLine{00033\ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keywordtype}{char}\ *get\_value\_from\_key\_in\_commit(commit\_t\ *commit,\ \textcolor{keywordtype}{char}\ *key)}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordtype}{int}\ hash\_key\ =\ -\/1;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordflow}{if}\ (!commit\ ||\ !key)}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00041\ \ \ hash\_key\ =\ commit\_hash\_func(key)\ \%\ commit-\/>max\_size;}
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ commit-\/>max\_size;\ ++i)\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{if}\ (commit-\/>key\_val[hash\_key]\ \&\&}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ !strcmp(commit-\/>key\_val[hash\_key]-\/>key,\ key))}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ strdup(commit-\/>key\_val[hash\_key]-\/>value);}
+\DoxyCodeLine{00046\ \ \ \ \ hash\_key\ =\ (hash\_key\ +\ 1)\ \%\ commit-\/>max\_size;}
+\DoxyCodeLine{00047\ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00049\ \}}
+
+\end{DoxyCode}

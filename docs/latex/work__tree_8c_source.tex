@@ -1,0 +1,43 @@
+\doxysection{work\+\_\+tree.\+c}
+\label{work__tree_8c_source}\index{src/libs/work\_tree/work\_tree.c@{src/libs/work\_tree/work\_tree.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ work\_tree.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ work\_tree.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/work\_tree.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ work\_tree\_t\ *create\_and\_init\_work\_tree()}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \ \ work\_tree\_t\ *new\_wt\ =\ NULL;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ new\_wt\ =\ malloc(\textcolor{keyword}{sizeof}(work\_tree\_t));}
+\DoxyCodeLine{00015\ \ \ \textcolor{keywordflow}{if}\ (!new\_wt)}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00017\ \ \ new\_wt-\/>max\_size\ =\ WORK\_TREE\_MAX\_SIZE;}
+\DoxyCodeLine{00018\ \ \ new\_wt-\/>size\ =\ 0;}
+\DoxyCodeLine{00019\ \ \ new\_wt-\/>tab\ =\ malloc(\textcolor{keyword}{sizeof}(work\_file\_t)\ *\ new\_wt-\/>max\_size);}
+\DoxyCodeLine{00020\ \ \ \textcolor{keywordflow}{if}\ (!new\_wt-\/>tab)\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ free(new\_wt);}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00023\ \ \ \}}
+\DoxyCodeLine{00024\ \ \ \textcolor{keywordflow}{return}\ new\_wt;}
+\DoxyCodeLine{00025\ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{void}\ free\_work\_tree(work\_tree\_t\ *wf)}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \ \ \textcolor{keywordflow}{if}\ (!wf)}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ wf-\/>size;\ i++)\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ free(wf-\/>tab[i].hash);}
+\DoxyCodeLine{00033\ \ \ \ \ free(wf-\/>tab[i].name);}
+\DoxyCodeLine{00034\ \ \ \}}
+\DoxyCodeLine{00035\ \ \ free(wf-\/>tab);}
+\DoxyCodeLine{00036\ \ \ free(wf);}
+\DoxyCodeLine{00037\ \}}
+
+\end{DoxyCode}

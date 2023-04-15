@@ -1,0 +1,37 @@
+\doxysection{src/libs/file/copy\+\_\+file.c File Reference}
+\label{copy__file_8c}\index{src/libs/file/copy\_file.c@{src/libs/file/copy\_file.c}}
+{\ttfamily \#include \char`\"{}libs/file/copy\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/constants\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ copy\+\_\+file} (const char $\ast$to, const char $\ast$from)
+\begin{DoxyCompactList}\small\item\em Copy a file from one path to another path. If the destination file already exists, it will be overwritten. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{copy__file_8c_a024433a78aa688069c64731b5619ca08}} 
+\index{copy\_file.c@{copy\_file.c}!copy\_file@{copy\_file}}
+\index{copy\_file@{copy\_file}!copy\_file.c@{copy\_file.c}}
+\doxysubsubsection{copy\_file()}
+{\footnotesize\ttfamily int copy\+\_\+file (\begin{DoxyParamCaption}\item[{const char $\ast$}]{to,  }\item[{const char $\ast$}]{from }\end{DoxyParamCaption})}
+
+
+
+Copy a file from one path to another path. If the destination file already exists, it will be overwritten. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em to} & The path to copy the file to. \\
+\hline
+{\em from} & The path to copy the file from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the file was copied successfully, 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 25} of file \textbf{ copy\+\_\+file.\+c}.
+

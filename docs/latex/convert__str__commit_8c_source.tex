@@ -1,0 +1,102 @@
+\doxysection{convert\+\_\+str\+\_\+commit.\+c}
+\label{convert__str__commit_8c_source}\index{src/libs/commit/convert\_str\_commit.c@{src/libs/commit/convert\_str\_commit.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ convert\_str\_commit.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ convert\_str\_commit.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/commit/convert\_str\_commit.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/commit/commit.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}libs/commit/insert\_key\_val\_in\_commit.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}libs/key\_val/convert\_str\_key\_val.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keywordtype}{size\_t}\ get\_size\_commit\_to\_str(commit\_t\ *commit)}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordtype}{size\_t}\ size\_str\_commit\ =\ 0;}
+\DoxyCodeLine{00018\ \ \ key\_val\_t\ *key\_val\ =\ NULL;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \textcolor{keywordflow}{if}\ (!commit)}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ commit-\/>max\_size;\ ++i)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ key\_val\ =\ commit-\/>key\_val[i];}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{if}\ (key\_val)}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ size\_str\_commit\ +=\ strlen(key\_val-\/>key)\ +\ strlen(key\_val-\/>value)\ +\ 2;}
+\DoxyCodeLine{00026\ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordflow}{return}\ size\_str\_commit;}
+\DoxyCodeLine{00028\ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ get\_each\_key\_val\_str\_and\_iter(commit\_t\ *commit,\ \textcolor{keywordtype}{char}\ **str\_commit,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ size\_str\_commit)}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ key\_val\_t\ *key\_val\ =\ NULL;}
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordtype}{char}\ *str\_key\_val\ =\ NULL;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ commit-\/>max\_size;\ ++i)\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{if}\ (!commit-\/>key\_val[i])}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00039\ \ \ \ \ key\_val\ =\ commit-\/>key\_val[i];}
+\DoxyCodeLine{00040\ \ \ \ \ str\_key\_val\ =\ convert\_key\_val\_to\_str(key\_val);}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{if}\ (!str\_key\_val)}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00043\ \ \ \ \ strncat(*str\_commit,\ str\_key\_val,\ size\_str\_commit);}
+\DoxyCodeLine{00044\ \ \ \ \ strncat(*str\_commit,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ size\_str\_commit);}
+\DoxyCodeLine{00045\ \ \ \ \ free(str\_key\_val);}
+\DoxyCodeLine{00046\ \ \ \}}
+\DoxyCodeLine{00047\ \ \ (*str\_commit)[size\_str\_commit\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{char}\ *convert\_commit\_to\_str(commit\_t\ *commit)}
+\DoxyCodeLine{00051\ \{}
+\DoxyCodeLine{00052\ \ \ \textcolor{keywordtype}{char}\ *str\_commit\ =\ NULL;}
+\DoxyCodeLine{00053\ \ \ \textcolor{keywordtype}{size\_t}\ size\_str\_commit\ =\ 0;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{keywordflow}{if}\ (!commit)}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00057\ \ \ size\_str\_commit\ =\ get\_size\_commit\_to\_str(commit)\ +\ 1;}
+\DoxyCodeLine{00058\ \ \ str\_commit\ =\ calloc(size\_str\_commit,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordflow}{if}\ (!str\_commit)}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00061\ \ \ get\_each\_key\_val\_str\_and\_iter(commit,\ \&str\_commit,\ size\_str\_commit);}
+\DoxyCodeLine{00062\ \ \ \textcolor{keywordflow}{return}\ str\_commit;}
+\DoxyCodeLine{00063\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ browse\_str\_and\_add\_key\_val\_to\_commit(\textcolor{keywordtype}{char}\ *str,\ commit\_t\ *commit)}
+\DoxyCodeLine{00066\ \{}
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordtype}{char}\ *str\_key\_val\ =\ NULL;}
+\DoxyCodeLine{00068\ \ \ \textcolor{keywordtype}{char}\ *str\_key\ =\ NULL;}
+\DoxyCodeLine{00069\ \ \ \textcolor{keywordtype}{char}\ *str\_value\ =\ NULL;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ str\_key\_val\ =\ strsep(\&str,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00072\ \ \ \textcolor{keywordflow}{while}\ (str\_key\_val)\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ str\_key\ =\ strsep(\&str\_key\_val,\ \textcolor{stringliteral}{"{}:"{}});}
+\DoxyCodeLine{00074\ \ \ \ \ str\_value\ =\ str\_key\_val;}
+\DoxyCodeLine{00075\ \ \ \ \ insert\_key\_val\_in\_commit(commit,\ str\_key,\ str\_value);}
+\DoxyCodeLine{00076\ \ \ \ \ str\_key\_val\ =\ strsep(\&str,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00077\ \ \ \}}
+\DoxyCodeLine{00078\ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ commit\_t\ *convert\_str\_to\_commit(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str)}
+\DoxyCodeLine{00081\ \{}
+\DoxyCodeLine{00082\ \ \ commit\_t\ *commit\ =\ NULL;}
+\DoxyCodeLine{00083\ \ \ \textcolor{keywordtype}{char}\ *str\_copy\ =\ NULL;}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \textcolor{keywordflow}{if}\ (!str)}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00087\ \ \ str\_copy\ =\ strdup(str);}
+\DoxyCodeLine{00088\ \ \ \textcolor{keywordflow}{if}\ (!str\_copy)}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00090\ \ \ commit\ =\ create\_and\_init\_empty\_commit();}
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordflow}{if}\ (!commit)}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00093\ \ \ browse\_str\_and\_add\_key\_val\_to\_commit(str\_copy,\ commit);}
+\DoxyCodeLine{00094\ \ \ free(str\_copy);}
+\DoxyCodeLine{00095\ \ \ \textcolor{keywordflow}{return}\ commit;}
+\DoxyCodeLine{00096\ \}}
+
+\end{DoxyCode}

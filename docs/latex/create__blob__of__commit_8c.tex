@@ -1,0 +1,37 @@
+\doxysection{src/libs/commit/create\+\_\+blob\+\_\+of\+\_\+commit.c File Reference}
+\label{create__blob__of__commit_8c}\index{src/libs/commit/create\_blob\_of\_commit.c@{src/libs/commit/create\_blob\_of\_commit.c}}
+{\ttfamily \#include \char`\"{}libs/commit/create\+\_\+blob\+\_\+of\+\_\+commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/commit/convert\+\_\+str\+\_\+commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/create\+\_\+blob.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/create\+\_\+temp\+\_\+and\+\_\+write.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \textbf{ create\+\_\+blob\+\_\+of\+\_\+commit} (\textbf{ commit\+\_\+t} $\ast$commit)
+\begin{DoxyCompactList}\small\item\em Create a blob of commit object. The function is based on the \doxyref{convert\+\_\+commit\+\_\+to\+\_\+str}{p.}{convert__str__commit_8h_acbea4b8f3286439f39aa65d404787c90} function and the \doxyref{create\+\_\+blob\+\_\+file\+\_\+and\+\_\+get\+\_\+hash}{p.}{create__blob_8h_a3de69d35bce6b2d133b9c9c48e56dd7b} function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{create__blob__of__commit_8c_a1d10943d89acb7cbfaf5f785c5f3e839}} 
+\index{create\_blob\_of\_commit.c@{create\_blob\_of\_commit.c}!create\_blob\_of\_commit@{create\_blob\_of\_commit}}
+\index{create\_blob\_of\_commit@{create\_blob\_of\_commit}!create\_blob\_of\_commit.c@{create\_blob\_of\_commit.c}}
+\doxysubsubsection{create\_blob\_of\_commit()}
+{\footnotesize\ttfamily char $\ast$ create\+\_\+blob\+\_\+of\+\_\+commit (\begin{DoxyParamCaption}\item[{\textbf{ commit\+\_\+t} $\ast$}]{commit }\end{DoxyParamCaption})}
+
+
+
+Create a blob of commit object. The function is based on the \doxyref{convert\+\_\+commit\+\_\+to\+\_\+str}{p.}{convert__str__commit_8h_acbea4b8f3286439f39aa65d404787c90} function and the \doxyref{create\+\_\+blob\+\_\+file\+\_\+and\+\_\+get\+\_\+hash}{p.}{create__blob_8h_a3de69d35bce6b2d133b9c9c48e56dd7b} function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em commit} & The commit to convert to a blob. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The hash of the blob. NULL if an error occurred. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 13} of file \textbf{ create\+\_\+blob\+\_\+of\+\_\+commit.\+c}.
+

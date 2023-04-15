@@ -5,6 +5,7 @@
 //    get_work_tree_commit.h
 
 #include "libs/commit/get_work_tree_commit.h"
+#include "branch/get_branch_commit_tree.h"
 #include "libs/commit/insert_key_val_in_commit.h"
 #include "libs/file/create_blob.h"
 #include "libs/work_tree/save_get_file_work_tree.h"
@@ -29,5 +30,20 @@ work_tree_t *get_work_tree_from_commit(commit_t *commit)
   wt = file_to_work_tree(path_wt);
   free(hash_wt);
   free(path_wt);
+  return wt;
+}
+
+work_tree_t *get_work_tree_from_commit_hash(const char *commit_hash)
+{
+  commit_t *commit = NULL;
+  work_tree_t *wt = NULL;
+
+  if (!commit_hash)
+    return NULL;
+  commit = get_commit_from_hash(commit_hash);
+  if (!commit)
+    return NULL;
+  wt = get_work_tree_from_commit(commit);
+  free_commit(commit);
   return wt;
 }

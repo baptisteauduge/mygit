@@ -1,0 +1,47 @@
+\doxysection{key\+\_\+val.\+c}
+\label{key__val_8c_source}\index{src/libs/key\_val/key\_val.c@{src/libs/key\_val/key\_val.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ key\_val.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ key\_val.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/key\_val/key\_val.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ key\_val\_t\ *create\_key\_val(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *key,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *value)}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ key\_val\_t\ *key\_val\ =\ NULL;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \textcolor{keywordflow}{if}\ (!key\ ||\ !value)}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00017\ \ \ key\_val\ =\ malloc(\textcolor{keyword}{sizeof}(key\_val\_t));}
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordflow}{if}\ (!key\_val)}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00020\ \ \ key\_val-\/>key\ =\ strdup(key);}
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordflow}{if}\ (!key\_val-\/>key)\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ free(key\_val);}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00024\ \ \ \}}
+\DoxyCodeLine{00025\ \ \ key\_val-\/>value\ =\ strdup(value);}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordflow}{if}\ (!key\_val-\/>value)\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ free(key\_val-\/>key);}
+\DoxyCodeLine{00028\ \ \ \ \ free(key\_val);}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00030\ \ \ \}}
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordflow}{return}\ key\_val;}
+\DoxyCodeLine{00032\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{void}\ free\_key\_val(key\_val\_t\ *key\_val)}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordflow}{if}\ (!key\_val)}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00038\ \ \ free(key\_val-\/>key);}
+\DoxyCodeLine{00039\ \ \ free(key\_val-\/>value);}
+\DoxyCodeLine{00040\ \ \ free(key\_val);}
+\DoxyCodeLine{00041\ \}}
+
+\end{DoxyCode}

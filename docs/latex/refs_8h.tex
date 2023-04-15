@@ -1,0 +1,98 @@
+\doxysection{include/refs/refs.h File Reference}
+\label{refs_8h}\index{include/refs/refs.h@{include/refs/refs.h}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ create\+\_\+or\+\_\+update\+\_\+ref} (const char $\ast$ref\+\_\+name, const char $\ast$hash)
+\begin{DoxyCompactList}\small\item\em Create a or update a ref with the given hash and name. \end{DoxyCompactList}\item 
+int \textbf{ delete\+\_\+ref} (const char $\ast$ref\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Delete the ref with the given name. \end{DoxyCompactList}\item 
+char $\ast$ \textbf{ get\+\_\+str\+\_\+all\+\_\+ref} ()
+\begin{DoxyCompactList}\small\item\em Get a string containing all the refs name and hash of their last commit. Format\+: \char`\"{}ref\+\_\+name\+:hash\textbackslash{}nref\+\_\+name\+:hash\textbackslash{}n...\char`\"{}. \end{DoxyCompactList}\item 
+char $\ast$ \textbf{ get\+\_\+ref} (const char $\ast$ref\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Get the hash of the ref with the given name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{refs_8h_a580cbabd76e1bb5f50101d0534de3ebb}} 
+\index{refs.h@{refs.h}!create\_or\_update\_ref@{create\_or\_update\_ref}}
+\index{create\_or\_update\_ref@{create\_or\_update\_ref}!refs.h@{refs.h}}
+\doxysubsubsection{create\_or\_update\_ref()}
+{\footnotesize\ttfamily void create\+\_\+or\+\_\+update\+\_\+ref (\begin{DoxyParamCaption}\item[{const char $\ast$}]{ref\+\_\+name,  }\item[{const char $\ast$}]{hash }\end{DoxyParamCaption})}
+
+
+
+Create a or update a ref with the given hash and name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ref\+\_\+name} & The name of the ref. \\
+\hline
+{\em hash} & The hash of the ref to create or update. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 17} of file \textbf{ refs.\+c}.
+
+\mbox{\label{refs_8h_a0c168fa1d08683fb53d31b31fac43b12}} 
+\index{refs.h@{refs.h}!delete\_ref@{delete\_ref}}
+\index{delete\_ref@{delete\_ref}!refs.h@{refs.h}}
+\doxysubsubsection{delete\_ref()}
+{\footnotesize\ttfamily int delete\+\_\+ref (\begin{DoxyParamCaption}\item[{const char $\ast$}]{ref\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Delete the ref with the given name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ref\+\_\+name} & The name of the ref. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the ref was deleted, 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 35} of file \textbf{ refs.\+c}.
+
+\mbox{\label{refs_8h_a50a2137f4e49a72edb6a628b823c1f15}} 
+\index{refs.h@{refs.h}!get\_ref@{get\_ref}}
+\index{get\_ref@{get\_ref}!refs.h@{refs.h}}
+\doxysubsubsection{get\_ref()}
+{\footnotesize\ttfamily char $\ast$ get\+\_\+ref (\begin{DoxyParamCaption}\item[{const char $\ast$}]{ref\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Get the hash of the ref with the given name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ref\+\_\+name} & The name of the ref. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The hash of the ref or NULL if an error occurred. (Ex\+: ref not found) 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 50} of file \textbf{ refs.\+c}.
+
+\mbox{\label{refs_8h_a1414816a1fe6d9e8136979dde896e94c}} 
+\index{refs.h@{refs.h}!get\_str\_all\_ref@{get\_str\_all\_ref}}
+\index{get\_str\_all\_ref@{get\_str\_all\_ref}!refs.h@{refs.h}}
+\doxysubsubsection{get\_str\_all\_ref()}
+{\footnotesize\ttfamily char $\ast$ get\+\_\+str\+\_\+all\+\_\+ref (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get a string containing all the refs name and hash of their last commit. Format\+: \char`\"{}ref\+\_\+name\+:hash\textbackslash{}nref\+\_\+name\+:hash\textbackslash{}n...\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+char$\ast$ The result string or NULL if an error occurred. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 87} of file \textbf{ refs.\+c}.
+

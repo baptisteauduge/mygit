@@ -1,8 +1,8 @@
 // MyGit Project
 //
-// mygit_merge.c
+// mygit_merge_work_trees.c
 // File description:
-//    mygit_merge.c
+//    mygit_merge_work_trees.c
 
 #include "merge/mygit_merge_work_trees.h"
 #include "libs/list/insert_get_search_list.h"

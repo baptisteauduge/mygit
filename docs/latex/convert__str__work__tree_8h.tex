@@ -1,0 +1,82 @@
+\doxysection{include/libs/work\+\_\+tree/convert\+\_\+str\+\_\+work\+\_\+tree.h File Reference}
+\label{convert__str__work__tree_8h}\index{include/libs/work\_tree/convert\_str\_work\_tree.h@{include/libs/work\_tree/convert\_str\_work\_tree.h}}
+{\ttfamily \#include \char`\"{}libs/work\+\_\+tree/work\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \textbf{ size\+\_\+work\+\_\+tree\+\_\+to\+\_\+str} (const \textbf{ work\+\_\+tree\+\_\+t} $\ast$wf)
+\begin{DoxyCompactList}\small\item\em Get the size required to store the work\+\_\+tree in a string. The size is calculated with the size of the elements of the work\+\_\+tree and the size of the separator. \end{DoxyCompactList}\item 
+char $\ast$ \textbf{ convert\+\_\+work\+\_\+tree\+\_\+to\+\_\+str} (const \textbf{ work\+\_\+tree\+\_\+t} $\ast$wt)
+\begin{DoxyCompactList}\small\item\em Convert a work\+\_\+tree to a string, the format is \char`\"{}name$\vert$hash$\vert$mode\textbackslash{}nname$\vert$hash$\vert$mode\char`\"{} where the separator is defined by SEPARATOR\+\_\+\+WORK\+\_\+\+FILE\+\_\+\+STRING constant. If the hash is NULL, the string will contain \char`\"{}name$\vert$-\/$\vert$mode\char`\"{}. (With a single dash). The format is based on the work\+\_\+file\+\_\+to\+\_\+str function. \end{DoxyCompactList}\item 
+\textbf{ work\+\_\+tree\+\_\+t} $\ast$ \textbf{ convert\+\_\+str\+\_\+to\+\_\+work\+\_\+tree} (const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Convert a string to a work\+\_\+tree. The required format is \char`\"{}name$\vert$hash$\vert$mode\textbackslash{}nname$\vert$hash$\vert$mode\char`\"{} where the separator is defined by SEPARATOR\+\_\+\+WORK\+\_\+\+FILE\+\_\+\+STRING constant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{convert__str__work__tree_8h_a5f76f9a82b204ad1a4a85447331e6515}} 
+\index{convert\_str\_work\_tree.h@{convert\_str\_work\_tree.h}!convert\_str\_to\_work\_tree@{convert\_str\_to\_work\_tree}}
+\index{convert\_str\_to\_work\_tree@{convert\_str\_to\_work\_tree}!convert\_str\_work\_tree.h@{convert\_str\_work\_tree.h}}
+\doxysubsubsection{convert\_str\_to\_work\_tree()}
+{\footnotesize\ttfamily \textbf{ work\+\_\+tree\+\_\+t} $\ast$ convert\+\_\+str\+\_\+to\+\_\+work\+\_\+tree (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Convert a string to a work\+\_\+tree. The required format is \char`\"{}name$\vert$hash$\vert$mode\textbackslash{}nname$\vert$hash$\vert$mode\char`\"{} where the separator is defined by SEPARATOR\+\_\+\+WORK\+\_\+\+FILE\+\_\+\+STRING constant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+work\+\_\+tree\+\_\+t$\ast$ The work\+\_\+tree created or NULL if an error occurred. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 84} of file \textbf{ convert\+\_\+str\+\_\+work\+\_\+tree.\+c}.
+
+\mbox{\label{convert__str__work__tree_8h_a0c714673d8eb98a151d924be2b6234c7}} 
+\index{convert\_str\_work\_tree.h@{convert\_str\_work\_tree.h}!convert\_work\_tree\_to\_str@{convert\_work\_tree\_to\_str}}
+\index{convert\_work\_tree\_to\_str@{convert\_work\_tree\_to\_str}!convert\_str\_work\_tree.h@{convert\_str\_work\_tree.h}}
+\doxysubsubsection{convert\_work\_tree\_to\_str()}
+{\footnotesize\ttfamily char $\ast$ convert\+\_\+work\+\_\+tree\+\_\+to\+\_\+str (\begin{DoxyParamCaption}\item[{const \textbf{ work\+\_\+tree\+\_\+t} $\ast$}]{wt }\end{DoxyParamCaption})}
+
+
+
+Convert a work\+\_\+tree to a string, the format is \char`\"{}name$\vert$hash$\vert$mode\textbackslash{}nname$\vert$hash$\vert$mode\char`\"{} where the separator is defined by SEPARATOR\+\_\+\+WORK\+\_\+\+FILE\+\_\+\+STRING constant. If the hash is NULL, the string will contain \char`\"{}name$\vert$-\/$\vert$mode\char`\"{}. (With a single dash). The format is based on the work\+\_\+file\+\_\+to\+\_\+str function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wt} & The work\+\_\+tree to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The string containing the work\+\_\+tree or NULL if an error occurred. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 43} of file \textbf{ convert\+\_\+str\+\_\+work\+\_\+tree.\+c}.
+
+\mbox{\label{convert__str__work__tree_8h_aaf5511e42097c177ce6c4a0ac46a7bfe}} 
+\index{convert\_str\_work\_tree.h@{convert\_str\_work\_tree.h}!size\_work\_tree\_to\_str@{size\_work\_tree\_to\_str}}
+\index{size\_work\_tree\_to\_str@{size\_work\_tree\_to\_str}!convert\_str\_work\_tree.h@{convert\_str\_work\_tree.h}}
+\doxysubsubsection{size\_work\_tree\_to\_str()}
+{\footnotesize\ttfamily size\+\_\+t size\+\_\+work\+\_\+tree\+\_\+to\+\_\+str (\begin{DoxyParamCaption}\item[{const \textbf{ work\+\_\+tree\+\_\+t} $\ast$}]{wf }\end{DoxyParamCaption})}
+
+
+
+Get the size required to store the work\+\_\+tree in a string. The size is calculated with the size of the elements of the work\+\_\+tree and the size of the separator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wf} & The work\+\_\+tree to get the size from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size\+\_\+t The size required to store the work\+\_\+tree in a string. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 14} of file \textbf{ convert\+\_\+str\+\_\+work\+\_\+tree.\+c}.
+

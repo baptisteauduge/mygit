@@ -1,0 +1,65 @@
+\doxysection{mygit\+\_\+add.\+c}
+\label{mygit__add_8c_source}\index{src/add/mygit\_add.c@{src/add/mygit\_add.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ mygit\_add.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ mygit\_add.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}add/mygit\_add.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/file/list\_files.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/convert\_str\_work\_tree.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/insert\_get\_search\_work\_tree.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/save\_get\_file\_work\_tree.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/work\_tree.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}utils/utils.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ TODO:\ List\ files\ in\ a\ directory}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ TODO:\ Print\ only\ the\ filename}}
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{char}\ *mygit\_list\_add\_str(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ work\_tree\_t\ *work\_tree\ =\ file\_to\_work\_tree(MYGIT\_PATH\_ADD);}
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordtype}{char}\ *str\ =\ NULL;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \textcolor{keywordflow}{if}\ (!work\_tree)}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00026\ \ \ str\ =\ convert\_work\_tree\_to\_str(work\_tree);}
+\DoxyCodeLine{00027\ \ \ free\_work\_tree(work\_tree);}
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordflow}{return}\ str;}
+\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{static}\ work\_tree\_t\ *get\_add\_work\_tree\_or\_init(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordflow}{if}\ (!does\_file\_exists(MYGIT\_PATH\_ADD))}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{return}\ create\_and\_init\_work\_tree();}
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordflow}{return}\ file\_to\_work\_tree(MYGIT\_PATH\_ADD);}
+\DoxyCodeLine{00036\ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{int}\ mygit\_add(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *file)}
+\DoxyCodeLine{00039\ \{}
+\DoxyCodeLine{00040\ \ \ work\_tree\_t\ *work\_tree\ =\ NULL;}
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordtype}{int}\ append\_wt\_ret\ =\ 0;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordflow}{if}\ (!file\ ||\ !does\_file\_exists(file))}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00045\ \ \ work\_tree\ =\ get\_add\_work\_tree\_or\_init();}
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordflow}{if}\ (!work\_tree)}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00048\ \ \ append\_wt\_ret\ =\ append\_work\_tree(work\_tree,\ file,\ NULL,\ 0);}
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordflow}{if}\ (append\_wt\_ret)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ work\_tree\_to\_file(work\_tree,\ MYGIT\_PATH\_ADD);}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00052\ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \textcolor{keywordflow}{if}\ (append\_wt\_ret\ ==\ 0)}
+\DoxyCodeLine{00054\ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Error:\ file\ '\%s'\ already\ added\(\backslash\)n"{}},\ file);}
+\DoxyCodeLine{00055\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00056\ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Error:\ could\ not\ add\ file\ '\%s'\(\backslash\)n"{}},\ file);}
+\DoxyCodeLine{00057\ \ \ free\_work\_tree(work\_tree);}
+\DoxyCodeLine{00058\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00059\ \}}
+
+\end{DoxyCode}

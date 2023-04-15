@@ -1,0 +1,51 @@
+\doxysection{copy\+\_\+file.\+c}
+\label{copy__file_8c_source}\index{src/libs/file/copy\_file.c@{src/libs/file/copy\_file.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ copy\_files.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ copy\_files.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/file/copy\_file.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/file/constants\_file.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ open\_file\_read\_write(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path\_read,\ FILE\ **file\_read,}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path\_write,\ FILE\ **file\_write)}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ *file\_read\ =\ fopen(path\_read,\ READ\_MODE);}
+\DoxyCodeLine{00015\ \ \ \textcolor{keywordflow}{if}\ (!*file\_read)}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00017\ \ \ *file\_write\ =\ fopen(path\_write,\ WRITE\_MODE);}
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordflow}{if}\ (!*file\_write)\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ fclose(*file\_read);}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00021\ \ \ \}}
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00023\ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{int}\ copy\_file(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *to,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *from)}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ FILE\ *file\_to\ =\ NULL;}
+\DoxyCodeLine{00028\ \ \ FILE\ *file\_from\ =\ NULL;}
+\DoxyCodeLine{00029\ \ \ \textcolor{keywordtype}{int}\ c\_read\ =\ EOF;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordflow}{if}\ (!to\ ||\ !from\ ||\ !open\_file\_read\_write(from,\ \&file\_from,\ to,\ \&file\_to))}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00033\ \ \ c\_read\ =\ fgetc(file\_from);}
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordflow}{while}\ (c\_read\ !=\ EOF)\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{if}\ (fputc(c\_read,\ file\_to)\ ==\ EOF)\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ fclose(file\_to);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ fclose(file\_from);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \ \ c\_read\ =\ fgetc(file\_from);}
+\DoxyCodeLine{00041\ \ \ \}}
+\DoxyCodeLine{00042\ \ \ fclose(file\_to);}
+\DoxyCodeLine{00043\ \ \ fclose(file\_from);}
+\DoxyCodeLine{00044\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00045\ \}}
+
+\end{DoxyCode}

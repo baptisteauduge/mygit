@@ -1,0 +1,65 @@
+\doxysection{hash.\+c}
+\label{hash_8c_source}\index{src/libs/hash/hash.c@{src/libs/hash/hash.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ hash.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ hash.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/hash/hash.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/file/constants\_file.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}libs/file/read\_write\_file.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keywordtype}{char}\ *get\_sha256\_of\_file(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *filename)}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordtype}{char}\ temp\_filename[]\ =\ \textcolor{stringliteral}{"{}/tmp/XXXXXX"{}};}
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordtype}{char}\ *sha256\ =\ NULL;}
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordtype}{int}\ fd\ =\ 0;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordflow}{if}\ (!filename)}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00023\ \ \ fd\ =\ mkstemp(temp\_filename);}
+\DoxyCodeLine{00024\ \ \ \textcolor{keywordflow}{if}\ (fd\ ==\ -\/1)}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00026\ \ \ put\_hash\_of\_source\_in\_dest(filename,\ temp\_filename);}
+\DoxyCodeLine{00027\ \ \ sha256\ =\ get\_first\_line(temp\_filename);}
+\DoxyCodeLine{00028\ \ \ sha256[64]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00029\ \ \ \textcolor{keywordflow}{if}\ (!sha256)}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00031\ \ \ close(fd);}
+\DoxyCodeLine{00032\ \ \ remove(temp\_filename);}
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordflow}{return}\ sha256;}
+\DoxyCodeLine{00034\ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keywordtype}{void}\ put\_hash\_of\_source\_in\_dest(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *source,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *dest)}
+\DoxyCodeLine{00037\ \{}
+\DoxyCodeLine{00038\ \ \ \textcolor{keywordtype}{char}\ *command\ =\ NULL;}
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordtype}{size\_t}\ size\_command\ =\ 0;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordflow}{if}\ (!source\ ||\ !dest)}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00043\ \ \ size\_command\ =\ strlen(source)\ +\ strlen(dest)\ +\ 20;}
+\DoxyCodeLine{00044\ \ \ command\ =\ calloc(size\_command,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00045\ \ \ sprintf(command,\ \textcolor{stringliteral}{"{}cat\ \%s\ |\ sha256sum\ >\ \%s"{}},\ source,\ dest);}
+\DoxyCodeLine{00046\ \ \ system(command);}
+\DoxyCodeLine{00047\ \ \ free(command);}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ Function\ djb2\ from\ http://www.cse.yorku.ca/\string~oz/hash.html}}
+\DoxyCodeLine{00051\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ commit\_hash\_func(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str)}
+\DoxyCodeLine{00052\ \{}
+\DoxyCodeLine{00053\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ hash\ =\ 5381;}
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordtype}{int}\ c;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordflow}{while}\ ((c\ =\ *str++))}
+\DoxyCodeLine{00057\ \ \ \ \ hash\ =\ ((hash\ <<\ 5)\ +\ hash)\ +\ c;\ \textcolor{comment}{/*\ hash\ *\ 33\ +\ c\ */}}
+\DoxyCodeLine{00058\ \ \ \textcolor{keywordflow}{return}\ hash;}
+\DoxyCodeLine{00059\ \}}
+
+\end{DoxyCode}

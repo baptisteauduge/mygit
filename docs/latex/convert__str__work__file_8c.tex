@@ -1,0 +1,116 @@
+\doxysection{src/libs/work\+\_\+file/convert\+\_\+str\+\_\+work\+\_\+file.c File Reference}
+\label{convert__str__work__file_8c}\index{src/libs/work\_file/convert\_str\_work\_file.c@{src/libs/work\_file/convert\_str\_work\_file.c}}
+{\ttfamily \#include \char`\"{}libs/work\+\_\+file/convert\+\_\+str\+\_\+work\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/work\+\_\+file/work\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/get\+\_\+content\+\_\+or\+\_\+dash\+\_\+str.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \textbf{ size\+\_\+work\+\_\+file\+\_\+to\+\_\+str} (const \textbf{ work\+\_\+file\+\_\+t} $\ast$wf)
+\begin{DoxyCompactList}\small\item\em The size required to store the work\+\_\+file in a string. The size is calculated with the size of the elements of the work\+\_\+file and the size of the separator. \end{DoxyCompactList}\item 
+char $\ast$ \textbf{ convert\+\_\+work\+\_\+file\+\_\+to\+\_\+str} (const \textbf{ work\+\_\+file\+\_\+t} $\ast$wf)
+\begin{DoxyCompactList}\small\item\em Convert a work\+\_\+file to a string, the string is allocated and must be freed. The format is \char`\"{}name$\vert$hash$\vert$mode\char`\"{} where the separator is defined by SEPARATOR\+\_\+\+WORK\+\_\+\+FILE\+\_\+\+STRING constant. If the hash is NULL, the string will contain \char`\"{}name$\vert$-\/$\vert$mode\char`\"{}. (With a single dash). \end{DoxyCompactList}\item 
+int \textbf{ get\+\_\+content\+\_\+str\+\_\+work\+\_\+file} (const char $\ast$str, char $\ast$$\ast$name, char $\ast$$\ast$hash, mode\+\_\+t $\ast$mode)
+\begin{DoxyCompactList}\small\item\em Get the content of a string in the format \char`\"{}name$\vert$hash$\vert$mode\char`\"{} where the separator is defined by SEPARATOR\+\_\+\+WORK\+\_\+\+FILE\+\_\+\+STRING constant. If you want a null hash, you must use have single dash. The name and hash are allocated and must be freed. \end{DoxyCompactList}\item 
+\textbf{ work\+\_\+file\+\_\+t} $\ast$ \textbf{ convert\+\_\+str\+\_\+to\+\_\+work\+\_\+file} (const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Convert a string to a work\+\_\+file. The string must be in the format \char`\"{}name$\vert$hash$\vert$mode\char`\"{} where the separator is defined by SEPARATOR\+\_\+\+WORK\+\_\+\+FILE\+\_\+\+STRING constant. If you want a null hash, you must use have single dash. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{convert__str__work__file_8c_a1b1a38a6d64e28debd44eacccc5b2ba9}} 
+\index{convert\_str\_work\_file.c@{convert\_str\_work\_file.c}!convert\_str\_to\_work\_file@{convert\_str\_to\_work\_file}}
+\index{convert\_str\_to\_work\_file@{convert\_str\_to\_work\_file}!convert\_str\_work\_file.c@{convert\_str\_work\_file.c}}
+\doxysubsubsection{convert\_str\_to\_work\_file()}
+{\footnotesize\ttfamily \textbf{ work\+\_\+file\+\_\+t} $\ast$ convert\+\_\+str\+\_\+to\+\_\+work\+\_\+file (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Convert a string to a work\+\_\+file. The string must be in the format \char`\"{}name$\vert$hash$\vert$mode\char`\"{} where the separator is defined by SEPARATOR\+\_\+\+WORK\+\_\+\+FILE\+\_\+\+STRING constant. If you want a null hash, you must use have single dash. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to convert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+work\+\_\+file\+\_\+t$\ast$ The work\+\_\+file converted or NULL if any error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 81} of file \textbf{ convert\+\_\+str\+\_\+work\+\_\+file.\+c}.
+
+\mbox{\label{convert__str__work__file_8c_a412011cc078206bc4c0c3f19765b6882}} 
+\index{convert\_str\_work\_file.c@{convert\_str\_work\_file.c}!convert\_work\_file\_to\_str@{convert\_work\_file\_to\_str}}
+\index{convert\_work\_file\_to\_str@{convert\_work\_file\_to\_str}!convert\_str\_work\_file.c@{convert\_str\_work\_file.c}}
+\doxysubsubsection{convert\_work\_file\_to\_str()}
+{\footnotesize\ttfamily char $\ast$ convert\+\_\+work\+\_\+file\+\_\+to\+\_\+str (\begin{DoxyParamCaption}\item[{const \textbf{ work\+\_\+file\+\_\+t} $\ast$}]{wf }\end{DoxyParamCaption})}
+
+
+
+Convert a work\+\_\+file to a string, the string is allocated and must be freed. The format is \char`\"{}name$\vert$hash$\vert$mode\char`\"{} where the separator is defined by SEPARATOR\+\_\+\+WORK\+\_\+\+FILE\+\_\+\+STRING constant. If the hash is NULL, the string will contain \char`\"{}name$\vert$-\/$\vert$mode\char`\"{}. (With a single dash). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wf} & The work\+\_\+file to convert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The string converted or NULL if any error occurred 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 30} of file \textbf{ convert\+\_\+str\+\_\+work\+\_\+file.\+c}.
+
+\mbox{\label{convert__str__work__file_8c_add5df11e533f372a15ddeac54c79c6fc}} 
+\index{convert\_str\_work\_file.c@{convert\_str\_work\_file.c}!get\_content\_str\_work\_file@{get\_content\_str\_work\_file}}
+\index{get\_content\_str\_work\_file@{get\_content\_str\_work\_file}!convert\_str\_work\_file.c@{convert\_str\_work\_file.c}}
+\doxysubsubsection{get\_content\_str\_work\_file()}
+{\footnotesize\ttfamily int get\+\_\+content\+\_\+str\+\_\+work\+\_\+file (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str,  }\item[{char $\ast$$\ast$}]{name,  }\item[{char $\ast$$\ast$}]{hash,  }\item[{mode\+\_\+t $\ast$}]{mode }\end{DoxyParamCaption})}
+
+
+
+Get the content of a string in the format \char`\"{}name$\vert$hash$\vert$mode\char`\"{} where the separator is defined by SEPARATOR\+\_\+\+WORK\+\_\+\+FILE\+\_\+\+STRING constant. If you want a null hash, you must use have single dash. The name and hash are allocated and must be freed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string from which you want to extract the content \\
+\hline
+{\em name} & The name extracted from the string (will be allocated) \\
+\hline
+{\em hash} & The hash extracted from the string (will be allocated) \\
+\hline
+{\em mode} & The mode extracted from the string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if everything went well, 0 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 61} of file \textbf{ convert\+\_\+str\+\_\+work\+\_\+file.\+c}.
+
+\mbox{\label{convert__str__work__file_8c_a4352a09c20545201ce6ab92373ad4372}} 
+\index{convert\_str\_work\_file.c@{convert\_str\_work\_file.c}!size\_work\_file\_to\_str@{size\_work\_file\_to\_str}}
+\index{size\_work\_file\_to\_str@{size\_work\_file\_to\_str}!convert\_str\_work\_file.c@{convert\_str\_work\_file.c}}
+\doxysubsubsection{size\_work\_file\_to\_str()}
+{\footnotesize\ttfamily size\+\_\+t size\+\_\+work\+\_\+file\+\_\+to\+\_\+str (\begin{DoxyParamCaption}\item[{const \textbf{ work\+\_\+file\+\_\+t} $\ast$}]{wf }\end{DoxyParamCaption})}
+
+
+
+The size required to store the work\+\_\+file in a string. The size is calculated with the size of the elements of the work\+\_\+file and the size of the separator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wf} & The work\+\_\+file to get the size from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size\+\_\+t The size required to store the work\+\_\+file in a string. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 14} of file \textbf{ convert\+\_\+str\+\_\+work\+\_\+file.\+c}.
+

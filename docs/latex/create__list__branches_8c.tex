@@ -1,0 +1,128 @@
+\doxysection{src/branch/create\+\_\+list\+\_\+branches.c File Reference}
+\label{create__list__branches_8c}\index{src/branch/create\_list\_branches.c@{src/branch/create\_list\_branches.c}}
+{\ttfamily \#include \char`\"{}branch/create\+\_\+list\+\_\+branches.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}branch/get\+\_\+branch\+\_\+commit\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}commit/mygit\+\_\+commit\+\_\+pre\+\_\+checks.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/commit/commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/commit/get\+\_\+work\+\_\+tree\+\_\+commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/read\+\_\+write\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}refs/refs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/utils.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ does\+\_\+branch\+\_\+exists} (const char $\ast$branch)
+\begin{DoxyCompactList}\small\item\em Function used to check if a branch exists. \end{DoxyCompactList}\item 
+int \textbf{ create\+\_\+branch\+\_\+if\+\_\+not\+\_\+exists} (const char $\ast$branch)
+\begin{DoxyCompactList}\small\item\em Create a branch if it does not exists. \end{DoxyCompactList}\item 
+char $\ast$ \textbf{ get\+\_\+current\+\_\+branch} (void)
+\begin{DoxyCompactList}\small\item\em Get the current branch name (the branch pointed by HEAD) \end{DoxyCompactList}\item 
+\textbf{ work\+\_\+tree\+\_\+t} $\ast$ \textbf{ get\+\_\+work\+\_\+tree\+\_\+from\+\_\+branch} (const char $\ast$branch)
+\begin{DoxyCompactList}\small\item\em Get the work tree from branch name i.\+e. the work tree of the last commit of the branch. \end{DoxyCompactList}\item 
+\textbf{ work\+\_\+tree\+\_\+t} $\ast$ \textbf{ get\+\_\+work\+\_\+tree\+\_\+current\+\_\+branch} (void)
+\begin{DoxyCompactList}\small\item\em Get the work tree of the current branch. Means that it will returns the work tree of the branch pointed by HEAD (the work tree of the last commit of this branch). Note that the function will check if the HEAD is in a branch. If not, it will return NULL and print an error message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{create__list__branches_8c_a8b84976d4b443fbc587cababa32927df}} 
+\index{create\_list\_branches.c@{create\_list\_branches.c}!create\_branch\_if\_not\_exists@{create\_branch\_if\_not\_exists}}
+\index{create\_branch\_if\_not\_exists@{create\_branch\_if\_not\_exists}!create\_list\_branches.c@{create\_list\_branches.c}}
+\doxysubsubsection{create\_branch\_if\_not\_exists()}
+{\footnotesize\ttfamily int create\+\_\+branch\+\_\+if\+\_\+not\+\_\+exists (\begin{DoxyParamCaption}\item[{const char $\ast$}]{branch }\end{DoxyParamCaption})}
+
+
+
+Create a branch if it does not exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch} & The name of the branch \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int -\/1 if the branch already exists, 0 if there is an error, 1 if the branch has been created 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 31} of file \textbf{ create\+\_\+list\+\_\+branches.\+c}.
+
+\mbox{\label{create__list__branches_8c_aef766e1ccd88967fc31578c2ba8a24ed}} 
+\index{create\_list\_branches.c@{create\_list\_branches.c}!does\_branch\_exists@{does\_branch\_exists}}
+\index{does\_branch\_exists@{does\_branch\_exists}!create\_list\_branches.c@{create\_list\_branches.c}}
+\doxysubsubsection{does\_branch\_exists()}
+{\footnotesize\ttfamily int does\+\_\+branch\+\_\+exists (\begin{DoxyParamCaption}\item[{const char $\ast$}]{branch }\end{DoxyParamCaption})}
+
+
+
+Function used to check if a branch exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch} & The name of the branch \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 if the branch exists, 0 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 18} of file \textbf{ create\+\_\+list\+\_\+branches.\+c}.
+
+\mbox{\label{create__list__branches_8c_ad929b0cd0d22aee7938780406e8e584b}} 
+\index{create\_list\_branches.c@{create\_list\_branches.c}!get\_current\_branch@{get\_current\_branch}}
+\index{get\_current\_branch@{get\_current\_branch}!create\_list\_branches.c@{create\_list\_branches.c}}
+\doxysubsubsection{get\_current\_branch()}
+{\footnotesize\ttfamily char $\ast$ get\+\_\+current\+\_\+branch (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get the current branch name (the branch pointed by HEAD) 
+
+\begin{DoxyReturn}{Returns}
+char$\ast$ The name of the current branch 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 44} of file \textbf{ create\+\_\+list\+\_\+branches.\+c}.
+
+\mbox{\label{create__list__branches_8c_a67fa325b87d55d01997147518766199d}} 
+\index{create\_list\_branches.c@{create\_list\_branches.c}!get\_work\_tree\_current\_branch@{get\_work\_tree\_current\_branch}}
+\index{get\_work\_tree\_current\_branch@{get\_work\_tree\_current\_branch}!create\_list\_branches.c@{create\_list\_branches.c}}
+\doxysubsubsection{get\_work\_tree\_current\_branch()}
+{\footnotesize\ttfamily \textbf{ work\+\_\+tree\+\_\+t} $\ast$ get\+\_\+work\+\_\+tree\+\_\+current\+\_\+branch (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get the work tree of the current branch. Means that it will returns the work tree of the branch pointed by HEAD (the work tree of the last commit of this branch). Note that the function will check if the HEAD is in a branch. If not, it will return NULL and print an error message. 
+
+\begin{DoxyReturn}{Returns}
+work\+\_\+tree\+\_\+t The work tree of the current branch 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 67} of file \textbf{ create\+\_\+list\+\_\+branches.\+c}.
+
+\mbox{\label{create__list__branches_8c_a1ceb5291dc12f23c655da2218ed42903}} 
+\index{create\_list\_branches.c@{create\_list\_branches.c}!get\_work\_tree\_from\_branch@{get\_work\_tree\_from\_branch}}
+\index{get\_work\_tree\_from\_branch@{get\_work\_tree\_from\_branch}!create\_list\_branches.c@{create\_list\_branches.c}}
+\doxysubsubsection{get\_work\_tree\_from\_branch()}
+{\footnotesize\ttfamily \textbf{ work\+\_\+tree\+\_\+t} $\ast$ get\+\_\+work\+\_\+tree\+\_\+from\+\_\+branch (\begin{DoxyParamCaption}\item[{const char $\ast$}]{branch }\end{DoxyParamCaption})}
+
+
+
+Get the work tree from branch name i.\+e. the work tree of the last commit of the branch. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+work\+\_\+tree\+\_\+t$\ast$ 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 52} of file \textbf{ create\+\_\+list\+\_\+branches.\+c}.
+

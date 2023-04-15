@@ -1,0 +1,65 @@
+\doxysection{mygit\+\_\+checkout\+\_\+commit.\+c}
+\label{mygit__checkout__commit_8c_source}\index{src/checkout/mygit\_checkout\_commit.c@{src/checkout/mygit\_checkout\_commit.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ mygit\_checkout\_commit.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ mygit\_checkout\_commit.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}checkout/mygit\_checkout\_commit.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}commit/mygit\_commit.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}libs/commit/restore\_commit.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}libs/file/read\_write\_file.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}libs/list/filter\_list\_prefix.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}utils/utils.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ print\_error\_several\_commits\_found(list\_t\ *filtered\_list)}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ cell\_t\ *iter\ =\ NULL;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ several\ commits\ found\(\backslash\)n"{}});}
+\DoxyCodeLine{00020\ \ \ iter\ =\ *filtered\_list;}
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordflow}{while}\ (iter)\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}\%s\(\backslash\)n"{}},\ iter-\/>data);}
+\DoxyCodeLine{00023\ \ \ \ \ iter\ =\ iter-\/>next;}
+\DoxyCodeLine{00024\ \ \ \}}
+\DoxyCodeLine{00025\ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ checkout\_commit\_by\_hash(\textcolor{keywordtype}{char}\ *hash)}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \ \ write\_file\_content(MYGIT\_DIR\_REFS\ \textcolor{stringliteral}{"{}/"{}}\ MYGIT\_FILE\_REF\_HEAD,\ hash);}
+\DoxyCodeLine{00030\ \ \ restore\_commit\_from\_hash(hash);}
+\DoxyCodeLine{00031\ \ \ printf(\textcolor{stringliteral}{"{}HEAD\ is\ now\ at\ `\%s`\(\backslash\)n"{}},\ hash);}
+\DoxyCodeLine{00032\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{int}\ mygit\_checkout\_commit(\textcolor{keywordtype}{char}\ *pattern)}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \ \ list\_t\ *list\_all\_commits\ =\ NULL;}
+\DoxyCodeLine{00037\ \ \ list\_t\ *filtered\_list\ =\ NULL;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordflow}{if}\ (!pattern)}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00041\ \ \ list\_all\_commits\ =\ get\_list\_all\_commits();}
+\DoxyCodeLine{00042\ \ \ filtered\_list\ =\ filter\_list\_prefix(list\_all\_commits,\ pattern);}
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordflow}{if}\ (!list\_all\_commits\ ||\ !*filtered\_list)\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ no\ commit\ found\(\backslash\)n"{}});}
+\DoxyCodeLine{00045\ \ \ \ \ free\_list(filtered\_list);}
+\DoxyCodeLine{00046\ \ \ \ \ free\_list(list\_all\_commits);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00048\ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordflow}{if}\ ((*filtered\_list)-\/>next)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ print\_error\_several\_commits\_found(filtered\_list);}
+\DoxyCodeLine{00051\ \ \ \ \ free\_list(filtered\_list);}
+\DoxyCodeLine{00052\ \ \ \ \ free\_list(list\_all\_commits);}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00054\ \ \ \}}
+\DoxyCodeLine{00055\ \ \ checkout\_commit\_by\_hash((*filtered\_list)-\/>data);}
+\DoxyCodeLine{00056\ \ \ free\_list(filtered\_list);}
+\DoxyCodeLine{00057\ \ \ free\_list(list\_all\_commits);}
+\DoxyCodeLine{00058\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00059\ \}}
+
+\end{DoxyCode}

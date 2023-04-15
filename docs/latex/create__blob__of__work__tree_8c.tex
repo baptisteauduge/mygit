@@ -1,0 +1,40 @@
+\doxysection{src/libs/work\+\_\+tree/create\+\_\+blob\+\_\+of\+\_\+work\+\_\+tree.c File Reference}
+\label{create__blob__of__work__tree_8c}\index{src/libs/work\_tree/create\_blob\_of\_work\_tree.c@{src/libs/work\_tree/create\_blob\_of\_work\_tree.c}}
+{\ttfamily \#include \char`\"{}libs/work\+\_\+tree/create\+\_\+blob\+\_\+of\+\_\+work\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/work\+\_\+tree/convert\+\_\+str\+\_\+work\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/constants\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/create\+\_\+blob.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/file/create\+\_\+temp\+\_\+and\+\_\+write.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \textbf{ create\+\_\+blob\+\_\+of\+\_\+work\+\_\+tree} (\textbf{ work\+\_\+tree\+\_\+t} $\ast$wt)
+\begin{DoxyCompactList}\small\item\em Create a blob of work tree. The blob is stored at the location given by the BLOB\+\_\+\+PATH constant and the name of the blob is the hash of the work tree. The blob is created with the \doxyref{convert\+\_\+work\+\_\+tree\+\_\+to\+\_\+str}{p.}{convert__str__work__tree_8h_a0c714673d8eb98a151d924be2b6234c7} function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{create__blob__of__work__tree_8c_a06ff07833a9e2205d6f2ee280441fe58}} 
+\index{create\_blob\_of\_work\_tree.c@{create\_blob\_of\_work\_tree.c}!create\_blob\_of\_work\_tree@{create\_blob\_of\_work\_tree}}
+\index{create\_blob\_of\_work\_tree@{create\_blob\_of\_work\_tree}!create\_blob\_of\_work\_tree.c@{create\_blob\_of\_work\_tree.c}}
+\doxysubsubsection{create\_blob\_of\_work\_tree()}
+{\footnotesize\ttfamily char $\ast$ create\+\_\+blob\+\_\+of\+\_\+work\+\_\+tree (\begin{DoxyParamCaption}\item[{\textbf{ work\+\_\+tree\+\_\+t} $\ast$}]{wt }\end{DoxyParamCaption})}
+
+
+
+Create a blob of work tree. The blob is stored at the location given by the BLOB\+\_\+\+PATH constant and the name of the blob is the hash of the work tree. The blob is created with the \doxyref{convert\+\_\+work\+\_\+tree\+\_\+to\+\_\+str}{p.}{convert__str__work__tree_8h_a0c714673d8eb98a151d924be2b6234c7} function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em wt} & The work tree to create the blob from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$ The hash of the blob or NULL if an error occurred. 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 16} of file \textbf{ create\+\_\+blob\+\_\+of\+\_\+work\+\_\+tree.\+c}.
+

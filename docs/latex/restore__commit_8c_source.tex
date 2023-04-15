@@ -1,0 +1,56 @@
+\doxysection{restore\+\_\+commit.\+c}
+\label{restore__commit_8c_source}\index{src/libs/commit/restore\_commit.c@{src/libs/commit/restore\_commit.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ restore\_commit.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ restore\_commit.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/commit/restore\_commit.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/commit/commit.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}libs/commit/get\_work\_tree\_commit.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}libs/commit/insert\_key\_val\_in\_commit.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}libs/commit/save\_get\_file\_commit.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}libs/file/create\_blob.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/restore\_work\_tree.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/save\_get\_file\_work\_tree.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/work\_tree.h"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}utils/utils.h"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{void}\ restore\_commit(commit\_t\ *commit)}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ work\_tree\_t\ *wt\ =\ NULL;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordflow}{if}\ (!commit)}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00025\ \ \ wt\ =\ get\_work\_tree\_from\_commit(commit);}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordflow}{if}\ (!wt)}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00028\ \ \ restore\_work\_tree(wt,\ PREFIX\_PATH);}
+\DoxyCodeLine{00029\ \ \ free\_work\_tree(wt);}
+\DoxyCodeLine{00030\ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keywordtype}{void}\ restore\_commit\_from\_hash(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hash\_commit)}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \ \ commit\_t\ *commit\ =\ NULL;}
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordtype}{char}\ *commit\_path\ =\ NULL;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordflow}{if}\ (!hash\_commit)}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00039\ \ \ commit\_path\ =\ get\_path\_from\_hash(hash\_commit);}
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordflow}{if}\ (!commit\_path)}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00042\ \ \ commit\ =\ get\_commit\_from\_file(commit\_path);}
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordflow}{if}\ (!commit)\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ free(commit\_path);}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00046\ \ \ \}}
+\DoxyCodeLine{00047\ \ \ free(commit\_path);}
+\DoxyCodeLine{00048\ \ \ restore\_commit(commit);}
+\DoxyCodeLine{00049\ \ \ free\_commit(commit);}
+\DoxyCodeLine{00050\ \}}
+
+\end{DoxyCode}

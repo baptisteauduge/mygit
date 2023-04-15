@@ -1,0 +1,51 @@
+\doxysection{include/libs/commit/restore\+\_\+commit.h File Reference}
+\label{restore__commit_8h}\index{include/libs/commit/restore\_commit.h@{include/libs/commit/restore\_commit.h}}
+{\ttfamily \#include \char`\"{}libs/commit/commit.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ restore\+\_\+commit} (\textbf{ commit\+\_\+t} $\ast$commit)
+\begin{DoxyCompactList}\small\item\em Restore the working directory from the commit object. \end{DoxyCompactList}\item 
+void \textbf{ restore\+\_\+commit\+\_\+from\+\_\+hash} (const char $\ast$hash\+\_\+commit)
+\begin{DoxyCompactList}\small\item\em Restore the working directory from the commit hash. (The commit hash must exists as a blob in the repository.) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{restore__commit_8h_a144dd6f063657489152173693b81dec4}} 
+\index{restore\_commit.h@{restore\_commit.h}!restore\_commit@{restore\_commit}}
+\index{restore\_commit@{restore\_commit}!restore\_commit.h@{restore\_commit.h}}
+\doxysubsubsection{restore\_commit()}
+{\footnotesize\ttfamily void restore\+\_\+commit (\begin{DoxyParamCaption}\item[{\textbf{ commit\+\_\+t} $\ast$}]{commit }\end{DoxyParamCaption})}
+
+
+
+Restore the working directory from the commit object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em commit} & The commit object to restore the working directory from. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 19} of file \textbf{ restore\+\_\+commit.\+c}.
+
+\mbox{\label{restore__commit_8h_a1e4cb2d08dd68fd2902334a41d82da94}} 
+\index{restore\_commit.h@{restore\_commit.h}!restore\_commit\_from\_hash@{restore\_commit\_from\_hash}}
+\index{restore\_commit\_from\_hash@{restore\_commit\_from\_hash}!restore\_commit.h@{restore\_commit.h}}
+\doxysubsubsection{restore\_commit\_from\_hash()}
+{\footnotesize\ttfamily void restore\+\_\+commit\+\_\+from\+\_\+hash (\begin{DoxyParamCaption}\item[{const char $\ast$}]{hash\+\_\+commit }\end{DoxyParamCaption})}
+
+
+
+Restore the working directory from the commit hash. (The commit hash must exists as a blob in the repository.) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hash\+\_\+commit} & The commit hash to restore the working directory from. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 32} of file \textbf{ restore\+\_\+commit.\+c}.
+

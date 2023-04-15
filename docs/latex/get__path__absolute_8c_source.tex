@@ -1,0 +1,34 @@
+\doxysection{get\+\_\+path\+\_\+absolute.\+c}
+\label{get__path__absolute_8c_source}\index{src/libs/file/get\_path\_absolute.c@{src/libs/file/get\_path\_absolute.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ get\_path\_absolute.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ get\_path\_absolute.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/file/get\_path\_absolute.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{char}\ *get\_path\_absolute(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *filename)}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ \textcolor{keywordtype}{char}\ *path\_absolute\ =\ NULL;}
+\DoxyCodeLine{00014\ \ \ \textcolor{keywordtype}{size\_t}\ size\ =\ 0;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordflow}{if}\ (!path\ ||\ !filename)}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00018\ \ \ size\ =\ strlen(path);}
+\DoxyCodeLine{00019\ \ \ size\ +=\ strlen(filename);}
+\DoxyCodeLine{00020\ \ \ path\_absolute\ =\ malloc((size\ +\ 2)\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordflow}{if}\ (!path\_absolute)}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00023\ \ \ strcpy(path\_absolute,\ path);}
+\DoxyCodeLine{00024\ \ \ \textcolor{keywordflow}{if}\ (path\_absolute[size\ -\/\ 1]\ !=\ \textcolor{charliteral}{'/'})}
+\DoxyCodeLine{00025\ \ \ \ \ strlcat(path\_absolute,\ \textcolor{stringliteral}{"{}/"{}},\ size\ +\ 1);}
+\DoxyCodeLine{00026\ \ \ strlcat(path\_absolute,\ filename,\ size\ +\ 2);}
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordflow}{return}\ path\_absolute;}
+\DoxyCodeLine{00028\ \}}
+
+\end{DoxyCode}

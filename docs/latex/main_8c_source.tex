@@ -1,0 +1,26 @@
+\doxysection{main.\+c}
+\label{main_8c_source}\index{src/main.c@{src/main.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Sorbonne\ University,\ 2022\ -\/\ 2023}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ main.c}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ \ \ main.c}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}mygit/mygit\_handle\_args.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}utils/utils.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keywordtype}{int}\ main(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 2)\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ bad\ usage\(\backslash\)n"{}});}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00017\ \ \ \}}
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{return}\ mygit\_handle\_args(argc,\ argv);}
+\DoxyCodeLine{00020\ \}}
+
+\end{DoxyCode}

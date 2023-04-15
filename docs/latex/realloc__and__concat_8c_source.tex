@@ -1,0 +1,59 @@
+\doxysection{realloc\+\_\+and\+\_\+concat.\+c}
+\label{realloc__and__concat_8c_source}\index{src/utils/realloc\_and\_concat.c@{src/utils/realloc\_and\_concat.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ realloc\_and\_concat.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ realloc\_and\_concat.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}utils/realloc\_and\_concat.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{void}\ realloc\_and\_concat\_after(\textcolor{keywordtype}{char}\ **base,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *extension)}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \ \ \textcolor{keywordtype}{char}\ *new\_path\ =\ NULL;}
+\DoxyCodeLine{00014\ \ \ \textcolor{keywordtype}{size\_t}\ len\_path\ =\ 0;}
+\DoxyCodeLine{00015\ \ \ \textcolor{keywordtype}{size\_t}\ len\_extension\ =\ 0;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordflow}{if}\ (!base\ ||\ !*base\ ||\ !extension)}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00019\ \ \ len\_path\ =\ strlen(*base);}
+\DoxyCodeLine{00020\ \ \ len\_extension\ =\ strlen(extension);}
+\DoxyCodeLine{00021\ \ \ new\_path\ =\ realloc(*base,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char})\ *\ (len\_path\ +\ len\_extension\ +\ 1));}
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordflow}{if}\ (!new\_path)}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00024\ \ \ *base\ =\ new\_path;}
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ len\_extension;\ ++i)\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ (*base)[len\_path\ +\ i]\ =\ extension[i];}
+\DoxyCodeLine{00027\ \ \ \}}
+\DoxyCodeLine{00028\ \ \ (*base)[len\_path\ +\ len\_extension]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keywordtype}{void}\ realloc\_and\_concat\_before(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *prefix,\ \textcolor{keywordtype}{char}\ **base)}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{char}\ *new\_path\ =\ NULL;}
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordtype}{size\_t}\ len\_path\ =\ 0;}
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordtype}{size\_t}\ len\_prefix\ =\ 0;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordflow}{if}\ (!base\ ||\ !*base\ ||\ !prefix)}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00039\ \ \ len\_path\ =\ strlen(*base);}
+\DoxyCodeLine{00040\ \ \ len\_prefix\ =\ strlen(prefix);}
+\DoxyCodeLine{00041\ \ \ new\_path\ =\ malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char})\ *\ (len\_path\ +\ len\_prefix\ +\ 1));}
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordflow}{if}\ (!new\_path)}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00044\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ len\_path\ +\ len\_prefix;\ ++i)\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ <\ len\_prefix)}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ new\_path[i]\ =\ prefix[i];}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ new\_path[i]\ =\ (*base)[i\ -\/\ len\_prefix];}
+\DoxyCodeLine{00049\ \ \ \}}
+\DoxyCodeLine{00050\ \ \ new\_path[len\_path\ +\ len\_prefix]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00051\ \ \ free(*base);}
+\DoxyCodeLine{00052\ \ \ *base\ =\ new\_path;}
+\DoxyCodeLine{00053\ \}}
+
+\end{DoxyCode}

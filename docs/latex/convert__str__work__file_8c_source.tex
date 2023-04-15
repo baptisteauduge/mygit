@@ -1,0 +1,102 @@
+\doxysection{convert\+\_\+str\+\_\+work\+\_\+file.\+c}
+\label{convert__str__work__file_8c_source}\index{src/libs/work\_file/convert\_str\_work\_file.c@{src/libs/work\_file/convert\_str\_work\_file.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ convert\_str\_work\_file.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ convert\_str\_work\_file.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/work\_file/convert\_str\_work\_file.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/work\_file/work\_file.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}utils/get\_content\_or\_dash\_str.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keywordtype}{size\_t}\ size\_work\_file\_to\_str(\textcolor{keyword}{const}\ work\_file\_t\ *wf)}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordtype}{size\_t}\ size\_wf\ =\ 2\ *\ TAB\_SIZE;}
+\DoxyCodeLine{00017\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name\ =\ NULL;}
+\DoxyCodeLine{00018\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hash\ =\ NULL;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \textcolor{keywordflow}{if}\ (!wf)}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00022\ \ \ name\ =\ get\_content\_or\_dash\_str(wf-\/>name);}
+\DoxyCodeLine{00023\ \ \ hash\ =\ get\_content\_or\_dash\_str(wf-\/>hash);}
+\DoxyCodeLine{00024\ \ \ size\_wf\ +=\ strlen(name);}
+\DoxyCodeLine{00025\ \ \ size\_wf\ +=\ strlen(hash);}
+\DoxyCodeLine{00026\ \ \ size\_wf\ +=\ MODE\_MAX\_SIZE\_STR;}
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordflow}{return}\ size\_wf;}
+\DoxyCodeLine{00028\ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{char}\ *convert\_work\_file\_to\_str(\textcolor{keyword}{const}\ work\_file\_t\ *wf)}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordtype}{size\_t}\ size\_wf\_str\ =\ size\_work\_file\_to\_str(wf);}
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{char}\ *wf\_str\ =\ NULL;}
+\DoxyCodeLine{00034\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name\ =\ NULL;}
+\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hash\ =\ NULL;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordflow}{if}\ (!wf)}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00039\ \ \ wf\_str\ =\ calloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}),\ size\_wf\_str);}
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordflow}{if}\ (!wf\_str)}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00042\ \ \ name\ =\ get\_content\_or\_dash\_str(wf-\/>name);}
+\DoxyCodeLine{00043\ \ \ hash\ =\ get\_content\_or\_dash\_str(wf-\/>hash);}
+\DoxyCodeLine{00044\ \ \ \textcolor{keywordflow}{if}\ (snprintf(wf\_str,\ size\_wf\_str,\ \textcolor{stringliteral}{"{}\%s\(\backslash\)t\%s\(\backslash\)t\%ho"{}},\ name,\ hash,\ wf-\/>mode)\ <\ 0)\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ free(wf\_str);}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00047\ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordflow}{return}\ wf\_str;}
+\DoxyCodeLine{00049\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ set\_to\_null\_if\_dash(\textcolor{keywordtype}{char}\ **str)}
+\DoxyCodeLine{00052\ \{}
+\DoxyCodeLine{00053\ \ \ \textcolor{keywordflow}{if}\ (strcmp(*str,\ \textcolor{stringliteral}{"{}-\/"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ free(*str);}
+\DoxyCodeLine{00055\ \ \ \ \ *str\ =\ NULL;}
+\DoxyCodeLine{00056\ \ \ \}}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ Due\ to\ a\ non\ support\ in\ MacOS\ of\ \%ms,\ in\ sscanf}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ we\ use\ \%s\ and\ we\ allocate\ the\ memory}}
+\DoxyCodeLine{00061\ \textcolor{keywordtype}{int}\ get\_content\_str\_work\_file(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str,\ \textcolor{keywordtype}{char}\ **name,\ \textcolor{keywordtype}{char}\ **hash,}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mode\_t\ *mode)}
+\DoxyCodeLine{00063\ \{}
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordflow}{if}\ (!name\ ||\ !hash\ ||\ !mode\ ||\ !str)}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00066\ \ \ *name\ =\ malloc(BUFFER\_SIZE\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordflow}{if}\ (!*name)}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00069\ \ \ *hash\ =\ malloc(BUFFER\_SIZE\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00070\ \ \ \textcolor{keywordflow}{if}\ (!*hash)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ free(*name);}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00073\ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \textcolor{keywordflow}{if}\ (sscanf(str,\ \textcolor{stringliteral}{"{}\%s\(\backslash\)t\%s\(\backslash\)t\%ho"{}},\ *name,\ *hash,\ mode)\ <\ 2)}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00076\ \ \ set\_to\_null\_if\_dash(name);}
+\DoxyCodeLine{00077\ \ \ set\_to\_null\_if\_dash(hash);}
+\DoxyCodeLine{00078\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00079\ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ work\_file\_t\ *convert\_str\_to\_work\_file(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str)}
+\DoxyCodeLine{00082\ \{}
+\DoxyCodeLine{00083\ \ \ work\_file\_t\ *wf\ =\ NULL;}
+\DoxyCodeLine{00084\ \ \ \textcolor{keywordtype}{char}\ *name\ =\ NULL;}
+\DoxyCodeLine{00085\ \ \ \textcolor{keywordtype}{char}\ *hash\ =\ NULL;}
+\DoxyCodeLine{00086\ \ \ mode\_t\ mode\ =\ 0;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \textcolor{keywordflow}{if}\ (!str)}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00090\ \ \ \textcolor{keywordflow}{if}\ (!get\_content\_str\_work\_file(str,\ \&name,\ \&hash,\ \&mode))}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00092\ \ \ wf\ =\ create\_work\_file(name,\ hash,\ mode);}
+\DoxyCodeLine{00093\ \ \ free(name);}
+\DoxyCodeLine{00094\ \ \ free(hash);}
+\DoxyCodeLine{00095\ \ \ \textcolor{keywordflow}{return}\ wf;}
+\DoxyCodeLine{00096\ \}}
+
+\end{DoxyCode}

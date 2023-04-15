@@ -1,0 +1,96 @@
+\doxysection{mygit\+\_\+merge.\+c}
+\label{mygit__merge_8c_source}\index{src/merge/mygit\_merge.c@{src/merge/mygit\_merge.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ mygit\_merge.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ mygit\_merge.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}merge/mygit\_merge.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}branch/create\_list\_branches.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}libs/commit/commit.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}libs/commit/create\_blob\_of\_commit.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}libs/commit/insert\_key\_val\_in\_commit.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/restore\_work\_tree.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/save\_content\_and\_work\_tree.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/work\_tree.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}merge/mygit\_merge\_work\_trees.h"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}refs/refs.h"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}utils/utils.h"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ We\ can\ safely\ don't\ verify\ the\ return\ value\ of\ all\ the\ functions}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ because\ all\ functions\ don't\ raise\ errors\ if\ they\ receives\ bad\ parameters}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ and\ for\ the\ "{}homemade"{}\ free\_functions,\ we\ don't\ care\ if\ the\ pointer\ is\ NULLs}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ This\ functions\ doesn't\ respect\ the\ 25\ lines\ rule\ because\ it's\ a\ little\ bit}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ complicated\ to\ split\ it\ in\ multiple\ functions.\ It's\ not\ a\ good\ practice\ to}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ split\ a\ function\ in\ multiple\ functions\ if\ it's\ not\ possible\ to\ do\ it\ without}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ losing\ the\ readability\ of\ the\ code}}
+\DoxyCodeLine{00028\ list\_t\ *mygit\_merge(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *remote\_branch,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *message)}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ work\_tree\_t\ *wt\_curr\_br\ =\ NULL;}
+\DoxyCodeLine{00031\ \ \ work\_tree\_t\ *wt\_remote\_br\ =\ NULL;}
+\DoxyCodeLine{00032\ \ \ work\_tree\_t\ *wt\_merged\ =\ NULL;}
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{char}\ *hash\_wt\_merged\ =\ NULL;}
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordtype}{char}\ *curr\_branch\ =\ NULL;}
+\DoxyCodeLine{00035\ \ \ list\_t\ *conflicted\_files\ =\ NULL;}
+\DoxyCodeLine{00036\ \ \ commit\_t\ *commit\_merge\ =\ NULL;}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordtype}{char}\ *ref\_curr\_branch\ =\ NULL;}
+\DoxyCodeLine{00038\ \ \ \textcolor{keywordtype}{char}\ *ref\_remote\_branch\ =\ NULL;}
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordtype}{char}\ *hash\_commit\ =\ NULL;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordflow}{if}\ (!remote\_branch)}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00043\ \ \ \textcolor{comment}{//\ Get\ the\ current\ branch\ and\ init\ the\ conflicted\ files\ list}}
+\DoxyCodeLine{00044\ \ \ curr\_branch\ =\ get\_current\_branch();}
+\DoxyCodeLine{00045\ \ \ wt\_curr\_br\ =\ get\_work\_tree\_from\_branch(curr\_branch);}
+\DoxyCodeLine{00046\ \ \ wt\_remote\_br\ =\ get\_work\_tree\_from\_branch(remote\_branch);}
+\DoxyCodeLine{00047\ \ \ conflicted\_files\ =\ create\_init\_list();}
+\DoxyCodeLine{00048\ \ \ wt\_merged\ =}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ mygit\_merge\_work\_trees(wt\_curr\_br,\ wt\_remote\_br,\ \&conflicted\_files);}
+\DoxyCodeLine{00050\ \ \ \textcolor{comment}{//\ If\ there\ is\ conflict,\ we\ returns\ the\ list\ of\ conflicted\ files\ and\ free}}
+\DoxyCodeLine{00051\ \ \ \textcolor{comment}{//\ memory}}
+\DoxyCodeLine{00052\ \ \ \textcolor{keywordflow}{if}\ (*conflicted\_files)\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ free\_work\_tree(wt\_curr\_br);}
+\DoxyCodeLine{00054\ \ \ \ \ free\_work\_tree(wt\_remote\_br);}
+\DoxyCodeLine{00055\ \ \ \ \ free\_work\_tree(wt\_merged);}
+\DoxyCodeLine{00056\ \ \ \ \ free(curr\_branch);}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{return}\ conflicted\_files;}
+\DoxyCodeLine{00058\ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \textcolor{comment}{//\ If\ there\ is\ no\ conflict,\ we\ can\ save\ the\ work\ tree\ and\ create\ the\ merge}}
+\DoxyCodeLine{00060\ \ \ \textcolor{comment}{//\ commit}}
+\DoxyCodeLine{00061\ \ \ hash\_wt\_merged\ =\ save\_content\_and\_work\_tree(wt\_merged,\ PREFIX\_PATH);}
+\DoxyCodeLine{00062\ \ \ commit\_merge\ =\ create\_commit\_with\_tree\_key\_val(hash\_wt\_merged);}
+\DoxyCodeLine{00063\ \ \ \textcolor{comment}{//\ We\ update\ the\ keys\ of\ the\ commit\ to\ match\ with\ the\ merge\ commit}}
+\DoxyCodeLine{00064\ \ \ ref\_remote\_branch\ =\ get\_ref(remote\_branch);}
+\DoxyCodeLine{00065\ \ \ ref\_curr\_branch\ =\ get\_ref(curr\_branch);}
+\DoxyCodeLine{00066\ \ \ \textcolor{keywordflow}{if}\ (message)}
+\DoxyCodeLine{00067\ \ \ \ \ insert\_key\_val\_in\_commit(commit\_merge,\ COMMIT\_KEY\_MESSAGE,\ message);}
+\DoxyCodeLine{00068\ \ \ insert\_key\_val\_in\_commit(commit\_merge,\ COMMIT\_KEY\_MERGED\_PARENT,}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ref\_remote\_branch);}
+\DoxyCodeLine{00070\ \ \ insert\_key\_val\_in\_commit(commit\_merge,\ COMMIT\_KEY\_PARENT,\ ref\_curr\_branch);}
+\DoxyCodeLine{00071\ \ \ \textcolor{comment}{//\ We\ create\ the\ blob\ of\ the\ commit\ and\ update\ the\ refs}}
+\DoxyCodeLine{00072\ \ \ hash\_commit\ =\ create\_blob\_of\_commit(commit\_merge);}
+\DoxyCodeLine{00073\ \ \ create\_or\_update\_ref(curr\_branch,\ hash\_commit);}
+\DoxyCodeLine{00074\ \ \ create\_or\_update\_ref(MYGIT\_FILE\_REF\_HEAD,\ hash\_commit);}
+\DoxyCodeLine{00075\ \ \ \textcolor{comment}{//\ We\ delete\ the\ merged\ branch\ and\ restore\ the\ work\ tree\ of\ the\ current\ branch}}
+\DoxyCodeLine{00076\ \ \ delete\_ref(remote\_branch);}
+\DoxyCodeLine{00077\ \ \ restore\_work\_tree(wt\_merged,\ PREFIX\_PATH);}
+\DoxyCodeLine{00078\ \ \ \textcolor{comment}{//\ We\ free\ memory\ and\ return\ NULL\ because\ there\ is\ no\ conflict}}
+\DoxyCodeLine{00079\ \ \ free\_work\_tree(wt\_curr\_br);}
+\DoxyCodeLine{00080\ \ \ free\_work\_tree(wt\_remote\_br);}
+\DoxyCodeLine{00081\ \ \ free\_work\_tree(wt\_merged);}
+\DoxyCodeLine{00082\ \ \ free\_commit(commit\_merge);}
+\DoxyCodeLine{00083\ \ \ free(hash\_wt\_merged);}
+\DoxyCodeLine{00084\ \ \ free(hash\_commit);}
+\DoxyCodeLine{00085\ \ \ free(ref\_curr\_branch);}
+\DoxyCodeLine{00086\ \ \ free(ref\_curr\_branch);}
+\DoxyCodeLine{00087\ \ \ free(curr\_branch);}
+\DoxyCodeLine{00088\ \ \ free(conflicted\_files);}
+\DoxyCodeLine{00089\ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00090\ \}}
+
+\end{DoxyCode}
