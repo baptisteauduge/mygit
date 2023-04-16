@@ -17,6 +17,7 @@
 #include "libs/work_tree/work_tree.h"
 #include "utils/utils.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 static void add_files_not_in_conflict(const list_t *conflicts,
                                       const work_tree_t *work_tree)
@@ -52,5 +53,8 @@ void mygit_create_deletion_commit(const char *branch, const list_t *conflicts,
   add_files_not_in_conflict(conflicts, last_work_tree_branch);
   if (!message)
     mygit_commit(branch, "mygit: deletion commit");
-  mygit_commit(branch, message);
+  else
+    mygit_commit(branch, message);
+  mygit_checkout_branch(default_branch);
+  free(default_branch);
 }

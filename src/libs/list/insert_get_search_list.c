@@ -39,7 +39,7 @@ cell_t *search_data_in_list(const list_t *list, const char *data)
   if (!list || !data)
     return NULL;
   iter = *list;
-  while (iter && strcmp(iter->data, data))
+  while (iter && strcmp(iter->data, data) != 0)
     iter = iter->next;
   return iter;
 }

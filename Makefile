@@ -62,7 +62,7 @@ OBJ					=		$(SRC:.c=.o)
 
 OBJ_TEST		=		$(SRC_TEST:.c=.o)
 
-NAME				=		mygit.out
+NAME				=		mygit
 
 TEST_NAME		=		unit_tests
 

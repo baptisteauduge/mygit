@@ -9,8 +9,8 @@
 #include "libs/commit/commit.h"
 #include "libs/commit/create_blob_of_commit.h"
 #include "libs/commit/insert_key_val_in_commit.h"
+#include "libs/work_tree/create_blob_of_work_tree.h"
 #include "libs/work_tree/restore_work_tree.h"
-#include "libs/work_tree/save_content_and_work_tree.h"
 #include "libs/work_tree/work_tree.h"
 #include "merge/mygit_merge_work_trees.h"
 #include "refs/refs.h"
@@ -25,7 +25,8 @@
 // complicated to split it in multiple functions. It's not a good practice to
 // split a function in multiple functions if it's not possible to do it without
 // losing the readability of the code
-list_t *mygit_merge_or_get_conflicts(const char *remote_branch, const char *message)
+list_t *mygit_merge_or_get_conflicts(const char *remote_branch,
+                                     const char *message)
 {
   work_tree_t *wt_curr_br = NULL;
   work_tree_t *wt_remote_br = NULL;
@@ -58,13 +59,15 @@ list_t *mygit_merge_or_get_conflicts(const char *remote_branch, const char *mess
   }
   // If there is no conflict, we can save the work tree and create the merge
   // commit
-  hash_wt_merged = save_content_and_work_tree(wt_merged, PREFIX_PATH);
+  hash_wt_merged = create_blob_of_work_tree(wt_merged);
   commit_merge = create_commit_with_tree_key_val(hash_wt_merged);
   // We update the keys of the commit to match with the merge commit
   ref_remote_branch = get_ref(remote_branch);
   ref_curr_branch = get_ref(curr_branch);
   if (message)
     insert_key_val_in_commit(commit_merge, COMMIT_KEY_MESSAGE, message);
+  else
+    insert_key_val_in_commit(commit_merge, COMMIT_KEY_MESSAGE, "Merge commit");
   insert_key_val_in_commit(commit_merge, COMMIT_KEY_MERGED_PARENT,
                            ref_remote_branch);
   insert_key_val_in_commit(commit_merge, COMMIT_KEY_PARENT, ref_curr_branch);

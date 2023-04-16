@@ -39,10 +39,11 @@ static void browse_and_append_wt_or_conflicts(work_tree_t *wt1,
     return;
   for (size_t i = 0; i < wt1->size; ++i) {
     current_wf = wt1->tab + i;
-    if (is_in_conflict(wt2, current_wf)) {
+    if (is_in_conflict(wt2, current_wf) &&
+        !search_data_in_list(*conflicts, current_wf->name)) {
       create_and_insert_cell_in_list(*conflicts, current_wf->name);
     }
-    else if (!search_data_in_list(*conflicts, current_wf->name)) {
+    else {
       append_work_tree(wt_without_conflicts, current_wf->name, current_wf->hash,
                        current_wf->mode);
     }

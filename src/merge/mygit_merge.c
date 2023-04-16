@@ -28,13 +28,14 @@ static void mygit_keep_other_branch_changes(const list_t *conflicts,
   free(current_branch);
 }
 
+// != \n because of the \n in the buffer
 static int mygit_get_yes_no_answer(void)
 {
   char answer = 0;
 
   while (answer != 'y' && answer != 'n') {
-    scanf("%c\n", &answer);
-    if (answer != 'y' && answer != 'n')
+    scanf("%c", &answer);
+    if (answer != 'y' && answer != 'n' && answer != '\n')
       LOG_ERROR("Invalid answer. Please choose between 'y' and 'n' :\n");
   }
   return answer == 'y';
@@ -55,8 +56,9 @@ static void mygit_choose_for_each_file(const list_t *conflicts,
     return;
   current_cell = *conflicts;
   while (current_cell) {
-    LOG_INFO("Do you want to keep the current branch changes for '%s' ? (y/n)",
-             current_cell->data);
+    LOG_INFO(
+        "Do you want to keep the current branch changes for '%s' ? (y/n)\n",
+        current_cell->data);
     if (mygit_get_yes_no_answer()) {
       create_and_insert_cell_in_list(conflicts_delete_other_br,
                                      current_cell->data);
@@ -79,9 +81,9 @@ static void mygit_handle_answer(const char *branch, const list_t *conflicts,
   int answer = 0;
 
   while (answer < 1 || answer > 3) {
-    scanf("%d\n", &answer);
+    scanf("%d", &answer);
     if (answer < 1 || answer > 3)
-      LOG_ERROR("Invalid answer. Please choose between 1 and 3.\nYour choice:");
+      LOG_ERROR("Invalid answer. Please choose between 1 and 3.\n");
   }
   if (answer == 1) {
     mygit_create_deletion_commit(branch, conflicts, message);
@@ -98,12 +100,12 @@ static void mygit_handle_answer(const char *branch, const list_t *conflicts,
 static void mygit_handle_conflicts(const char *branch, const list_t *conflicts,
                                    const char *message)
 {
-  if (!conflicts)
+  if (!conflicts || !branch)
     return;
 
   LOG_INFO(
       "What do you want to do ?\n1) Keep the current branch changes\n2) Keep "
-      "the '%s' branch changes\n3) Choose for each file\nYour choice:",
+      "the '%s' branch changes\n3) Choose for each file\n",
       branch);
   mygit_handle_answer(branch, conflicts, message);
 }
@@ -123,5 +125,6 @@ void mygit_merge(const char *branch, const char *message)
     mygit_handle_conflicts(branch, conflicts, message);
     free_list(conflicts);
   }
-  LOG_INFO("Merge done.\n");
+  else
+    LOG_INFO("Merge done.\n");
 }
