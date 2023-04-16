@@ -1,0 +1,47 @@
+\doxysection{src/merge/mygit\+\_\+merge\+\_\+or\+\_\+get\+\_\+conflicts.c File Reference}
+\label{mygit__merge__or__get__conflicts_8c}\index{src/merge/mygit\_merge\_or\_get\_conflicts.c@{src/merge/mygit\_merge\_or\_get\_conflicts.c}}
+{\ttfamily \#include \char`\"{}merge/mygit\+\_\+merge\+\_\+or\+\_\+get\+\_\+conflicts.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}branch/create\+\_\+list\+\_\+branches.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/commit/commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/commit/create\+\_\+blob\+\_\+of\+\_\+commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/commit/insert\+\_\+key\+\_\+val\+\_\+in\+\_\+commit.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/work\+\_\+tree/create\+\_\+blob\+\_\+of\+\_\+work\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/work\+\_\+tree/restore\+\_\+work\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}libs/work\+\_\+tree/work\+\_\+tree.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}merge/mygit\+\_\+merge\+\_\+work\+\_\+trees.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}refs/refs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils/utils.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ list\+\_\+t} $\ast$ \textbf{ mygit\+\_\+merge\+\_\+or\+\_\+get\+\_\+conflicts} (const char $\ast$remote\+\_\+branch, const char $\ast$message)
+\begin{DoxyCompactList}\small\item\em Function that merge the current branch with the remote branch if there is no conflicts if there is conflicts, it will return the list of the conflicted files. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{mygit__merge__or__get__conflicts_8c_a46ac261705a0ec8e90d781f4f3fbb2b5}} 
+\index{mygit\_merge\_or\_get\_conflicts.c@{mygit\_merge\_or\_get\_conflicts.c}!mygit\_merge\_or\_get\_conflicts@{mygit\_merge\_or\_get\_conflicts}}
+\index{mygit\_merge\_or\_get\_conflicts@{mygit\_merge\_or\_get\_conflicts}!mygit\_merge\_or\_get\_conflicts.c@{mygit\_merge\_or\_get\_conflicts.c}}
+\doxysubsubsection{mygit\_merge\_or\_get\_conflicts()}
+{\footnotesize\ttfamily \textbf{ list\+\_\+t} $\ast$ mygit\+\_\+merge\+\_\+or\+\_\+get\+\_\+conflicts (\begin{DoxyParamCaption}\item[{const char $\ast$}]{remote\+\_\+branch,  }\item[{const char $\ast$}]{message }\end{DoxyParamCaption})}
+
+
+
+Function that merge the current branch with the remote branch if there is no conflicts if there is conflicts, it will return the list of the conflicted files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em remote\+\_\+branch} & the name of the remote branch to merge \\
+\hline
+{\em message} & the message of the merge commit (could be NULL) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list\+\_\+t$\ast$ the list of the conflicted files (if there is, else it will be empty) 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 28} of file \textbf{ mygit\+\_\+merge\+\_\+or\+\_\+get\+\_\+conflicts.\+c}.
+

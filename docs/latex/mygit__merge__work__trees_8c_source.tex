@@ -43,29 +43,30 @@
 \DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{return};}
 \DoxyCodeLine{00040\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ wt1-\/>size;\ ++i)\ \{}
 \DoxyCodeLine{00041\ \ \ \ \ current\_wf\ =\ wt1-\/>tab\ +\ i;}
-\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_in\_conflict(wt2,\ current\_wf))\ \{}
-\DoxyCodeLine{00043\ \ \ \ \ \ \ create\_and\_insert\_cell\_in\_list(*conflicts,\ current\_wf-\/>name);}
-\DoxyCodeLine{00044\ \ \ \ \ \}}
-\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (!search\_data\_in\_list(*conflicts,\ current\_wf-\/>name))\ \{}
-\DoxyCodeLine{00046\ \ \ \ \ \ \ append\_work\_tree(wt\_without\_conflicts,\ current\_wf-\/>name,\ current\_wf-\/>hash,}
-\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_wf-\/>mode);}
-\DoxyCodeLine{00048\ \ \ \ \ \}}
-\DoxyCodeLine{00049\ \ \ \}}
-\DoxyCodeLine{00050\ \}}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ work\_tree\_t\ *mygit\_merge\_work\_trees(work\_tree\_t\ *wt1,\ work\_tree\_t\ *wt2,}
-\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ list\_t\ **conflicts)}
-\DoxyCodeLine{00054\ \{}
-\DoxyCodeLine{00055\ \ \ work\_tree\_t\ *wt\_without\_conflicts\ =\ NULL;}
-\DoxyCodeLine{00056\ }
-\DoxyCodeLine{00057\ \ \ \textcolor{keywordflow}{if}\ (!wt1\ ||\ !wt2\ ||\ !conflicts)}
-\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
-\DoxyCodeLine{00059\ \ \ wt\_without\_conflicts\ =\ create\_and\_init\_work\_tree();}
-\DoxyCodeLine{00060\ \ \ \textcolor{keywordflow}{if}\ (!wt\_without\_conflicts)}
-\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
-\DoxyCodeLine{00062\ \ \ browse\_and\_append\_wt\_or\_conflicts(wt1,\ wt2,\ conflicts,\ wt\_without\_conflicts);}
-\DoxyCodeLine{00063\ \ \ browse\_and\_append\_wt\_or\_conflicts(wt2,\ wt1,\ conflicts,\ wt\_without\_conflicts);}
-\DoxyCodeLine{00064\ \ \ \textcolor{keywordflow}{return}\ wt\_without\_conflicts;}
-\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{if}\ (is\_in\_conflict(wt2,\ current\_wf)\ \&\&}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ !search\_data\_in\_list(*conflicts,\ current\_wf-\/>name))\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ create\_and\_insert\_cell\_in\_list(*conflicts,\ current\_wf-\/>name);}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ append\_work\_tree(wt\_without\_conflicts,\ current\_wf-\/>name,\ current\_wf-\/>hash,}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_wf-\/>mode);}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \}}
+\DoxyCodeLine{00051\ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ work\_tree\_t\ *mygit\_merge\_work\_trees(work\_tree\_t\ *wt1,\ work\_tree\_t\ *wt2,}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ list\_t\ **conflicts)}
+\DoxyCodeLine{00055\ \{}
+\DoxyCodeLine{00056\ \ \ work\_tree\_t\ *wt\_without\_conflicts\ =\ NULL;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \textcolor{keywordflow}{if}\ (!wt1\ ||\ !wt2\ ||\ !conflicts)}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00060\ \ \ wt\_without\_conflicts\ =\ create\_and\_init\_work\_tree();}
+\DoxyCodeLine{00061\ \ \ \textcolor{keywordflow}{if}\ (!wt\_without\_conflicts)}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00063\ \ \ browse\_and\_append\_wt\_or\_conflicts(wt1,\ wt2,\ conflicts,\ wt\_without\_conflicts);}
+\DoxyCodeLine{00064\ \ \ browse\_and\_append\_wt\_or\_conflicts(wt2,\ wt1,\ conflicts,\ wt\_without\_conflicts);}
+\DoxyCodeLine{00065\ \ \ \textcolor{keywordflow}{return}\ wt\_without\_conflicts;}
+\DoxyCodeLine{00066\ \}}
 
 \end{DoxyCode}

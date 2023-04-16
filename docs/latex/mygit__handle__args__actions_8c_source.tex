@@ -18,241 +18,268 @@
 \DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}init/init.h"{}}}
 \DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}libs/file/get\_path\_absolute.h"{}}}
 \DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}libs/file/list\_files.h"{}}}
-\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}refs/refs.h"{}}}
-\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}utils/utils.h"{}}}
-\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
-\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
-\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <string.h>}}
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \textcolor{comment}{//\ Note:\ the\ lines\ (void)argc;\ (void)argv;\ are\ used\ to\ avoid\ warnings}}
-\DoxyCodeLine{00024\ \textcolor{keywordtype}{int}\ init\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
-\DoxyCodeLine{00025\ \{}
-\DoxyCodeLine{00026\ \ \ (void)argc;}
-\DoxyCodeLine{00027\ \ \ (void)argv;}
-\DoxyCodeLine{00028\ }
-\DoxyCodeLine{00029\ \ \ init\_all();}
-\DoxyCodeLine{00030\ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}MyGit\ initialized\(\backslash\)n"{}});}
-\DoxyCodeLine{00031\ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00032\ \}}
-\DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \textcolor{comment}{//\ Note:\ the\ lines\ (void)argc;\ (void)argv;\ are\ used\ to\ avoid\ warnings}}
-\DoxyCodeLine{00035\ \textcolor{keywordtype}{int}\ list\_refs\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
-\DoxyCodeLine{00036\ \{}
-\DoxyCodeLine{00037\ \ \ \textcolor{keywordtype}{char}\ *str\_all\_ref\ =\ get\_str\_all\_ref();}
-\DoxyCodeLine{00038\ \ \ (void)argc;}
-\DoxyCodeLine{00039\ \ \ (void)argv;}
-\DoxyCodeLine{00040\ }
-\DoxyCodeLine{00041\ \ \ \textcolor{keywordflow}{if}\ (str\_all\_ref\ ==\ NULL)}
-\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00043\ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}\%s"{}},\ str\_all\_ref);}
-\DoxyCodeLine{00044\ \ \ free(str\_all\_ref);}
-\DoxyCodeLine{00045\ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00046\ \}}
-\DoxyCodeLine{00047\ }
-\DoxyCodeLine{00048\ \textcolor{keywordtype}{int}\ create\_ref\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
-\DoxyCodeLine{00049\ \{}
-\DoxyCodeLine{00050\ \ \ \textcolor{keywordtype}{char}\ *ref\_path\ =\ NULL;}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 4)\ \{}
-\DoxyCodeLine{00053\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Usage:\ mygit\ create-\/ref\ <ref>\ <hash>\(\backslash\)n"{}});}
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00055\ \ \ \}}
-\DoxyCodeLine{00056\ \ \ ref\_path\ =\ get\_path\_absolute(MYGIT\_DIR\_REFS,\ argv[2]);}
-\DoxyCodeLine{00057\ \ \ \textcolor{keywordflow}{if}\ (ref\_path\ ==\ NULL)}
-\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00059\ \ \ \textcolor{keywordflow}{if}\ (does\_file\_exists(ref\_path))\ \{}
-\DoxyCodeLine{00060\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ ref\ '\%s'\ already\ exists,\ delete\ it\ before\(\backslash\)n"{}},\ argv[2]);}
-\DoxyCodeLine{00061\ \ \ \ \ free(ref\_path);}
-\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00063\ \ \ \}}
-\DoxyCodeLine{00064\ \ \ free(ref\_path);}
-\DoxyCodeLine{00065\ \ \ create\_or\_update\_ref(argv[2],\ argv[3]);}
-\DoxyCodeLine{00066\ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}Ref\ '\%s'\ created\(\backslash\)n"{}},\ argv[2]);}
-\DoxyCodeLine{00067\ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00068\ \}}
-\DoxyCodeLine{00069\ }
-\DoxyCodeLine{00070\ \textcolor{keywordtype}{int}\ delete\_ref\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
-\DoxyCodeLine{00071\ \{}
-\DoxyCodeLine{00072\ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 3)\ \{}
-\DoxyCodeLine{00073\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Usage:\ mygit\ delete-\/ref\ <ref>\(\backslash\)n"{}});}
-\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00075\ \ \ \}}
-\DoxyCodeLine{00076\ \ \ \textcolor{keywordflow}{if}\ (!delete\_ref(argv[2]))\ \{}
-\DoxyCodeLine{00077\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ can't\ delete\ ref\ '\%s'\(\backslash\)n"{}},\ argv[2]);}
-\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00079\ \ \ \}}
-\DoxyCodeLine{00080\ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}Ref\ '\%s'\ deleted\(\backslash\)n"{}},\ argv[2]);}
-\DoxyCodeLine{00081\ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00082\ \}}
-\DoxyCodeLine{00083\ }
-\DoxyCodeLine{00084\ \textcolor{keywordtype}{int}\ add\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
-\DoxyCodeLine{00085\ \{}
-\DoxyCodeLine{00086\ \ \ \textcolor{keywordtype}{int}\ ret\ =\ 0;}
-\DoxyCodeLine{00087\ }
-\DoxyCodeLine{00088\ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 3)\ \{}
-\DoxyCodeLine{00089\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Usage:\ mygit\ add\ <elem>\ [<elem2>\ <elem3>\ ...]\(\backslash\)n"{}});}
-\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00091\ \ \ \}}
-\DoxyCodeLine{00092\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 2;\ i\ <\ argc;\ i++)\ \{}
-\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{if}\ (!mygit\_add(argv[i]))}
-\DoxyCodeLine{00094\ \ \ \ \ \ \ ret\ =\ 1;}
-\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00096\ \ \ \ \ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}File\ '\%s'\ added\(\backslash\)n"{}},\ argv[i]);}
-\DoxyCodeLine{00097\ \ \ \}}
-\DoxyCodeLine{00098\ \ \ \textcolor{keywordflow}{return}\ ret;}
-\DoxyCodeLine{00099\ \}}
-\DoxyCodeLine{00100\ }
-\DoxyCodeLine{00101\ \textcolor{comment}{//\ Note:\ the\ lines\ (void)argc;\ (void)argv;\ are\ used\ to\ avoid\ warnings}}
-\DoxyCodeLine{00102\ \textcolor{keywordtype}{int}\ list\_add\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
-\DoxyCodeLine{00103\ \{}
-\DoxyCodeLine{00104\ \ \ \textcolor{keywordtype}{char}\ *str\_list\_add\ =\ mygit\_list\_add\_str();}
-\DoxyCodeLine{00105\ \ \ (void)argc;}
-\DoxyCodeLine{00106\ \ \ (void)argv;}
-\DoxyCodeLine{00107\ }
-\DoxyCodeLine{00108\ \ \ \textcolor{keywordflow}{if}\ (!str\_list\_add)\ \{}
-\DoxyCodeLine{00109\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ can't\ get\ list\ of\ added\ files\(\backslash\)nIt's\ probably\ "{}}}
-\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}because\ you\ didn't\ add\ any\ file\ yet\(\backslash\)n"{}});}
-\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00112\ \ \ \}}
-\DoxyCodeLine{00113\ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}\%s\(\backslash\)n"{}},\ str\_list\_add);}
-\DoxyCodeLine{00114\ \ \ free(str\_list\_add);}
-\DoxyCodeLine{00115\ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00116\ \}}
-\DoxyCodeLine{00117\ }
-\DoxyCodeLine{00118\ \textcolor{comment}{//\ Note:\ the\ lines\ (void)argc;\ (void)argv;\ are\ used\ to\ avoid\ warnings}}
-\DoxyCodeLine{00119\ \textcolor{keywordtype}{int}\ clear\_add\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
-\DoxyCodeLine{00120\ \{}
-\DoxyCodeLine{00121\ \ \ (void)argc;}
-\DoxyCodeLine{00122\ \ \ (void)argv;}
-\DoxyCodeLine{00123\ }
-\DoxyCodeLine{00124\ \ \ \textcolor{keywordflow}{if}\ (remove(MYGIT\_PATH\_ADD)\ ==\ 0)\ \{}
-\DoxyCodeLine{00125\ \ \ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}List\ of\ added\ files\ cleared\(\backslash\)n"{}});}
-\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00127\ \ \ \}}
-\DoxyCodeLine{00128\ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ can't\ clear\ list\ of\ added\ files\(\backslash\)n\ It's\ probably\ "{}}}
-\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}because\ you\ didn't\ add\ any\ file\ yet\(\backslash\)n"{}});}
-\DoxyCodeLine{00130\ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00131\ \}}
-\DoxyCodeLine{00132\ }
-\DoxyCodeLine{00133\ \textcolor{keywordtype}{int}\ commit\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
-\DoxyCodeLine{00134\ \{}
-\DoxyCodeLine{00135\ \ \ \textcolor{keywordtype}{char}\ *commit\_hash\ =\ NULL;}
-\DoxyCodeLine{00136\ }
-\DoxyCodeLine{00137\ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 3)\ \{}
-\DoxyCodeLine{00138\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Usage:\ mygit\ commit\ <branch>\ [-\/m\ <message>]\(\backslash\)n"{}});}
-\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00140\ \ \ \}}
-\DoxyCodeLine{00141\ \ \ \textcolor{keywordflow}{if}\ (argc\ ==\ 3)\ \{}
-\DoxyCodeLine{00142\ \ \ \ \ commit\_hash\ =\ mygit\_commit(argv[2],\ NULL);}
-\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{if}\ (!commit\_hash)\ \{}
-\DoxyCodeLine{00144\ \ \ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ can't\ commit\(\backslash\)n"{}});}
-\DoxyCodeLine{00145\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00146\ \ \ \ \ \}}
-\DoxyCodeLine{00147\ \ \ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}Commit\ '\%s'\ created\(\backslash\)n"{}},\ commit\_hash);}
-\DoxyCodeLine{00148\ \ \ \ \ free(commit\_hash);}
-\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00150\ \ \ \}}
-\DoxyCodeLine{00151\ \ \ \textcolor{keywordflow}{if}\ (argc\ >=\ 5\ \&\&\ !strcmp(argv[3],\ \textcolor{stringliteral}{"{}-\/m"{}}))\ \{}
-\DoxyCodeLine{00152\ \ \ \ \ commit\_hash\ =\ mygit\_commit(argv[2],\ argv[4]);}
-\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{if}\ (!commit\_hash)\ \{}
-\DoxyCodeLine{00154\ \ \ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ can't\ commit\(\backslash\)n"{}});}
-\DoxyCodeLine{00155\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00156\ \ \ \ \ \}}
-\DoxyCodeLine{00157\ \ \ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}Commit\ '\%s'\ created\(\backslash\)n"{}},\ commit\_hash);}
-\DoxyCodeLine{00158\ \ \ \ \ free(commit\_hash);}
-\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00160\ \ \ \}}
-\DoxyCodeLine{00161\ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Usage:\ mygit\ commit\ <branch>\ [-\/m\ <message>]\(\backslash\)n"{}});}
-\DoxyCodeLine{00162\ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00163\ \}}
-\DoxyCodeLine{00164\ }
-\DoxyCodeLine{00165\ \textcolor{keywordtype}{int}\ current\_branch\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
-\DoxyCodeLine{00166\ \{}
-\DoxyCodeLine{00167\ \ \ (void)argc;}
-\DoxyCodeLine{00168\ \ \ (void)argv;}
-\DoxyCodeLine{00169\ }
-\DoxyCodeLine{00170\ \ \ \textcolor{keywordtype}{char}\ *current\_branch\ =\ get\_current\_branch();}
-\DoxyCodeLine{00171\ \ \ \textcolor{keywordflow}{if}\ (!current\_branch)\ \{}
-\DoxyCodeLine{00172\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ can't\ get\ current\ branch\(\backslash\)n"{}});}
-\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00174\ \ \ \}}
-\DoxyCodeLine{00175\ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}You\ are\ currently\ on\ branch\ '\%s'\(\backslash\)n"{}},\ current\_branch);}
-\DoxyCodeLine{00176\ \ \ free(current\_branch);}
-\DoxyCodeLine{00177\ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00178\ \}}
-\DoxyCodeLine{00179\ }
-\DoxyCodeLine{00180\ \textcolor{keywordtype}{int}\ branch\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
-\DoxyCodeLine{00181\ \{}
-\DoxyCodeLine{00182\ \ \ \textcolor{keywordtype}{int}\ status\ =\ 1;}
-\DoxyCodeLine{00183\ }
-\DoxyCodeLine{00184\ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 3)\ \{}
-\DoxyCodeLine{00185\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Usage:\ mygit\ branch\ <branch-\/name>\(\backslash\)n"{}});}
-\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00187\ \ \ \}}
-\DoxyCodeLine{00188\ \ \ status\ =\ create\_branch\_if\_not\_exists(argv[2]);}
-\DoxyCodeLine{00189\ \ \ \textcolor{keywordflow}{if}\ (status\ ==\ 0)\ \{}
-\DoxyCodeLine{00190\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ can't\ create\ branch\ '\%s'\(\backslash\)n"{}},\ argv[2]);}
-\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00192\ \ \ \}}
-\DoxyCodeLine{00193\ \ \ \textcolor{keywordflow}{if}\ (status\ ==\ -\/1)\ \{}
-\DoxyCodeLine{00194\ \ \ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}Branch\ '\%s'\ already\ exists\(\backslash\)n"{}},\ argv[2]);}
-\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00196\ \ \ \}}
-\DoxyCodeLine{00197\ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}Branch\ '\%s'\ created\(\backslash\)n"{}},\ argv[2]);}
-\DoxyCodeLine{00198\ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00199\ \}}
-\DoxyCodeLine{00200\ }
-\DoxyCodeLine{00201\ \textcolor{keywordtype}{int}\ branch\_print\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
-\DoxyCodeLine{00202\ \{}
-\DoxyCodeLine{00203\ \ \ (void)argc;}
-\DoxyCodeLine{00204\ \ \ (void)argv;}
-\DoxyCodeLine{00205\ }
-\DoxyCodeLine{00206\ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 3)\ \{}
-\DoxyCodeLine{00207\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Usage:\ mygit\ branch-\/print\ <branch>\(\backslash\)n"{}});}
-\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00209\ \ \ \}}
-\DoxyCodeLine{00210\ \ \ print\_branch\_commit\_tree(argv[2]);}
-\DoxyCodeLine{00211\ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00212\ \}}
-\DoxyCodeLine{00213\ }
-\DoxyCodeLine{00214\ \textcolor{keywordtype}{int}\ checkout\_branch\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
-\DoxyCodeLine{00215\ \{}
-\DoxyCodeLine{00216\ \ \ \textcolor{keywordtype}{int}\ status\ =\ 0;}
-\DoxyCodeLine{00217\ }
-\DoxyCodeLine{00218\ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 3)\ \{}
-\DoxyCodeLine{00219\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Usage:\ mygit\ checkout-\/branch\ <branch>\(\backslash\)n"{}});}
-\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00221\ \ \ \}}
-\DoxyCodeLine{00222\ \ \ status\ =\ mygit\_checkout\_branch(argv[2]);}
-\DoxyCodeLine{00223\ \ \ \textcolor{keywordflow}{if}\ (status\ ==\ -\/1)\ \{}
-\DoxyCodeLine{00224\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ branch\ '\%s'\ doesn't\ exist\(\backslash\)n"{}},\ argv[2]);}
-\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00226\ \ \ \}}
-\DoxyCodeLine{00227\ \ \ \textcolor{keywordflow}{if}\ (status\ ==\ 0)\ \{}
-\DoxyCodeLine{00228\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ can't\ checkout\ branch\ '\%s'\(\backslash\)n"{}},\ argv[2]);}
-\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00230\ \ \ \}}
-\DoxyCodeLine{00231\ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}You\ are\ now\ on\ branch\ '\%s'\(\backslash\)n"{}},\ argv[2]);}
-\DoxyCodeLine{00232\ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00233\ \}}
-\DoxyCodeLine{00234\ }
-\DoxyCodeLine{00235\ \textcolor{keywordtype}{int}\ checkout\_commit\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
-\DoxyCodeLine{00236\ \{}
-\DoxyCodeLine{00237\ \ \ \textcolor{keywordtype}{int}\ status\ =\ 0;}
-\DoxyCodeLine{00238\ \ \ (void)argc;}
-\DoxyCodeLine{00239\ \ \ (void)argv;}
-\DoxyCodeLine{00240\ }
-\DoxyCodeLine{00241\ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 3)\ \{}
-\DoxyCodeLine{00242\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Usage:\ mygit\ checkout-\/commit\ <commit/pattern>\(\backslash\)n"{}});}
-\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00244\ \ \ \}}
-\DoxyCodeLine{00245\ \ \ status\ =\ mygit\_checkout\_commit(argv[2]);}
-\DoxyCodeLine{00246\ \ \ \textcolor{keywordflow}{if}\ (!status)\ \{}
-\DoxyCodeLine{00247\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ can't\ checkout\ commit\ '\%s'\(\backslash\)n"{}},\ argv[2]);}
-\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00249\ \ \ \}}
-\DoxyCodeLine{00250\ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}You\ are\ now\ on\ commit\ matching\ the\ pattern\ '\%s'\(\backslash\)n"{}},\ argv[2]);}
-\DoxyCodeLine{00251\ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00252\ \}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}merge/mygit\_merge.h"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}mygit/mygit\_help.h"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}refs/refs.h"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}utils/utils.h"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ Note:\ the\ lines\ (void)argc;\ (void)argv;\ are\ used\ to\ avoid\ warnings}}
+\DoxyCodeLine{00026\ \textcolor{keywordtype}{int}\ init\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ (void)argc;}
+\DoxyCodeLine{00029\ \ \ (void)argv;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ init\_all();}
+\DoxyCodeLine{00032\ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}MyGit\ initialized\(\backslash\)n"{}});}
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00034\ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ Note:\ the\ lines\ (void)argc;\ (void)argv;\ are\ used\ to\ avoid\ warnings}}
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{int}\ list\_refs\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordtype}{char}\ *str\_all\_ref\ =\ get\_str\_all\_ref();}
+\DoxyCodeLine{00040\ \ \ (void)argc;}
+\DoxyCodeLine{00041\ \ \ (void)argv;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordflow}{if}\ (str\_all\_ref\ ==\ NULL)}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00045\ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}\%s"{}},\ str\_all\_ref);}
+\DoxyCodeLine{00046\ \ \ free(str\_all\_ref);}
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{int}\ create\_ref\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
+\DoxyCodeLine{00051\ \{}
+\DoxyCodeLine{00052\ \ \ \textcolor{keywordtype}{char}\ *ref\_path\ =\ NULL;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 4)\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Usage:\ mygit\ create-\/ref\ <ref>\ <hash>\(\backslash\)n"{}});}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00057\ \ \ \}}
+\DoxyCodeLine{00058\ \ \ ref\_path\ =\ get\_path\_absolute(MYGIT\_DIR\_REFS,\ argv[2]);}
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordflow}{if}\ (ref\_path\ ==\ NULL)}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00061\ \ \ \textcolor{keywordflow}{if}\ (does\_file\_exists(ref\_path))\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ ref\ '\%s'\ already\ exists,\ delete\ it\ before\(\backslash\)n"{}},\ argv[2]);}
+\DoxyCodeLine{00063\ \ \ \ \ free(ref\_path);}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00065\ \ \ \}}
+\DoxyCodeLine{00066\ \ \ free(ref\_path);}
+\DoxyCodeLine{00067\ \ \ create\_or\_update\_ref(argv[2],\ argv[3]);}
+\DoxyCodeLine{00068\ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}Ref\ '\%s'\ created\(\backslash\)n"{}},\ argv[2]);}
+\DoxyCodeLine{00069\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00070\ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keywordtype}{int}\ delete\_ref\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
+\DoxyCodeLine{00073\ \{}
+\DoxyCodeLine{00074\ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 3)\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Usage:\ mygit\ delete-\/ref\ <ref>\(\backslash\)n"{}});}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00077\ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \textcolor{keywordflow}{if}\ (!delete\_ref(argv[2]))\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ can't\ delete\ ref\ '\%s'\(\backslash\)n"{}},\ argv[2]);}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00081\ \ \ \}}
+\DoxyCodeLine{00082\ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}Ref\ '\%s'\ deleted\(\backslash\)n"{}},\ argv[2]);}
+\DoxyCodeLine{00083\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{keywordtype}{int}\ add\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
+\DoxyCodeLine{00087\ \{}
+\DoxyCodeLine{00088\ \ \ \textcolor{keywordtype}{int}\ ret\ =\ 0;}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 3)\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Usage:\ mygit\ add\ <elem>\ [<elem2>\ <elem3>\ ...]\(\backslash\)n"{}});}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00093\ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 2;\ i\ <\ argc;\ i++)\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{if}\ (!mygit\_add(argv[i]))}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ ret\ =\ 1;}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}File\ '\%s'\ added\(\backslash\)n"{}},\ argv[i]);}
+\DoxyCodeLine{00099\ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{00101\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{comment}{//\ Note:\ the\ lines\ (void)argc;\ (void)argv;\ are\ used\ to\ avoid\ warnings}}
+\DoxyCodeLine{00104\ \textcolor{keywordtype}{int}\ list\_add\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
+\DoxyCodeLine{00105\ \{}
+\DoxyCodeLine{00106\ \ \ \textcolor{keywordtype}{char}\ *str\_list\_add\ =\ mygit\_list\_add\_str();}
+\DoxyCodeLine{00107\ \ \ (void)argc;}
+\DoxyCodeLine{00108\ \ \ (void)argv;}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \textcolor{keywordflow}{if}\ (!str\_list\_add)\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ can't\ get\ list\ of\ added\ files\(\backslash\)nIt's\ probably\ "{}}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}because\ you\ didn't\ add\ any\ file\ yet\(\backslash\)n"{}});}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00114\ \ \ \}}
+\DoxyCodeLine{00115\ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}\%s\(\backslash\)n"{}},\ str\_list\_add);}
+\DoxyCodeLine{00116\ \ \ free(str\_list\_add);}
+\DoxyCodeLine{00117\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00118\ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{comment}{//\ Note:\ the\ lines\ (void)argc;\ (void)argv;\ are\ used\ to\ avoid\ warnings}}
+\DoxyCodeLine{00121\ \textcolor{keywordtype}{int}\ clear\_add\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
+\DoxyCodeLine{00122\ \{}
+\DoxyCodeLine{00123\ \ \ (void)argc;}
+\DoxyCodeLine{00124\ \ \ (void)argv;}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \textcolor{keywordflow}{if}\ (remove(MYGIT\_PATH\_ADD)\ ==\ 0)\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}List\ of\ added\ files\ cleared\(\backslash\)n"{}});}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00129\ \ \ \}}
+\DoxyCodeLine{00130\ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ can't\ clear\ list\ of\ added\ files\(\backslash\)n\ It's\ probably\ "{}}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}because\ you\ didn't\ add\ any\ file\ yet\(\backslash\)n"{}});}
+\DoxyCodeLine{00132\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00133\ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \textcolor{keywordtype}{int}\ commit\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
+\DoxyCodeLine{00136\ \{}
+\DoxyCodeLine{00137\ \ \ \textcolor{keywordtype}{char}\ *commit\_hash\ =\ NULL;}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 3)\ \{}
+\DoxyCodeLine{00140\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Usage:\ mygit\ commit\ <branch>\ [-\/m\ <message>]\(\backslash\)n"{}});}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00142\ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \textcolor{keywordflow}{if}\ (argc\ ==\ 3)\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ commit\_hash\ =\ mygit\_commit(argv[2],\ NULL);}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{if}\ (!commit\_hash)\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ can't\ commit\(\backslash\)n"{}});}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00148\ \ \ \ \ \}}
+\DoxyCodeLine{00149\ \ \ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}Commit\ '\%s'\ created\(\backslash\)n"{}},\ commit\_hash);}
+\DoxyCodeLine{00150\ \ \ \ \ free(commit\_hash);}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00152\ \ \ \}}
+\DoxyCodeLine{00153\ \ \ \textcolor{keywordflow}{if}\ (argc\ >=\ 5\ \&\&\ !strcmp(argv[3],\ \textcolor{stringliteral}{"{}-\/m"{}}))\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ commit\_hash\ =\ mygit\_commit(argv[2],\ argv[4]);}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordflow}{if}\ (!commit\_hash)\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ can't\ commit\(\backslash\)n"{}});}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}Commit\ '\%s'\ created\(\backslash\)n"{}},\ commit\_hash);}
+\DoxyCodeLine{00160\ \ \ \ \ free(commit\_hash);}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00162\ \ \ \}}
+\DoxyCodeLine{00163\ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Usage:\ mygit\ commit\ <branch>\ [-\/m\ <message>]\(\backslash\)n"{}});}
+\DoxyCodeLine{00164\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00165\ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{keywordtype}{int}\ current\_branch\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
+\DoxyCodeLine{00168\ \{}
+\DoxyCodeLine{00169\ \ \ (void)argc;}
+\DoxyCodeLine{00170\ \ \ (void)argv;}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \textcolor{keywordtype}{char}\ *current\_branch\ =\ get\_current\_branch();}
+\DoxyCodeLine{00173\ \ \ \textcolor{keywordflow}{if}\ (!current\_branch)\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ can't\ get\ current\ branch\(\backslash\)n"{}});}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00176\ \ \ \}}
+\DoxyCodeLine{00177\ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}You\ are\ currently\ on\ branch\ '\%s'\(\backslash\)n"{}},\ current\_branch);}
+\DoxyCodeLine{00178\ \ \ free(current\_branch);}
+\DoxyCodeLine{00179\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00180\ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{keywordtype}{int}\ branch\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
+\DoxyCodeLine{00183\ \{}
+\DoxyCodeLine{00184\ \ \ \textcolor{keywordtype}{int}\ status\ =\ 1;}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 3)\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Usage:\ mygit\ branch\ <branch-\/name>\(\backslash\)n"{}});}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00189\ \ \ \}}
+\DoxyCodeLine{00190\ \ \ status\ =\ create\_branch\_if\_not\_exists(argv[2]);}
+\DoxyCodeLine{00191\ \ \ \textcolor{keywordflow}{if}\ (status\ ==\ 0)\ \{}
+\DoxyCodeLine{00192\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ can't\ create\ branch\ '\%s'\(\backslash\)n"{}},\ argv[2]);}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00194\ \ \ \}}
+\DoxyCodeLine{00195\ \ \ \textcolor{keywordflow}{if}\ (status\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00196\ \ \ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}Branch\ '\%s'\ already\ exists\(\backslash\)n"{}},\ argv[2]);}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00198\ \ \ \}}
+\DoxyCodeLine{00199\ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}Branch\ '\%s'\ created\(\backslash\)n"{}},\ argv[2]);}
+\DoxyCodeLine{00200\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00201\ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{keywordtype}{int}\ branch\_print\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
+\DoxyCodeLine{00204\ \{}
+\DoxyCodeLine{00205\ \ \ (void)argc;}
+\DoxyCodeLine{00206\ \ \ (void)argv;}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 3)\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Usage:\ mygit\ branch-\/print\ <branch>\(\backslash\)n"{}});}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00211\ \ \ \}}
+\DoxyCodeLine{00212\ \ \ print\_branch\_commit\_tree(argv[2]);}
+\DoxyCodeLine{00213\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00214\ \}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \textcolor{keywordtype}{int}\ checkout\_branch\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
+\DoxyCodeLine{00217\ \{}
+\DoxyCodeLine{00218\ \ \ \textcolor{keywordtype}{int}\ status\ =\ 0;}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 3)\ \{}
+\DoxyCodeLine{00221\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Usage:\ mygit\ checkout-\/branch\ <branch>\(\backslash\)n"{}});}
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00223\ \ \ \}}
+\DoxyCodeLine{00224\ \ \ status\ =\ mygit\_checkout\_branch(argv[2]);}
+\DoxyCodeLine{00225\ \ \ \textcolor{keywordflow}{if}\ (status\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00226\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ branch\ '\%s'\ doesn't\ exist\(\backslash\)n"{}},\ argv[2]);}
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00228\ \ \ \}}
+\DoxyCodeLine{00229\ \ \ \textcolor{keywordflow}{if}\ (status\ ==\ 0)\ \{}
+\DoxyCodeLine{00230\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ can't\ checkout\ branch\ '\%s'\(\backslash\)n"{}},\ argv[2]);}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00232\ \ \ \}}
+\DoxyCodeLine{00233\ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}You\ are\ now\ on\ branch\ '\%s'\(\backslash\)n"{}},\ argv[2]);}
+\DoxyCodeLine{00234\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00235\ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \textcolor{keywordtype}{int}\ checkout\_commit\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
+\DoxyCodeLine{00238\ \{}
+\DoxyCodeLine{00239\ \ \ \textcolor{keywordtype}{int}\ status\ =\ 0;}
+\DoxyCodeLine{00240\ \ \ (void)argc;}
+\DoxyCodeLine{00241\ \ \ (void)argv;}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 3)\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Usage:\ mygit\ checkout-\/commit\ <commit/pattern>\(\backslash\)n"{}});}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00246\ \ \ \}}
+\DoxyCodeLine{00247\ \ \ status\ =\ mygit\_checkout\_commit(argv[2]);}
+\DoxyCodeLine{00248\ \ \ \textcolor{keywordflow}{if}\ (!status)\ \{}
+\DoxyCodeLine{00249\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ can't\ checkout\ commit\ '\%s'\(\backslash\)n"{}},\ argv[2]);}
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00251\ \ \ \}}
+\DoxyCodeLine{00252\ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}You\ are\ now\ on\ commit\ matching\ the\ pattern\ '\%s'\(\backslash\)n"{}},\ argv[2]);}
+\DoxyCodeLine{00253\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00254\ \}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \textcolor{keywordtype}{int}\ merge\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
+\DoxyCodeLine{00257\ \{}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \ \ \textcolor{keywordflow}{if}\ (argc\ <\ 3)\ \{}
+\DoxyCodeLine{00260\ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Usage:\ mygit\ merge\ <branch>\ [<message>]\(\backslash\)n"{}});}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00262\ \ \ \}}
+\DoxyCodeLine{00263\ \ \ \textcolor{keywordflow}{if}\ (argc\ ==\ 3)\ \{}
+\DoxyCodeLine{00264\ \ \ \ \ mygit\_merge(argv[2],\ NULL);}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00266\ \ \ \}}
+\DoxyCodeLine{00267\ \ \ mygit\_merge(argv[2],\ argv[3]);}
+\DoxyCodeLine{00268\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00269\ \}}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \textcolor{keywordtype}{int}\ help\_handle\_args(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ **argv)}
+\DoxyCodeLine{00272\ \{}
+\DoxyCodeLine{00273\ \ \ (void)argc;}
+\DoxyCodeLine{00274\ \ \ (void)argv;}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ \ LOG\_INFO(\textcolor{stringliteral}{"{}Usage:\ mygit\ <command>\ [<args>]\(\backslash\)n"{}});}
+\DoxyCodeLine{00277\ \ \ mygit\_help();}
+\DoxyCodeLine{00278\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00279\ \}}
 
 \end{DoxyCode}

@@ -9,125 +9,141 @@
 \DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ get\_branch\_commit\_tree.c}}
 \DoxyCodeLine{00006\ }
 \DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}branch/get\_branch\_commit\_tree.h"{}}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/commit/insert\_key\_val\_in\_commit.h"{}}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}libs/commit/save\_get\_file\_commit.h"{}}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}libs/file/create\_blob.h"{}}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}libs/list/insert\_get\_search\_list.h"{}}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}refs/refs.h"{}}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}utils/realloc\_and\_concat.h"{}}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
-\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ commit\_t\ *get\_commit\_from\_hash(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hash)}
-\DoxyCodeLine{00018\ \{}
-\DoxyCodeLine{00019\ \ \ \textcolor{keywordtype}{char}\ *commit\_path\ =\ NULL;}
-\DoxyCodeLine{00020\ \ \ commit\_t\ *commit\ =\ NULL;}
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \ \ \textcolor{keywordflow}{if}\ (!hash)}
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
-\DoxyCodeLine{00024\ \ \ commit\_path\ =\ get\_path\_from\_hash(hash);}
-\DoxyCodeLine{00025\ \ \ \textcolor{keywordflow}{if}\ (!commit\_path)}
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
-\DoxyCodeLine{00027\ \ \ commit\ =\ get\_commit\_from\_file(commit\_path);}
-\DoxyCodeLine{00028\ \ \ free(commit\_path);}
-\DoxyCodeLine{00029\ \ \ \textcolor{keywordflow}{return}\ commit;}
-\DoxyCodeLine{00030\ \}}
-\DoxyCodeLine{00031\ }
-\DoxyCodeLine{00032\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ get\_predecessors\_and\_concat\_rec(\textcolor{keywordtype}{char}\ **branch\_str,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hash)}
-\DoxyCodeLine{00033\ \{}
-\DoxyCodeLine{00034\ \ \ commit\_t\ *commit\ =\ NULL;}
-\DoxyCodeLine{00035\ \ \ \textcolor{keywordtype}{char}\ *predecessor\_hash\ =\ NULL;}
-\DoxyCodeLine{00036\ \ \ \textcolor{keywordtype}{char}\ *message\ =\ NULL;}
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00038\ \ \ \textcolor{keywordflow}{if}\ (!hash\ ||\ !branch\_str)}
-\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00040\ \ \ commit\ =\ get\_commit\_from\_hash(hash);}
-\DoxyCodeLine{00041\ \ \ \textcolor{keywordflow}{if}\ (!commit)}
-\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00043\ \ \ realloc\_and\_concat\_after(branch\_str,\ hash);}
-\DoxyCodeLine{00044\ \ \ predecessor\_hash\ =\ get\_value\_from\_key\_in\_commit(commit,\ COMMIT\_KEY\_PARENT);}
-\DoxyCodeLine{00045\ \ \ message\ =\ get\_value\_from\_key\_in\_commit(commit,\ COMMIT\_KEY\_MESSAGE);}
-\DoxyCodeLine{00046\ \ \ \textcolor{keywordflow}{if}\ (message)\ \{}
-\DoxyCodeLine{00047\ \ \ \ \ realloc\_and\_concat\_after(branch\_str,\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}});}
-\DoxyCodeLine{00048\ \ \ \ \ realloc\_and\_concat\_after(branch\_str,\ message);}
-\DoxyCodeLine{00049\ \ \ \ \ free(message);}
-\DoxyCodeLine{00050\ \ \ \}}
-\DoxyCodeLine{00051\ \ \ realloc\_and\_concat\_after(branch\_str,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
-\DoxyCodeLine{00052\ \ \ get\_predecessors\_and\_concat\_rec(branch\_str,\ predecessor\_hash);}
-\DoxyCodeLine{00053\ \ \ \textcolor{keywordflow}{if}\ (predecessor\_hash)}
-\DoxyCodeLine{00054\ \ \ \ \ free(predecessor\_hash);}
-\DoxyCodeLine{00055\ \ \ free\_commit(commit);}
-\DoxyCodeLine{00056\ \}}
-\DoxyCodeLine{00057\ }
-\DoxyCodeLine{00058\ \textcolor{keywordtype}{char}\ *get\_branch\_commits\_tree\_str(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *branch\_name)}
-\DoxyCodeLine{00059\ \{}
-\DoxyCodeLine{00060\ \ \ \textcolor{keywordtype}{char}\ *current\_branch\_head\ =\ NULL;}
-\DoxyCodeLine{00061\ \ \ \textcolor{keywordtype}{char}\ *branch\_str\ =\ NULL;}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \ \ \textcolor{keywordflow}{if}\ (!branch\_name)}
-\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
-\DoxyCodeLine{00065\ \ \ current\_branch\_head\ =\ get\_ref(branch\_name);}
-\DoxyCodeLine{00066\ \ \ \textcolor{keywordflow}{if}\ (!current\_branch\_head)}
-\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
-\DoxyCodeLine{00068\ \ \ branch\_str\ =\ malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}));}
-\DoxyCodeLine{00069\ \ \ \textcolor{keywordflow}{if}\ (!branch\_str)\ \{}
-\DoxyCodeLine{00070\ \ \ \ \ free(current\_branch\_head);}
-\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
-\DoxyCodeLine{00072\ \ \ \}}
-\DoxyCodeLine{00073\ \ \ get\_predecessors\_and\_concat\_rec(\&branch\_str,\ current\_branch\_head);}
-\DoxyCodeLine{00074\ \ \ free(current\_branch\_head);}
-\DoxyCodeLine{00075\ \ \ \textcolor{keywordflow}{return}\ branch\_str;}
-\DoxyCodeLine{00076\ \}}
-\DoxyCodeLine{00077\ }
-\DoxyCodeLine{00078\ \textcolor{keywordtype}{void}\ print\_branch\_commit\_tree(\textcolor{keywordtype}{char}\ *branch)}
-\DoxyCodeLine{00079\ \{}
-\DoxyCodeLine{00080\ \ \ \textcolor{keywordtype}{char}\ *branch\_commit\_tree\_str\ =\ NULL;}
-\DoxyCodeLine{00081\ }
-\DoxyCodeLine{00082\ \ \ \textcolor{keywordflow}{if}\ (!branch)}
-\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00084\ \ \ branch\_commit\_tree\_str\ =\ get\_branch\_commits\_tree\_str(branch);}
-\DoxyCodeLine{00085\ \ \ \textcolor{keywordflow}{if}\ (!branch\_commit\_tree\_str)}
-\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00087\ \ \ printf(\textcolor{stringliteral}{"{}\%s\(\backslash\)n"{}},\ branch\_commit\_tree\_str);}
-\DoxyCodeLine{00088\ \ \ free(branch\_commit\_tree\_str);}
-\DoxyCodeLine{00089\ \}}
-\DoxyCodeLine{00090\ }
-\DoxyCodeLine{00091\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ append\_list\_commit\_parent\_rec(list\_t\ *list,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hash)}
-\DoxyCodeLine{00092\ \{}
-\DoxyCodeLine{00093\ \ \ commit\_t\ *commit\ =\ NULL;}
-\DoxyCodeLine{00094\ \ \ \textcolor{keywordtype}{char}\ *parent\_hash\ =\ NULL;}
-\DoxyCodeLine{00095\ }
-\DoxyCodeLine{00096\ \ \ \textcolor{keywordflow}{if}\ (!hash\ ||\ !list)}
-\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00098\ \ \ commit\ =\ get\_commit\_from\_hash(hash);}
-\DoxyCodeLine{00099\ \ \ \textcolor{keywordflow}{if}\ (!commit)}
-\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00101\ \ \ create\_and\_insert\_cell\_in\_list(list,\ hash);}
-\DoxyCodeLine{00102\ \ \ parent\_hash\ =\ get\_value\_from\_key\_in\_commit(commit,\ COMMIT\_KEY\_PARENT);}
-\DoxyCodeLine{00103\ \ \ free\_commit(commit);}
-\DoxyCodeLine{00104\ \ \ append\_list\_commit\_parent\_rec(list,\ parent\_hash);}
-\DoxyCodeLine{00105\ \ \ \textcolor{keywordflow}{if}\ (parent\_hash)}
-\DoxyCodeLine{00106\ \ \ \ \ free(parent\_hash);}
-\DoxyCodeLine{00107\ \}}
-\DoxyCodeLine{00108\ }
-\DoxyCodeLine{00109\ list\_t\ *get\_commit\_from\_branch\_list(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *branch\_name)}
-\DoxyCodeLine{00110\ \{}
-\DoxyCodeLine{00111\ \ \ \textcolor{keywordtype}{char}\ *current\_branch\_head\ =\ NULL;}
-\DoxyCodeLine{00112\ \ \ list\_t\ *list\_commit\ =\ NULL;}
-\DoxyCodeLine{00113\ }
-\DoxyCodeLine{00114\ \ \ \textcolor{keywordflow}{if}\ (!branch\_name)}
-\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
-\DoxyCodeLine{00116\ \ \ current\_branch\_head\ =\ get\_ref(branch\_name);}
-\DoxyCodeLine{00117\ \ \ \textcolor{keywordflow}{if}\ (!current\_branch\_head)}
-\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
-\DoxyCodeLine{00119\ \ \ list\_commit\ =\ create\_init\_list();}
-\DoxyCodeLine{00120\ \ \ \textcolor{keywordflow}{if}\ (!list\_commit)\ \{}
-\DoxyCodeLine{00121\ \ \ \ \ free(current\_branch\_head);}
-\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
-\DoxyCodeLine{00123\ \ \ \}}
-\DoxyCodeLine{00124\ \ \ append\_list\_commit\_parent\_rec(list\_commit,\ current\_branch\_head);}
-\DoxyCodeLine{00125\ \ \ free(current\_branch\_head);}
-\DoxyCodeLine{00126\ \ \ \textcolor{keywordflow}{return}\ list\_commit;}
-\DoxyCodeLine{00127\ \}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}branch/create\_list\_branches.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}libs/commit/insert\_key\_val\_in\_commit.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}libs/commit/save\_get\_file\_commit.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}libs/file/create\_blob.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}libs/list/insert\_get\_search\_list.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}refs/refs.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}utils/realloc\_and\_concat.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ commit\_t\ *get\_commit\_from\_hash(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hash)}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \textcolor{keywordtype}{char}\ *commit\_path\ =\ NULL;}
+\DoxyCodeLine{00021\ \ \ commit\_t\ *commit\ =\ NULL;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordflow}{if}\ (!hash)}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00025\ \ \ commit\_path\ =\ get\_path\_from\_hash(hash);}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordflow}{if}\ (!commit\_path)}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00028\ \ \ commit\ =\ get\_commit\_from\_file(commit\_path);}
+\DoxyCodeLine{00029\ \ \ free(commit\_path);}
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordflow}{return}\ commit;}
+\DoxyCodeLine{00031\ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ get\_predecessors\_and\_concat\_rec(\textcolor{keywordtype}{char}\ **branch\_str,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hash)}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ commit\_t\ *commit\ =\ NULL;}
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordtype}{char}\ *predecessor\_hash\ =\ NULL;}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordtype}{char}\ *message\ =\ NULL;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordflow}{if}\ (!hash\ ||\ !branch\_str)}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00041\ \ \ commit\ =\ get\_commit\_from\_hash(hash);}
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordflow}{if}\ (!commit)}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00044\ \ \ realloc\_and\_concat\_after(branch\_str,\ hash);}
+\DoxyCodeLine{00045\ \ \ predecessor\_hash\ =\ get\_value\_from\_key\_in\_commit(commit,\ COMMIT\_KEY\_PARENT);}
+\DoxyCodeLine{00046\ \ \ message\ =\ get\_value\_from\_key\_in\_commit(commit,\ COMMIT\_KEY\_MESSAGE);}
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordflow}{if}\ (message)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ realloc\_and\_concat\_after(branch\_str,\ \textcolor{stringliteral}{"{}\(\backslash\)t"{}});}
+\DoxyCodeLine{00049\ \ \ \ \ realloc\_and\_concat\_after(branch\_str,\ message);}
+\DoxyCodeLine{00050\ \ \ \ \ free(message);}
+\DoxyCodeLine{00051\ \ \ \}}
+\DoxyCodeLine{00052\ \ \ realloc\_and\_concat\_after(branch\_str,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00053\ \ \ get\_predecessors\_and\_concat\_rec(branch\_str,\ predecessor\_hash);}
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordflow}{if}\ (predecessor\_hash)}
+\DoxyCodeLine{00055\ \ \ \ \ free(predecessor\_hash);}
+\DoxyCodeLine{00056\ \ \ free\_commit(commit);}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keywordtype}{char}\ *get\_branch\_commits\_tree\_str(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *branch\_name)}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \textcolor{keywordtype}{char}\ *current\_branch\_head\ =\ NULL;}
+\DoxyCodeLine{00062\ \ \ \textcolor{keywordtype}{char}\ *branch\_str\ =\ NULL;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordflow}{if}\ (!branch\_name)}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00066\ \ \ current\_branch\_head\ =\ get\_ref(branch\_name);}
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordflow}{if}\ (!current\_branch\_head)}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00069\ \ \ branch\_str\ =\ malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00070\ \ \ \textcolor{keywordflow}{if}\ (!branch\_str)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ free(current\_branch\_head);}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00073\ \ \ \}}
+\DoxyCodeLine{00074\ \ \ get\_predecessors\_and\_concat\_rec(\&branch\_str,\ current\_branch\_head);}
+\DoxyCodeLine{00075\ \ \ free(current\_branch\_head);}
+\DoxyCodeLine{00076\ \ \ \textcolor{keywordflow}{return}\ branch\_str;}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keywordtype}{void}\ print\_branch\_commit\_tree(\textcolor{keywordtype}{char}\ *branch)}
+\DoxyCodeLine{00080\ \{}
+\DoxyCodeLine{00081\ \ \ \textcolor{keywordtype}{char}\ *branch\_commit\_tree\_str\ =\ NULL;}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \textcolor{keywordflow}{if}\ (!branch)}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00085\ \ \ branch\_commit\_tree\_str\ =\ get\_branch\_commits\_tree\_str(branch);}
+\DoxyCodeLine{00086\ \ \ \textcolor{keywordflow}{if}\ (!branch\_commit\_tree\_str)}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00088\ \ \ printf(\textcolor{stringliteral}{"{}\%s\(\backslash\)n"{}},\ branch\_commit\_tree\_str);}
+\DoxyCodeLine{00089\ \ \ free(branch\_commit\_tree\_str);}
+\DoxyCodeLine{00090\ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ append\_list\_commit\_parent\_rec(list\_t\ *list,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *hash)}
+\DoxyCodeLine{00093\ \{}
+\DoxyCodeLine{00094\ \ \ commit\_t\ *commit\ =\ NULL;}
+\DoxyCodeLine{00095\ \ \ \textcolor{keywordtype}{char}\ *parent\_hash\ =\ NULL;}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \textcolor{keywordflow}{if}\ (!hash\ ||\ !list)}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00099\ \ \ commit\ =\ get\_commit\_from\_hash(hash);}
+\DoxyCodeLine{00100\ \ \ \textcolor{keywordflow}{if}\ (!commit)}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00102\ \ \ create\_and\_insert\_cell\_in\_list(list,\ hash);}
+\DoxyCodeLine{00103\ \ \ parent\_hash\ =\ get\_value\_from\_key\_in\_commit(commit,\ COMMIT\_KEY\_PARENT);}
+\DoxyCodeLine{00104\ \ \ free\_commit(commit);}
+\DoxyCodeLine{00105\ \ \ append\_list\_commit\_parent\_rec(list,\ parent\_hash);}
+\DoxyCodeLine{00106\ \ \ \textcolor{keywordflow}{if}\ (parent\_hash)}
+\DoxyCodeLine{00107\ \ \ \ \ free(parent\_hash);}
+\DoxyCodeLine{00108\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ list\_t\ *get\_commit\_from\_branch\_list(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *branch\_name)}
+\DoxyCodeLine{00111\ \{}
+\DoxyCodeLine{00112\ \ \ \textcolor{keywordtype}{char}\ *current\_branch\_head\ =\ NULL;}
+\DoxyCodeLine{00113\ \ \ list\_t\ *list\_commit\ =\ NULL;}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \textcolor{keywordflow}{if}\ (!branch\_name)}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00117\ \ \ current\_branch\_head\ =\ get\_ref(branch\_name);}
+\DoxyCodeLine{00118\ \ \ \textcolor{keywordflow}{if}\ (!current\_branch\_head)}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00120\ \ \ list\_commit\ =\ create\_init\_list();}
+\DoxyCodeLine{00121\ \ \ \textcolor{keywordflow}{if}\ (!list\_commit)\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ free(current\_branch\_head);}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00124\ \ \ \}}
+\DoxyCodeLine{00125\ \ \ append\_list\_commit\_parent\_rec(list\_commit,\ current\_branch\_head);}
+\DoxyCodeLine{00126\ \ \ free(current\_branch\_head);}
+\DoxyCodeLine{00127\ \ \ \textcolor{keywordflow}{return}\ list\_commit;}
+\DoxyCodeLine{00128\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ commit\_t\ *get\_last\_commit\_from\_branch(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *branch\_name)}
+\DoxyCodeLine{00131\ \{}
+\DoxyCodeLine{00132\ \ \ \textcolor{keywordtype}{char}\ *hash\_commit\ =\ NULL;}
+\DoxyCodeLine{00133\ \ \ commit\_t\ *commit\ =\ NULL;}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \textcolor{keywordflow}{if}\ (!branch\_name\ ||\ !does\_branch\_exists(branch\_name))}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00137\ \ \ hash\_commit\ =\ get\_ref(branch\_name);}
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordflow}{if}\ (!hash\_commit)}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00140\ \ \ commit\ =\ get\_commit\_from\_hash(hash\_commit);}
+\DoxyCodeLine{00141\ \ \ free(hash\_commit);}
+\DoxyCodeLine{00142\ \ \ \textcolor{keywordflow}{return}\ commit;}
+\DoxyCodeLine{00143\ \}}
 
 \end{DoxyCode}

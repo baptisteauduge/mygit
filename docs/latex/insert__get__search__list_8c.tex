@@ -12,7 +12,7 @@ void \textbf{ insert\+\_\+cell\+\_\+at\+\_\+begging\+\_\+list} (\textbf{ list\+\
 \begin{DoxyCompactList}\small\item\em Insert a cell at the begging of the list. The cell is not copied, the pointer is used. \end{DoxyCompactList}\item 
 \textbf{ cell\+\_\+t} $\ast$ \textbf{ get\+\_\+index\+\_\+of\+\_\+list} (\textbf{ list\+\_\+t} $\ast$list, int pos)
 \begin{DoxyCompactList}\small\item\em Get the the element at the index pos in the list. The index start at 0. If the index is out of range, the function print an error message and return NULL. \end{DoxyCompactList}\item 
-\textbf{ cell\+\_\+t} $\ast$ \textbf{ search\+\_\+data\+\_\+in\+\_\+list} (\textbf{ list\+\_\+t} $\ast$list, const char $\ast$data)
+\textbf{ cell\+\_\+t} $\ast$ \textbf{ search\+\_\+data\+\_\+in\+\_\+list} (const \textbf{ list\+\_\+t} $\ast$list, const char $\ast$data)
 \begin{DoxyCompactList}\small\item\em Get the the cell which contains the data in the list. The data is compared with the data of the cell. If the data is not found, the function return NULL. \end{DoxyCompactList}\item 
 int \textbf{ create\+\_\+and\+\_\+insert\+\_\+cell\+\_\+in\+\_\+list} (\textbf{ list\+\_\+t} $\ast$list, const char $\ast$data)
 \begin{DoxyCompactList}\small\item\em Create and insert cell in list at the begging of the list. The data is copied in the cell. \end{DoxyCompactList}\item 
@@ -114,11 +114,11 @@ Insert a cell at the begging of the list. The cell is not copied, the pointer is
 
 Definition at line \textbf{ 13} of file \textbf{ insert\+\_\+get\+\_\+search\+\_\+list.\+c}.
 
-\mbox{\label{insert__get__search__list_8c_ab5c6c77e1dcf3318a077d2f8e59cae52}} 
+\mbox{\label{insert__get__search__list_8c_aed167ad752e6cbf348e728d2fb4da929}} 
 \index{insert\_get\_search\_list.c@{insert\_get\_search\_list.c}!search\_data\_in\_list@{search\_data\_in\_list}}
 \index{search\_data\_in\_list@{search\_data\_in\_list}!insert\_get\_search\_list.c@{insert\_get\_search\_list.c}}
 \doxysubsubsection{search\_data\_in\_list()}
-{\footnotesize\ttfamily \textbf{ cell\+\_\+t} $\ast$ search\+\_\+data\+\_\+in\+\_\+list (\begin{DoxyParamCaption}\item[{\textbf{ list\+\_\+t} $\ast$}]{list,  }\item[{const char $\ast$}]{data }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \textbf{ cell\+\_\+t} $\ast$ search\+\_\+data\+\_\+in\+\_\+list (\begin{DoxyParamCaption}\item[{const \textbf{ list\+\_\+t} $\ast$}]{list,  }\item[{const char $\ast$}]{data }\end{DoxyParamCaption})}
 
 
 

@@ -1,0 +1,35 @@
+\doxysection{include/merge/mygit\+\_\+merge\+\_\+or\+\_\+get\+\_\+conflicts.h File Reference}
+\label{mygit__merge__or__get__conflicts_8h}\index{include/merge/mygit\_merge\_or\_get\_conflicts.h@{include/merge/mygit\_merge\_or\_get\_conflicts.h}}
+{\ttfamily \#include \char`\"{}libs/list/list.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ list\+\_\+t} $\ast$ \textbf{ mygit\+\_\+merge\+\_\+or\+\_\+get\+\_\+conflicts} (const char $\ast$remote\+\_\+branch, const char $\ast$message)
+\begin{DoxyCompactList}\small\item\em Function that merge the current branch with the remote branch if there is no conflicts if there is conflicts, it will return the list of the conflicted files. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{mygit__merge__or__get__conflicts_8h_a46ac261705a0ec8e90d781f4f3fbb2b5}} 
+\index{mygit\_merge\_or\_get\_conflicts.h@{mygit\_merge\_or\_get\_conflicts.h}!mygit\_merge\_or\_get\_conflicts@{mygit\_merge\_or\_get\_conflicts}}
+\index{mygit\_merge\_or\_get\_conflicts@{mygit\_merge\_or\_get\_conflicts}!mygit\_merge\_or\_get\_conflicts.h@{mygit\_merge\_or\_get\_conflicts.h}}
+\doxysubsubsection{mygit\_merge\_or\_get\_conflicts()}
+{\footnotesize\ttfamily \textbf{ list\+\_\+t} $\ast$ mygit\+\_\+merge\+\_\+or\+\_\+get\+\_\+conflicts (\begin{DoxyParamCaption}\item[{const char $\ast$}]{remote\+\_\+branch,  }\item[{const char $\ast$}]{message }\end{DoxyParamCaption})}
+
+
+
+Function that merge the current branch with the remote branch if there is no conflicts if there is conflicts, it will return the list of the conflicted files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em remote\+\_\+branch} & the name of the remote branch to merge \\
+\hline
+{\em message} & the message of the merge commit (could be NULL) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list\+\_\+t$\ast$ the list of the conflicted files (if there is, else it will be empty) 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 28} of file \textbf{ mygit\+\_\+merge\+\_\+or\+\_\+get\+\_\+conflicts.\+c}.
+

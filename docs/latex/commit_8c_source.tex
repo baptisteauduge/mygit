@@ -47,10 +47,12 @@
 \DoxyCodeLine{00043\ }
 \DoxyCodeLine{00044\ \textcolor{keywordtype}{void}\ free\_commit(commit\_t\ *commit)}
 \DoxyCodeLine{00045\ \{}
-\DoxyCodeLine{00046\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ commit-\/>max\_size;\ i++)}
-\DoxyCodeLine{00047\ \ \ \ \ free\_key\_val(commit-\/>key\_val[i]);}
-\DoxyCodeLine{00048\ \ \ free(commit-\/>key\_val);}
-\DoxyCodeLine{00049\ \ \ free(commit);}
-\DoxyCodeLine{00050\ \}}
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordflow}{if}\ (!commit)}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ commit-\/>max\_size;\ i++)}
+\DoxyCodeLine{00049\ \ \ \ \ free\_key\_val(commit-\/>key\_val[i]);}
+\DoxyCodeLine{00050\ \ \ free(commit-\/>key\_val);}
+\DoxyCodeLine{00051\ \ \ free(commit);}
+\DoxyCodeLine{00052\ \}}
 
 \end{DoxyCode}

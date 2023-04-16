@@ -11,41 +11,68 @@
 \DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}libs/file/copy\_file.h"{}}}
 \DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}libs/file/constants\_file.h"{}}}
 \DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
-\DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ open\_file\_read\_write(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path\_read,\ FILE\ **file\_read,}
-\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path\_write,\ FILE\ **file\_write)}
-\DoxyCodeLine{00013\ \{}
-\DoxyCodeLine{00014\ \ \ *file\_read\ =\ fopen(path\_read,\ READ\_MODE);}
-\DoxyCodeLine{00015\ \ \ \textcolor{keywordflow}{if}\ (!*file\_read)}
-\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00017\ \ \ *file\_write\ =\ fopen(path\_write,\ WRITE\_MODE);}
-\DoxyCodeLine{00018\ \ \ \textcolor{keywordflow}{if}\ (!*file\_write)\ \{}
-\DoxyCodeLine{00019\ \ \ \ \ fclose(*file\_read);}
-\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00021\ \ \ \}}
-\DoxyCodeLine{00022\ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00023\ \}}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00025\ \textcolor{keywordtype}{int}\ copy\_file(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *to,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *from)}
-\DoxyCodeLine{00026\ \{}
-\DoxyCodeLine{00027\ \ \ FILE\ *file\_to\ =\ NULL;}
-\DoxyCodeLine{00028\ \ \ FILE\ *file\_from\ =\ NULL;}
-\DoxyCodeLine{00029\ \ \ \textcolor{keywordtype}{int}\ c\_read\ =\ EOF;}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \ \ \textcolor{keywordflow}{if}\ (!to\ ||\ !from\ ||\ !open\_file\_read\_write(from,\ \&file\_from,\ to,\ \&file\_to))}
-\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00033\ \ \ c\_read\ =\ fgetc(file\_from);}
-\DoxyCodeLine{00034\ \ \ \textcolor{keywordflow}{while}\ (c\_read\ !=\ EOF)\ \{}
-\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{if}\ (fputc(c\_read,\ file\_to)\ ==\ EOF)\ \{}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ fclose(file\_to);}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ fclose(file\_from);}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00039\ \ \ \ \ \}}
-\DoxyCodeLine{00040\ \ \ \ \ c\_read\ =\ fgetc(file\_from);}
-\DoxyCodeLine{00041\ \ \ \}}
-\DoxyCodeLine{00042\ \ \ fclose(file\_to);}
-\DoxyCodeLine{00043\ \ \ fclose(file\_from);}
-\DoxyCodeLine{00044\ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00045\ \}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <sys/stat.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ Given\ a\ file\ path,\ create\ all\ constituent\ directories\ if\ missing}}
+\DoxyCodeLine{00015\ \textcolor{keywordtype}{void}\ create\_file\_path\_dirs(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *file\_path)}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordtype}{char}\ *dir\_path\ =\ NULL;}
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordtype}{char}\ *next\_sep\ =\ NULL;}
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordtype}{int}\ dir\_path\_len\ =\ 0;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordflow}{if}\ (!file\_path)}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00023\ \ \ dir\_path\ =\ malloc(strlen(file\_path)\ +\ 1);}
+\DoxyCodeLine{00024\ \ \ \textcolor{keywordflow}{if}\ (!dir\_path)}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00026\ \ \ next\_sep\ =\ strchr(file\_path,\ \textcolor{charliteral}{'/'});}
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordflow}{while}\ (next\_sep)\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ dir\_path\_len\ =\ next\_sep\ -\/\ file\_path;}
+\DoxyCodeLine{00029\ \ \ \ \ memcpy(dir\_path,\ file\_path,\ dir\_path\_len);}
+\DoxyCodeLine{00030\ \ \ \ \ dir\_path[dir\_path\_len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00031\ \ \ \ \ mkdir(dir\_path,\ S\_IRWXU\ |\ S\_IRWXG\ |\ S\_IROTH);}
+\DoxyCodeLine{00032\ \ \ \ \ next\_sep\ =\ strchr(next\_sep\ +\ 1,\ \textcolor{charliteral}{'/'});}
+\DoxyCodeLine{00033\ \ \ \}}
+\DoxyCodeLine{00034\ \ \ free(dir\_path);}
+\DoxyCodeLine{00035\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ open\_file\_read\_write(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path\_read,\ FILE\ **file\_read,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *path\_write,\ FILE\ **file\_write)}
+\DoxyCodeLine{00039\ \{}
+\DoxyCodeLine{00040\ \ \ *file\_read\ =\ fopen(path\_read,\ READ\_MODE);}
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordflow}{if}\ (!*file\_read)}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00043\ \ \ create\_file\_path\_dirs(path\_write);}
+\DoxyCodeLine{00044\ \ \ *file\_write\ =\ fopen(path\_write,\ WRITE\_MODE);}
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordflow}{if}\ (!*file\_write)\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ fclose(*file\_read);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00048\ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00050\ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keywordtype}{int}\ copy\_file(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *to,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *from)}
+\DoxyCodeLine{00053\ \{}
+\DoxyCodeLine{00054\ \ \ FILE\ *file\_to\ =\ NULL;}
+\DoxyCodeLine{00055\ \ \ FILE\ *file\_from\ =\ NULL;}
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordtype}{int}\ c\_read\ =\ EOF;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \textcolor{keywordflow}{if}\ (!to\ ||\ !from\ ||\ !open\_file\_read\_write(from,\ \&file\_from,\ to,\ \&file\_to))}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00060\ \ \ c\_read\ =\ fgetc(file\_from);}
+\DoxyCodeLine{00061\ \ \ \textcolor{keywordflow}{while}\ (c\_read\ !=\ EOF)\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{if}\ (fputc(c\_read,\ file\_to)\ ==\ EOF)\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ fclose(file\_to);}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ fclose(file\_from);}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ c\_read\ =\ fgetc(file\_from);}
+\DoxyCodeLine{00068\ \ \ \}}
+\DoxyCodeLine{00069\ \ \ fclose(file\_to);}
+\DoxyCodeLine{00070\ \ \ fclose(file\_from);}
+\DoxyCodeLine{00071\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00072\ \}}
 
 \end{DoxyCode}

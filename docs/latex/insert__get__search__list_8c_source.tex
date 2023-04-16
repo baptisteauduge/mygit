@@ -36,14 +36,14 @@
 \DoxyCodeLine{00032\ \ \ \textcolor{keywordflow}{return}\ iter;}
 \DoxyCodeLine{00033\ \}}
 \DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ cell\_t\ *search\_data\_in\_list(list\_t\ *list,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *data)}
+\DoxyCodeLine{00035\ cell\_t\ *search\_data\_in\_list(\textcolor{keyword}{const}\ list\_t\ *list,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *data)}
 \DoxyCodeLine{00036\ \{}
 \DoxyCodeLine{00037\ \ \ cell\_t\ *iter\ =\ NULL;}
 \DoxyCodeLine{00038\ }
 \DoxyCodeLine{00039\ \ \ \textcolor{keywordflow}{if}\ (!list\ ||\ !data)}
 \DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
 \DoxyCodeLine{00041\ \ \ iter\ =\ *list;}
-\DoxyCodeLine{00042\ \ \ \textcolor{keywordflow}{while}\ (iter\ \&\&\ strcmp(iter-\/>data,\ data))}
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordflow}{while}\ (iter\ \&\&\ strcmp(iter-\/>data,\ data)\ !=\ 0)}
 \DoxyCodeLine{00043\ \ \ \ \ iter\ =\ iter-\/>next;}
 \DoxyCodeLine{00044\ \ \ \textcolor{keywordflow}{return}\ iter;}
 \DoxyCodeLine{00045\ \}}

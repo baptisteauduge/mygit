@@ -36,10 +36,10 @@
 \DoxyCodeLine{00032\ \ \ \ \ str\_wf\ =\ convert\_work\_file\_to\_str(\&wt-\/>tab[i]);}
 \DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{if}\ (!str\_wf)}
 \DoxyCodeLine{00034\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00035\ \ \ \ \ strlcat(str\_wt,\ str\_wf,\ str\_wt\_size);}
+\DoxyCodeLine{00035\ \ \ \ \ strncat(str\_wt,\ str\_wf,\ str\_wt\_size);}
 \DoxyCodeLine{00036\ \ \ \ \ free(str\_wf);}
 \DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ !=\ wt-\/>size\ -\/\ 1)}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ strlcat(str\_wt,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ str\_wt\_size);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ strncat(str\_wt,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ str\_wt\_size);}
 \DoxyCodeLine{00039\ \ \ \}}
 \DoxyCodeLine{00040\ \ \ \textcolor{keywordflow}{return}\ 1;}
 \DoxyCodeLine{00041\ \}}

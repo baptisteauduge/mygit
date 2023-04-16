@@ -96,6 +96,7 @@ $(document).ready(function(){initNavTree('get__branch__commit__tree_8c.html','')
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="get__branch__commit__tree_8h_source.html">branch/get_branch_commit_tree.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="create__list__branches_8h_source.html">branch/create_list_branches.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="insert__key__val__in__commit_8h_source.html">libs/commit/insert_key_val_in_commit.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="save__get__file__commit_8h_source.html">libs/commit/save_get_file_commit.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="create__blob_8h_source.html">libs/file/create_blob.h</a>&quot;</code><br />
@@ -121,6 +122,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ad3d919b6e35acbd41e6f735a4e7af588"><td class="memItemLeft" align="right" valign="top"><a class="el" href="list_8h.html#ab897ee3d3fb19193413ff0d2bfc33727">list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="get__branch__commit__tree_8c.html#ad3d919b6e35acbd41e6f735a4e7af588">get_commit_from_branch_list</a> (const char *branch_name)</td></tr>
 <tr class="memdesc:ad3d919b6e35acbd41e6f735a4e7af588"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the commit from branch as list_t (from the last to the first)  <br /></td></tr>
 <tr class="separator:ad3d919b6e35acbd41e6f735a4e7af588"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d6d63b43a7220959b901753d26a9afe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="commit_8h.html#ab7517409893a1481a65e23703f792b8e">commit_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="get__branch__commit__tree_8c.html#a3d6d63b43a7220959b901753d26a9afe">get_last_commit_from_branch</a> (const char *branch_name)</td></tr>
+<tr class="memdesc:a3d6d63b43a7220959b901753d26a9afe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the last commit from branch name.  <br /></td></tr>
+<tr class="separator:a3d6d63b43a7220959b901753d26a9afe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a092180329cc57b64d0556cb4aa50d769" name="a092180329cc57b64d0556cb4aa50d769"></a>
@@ -148,7 +152,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>char* The string containing all the commits of the branch </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="get__branch__commit__tree_8c_source.html#l00058">58</a> of file <a class="el" href="get__branch__commit__tree_8c_source.html">get_branch_commit_tree.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="get__branch__commit__tree_8c_source.html#l00059">59</a> of file <a class="el" href="get__branch__commit__tree_8c_source.html">get_branch_commit_tree.c</a>.</p>
 
 </div>
 </div>
@@ -177,7 +181,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>list_t* The list of commits of the branch </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="get__branch__commit__tree_8c_source.html#l00109">109</a> of file <a class="el" href="get__branch__commit__tree_8c_source.html">get_branch_commit_tree.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="get__branch__commit__tree_8c_source.html#l00110">110</a> of file <a class="el" href="get__branch__commit__tree_8c_source.html">get_branch_commit_tree.c</a>.</p>
 
 </div>
 </div>
@@ -206,7 +210,36 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>commit_t* The commit corresponding to the given hash </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="get__branch__commit__tree_8c_source.html#l00017">17</a> of file <a class="el" href="get__branch__commit__tree_8c_source.html">get_branch_commit_tree.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="get__branch__commit__tree_8c_source.html#l00018">18</a> of file <a class="el" href="get__branch__commit__tree_8c_source.html">get_branch_commit_tree.c</a>.</p>
+
+</div>
+</div>
+<a id="a3d6d63b43a7220959b901753d26a9afe" name="a3d6d63b43a7220959b901753d26a9afe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d6d63b43a7220959b901753d26a9afe">&#9670;&#160;</a></span>get_last_commit_from_branch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="commit_8h.html#ab7517409893a1481a65e23703f792b8e">commit_t</a> * get_last_commit_from_branch </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>branch_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the last commit from branch name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">branch_name</td><td>The name of the branch </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>commit_t* The last commit of the branch or NULL if the branch doesn't exist </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="get__branch__commit__tree_8c_source.html#l00130">130</a> of file <a class="el" href="get__branch__commit__tree_8c_source.html">get_branch_commit_tree.c</a>.</p>
 
 </div>
 </div>
@@ -234,7 +267,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="get__branch__commit__tree_8c_source.html#l00078">78</a> of file <a class="el" href="get__branch__commit__tree_8c_source.html">get_branch_commit_tree.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="get__branch__commit__tree_8c_source.html#l00079">79</a> of file <a class="el" href="get__branch__commit__tree_8c_source.html">get_branch_commit_tree.c</a>.</p>
 
 </div>
 </div>

@@ -117,8 +117,8 @@ $(document).ready(function(){initNavTree('get__path__absolute_8c_source.html',''
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordflow">return</span> NULL;</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  strcpy(path_absolute, path);</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="keywordflow">if</span> (path_absolute[size - 1] != <span class="charliteral">&#39;/&#39;</span>)</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    strlcat(path_absolute, <span class="stringliteral">&quot;/&quot;</span>, size + 1);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  strlcat(path_absolute, filename, size + 2);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    strncat(path_absolute, <span class="stringliteral">&quot;/&quot;</span>, size + 1);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  strncat(path_absolute, filename, size + 2);</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keywordflow">return</span> path_absolute;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>}</div>
 <div class="ttc" id="aget__path__absolute_8c_html_a7f69065a7e075a8d06ca1acf73c976e1"><div class="ttname"><a href="get__path__absolute_8c.html#a7f69065a7e075a8d06ca1acf73c976e1">get_path_absolute</a></div><div class="ttdeci">char * get_path_absolute(const char *path, const char *filename)</div><div class="ttdoc">Get the path absolute from a path and a filename (The function allocates memory and returns path/file...</div><div class="ttdef"><b>Definition:</b> <a href="get__path__absolute_8c_source.html#l00011">get_path_absolute.c:11</a></div></div>

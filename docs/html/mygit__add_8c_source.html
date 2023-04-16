@@ -143,15 +143,16 @@ $(document).ready(function(){initNavTree('mygit__add_8c_source.html',''); initRe
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  append_wt_ret = <a class="code hl_function" href="insert__get__search__work__tree_8h.html#a08e1ae15f79a0216e688c9e284c64ccc">append_work_tree</a>(work_tree, file, NULL, 0);</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keywordflow">if</span> (append_wt_ret) {</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <a class="code hl_function" href="save__get__file__work__tree_8h.html#af7455cc41ad9cbf1c7e6fde34f9db02f">work_tree_to_file</a>(work_tree, <a class="code hl_define" href="utils_8h.html#ab26ac5f112ff538d1d428a71792089ef">MYGIT_PATH_ADD</a>);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  }</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keywordflow">if</span> (append_wt_ret == 0)</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    fprintf(stderr, <span class="stringliteral">&quot;Error: file &#39;%s&#39; already added\n&quot;</span>, file);</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    fprintf(stderr, <span class="stringliteral">&quot;Error: could not add file &#39;%s&#39;\n&quot;</span>, file);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <a class="code hl_function" href="work__tree_8h.html#a842205955ae97abc8a20d9e5755af98a">free_work_tree</a>(work_tree);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_function" href="work__tree_8h.html#a842205955ae97abc8a20d9e5755af98a">free_work_tree</a>(work_tree);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  }</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keywordflow">if</span> (append_wt_ret == 0)</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    fprintf(stderr, <span class="stringliteral">&quot;Error: file &#39;%s&#39; already added\n&quot;</span>, file);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    fprintf(stderr, <span class="stringliteral">&quot;Error: could not add file &#39;%s&#39;\n&quot;</span>, file);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <a class="code hl_function" href="work__tree_8h.html#a842205955ae97abc8a20d9e5755af98a">free_work_tree</a>(work_tree);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>}</div>
 <div class="ttc" id="aconvert__str__work__tree_8h_html"><div class="ttname"><a href="convert__str__work__tree_8h.html">convert_str_work_tree.h</a></div></div>
 <div class="ttc" id="aconvert__str__work__tree_8h_html_a0c714673d8eb98a151d924be2b6234c7"><div class="ttname"><a href="convert__str__work__tree_8h.html#a0c714673d8eb98a151d924be2b6234c7">convert_work_tree_to_str</a></div><div class="ttdeci">char * convert_work_tree_to_str(const work_tree_t *wt)</div><div class="ttdoc">Convert a work_tree to a string, the format is &quot;name|hash|mode\nname|hash|mode&quot; where the separator i...</div><div class="ttdef"><b>Definition:</b> <a href="convert__str__work__tree_8c_source.html#l00043">convert_str_work_tree.c:43</a></div></div>
 <div class="ttc" id="ainsert__get__search__work__tree_8h_html"><div class="ttname"><a href="insert__get__search__work__tree_8h.html">insert_get_search_work_tree.h</a></div></div>

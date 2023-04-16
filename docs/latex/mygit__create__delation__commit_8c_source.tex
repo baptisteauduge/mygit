@@ -1,0 +1,68 @@
+\doxysection{mygit\+\_\+create\+\_\+delation\+\_\+commit.\+c}
+\label{mygit__create__delation__commit_8c_source}\index{src/merge/mygit\_create\_delation\_commit.c@{src/merge/mygit\_create\_delation\_commit.c}}
+\textbf{ Go to the documentation of this file.}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ MyGit\ Project}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ mygit\_create\_delation\_commit.c}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ File\ description:}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ \ mygit\_create\_delation\_commit.c}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}merge/mygit\_create\_delation\_commit.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}add/mygit\_add.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}branch/create\_list\_branches.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}branch/get\_branch\_commit\_tree.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}checkout/mygit\_checkout\_branch.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}commit/mygit\_commit.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}libs/commit/commit.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}libs/commit/get\_work\_tree\_commit.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}libs/list/insert\_get\_search\_list.h"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}libs/list/list.h"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}libs/work\_tree/work\_tree.h"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}utils/utils.h"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ add\_files\_not\_in\_conflict(\textcolor{keyword}{const}\ list\_t\ *conflicts,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ work\_tree\_t\ *work\_tree)}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordflow}{if}\ (!conflicts\ ||\ !work\_tree)}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ work\_tree-\/>size;\ ++i)\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{if}\ (!search\_data\_in\_list(conflicts,\ work\_tree-\/>tab[i].name))\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!mygit\_add(work\_tree-\/>tab[i].name))}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ LOG\_ERROR(\textcolor{stringliteral}{"{}Error:\ Could\ not\ add\ the\ file\ `\%s`"{}},\ work\_tree-\/>tab[i].name);}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \ \ \}}
+\DoxyCodeLine{00034\ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keywordtype}{void}\ mygit\_create\_deletion\_commit(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *branch,\ \textcolor{keyword}{const}\ list\_t\ *conflicts,}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *message)}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ commit\_t\ *last\_commit\_branch\ =\ NULL;}
+\DoxyCodeLine{00040\ \ \ work\_tree\_t\ *last\_work\_tree\_branch\ =\ NULL;}
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordtype}{char}\ *default\_branch\ =\ NULL;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordflow}{if}\ (!branch\ ||\ !conflicts)}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00045\ \ \ default\_branch\ =\ get\_current\_branch();}
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordflow}{if}\ (!default\_branch)}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordflow}{if}\ (!mygit\_checkout\_branch(branch))}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00050\ \ \ last\_commit\_branch\ =\ get\_last\_commit\_from\_branch(branch);}
+\DoxyCodeLine{00051\ \ \ last\_work\_tree\_branch\ =\ get\_work\_tree\_from\_commit(last\_commit\_branch);}
+\DoxyCodeLine{00052\ \ \ remove(MYGIT\_PATH\_ADD);}
+\DoxyCodeLine{00053\ \ \ add\_files\_not\_in\_conflict(conflicts,\ last\_work\_tree\_branch);}
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordflow}{if}\ (!message)}
+\DoxyCodeLine{00055\ \ \ \ \ free(mygit\_commit(branch,\ \textcolor{stringliteral}{"{}mygit:\ deletion\ commit"{}}));}
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00057\ \ \ \ \ free(mygit\_commit(branch,\ message));}
+\DoxyCodeLine{00058\ \ \ mygit\_checkout\_branch(default\_branch);}
+\DoxyCodeLine{00059\ \ \ free(default\_branch);}
+\DoxyCodeLine{00060\ \ \ free\_commit(last\_commit\_branch);}
+\DoxyCodeLine{00061\ \ \ free\_work\_tree(last\_work\_tree\_branch);}
+\DoxyCodeLine{00062\ \}}
+
+\end{DoxyCode}

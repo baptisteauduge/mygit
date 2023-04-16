@@ -95,28 +95,27 @@ $(document).ready(function(){initNavTree('mygit__merge_8h.html',''); initResizab
   <div class="headertitle"><div class="title">mygit_merge.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="list_8h_source.html">libs/list/list.h</a>&quot;</code><br />
-</div>
+
 <p><a href="mygit__merge_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab5ae2470fd69f5ba436f08b4a27d0aac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="list_8h.html#ab897ee3d3fb19193413ff0d2bfc33727">list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mygit__merge_8h.html#ab5ae2470fd69f5ba436f08b4a27d0aac">mygit_merge</a> (const char *remote_branch, const char *message)</td></tr>
-<tr class="memdesc:ab5ae2470fd69f5ba436f08b4a27d0aac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that merge the current branch with the remote branch if there is no conflicts if there is conflicts, it will return the list of the conflicted files.  <br /></td></tr>
-<tr class="separator:ab5ae2470fd69f5ba436f08b4a27d0aac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a602f2aaf63dfac583c84e946c44294e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mygit__merge_8h.html#a602f2aaf63dfac583c84e946c44294e2">mygit_merge</a> (const char *branch, const char *message)</td></tr>
+<tr class="memdesc:a602f2aaf63dfac583c84e946c44294e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function used to merge the provided branch with the current branch. If there is conflits, the function will ask the user to resolve them.  <br /></td></tr>
+<tr class="separator:a602f2aaf63dfac583c84e946c44294e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ab5ae2470fd69f5ba436f08b4a27d0aac" name="ab5ae2470fd69f5ba436f08b4a27d0aac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab5ae2470fd69f5ba436f08b4a27d0aac">&#9670;&#160;</a></span>mygit_merge()</h2>
+<a id="a602f2aaf63dfac583c84e946c44294e2" name="a602f2aaf63dfac583c84e946c44294e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a602f2aaf63dfac583c84e946c44294e2">&#9670;&#160;</a></span>mygit_merge()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="list_8h.html#ab897ee3d3fb19193413ff0d2bfc33727">list_t</a> * mygit_merge </td>
+          <td class="memname">void mygit_merge </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>remote_branch</em>, </td>
+          <td class="paramname"><em>branch</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -132,17 +131,17 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Function that merge the current branch with the remote branch if there is no conflicts if there is conflicts, it will return the list of the conflicted files. </p>
+<p>Function used to merge the provided branch with the current branch. If there is conflits, the function will ask the user to resolve them. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">remote_branch</td><td>the name of the remote branch to merge </td></tr>
-    <tr><td class="paramname">message</td><td>the message of the merge commit (could be NULL) </td></tr>
+    <tr><td class="paramname">branch</td><td>The name of the branch to merge with the current branch. </td></tr>
+    <tr><td class="paramname">message</td><td>(Optional) The commit deletion message. (Default: "mygit:
+deletion commit") </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>list_t* the list of the conflicted files (if there is, else it will be empty) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="mygit__merge_8c_source.html#l00028">28</a> of file <a class="el" href="mygit__merge_8c_source.html">mygit_merge.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="mygit__merge_8c_source.html#l00113">113</a> of file <a class="el" href="mygit__merge_8c_source.html">mygit_merge.c</a>.</p>
 
 </div>
 </div>

@@ -98,11 +98,16 @@ $(document).ready(function(){initNavTree('copy__file_8c.html',''); initResizable
 <div class="textblock"><code>#include &quot;<a class="el" href="copy__file_8h_source.html">libs/file/copy_file.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="constants__file_8h_source.html">libs/file/constants_file.h</a>&quot;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;sys/stat.h&gt;</code><br />
 </div>
 <p><a href="copy__file_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ab5cb39bd23439c784ef9a6074e46dd1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="copy__file_8c.html#ab5cb39bd23439c784ef9a6074e46dd1a">create_file_path_dirs</a> (const char *file_path)</td></tr>
+<tr class="separator:ab5cb39bd23439c784ef9a6074e46dd1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a024433a78aa688069c64731b5619ca08"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="copy__file_8c.html#a024433a78aa688069c64731b5619ca08">copy_file</a> (const char *to, const char *from)</td></tr>
 <tr class="memdesc:a024433a78aa688069c64731b5619ca08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy a file from one path to another path. If the destination file already exists, it will be overwritten.  <br /></td></tr>
 <tr class="separator:a024433a78aa688069c64731b5619ca08"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,7 +149,27 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>int 1 if the file was copied successfully, 0 otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="copy__file_8c_source.html#l00025">25</a> of file <a class="el" href="copy__file_8c_source.html">copy_file.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="copy__file_8c_source.html#l00052">52</a> of file <a class="el" href="copy__file_8c_source.html">copy_file.c</a>.</p>
+
+</div>
+</div>
+<a id="ab5cb39bd23439c784ef9a6074e46dd1a" name="ab5cb39bd23439c784ef9a6074e46dd1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5cb39bd23439c784ef9a6074e46dd1a">&#9670;&#160;</a></span>create_file_path_dirs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void create_file_path_dirs </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file_path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="copy__file_8c_source.html#l00015">15</a> of file <a class="el" href="copy__file_8c_source.html">copy_file.c</a>.</p>
 
 </div>
 </div>

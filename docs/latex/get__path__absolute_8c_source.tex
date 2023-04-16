@@ -26,8 +26,8 @@
 \DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
 \DoxyCodeLine{00023\ \ \ strcpy(path\_absolute,\ path);}
 \DoxyCodeLine{00024\ \ \ \textcolor{keywordflow}{if}\ (path\_absolute[size\ -\/\ 1]\ !=\ \textcolor{charliteral}{'/'})}
-\DoxyCodeLine{00025\ \ \ \ \ strlcat(path\_absolute,\ \textcolor{stringliteral}{"{}/"{}},\ size\ +\ 1);}
-\DoxyCodeLine{00026\ \ \ strlcat(path\_absolute,\ filename,\ size\ +\ 2);}
+\DoxyCodeLine{00025\ \ \ \ \ strncat(path\_absolute,\ \textcolor{stringliteral}{"{}/"{}},\ size\ +\ 1);}
+\DoxyCodeLine{00026\ \ \ strncat(path\_absolute,\ filename,\ size\ +\ 2);}
 \DoxyCodeLine{00027\ \ \ \textcolor{keywordflow}{return}\ path\_absolute;}
 \DoxyCodeLine{00028\ \}}
 

@@ -10,7 +10,9 @@ var mygit__handle__args__actions_8h =
     [ "create_ref_handle_args", "mygit__handle__args__actions_8h.html#a96005c0e52f25b01c365d0afac5dda23", null ],
     [ "current_branch_handle_args", "mygit__handle__args__actions_8h.html#a0871390416738633daa9d8e2a6ccee5d", null ],
     [ "delete_ref_handle_args", "mygit__handle__args__actions_8h.html#a7f5417d533ac08c739c14f11b41ecf40", null ],
+    [ "help_handle_args", "mygit__handle__args__actions_8h.html#aca6e4f520a718c5eba190d4e9bf7a0c6", null ],
     [ "init_handle_args", "mygit__handle__args__actions_8h.html#a2fb316040138f38c865b5f3a51effe45", null ],
     [ "list_add_handle_args", "mygit__handle__args__actions_8h.html#ae35a5fa450c78f352555a95fdf7c9cb2", null ],
-    [ "list_refs_handle_args", "mygit__handle__args__actions_8h.html#a137150d5e3fca35a851d28bcbaa0a046", null ]
+    [ "list_refs_handle_args", "mygit__handle__args__actions_8h.html#a137150d5e3fca35a851d28bcbaa0a046", null ],
+    [ "merge_handle_args", "mygit__handle__args__actions_8h.html#ab745634024cf0800e9433c770f051e67", null ]
 ];

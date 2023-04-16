@@ -131,10 +131,10 @@ $(document).ready(function(){initNavTree('convert__str__list_8c_source.html','')
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  cell = *list;</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keywordflow">while</span> (cell) {</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    cell_str = <a class="code hl_function" href="cell_8h.html#ae214ef466869f53c6b2dbf1ef489ff72">cell_to_string</a>(cell);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    strlcat(list_str, cell_str, str_size);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    strncat(list_str, cell_str, str_size);</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    cell = cell-&gt;<a class="code hl_variable" href="structcell__s.html#aca7fcba1af8cfc5b5e1b1801a0ba0777">next</a>;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordflow">if</span> (cell)</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      strlcat(list_str, <a class="code hl_define" href="convert__str__list_8h.html#aab78db21daf05ea47dec7a48d35d913e">SEPARATOR_LIST_STRING</a>, str_size);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      strncat(list_str, <a class="code hl_define" href="convert__str__list_8h.html#aab78db21daf05ea47dec7a48d35d913e">SEPARATOR_LIST_STRING</a>, str_size);</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  }</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>

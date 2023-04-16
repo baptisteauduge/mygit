@@ -52,14 +52,15 @@
 \DoxyCodeLine{00048\ \ \ append\_wt\_ret\ =\ append\_work\_tree(work\_tree,\ file,\ NULL,\ 0);}
 \DoxyCodeLine{00049\ \ \ \textcolor{keywordflow}{if}\ (append\_wt\_ret)\ \{}
 \DoxyCodeLine{00050\ \ \ \ \ work\_tree\_to\_file(work\_tree,\ MYGIT\_PATH\_ADD);}
-\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00052\ \ \ \}}
-\DoxyCodeLine{00053\ \ \ \textcolor{keywordflow}{if}\ (append\_wt\_ret\ ==\ 0)}
-\DoxyCodeLine{00054\ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Error:\ file\ '\%s'\ already\ added\(\backslash\)n"{}},\ file);}
-\DoxyCodeLine{00055\ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00056\ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Error:\ could\ not\ add\ file\ '\%s'\(\backslash\)n"{}},\ file);}
-\DoxyCodeLine{00057\ \ \ free\_work\_tree(work\_tree);}
-\DoxyCodeLine{00058\ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{00059\ \}}
+\DoxyCodeLine{00051\ \ \ \ \ free\_work\_tree(work\_tree);}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00053\ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordflow}{if}\ (append\_wt\_ret\ ==\ 0)}
+\DoxyCodeLine{00055\ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Error:\ file\ '\%s'\ already\ added\(\backslash\)n"{}},\ file);}
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00057\ \ \ \ \ fprintf(stderr,\ \textcolor{stringliteral}{"{}Error:\ could\ not\ add\ file\ '\%s'\(\backslash\)n"{}},\ file);}
+\DoxyCodeLine{00058\ \ \ free\_work\_tree(work\_tree);}
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00060\ \}}
 
 \end{DoxyCode}

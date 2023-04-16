@@ -3,8 +3,13 @@
 {\ttfamily \#include \char`\"{}libs/file/copy\+\_\+file.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}libs/file/constants\+\_\+file.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
+\item 
+void \textbf{ create\+\_\+file\+\_\+path\+\_\+dirs} (const char $\ast$file\+\_\+path)
 \item 
 int \textbf{ copy\+\_\+file} (const char $\ast$to, const char $\ast$from)
 \begin{DoxyCompactList}\small\item\em Copy a file from one path to another path. If the destination file already exists, it will be overwritten. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -33,5 +38,15 @@ int 1 if the file was copied successfully, 0 otherwise.
 \end{DoxyReturn}
 
 
-Definition at line \textbf{ 25} of file \textbf{ copy\+\_\+file.\+c}.
+Definition at line \textbf{ 52} of file \textbf{ copy\+\_\+file.\+c}.
+
+\mbox{\label{copy__file_8c_ab5cb39bd23439c784ef9a6074e46dd1a}} 
+\index{copy\_file.c@{copy\_file.c}!create\_file\_path\_dirs@{create\_file\_path\_dirs}}
+\index{create\_file\_path\_dirs@{create\_file\_path\_dirs}!copy\_file.c@{copy\_file.c}}
+\doxysubsubsection{create\_file\_path\_dirs()}
+{\footnotesize\ttfamily void create\+\_\+file\+\_\+path\+\_\+dirs (\begin{DoxyParamCaption}\item[{const char $\ast$}]{file\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+Definition at line \textbf{ 15} of file \textbf{ copy\+\_\+file.\+c}.
 

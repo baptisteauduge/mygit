@@ -109,247 +109,274 @@ $(document).ready(function(){initNavTree('mygit__handle__args__actions_8c_source
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="init_8h.html">init/init.h</a>&quot;</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="get__path__absolute_8h.html">libs/file/get_path_absolute.h</a>&quot;</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="list__files_8h.html">libs/file/list_files.h</a>&quot;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="refs_8h.html">refs/refs.h</a>&quot;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="utils_8h.html">utils/utils.h</a>&quot;</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;string.h&gt;</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">// Note: the lines (void)argc; (void)argv; are used to avoid warnings</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a2fb316040138f38c865b5f3a51effe45">   24</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a2fb316040138f38c865b5f3a51effe45">init_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>{</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  (void)argc;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  (void)argv;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <a class="code hl_function" href="init_8h.html#ad70f49ad8fe296283f2a1e799dc418d7">init_all</a>();</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;MyGit initialized\n&quot;</span>);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>}</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">// Note: the lines (void)argc; (void)argv; are used to avoid warnings</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a137150d5e3fca35a851d28bcbaa0a046">   35</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a137150d5e3fca35a851d28bcbaa0a046">list_refs_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>{</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keywordtype">char</span> *str_all_ref = <a class="code hl_function" href="refs_8h.html#a1414816a1fe6d9e8136979dde896e94c">get_str_all_ref</a>();</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  (void)argc;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  (void)argv;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keywordflow">if</span> (str_all_ref == NULL)</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;%s&quot;</span>, str_all_ref);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  free(str_all_ref);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a96005c0e52f25b01c365d0afac5dda23">   48</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a96005c0e52f25b01c365d0afac5dda23">create_ref_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>{</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="keywordtype">char</span> *ref_path = NULL;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keywordflow">if</span> (argc &lt; 4) {</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Usage: mygit create-ref &lt;ref&gt; &lt;hash&gt;\n&quot;</span>);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  }</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  ref_path = <a class="code hl_function" href="get__path__absolute_8h.html#a7f69065a7e075a8d06ca1acf73c976e1">get_path_absolute</a>(<a class="code hl_define" href="utils_8h.html#ac359cec1188c180f19301bfcd4917744">MYGIT_DIR_REFS</a>, argv[2]);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keywordflow">if</span> (ref_path == NULL)</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <span class="keywordflow">if</span> (<a class="code hl_function" href="list__files_8h.html#a8d3fb4528dc5d5bb08097af19a5c2297">does_file_exists</a>(ref_path)) {</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: ref &#39;%s&#39; already exists, delete it before\n&quot;</span>, argv[2]);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    free(ref_path);</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  }</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  free(ref_path);</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <a class="code hl_function" href="refs_8h.html#a580cbabd76e1bb5f50101d0534de3ebb">create_or_update_ref</a>(argv[2], argv[3]);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;Ref &#39;%s&#39; created\n&quot;</span>, argv[2]);</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>}</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a7f5417d533ac08c739c14f11b41ecf40">   70</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a7f5417d533ac08c739c14f11b41ecf40">delete_ref_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>{</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="keywordflow">if</span> (argc &lt; 3) {</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Usage: mygit delete-ref &lt;ref&gt;\n&quot;</span>);</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  }</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keywordflow">if</span> (!<a class="code hl_function" href="refs_8h.html#a0c168fa1d08683fb53d31b31fac43b12">delete_ref</a>(argv[2])) {</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: can&#39;t delete ref &#39;%s&#39;\n&quot;</span>, argv[2]);</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  }</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;Ref &#39;%s&#39; deleted\n&quot;</span>, argv[2]);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>}</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a10ed173772f79123e811c153271dddfa">   84</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a10ed173772f79123e811c153271dddfa">add_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>{</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  <span class="keywordtype">int</span> ret = 0;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keywordflow">if</span> (argc &lt; 3) {</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Usage: mygit add &lt;elem&gt; [&lt;elem2&gt; &lt;elem3&gt; ...]\n&quot;</span>);</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  }</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 2; i &lt; argc; i++) {</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="mygit__add_8h.html#a05c3125c8b9df4dd9f523461c01c3ec5">mygit_add</a>(argv[i]))</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>      ret = 1;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>      <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;File &#39;%s&#39; added\n&quot;</span>, argv[i]);</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  }</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>}</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">// Note: the lines (void)argc; (void)argv; are used to avoid warnings</span></div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#ae35a5fa450c78f352555a95fdf7c9cb2">  102</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#ae35a5fa450c78f352555a95fdf7c9cb2">list_add_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>{</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  <span class="keywordtype">char</span> *str_list_add = <a class="code hl_function" href="mygit__add_8h.html#a0f42c4535d6b000e6fb752aad1a8382a">mygit_list_add_str</a>();</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  (void)argc;</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  (void)argv;</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  <span class="keywordflow">if</span> (!str_list_add) {</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: can&#39;t get list of added files\nIt&#39;s probably &quot;</span></div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>              <span class="stringliteral">&quot;because you didn&#39;t add any file yet\n&quot;</span>);</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  }</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;%s\n&quot;</span>, str_list_add);</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  free(str_list_add);</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>}</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment">// Note: the lines (void)argc; (void)argv; are used to avoid warnings</span></div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a00dce8f6919e752284fa02d7200e0a79">  119</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a00dce8f6919e752284fa02d7200e0a79">clear_add_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>{</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  (void)argc;</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  (void)argv;</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  <span class="keywordflow">if</span> (remove(<a class="code hl_define" href="utils_8h.html#ab26ac5f112ff538d1d428a71792089ef">MYGIT_PATH_ADD</a>) == 0) {</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;List of added files cleared\n&quot;</span>);</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>  }</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: can&#39;t clear list of added files\n It&#39;s probably &quot;</span></div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>            <span class="stringliteral">&quot;because you didn&#39;t add any file yet\n&quot;</span>);</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>}</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a80e60b2a5ea8d59fcd07248a88add64e">  133</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a80e60b2a5ea8d59fcd07248a88add64e">commit_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>{</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  <span class="keywordtype">char</span> *commit_hash = NULL;</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  <span class="keywordflow">if</span> (argc &lt; 3) {</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Usage: mygit commit &lt;branch&gt; [-m &lt;message&gt;]\n&quot;</span>);</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>  }</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>  <span class="keywordflow">if</span> (argc == 3) {</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    commit_hash = <a class="code hl_function" href="mygit__commit_8h.html#a0d7d70362b52f23a6c1140d8a90b4003">mygit_commit</a>(argv[2], NULL);</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keywordflow">if</span> (!commit_hash) {</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>      <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: can&#39;t commit\n&quot;</span>);</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>      <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    }</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;Commit &#39;%s&#39; created\n&quot;</span>, commit_hash);</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    free(commit_hash);</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>  }</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>  <span class="keywordflow">if</span> (argc &gt;= 5 &amp;&amp; !strcmp(argv[3], <span class="stringliteral">&quot;-m&quot;</span>)) {</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    commit_hash = <a class="code hl_function" href="mygit__commit_8h.html#a0d7d70362b52f23a6c1140d8a90b4003">mygit_commit</a>(argv[2], argv[4]);</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keywordflow">if</span> (!commit_hash) {</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>      <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: can&#39;t commit\n&quot;</span>);</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>      <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    }</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;Commit &#39;%s&#39; created\n&quot;</span>, commit_hash);</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    free(commit_hash);</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>  }</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>  <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Usage: mygit commit &lt;branch&gt; [-m &lt;message&gt;]\n&quot;</span>);</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>  <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>}</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a0871390416738633daa9d8e2a6ccee5d">  165</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a0871390416738633daa9d8e2a6ccee5d">current_branch_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>{</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>  (void)argc;</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  (void)argv;</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>  <span class="keywordtype">char</span> *current_branch = <a class="code hl_function" href="create__list__branches_8h.html#ad929b0cd0d22aee7938780406e8e584b">get_current_branch</a>();</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  <span class="keywordflow">if</span> (!current_branch) {</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: can&#39;t get current branch\n&quot;</span>);</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>  }</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>  <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;You are currently on branch &#39;%s&#39;\n&quot;</span>, current_branch);</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>  free(current_branch);</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>  <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>}</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a999ced11bc562e8e982e405455cbef32">  180</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a999ced11bc562e8e982e405455cbef32">branch_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>{</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>  <span class="keywordtype">int</span> status = 1;</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>  <span class="keywordflow">if</span> (argc &lt; 3) {</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Usage: mygit branch &lt;branch-name&gt;\n&quot;</span>);</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>  }</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>  status = <a class="code hl_function" href="create__list__branches_8h.html#a8b84976d4b443fbc587cababa32927df">create_branch_if_not_exists</a>(argv[2]);</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>  <span class="keywordflow">if</span> (status == 0) {</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: can&#39;t create branch &#39;%s&#39;\n&quot;</span>, argv[2]);</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>  }</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>  <span class="keywordflow">if</span> (status == -1) {</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;Branch &#39;%s&#39; already exists\n&quot;</span>, argv[2]);</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>  }</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>  <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;Branch &#39;%s&#39; created\n&quot;</span>, argv[2]);</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>  <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>}</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a5535152e6774ddedc7634be4f0684040">  201</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a5535152e6774ddedc7634be4f0684040">branch_print_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>{</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>  (void)argc;</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>  (void)argv;</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>  <span class="keywordflow">if</span> (argc &lt; 3) {</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Usage: mygit branch-print &lt;branch&gt;\n&quot;</span>);</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>  }</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>  <a class="code hl_function" href="get__branch__commit__tree_8h.html#afbca1f48127867731827c4f4081f61ed">print_branch_commit_tree</a>(argv[2]);</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>  <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>}</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a0db8081249aad34ca08a789fbce67d4c">  214</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a0db8081249aad34ca08a789fbce67d4c">checkout_branch_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>{</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>  <span class="keywordtype">int</span> status = 0;</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>  <span class="keywordflow">if</span> (argc &lt; 3) {</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Usage: mygit checkout-branch &lt;branch&gt;\n&quot;</span>);</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>  }</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>  status = <a class="code hl_function" href="mygit__checkout__branch_8h.html#a1adacfccc14add60e61da09f3e3c7188">mygit_checkout_branch</a>(argv[2]);</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>  <span class="keywordflow">if</span> (status == -1) {</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: branch &#39;%s&#39; doesn&#39;t exist\n&quot;</span>, argv[2]);</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>  }</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>  <span class="keywordflow">if</span> (status == 0) {</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: can&#39;t checkout branch &#39;%s&#39;\n&quot;</span>, argv[2]);</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>  }</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>  <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;You are now on branch &#39;%s&#39;\n&quot;</span>, argv[2]);</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>  <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>}</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#ad18167e7d8a7639cffc6afb8656bf0de">  235</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#ad18167e7d8a7639cffc6afb8656bf0de">checkout_commit_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>{</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>  <span class="keywordtype">int</span> status = 0;</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>  (void)argc;</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>  (void)argv;</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>  <span class="keywordflow">if</span> (argc &lt; 3) {</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Usage: mygit checkout-commit &lt;commit/pattern&gt;\n&quot;</span>);</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>  }</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>  status = <a class="code hl_function" href="mygit__checkout__commit_8h.html#a44134dfa665ca7c6f9858a0cf810b8ad">mygit_checkout_commit</a>(argv[2]);</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>  <span class="keywordflow">if</span> (!status) {</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: can&#39;t checkout commit &#39;%s&#39;\n&quot;</span>, argv[2]);</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>  }</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>  <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;You are now on commit matching the pattern &#39;%s&#39;\n&quot;</span>, argv[2]);</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>  <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>}</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="mygit__merge_8h.html">merge/mygit_merge.h</a>&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="mygit__help_8h.html">mygit/mygit_help.h</a>&quot;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &quot;<a class="code" href="refs_8h.html">refs/refs.h</a>&quot;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &quot;<a class="code" href="utils_8h.html">utils/utils.h</a>&quot;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">// Note: the lines (void)argc; (void)argv; are used to avoid warnings</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a2fb316040138f38c865b5f3a51effe45">   26</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a2fb316040138f38c865b5f3a51effe45">init_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>{</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  (void)argc;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  (void)argv;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <a class="code hl_function" href="init_8h.html#ad70f49ad8fe296283f2a1e799dc418d7">init_all</a>();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;MyGit initialized\n&quot;</span>);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>}</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">// Note: the lines (void)argc; (void)argv; are used to avoid warnings</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a137150d5e3fca35a851d28bcbaa0a046">   37</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a137150d5e3fca35a851d28bcbaa0a046">list_refs_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>{</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordtype">char</span> *str_all_ref = <a class="code hl_function" href="refs_8h.html#a1414816a1fe6d9e8136979dde896e94c">get_str_all_ref</a>();</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  (void)argc;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  (void)argv;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keywordflow">if</span> (str_all_ref == NULL)</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;%s&quot;</span>, str_all_ref);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  free(str_all_ref);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a96005c0e52f25b01c365d0afac5dda23">   50</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a96005c0e52f25b01c365d0afac5dda23">create_ref_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>{</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keywordtype">char</span> *ref_path = NULL;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keywordflow">if</span> (argc &lt; 4) {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Usage: mygit create-ref &lt;ref&gt; &lt;hash&gt;\n&quot;</span>);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  ref_path = <a class="code hl_function" href="get__path__absolute_8h.html#a7f69065a7e075a8d06ca1acf73c976e1">get_path_absolute</a>(<a class="code hl_define" href="utils_8h.html#ac359cec1188c180f19301bfcd4917744">MYGIT_DIR_REFS</a>, argv[2]);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <span class="keywordflow">if</span> (ref_path == NULL)</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="keywordflow">if</span> (<a class="code hl_function" href="list__files_8h.html#a8d3fb4528dc5d5bb08097af19a5c2297">does_file_exists</a>(ref_path)) {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: ref &#39;%s&#39; already exists, delete it before\n&quot;</span>, argv[2]);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    free(ref_path);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  free(ref_path);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <a class="code hl_function" href="refs_8h.html#a580cbabd76e1bb5f50101d0534de3ebb">create_or_update_ref</a>(argv[2], argv[3]);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;Ref &#39;%s&#39; created\n&quot;</span>, argv[2]);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>}</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a7f5417d533ac08c739c14f11b41ecf40">   72</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a7f5417d533ac08c739c14f11b41ecf40">delete_ref_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>{</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  <span class="keywordflow">if</span> (argc &lt; 3) {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Usage: mygit delete-ref &lt;ref&gt;\n&quot;</span>);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  <span class="keywordflow">if</span> (!<a class="code hl_function" href="refs_8h.html#a0c168fa1d08683fb53d31b31fac43b12">delete_ref</a>(argv[2])) {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: can&#39;t delete ref &#39;%s&#39;\n&quot;</span>, argv[2]);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;Ref &#39;%s&#39; deleted\n&quot;</span>, argv[2]);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>}</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a10ed173772f79123e811c153271dddfa">   86</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a10ed173772f79123e811c153271dddfa">add_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>{</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keywordtype">int</span> ret = 0;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  <span class="keywordflow">if</span> (argc &lt; 3) {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Usage: mygit add &lt;elem&gt; [&lt;elem2&gt; &lt;elem3&gt; ...]\n&quot;</span>);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 2; i &lt; argc; i++) {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="mygit__add_8h.html#a05c3125c8b9df4dd9f523461c01c3ec5">mygit_add</a>(argv[i]))</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>      ret = 1;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>      <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;File &#39;%s&#39; added\n&quot;</span>, argv[i]);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>}</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment">// Note: the lines (void)argc; (void)argv; are used to avoid warnings</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#ae35a5fa450c78f352555a95fdf7c9cb2">  104</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#ae35a5fa450c78f352555a95fdf7c9cb2">list_add_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>{</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  <span class="keywordtype">char</span> *str_list_add = <a class="code hl_function" href="mygit__add_8h.html#a0f42c4535d6b000e6fb752aad1a8382a">mygit_list_add_str</a>();</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  (void)argc;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  (void)argv;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  <span class="keywordflow">if</span> (!str_list_add) {</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: can&#39;t get list of added files\nIt&#39;s probably &quot;</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>              <span class="stringliteral">&quot;because you didn&#39;t add any file yet\n&quot;</span>);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;%s\n&quot;</span>, str_list_add);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  free(str_list_add);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>}</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="comment">// Note: the lines (void)argc; (void)argv; are used to avoid warnings</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a00dce8f6919e752284fa02d7200e0a79">  121</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a00dce8f6919e752284fa02d7200e0a79">clear_add_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>{</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  (void)argc;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  (void)argv;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  <span class="keywordflow">if</span> (remove(<a class="code hl_define" href="utils_8h.html#ab26ac5f112ff538d1d428a71792089ef">MYGIT_PATH_ADD</a>) == 0) {</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;List of added files cleared\n&quot;</span>);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>  }</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: can&#39;t clear list of added files\n It&#39;s probably &quot;</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>            <span class="stringliteral">&quot;because you didn&#39;t add any file yet\n&quot;</span>);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>}</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a80e60b2a5ea8d59fcd07248a88add64e">  135</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a80e60b2a5ea8d59fcd07248a88add64e">commit_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>{</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  <span class="keywordtype">char</span> *commit_hash = NULL;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>  <span class="keywordflow">if</span> (argc &lt; 3) {</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Usage: mygit commit &lt;branch&gt; [-m &lt;message&gt;]\n&quot;</span>);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>  }</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>  <span class="keywordflow">if</span> (argc == 3) {</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    commit_hash = <a class="code hl_function" href="mygit__commit_8h.html#a0d7d70362b52f23a6c1140d8a90b4003">mygit_commit</a>(argv[2], NULL);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keywordflow">if</span> (!commit_hash) {</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>      <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: can&#39;t commit\n&quot;</span>);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>      <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    }</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;Commit &#39;%s&#39; created\n&quot;</span>, commit_hash);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    free(commit_hash);</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>  }</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>  <span class="keywordflow">if</span> (argc &gt;= 5 &amp;&amp; !strcmp(argv[3], <span class="stringliteral">&quot;-m&quot;</span>)) {</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    commit_hash = <a class="code hl_function" href="mygit__commit_8h.html#a0d7d70362b52f23a6c1140d8a90b4003">mygit_commit</a>(argv[2], argv[4]);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordflow">if</span> (!commit_hash) {</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>      <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: can&#39;t commit\n&quot;</span>);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>      <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    }</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;Commit &#39;%s&#39; created\n&quot;</span>, commit_hash);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    free(commit_hash);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>  }</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>  <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Usage: mygit commit &lt;branch&gt; [-m &lt;message&gt;]\n&quot;</span>);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>  <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>}</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a0871390416738633daa9d8e2a6ccee5d">  167</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a0871390416738633daa9d8e2a6ccee5d">current_branch_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>{</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>  (void)argc;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>  (void)argv;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>  <span class="keywordtype">char</span> *current_branch = <a class="code hl_function" href="create__list__branches_8h.html#ad929b0cd0d22aee7938780406e8e584b">get_current_branch</a>();</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>  <span class="keywordflow">if</span> (!current_branch) {</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: can&#39;t get current branch\n&quot;</span>);</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>  }</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>  <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;You are currently on branch &#39;%s&#39;\n&quot;</span>, current_branch);</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>  free(current_branch);</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>}</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a999ced11bc562e8e982e405455cbef32">  182</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a999ced11bc562e8e982e405455cbef32">branch_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>{</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>  <span class="keywordtype">int</span> status = 1;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>  <span class="keywordflow">if</span> (argc &lt; 3) {</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Usage: mygit branch &lt;branch-name&gt;\n&quot;</span>);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>  }</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>  status = <a class="code hl_function" href="create__list__branches_8h.html#a8b84976d4b443fbc587cababa32927df">create_branch_if_not_exists</a>(argv[2]);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>  <span class="keywordflow">if</span> (status == 0) {</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: can&#39;t create branch &#39;%s&#39;\n&quot;</span>, argv[2]);</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>  }</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>  <span class="keywordflow">if</span> (status == -1) {</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;Branch &#39;%s&#39; already exists\n&quot;</span>, argv[2]);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>  }</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>  <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;Branch &#39;%s&#39; created\n&quot;</span>, argv[2]);</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>}</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a5535152e6774ddedc7634be4f0684040">  203</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a5535152e6774ddedc7634be4f0684040">branch_print_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>{</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>  (void)argc;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>  (void)argv;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>  <span class="keywordflow">if</span> (argc &lt; 3) {</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Usage: mygit branch-print &lt;branch&gt;\n&quot;</span>);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>  }</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>  <a class="code hl_function" href="get__branch__commit__tree_8h.html#afbca1f48127867731827c4f4081f61ed">print_branch_commit_tree</a>(argv[2]);</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>}</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#a0db8081249aad34ca08a789fbce67d4c">  216</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#a0db8081249aad34ca08a789fbce67d4c">checkout_branch_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>{</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>  <span class="keywordtype">int</span> status = 0;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>  <span class="keywordflow">if</span> (argc &lt; 3) {</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Usage: mygit checkout-branch &lt;branch&gt;\n&quot;</span>);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>  }</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>  status = <a class="code hl_function" href="mygit__checkout__branch_8h.html#a1adacfccc14add60e61da09f3e3c7188">mygit_checkout_branch</a>(argv[2]);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>  <span class="keywordflow">if</span> (status == -1) {</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: branch &#39;%s&#39; doesn&#39;t exist\n&quot;</span>, argv[2]);</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>  }</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>  <span class="keywordflow">if</span> (status == 0) {</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: can&#39;t checkout branch &#39;%s&#39;\n&quot;</span>, argv[2]);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>  }</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>  <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;You are now on branch &#39;%s&#39;\n&quot;</span>, argv[2]);</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>}</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#ad18167e7d8a7639cffc6afb8656bf0de">  237</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#ad18167e7d8a7639cffc6afb8656bf0de">checkout_commit_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>{</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>  <span class="keywordtype">int</span> status = 0;</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>  (void)argc;</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>  (void)argv;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>  <span class="keywordflow">if</span> (argc &lt; 3) {</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Usage: mygit checkout-commit &lt;commit/pattern&gt;\n&quot;</span>);</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>  }</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>  status = <a class="code hl_function" href="mygit__checkout__commit_8h.html#a44134dfa665ca7c6f9858a0cf810b8ad">mygit_checkout_commit</a>(argv[2]);</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>  <span class="keywordflow">if</span> (!status) {</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Error: can&#39;t checkout commit &#39;%s&#39;\n&quot;</span>, argv[2]);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>  }</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>  <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;You are now on commit matching the pattern &#39;%s&#39;\n&quot;</span>, argv[2]);</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>  <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>}</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#ab745634024cf0800e9433c770f051e67">  256</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#ab745634024cf0800e9433c770f051e67">merge_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>{</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> </div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>  <span class="keywordflow">if</span> (argc &lt; 3) {</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <a class="code hl_define" href="utils_8h.html#ad4a9117ce894e3319e903142347a0f63">LOG_ERROR</a>(<span class="stringliteral">&quot;Usage: mygit merge &lt;branch&gt; [&lt;message&gt;]\n&quot;</span>);</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>  }</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>  <span class="keywordflow">if</span> (argc == 3) {</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    <a class="code hl_function" href="mygit__merge_8h.html#a602f2aaf63dfac583c84e946c44294e2">mygit_merge</a>(argv[2], NULL);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>  }</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>  <a class="code hl_function" href="mygit__merge_8h.html#a602f2aaf63dfac583c84e946c44294e2">mygit_merge</a>(argv[2], argv[3]);</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>}</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno"><a class="line" href="mygit__handle__args__actions_8h.html#aca6e4f520a718c5eba190d4e9bf7a0c6">  271</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="mygit__handle__args__actions_8c.html#aca6e4f520a718c5eba190d4e9bf7a0c6">help_handle_args</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv)</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>{</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>  (void)argc;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>  (void)argv;</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>  <a class="code hl_define" href="utils_8h.html#a378e28bfcb78d17285210d6bbb70a083">LOG_INFO</a>(<span class="stringliteral">&quot;Usage: mygit &lt;command&gt; [&lt;args&gt;]\n&quot;</span>);</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>  <a class="code hl_function" href="mygit__help_8h.html#a41fc80acacd7d03d174a71b61efa234c">mygit_help</a>();</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>}</div>
 <div class="ttc" id="acreate__list__branches_8h_html"><div class="ttname"><a href="create__list__branches_8h.html">create_list_branches.h</a></div></div>
 <div class="ttc" id="acreate__list__branches_8h_html_a8b84976d4b443fbc587cababa32927df"><div class="ttname"><a href="create__list__branches_8h.html#a8b84976d4b443fbc587cababa32927df">create_branch_if_not_exists</a></div><div class="ttdeci">int create_branch_if_not_exists(const char *branch)</div><div class="ttdoc">Create a branch if it does not exists.</div><div class="ttdef"><b>Definition:</b> <a href="create__list__branches_8c_source.html#l00031">create_list_branches.c:31</a></div></div>
-<div class="ttc" id="acreate__list__branches_8h_html_ad929b0cd0d22aee7938780406e8e584b"><div class="ttname"><a href="create__list__branches_8h.html#ad929b0cd0d22aee7938780406e8e584b">get_current_branch</a></div><div class="ttdeci">char * get_current_branch(void)</div><div class="ttdoc">Get the current branch name (the branch pointed by HEAD)</div><div class="ttdef"><b>Definition:</b> <a href="create__list__branches_8c_source.html#l00044">create_list_branches.c:44</a></div></div>
+<div class="ttc" id="acreate__list__branches_8h_html_ad929b0cd0d22aee7938780406e8e584b"><div class="ttname"><a href="create__list__branches_8h.html#ad929b0cd0d22aee7938780406e8e584b">get_current_branch</a></div><div class="ttdeci">char * get_current_branch(void)</div><div class="ttdoc">Get the current branch name (the branch pointed by HEAD)</div><div class="ttdef"><b>Definition:</b> <a href="create__list__branches_8c_source.html#l00045">create_list_branches.c:45</a></div></div>
 <div class="ttc" id="aget__branch__commit__tree_8h_html"><div class="ttname"><a href="get__branch__commit__tree_8h.html">get_branch_commit_tree.h</a></div></div>
-<div class="ttc" id="aget__branch__commit__tree_8h_html_afbca1f48127867731827c4f4081f61ed"><div class="ttname"><a href="get__branch__commit__tree_8h.html#afbca1f48127867731827c4f4081f61ed">print_branch_commit_tree</a></div><div class="ttdeci">void print_branch_commit_tree(char *branch)</div><div class="ttdoc">Print the the commits of a branch (from the last to the first) the function is based on get_branch_co...</div><div class="ttdef"><b>Definition:</b> <a href="get__branch__commit__tree_8c_source.html#l00078">get_branch_commit_tree.c:78</a></div></div>
+<div class="ttc" id="aget__branch__commit__tree_8h_html_afbca1f48127867731827c4f4081f61ed"><div class="ttname"><a href="get__branch__commit__tree_8h.html#afbca1f48127867731827c4f4081f61ed">print_branch_commit_tree</a></div><div class="ttdeci">void print_branch_commit_tree(char *branch)</div><div class="ttdoc">Print the the commits of a branch (from the last to the first) the function is based on get_branch_co...</div><div class="ttdef"><b>Definition:</b> <a href="get__branch__commit__tree_8c_source.html#l00079">get_branch_commit_tree.c:79</a></div></div>
 <div class="ttc" id="aget__path__absolute_8h_html"><div class="ttname"><a href="get__path__absolute_8h.html">get_path_absolute.h</a></div></div>
 <div class="ttc" id="aget__path__absolute_8h_html_a7f69065a7e075a8d06ca1acf73c976e1"><div class="ttname"><a href="get__path__absolute_8h.html#a7f69065a7e075a8d06ca1acf73c976e1">get_path_absolute</a></div><div class="ttdeci">char * get_path_absolute(const char *path, const char *filename)</div><div class="ttdoc">Get the path absolute from a path and a filename (The function allocates memory and returns path/file...</div><div class="ttdef"><b>Definition:</b> <a href="get__path__absolute_8c_source.html#l00011">get_path_absolute.c:11</a></div></div>
 <div class="ttc" id="ainit_8h_html"><div class="ttname"><a href="init_8h.html">init.h</a></div></div>
@@ -365,20 +392,26 @@ $(document).ready(function(){initNavTree('mygit__handle__args__actions_8c_source
 <div class="ttc" id="amygit__checkout__commit_8h_html_a44134dfa665ca7c6f9858a0cf810b8ad"><div class="ttname"><a href="mygit__checkout__commit_8h.html#a44134dfa665ca7c6f9858a0cf810b8ad">mygit_checkout_commit</a></div><div class="ttdeci">int mygit_checkout_commit(char *pattern)</div><div class="ttdoc">Function used to checkout to a commit (i.e. change the current branch, i.e. change the HEAD and resto...</div><div class="ttdef"><b>Definition:</b> <a href="mygit__checkout__commit_8c_source.html#l00034">mygit_checkout_commit.c:34</a></div></div>
 <div class="ttc" id="amygit__commit_8h_html"><div class="ttname"><a href="mygit__commit_8h.html">mygit_commit.h</a></div></div>
 <div class="ttc" id="amygit__commit_8h_html_a0d7d70362b52f23a6c1140d8a90b4003"><div class="ttname"><a href="mygit__commit_8h.html#a0d7d70362b52f23a6c1140d8a90b4003">mygit_commit</a></div><div class="ttdeci">char * mygit_commit(const char *branch_name, const char *message)</div><div class="ttdoc">Commit the files in the staging area to the branch provided. The function will create a new commit ob...</div><div class="ttdef"><b>Definition:</b> <a href="mygit__commit_8c_source.html#l00074">mygit_commit.c:74</a></div></div>
-<div class="ttc" id="amygit__handle__args__actions_8c_html_a00dce8f6919e752284fa02d7200e0a79"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a00dce8f6919e752284fa02d7200e0a79">clear_add_handle_args</a></div><div class="ttdeci">int clear_add_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the clear-add command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00119">mygit_handle_args_actions.c:119</a></div></div>
-<div class="ttc" id="amygit__handle__args__actions_8c_html_a0871390416738633daa9d8e2a6ccee5d"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a0871390416738633daa9d8e2a6ccee5d">current_branch_handle_args</a></div><div class="ttdeci">int current_branch_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the current-branch command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00165">mygit_handle_args_actions.c:165</a></div></div>
-<div class="ttc" id="amygit__handle__args__actions_8c_html_a0db8081249aad34ca08a789fbce67d4c"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a0db8081249aad34ca08a789fbce67d4c">checkout_branch_handle_args</a></div><div class="ttdeci">int checkout_branch_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the checkout-branch command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00214">mygit_handle_args_actions.c:214</a></div></div>
-<div class="ttc" id="amygit__handle__args__actions_8c_html_a10ed173772f79123e811c153271dddfa"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a10ed173772f79123e811c153271dddfa">add_handle_args</a></div><div class="ttdeci">int add_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the add command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00084">mygit_handle_args_actions.c:84</a></div></div>
-<div class="ttc" id="amygit__handle__args__actions_8c_html_a137150d5e3fca35a851d28bcbaa0a046"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a137150d5e3fca35a851d28bcbaa0a046">list_refs_handle_args</a></div><div class="ttdeci">int list_refs_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the list-refs command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00035">mygit_handle_args_actions.c:35</a></div></div>
-<div class="ttc" id="amygit__handle__args__actions_8c_html_a2fb316040138f38c865b5f3a51effe45"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a2fb316040138f38c865b5f3a51effe45">init_handle_args</a></div><div class="ttdeci">int init_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the init command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00024">mygit_handle_args_actions.c:24</a></div></div>
-<div class="ttc" id="amygit__handle__args__actions_8c_html_a5535152e6774ddedc7634be4f0684040"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a5535152e6774ddedc7634be4f0684040">branch_print_handle_args</a></div><div class="ttdeci">int branch_print_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the branch-print command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00201">mygit_handle_args_actions.c:201</a></div></div>
-<div class="ttc" id="amygit__handle__args__actions_8c_html_a7f5417d533ac08c739c14f11b41ecf40"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a7f5417d533ac08c739c14f11b41ecf40">delete_ref_handle_args</a></div><div class="ttdeci">int delete_ref_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the delete-ref command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00070">mygit_handle_args_actions.c:70</a></div></div>
-<div class="ttc" id="amygit__handle__args__actions_8c_html_a80e60b2a5ea8d59fcd07248a88add64e"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a80e60b2a5ea8d59fcd07248a88add64e">commit_handle_args</a></div><div class="ttdeci">int commit_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the commit command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00133">mygit_handle_args_actions.c:133</a></div></div>
-<div class="ttc" id="amygit__handle__args__actions_8c_html_a96005c0e52f25b01c365d0afac5dda23"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a96005c0e52f25b01c365d0afac5dda23">create_ref_handle_args</a></div><div class="ttdeci">int create_ref_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the create-ref command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00048">mygit_handle_args_actions.c:48</a></div></div>
-<div class="ttc" id="amygit__handle__args__actions_8c_html_a999ced11bc562e8e982e405455cbef32"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a999ced11bc562e8e982e405455cbef32">branch_handle_args</a></div><div class="ttdeci">int branch_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the branch command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00180">mygit_handle_args_actions.c:180</a></div></div>
-<div class="ttc" id="amygit__handle__args__actions_8c_html_ad18167e7d8a7639cffc6afb8656bf0de"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#ad18167e7d8a7639cffc6afb8656bf0de">checkout_commit_handle_args</a></div><div class="ttdeci">int checkout_commit_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the checkout-commit command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00235">mygit_handle_args_actions.c:235</a></div></div>
-<div class="ttc" id="amygit__handle__args__actions_8c_html_ae35a5fa450c78f352555a95fdf7c9cb2"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#ae35a5fa450c78f352555a95fdf7c9cb2">list_add_handle_args</a></div><div class="ttdeci">int list_add_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the list-add command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00102">mygit_handle_args_actions.c:102</a></div></div>
+<div class="ttc" id="amygit__handle__args__actions_8c_html_a00dce8f6919e752284fa02d7200e0a79"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a00dce8f6919e752284fa02d7200e0a79">clear_add_handle_args</a></div><div class="ttdeci">int clear_add_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the clear-add command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00121">mygit_handle_args_actions.c:121</a></div></div>
+<div class="ttc" id="amygit__handle__args__actions_8c_html_a0871390416738633daa9d8e2a6ccee5d"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a0871390416738633daa9d8e2a6ccee5d">current_branch_handle_args</a></div><div class="ttdeci">int current_branch_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the current-branch command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00167">mygit_handle_args_actions.c:167</a></div></div>
+<div class="ttc" id="amygit__handle__args__actions_8c_html_a0db8081249aad34ca08a789fbce67d4c"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a0db8081249aad34ca08a789fbce67d4c">checkout_branch_handle_args</a></div><div class="ttdeci">int checkout_branch_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the checkout-branch command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00216">mygit_handle_args_actions.c:216</a></div></div>
+<div class="ttc" id="amygit__handle__args__actions_8c_html_a10ed173772f79123e811c153271dddfa"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a10ed173772f79123e811c153271dddfa">add_handle_args</a></div><div class="ttdeci">int add_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the add command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00086">mygit_handle_args_actions.c:86</a></div></div>
+<div class="ttc" id="amygit__handle__args__actions_8c_html_a137150d5e3fca35a851d28bcbaa0a046"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a137150d5e3fca35a851d28bcbaa0a046">list_refs_handle_args</a></div><div class="ttdeci">int list_refs_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the list-refs command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00037">mygit_handle_args_actions.c:37</a></div></div>
+<div class="ttc" id="amygit__handle__args__actions_8c_html_a2fb316040138f38c865b5f3a51effe45"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a2fb316040138f38c865b5f3a51effe45">init_handle_args</a></div><div class="ttdeci">int init_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the init command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00026">mygit_handle_args_actions.c:26</a></div></div>
+<div class="ttc" id="amygit__handle__args__actions_8c_html_a5535152e6774ddedc7634be4f0684040"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a5535152e6774ddedc7634be4f0684040">branch_print_handle_args</a></div><div class="ttdeci">int branch_print_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the branch-print command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00203">mygit_handle_args_actions.c:203</a></div></div>
+<div class="ttc" id="amygit__handle__args__actions_8c_html_a7f5417d533ac08c739c14f11b41ecf40"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a7f5417d533ac08c739c14f11b41ecf40">delete_ref_handle_args</a></div><div class="ttdeci">int delete_ref_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the delete-ref command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00072">mygit_handle_args_actions.c:72</a></div></div>
+<div class="ttc" id="amygit__handle__args__actions_8c_html_a80e60b2a5ea8d59fcd07248a88add64e"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a80e60b2a5ea8d59fcd07248a88add64e">commit_handle_args</a></div><div class="ttdeci">int commit_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the commit command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00135">mygit_handle_args_actions.c:135</a></div></div>
+<div class="ttc" id="amygit__handle__args__actions_8c_html_a96005c0e52f25b01c365d0afac5dda23"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a96005c0e52f25b01c365d0afac5dda23">create_ref_handle_args</a></div><div class="ttdeci">int create_ref_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the create-ref command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00050">mygit_handle_args_actions.c:50</a></div></div>
+<div class="ttc" id="amygit__handle__args__actions_8c_html_a999ced11bc562e8e982e405455cbef32"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#a999ced11bc562e8e982e405455cbef32">branch_handle_args</a></div><div class="ttdeci">int branch_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the branch command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00182">mygit_handle_args_actions.c:182</a></div></div>
+<div class="ttc" id="amygit__handle__args__actions_8c_html_ab745634024cf0800e9433c770f051e67"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#ab745634024cf0800e9433c770f051e67">merge_handle_args</a></div><div class="ttdeci">int merge_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the merge command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00256">mygit_handle_args_actions.c:256</a></div></div>
+<div class="ttc" id="amygit__handle__args__actions_8c_html_aca6e4f520a718c5eba190d4e9bf7a0c6"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#aca6e4f520a718c5eba190d4e9bf7a0c6">help_handle_args</a></div><div class="ttdeci">int help_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the help command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00271">mygit_handle_args_actions.c:271</a></div></div>
+<div class="ttc" id="amygit__handle__args__actions_8c_html_ad18167e7d8a7639cffc6afb8656bf0de"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#ad18167e7d8a7639cffc6afb8656bf0de">checkout_commit_handle_args</a></div><div class="ttdeci">int checkout_commit_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the checkout-commit command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00237">mygit_handle_args_actions.c:237</a></div></div>
+<div class="ttc" id="amygit__handle__args__actions_8c_html_ae35a5fa450c78f352555a95fdf7c9cb2"><div class="ttname"><a href="mygit__handle__args__actions_8c.html#ae35a5fa450c78f352555a95fdf7c9cb2">list_add_handle_args</a></div><div class="ttdeci">int list_add_handle_args(int argc, char **argv)</div><div class="ttdoc">Handle the arguments of the list-add command.</div><div class="ttdef"><b>Definition:</b> <a href="mygit__handle__args__actions_8c_source.html#l00104">mygit_handle_args_actions.c:104</a></div></div>
 <div class="ttc" id="amygit__handle__args__actions_8h_html"><div class="ttname"><a href="mygit__handle__args__actions_8h.html">mygit_handle_args_actions.h</a></div></div>
+<div class="ttc" id="amygit__help_8h_html"><div class="ttname"><a href="mygit__help_8h.html">mygit_help.h</a></div></div>
+<div class="ttc" id="amygit__help_8h_html_a41fc80acacd7d03d174a71b61efa234c"><div class="ttname"><a href="mygit__help_8h.html#a41fc80acacd7d03d174a71b61efa234c">mygit_help</a></div><div class="ttdeci">void mygit_help(void)</div><div class="ttdef"><b>Definition:</b> <a href="mygit__help_8c_source.html#l00011">mygit_help.c:11</a></div></div>
+<div class="ttc" id="amygit__merge_8h_html"><div class="ttname"><a href="mygit__merge_8h.html">mygit_merge.h</a></div></div>
+<div class="ttc" id="amygit__merge_8h_html_a602f2aaf63dfac583c84e946c44294e2"><div class="ttname"><a href="mygit__merge_8h.html#a602f2aaf63dfac583c84e946c44294e2">mygit_merge</a></div><div class="ttdeci">void mygit_merge(const char *branch, const char *message)</div><div class="ttdoc">Function used to merge the provided branch with the current branch. If there is conflits,...</div><div class="ttdef"><b>Definition:</b> <a href="mygit__merge_8c_source.html#l00113">mygit_merge.c:113</a></div></div>
 <div class="ttc" id="arefs_8h_html"><div class="ttname"><a href="refs_8h.html">refs.h</a></div></div>
 <div class="ttc" id="arefs_8h_html_a0c168fa1d08683fb53d31b31fac43b12"><div class="ttname"><a href="refs_8h.html#a0c168fa1d08683fb53d31b31fac43b12">delete_ref</a></div><div class="ttdeci">int delete_ref(const char *ref_name)</div><div class="ttdoc">Delete the ref with the given name.</div><div class="ttdef"><b>Definition:</b> <a href="refs_8c_source.html#l00035">refs.c:35</a></div></div>
 <div class="ttc" id="arefs_8h_html_a1414816a1fe6d9e8136979dde896e94c"><div class="ttname"><a href="refs_8h.html#a1414816a1fe6d9e8136979dde896e94c">get_str_all_ref</a></div><div class="ttdeci">char * get_str_all_ref()</div><div class="ttdoc">Get a string containing all the refs name and hash of their last commit. Format: &quot;ref_name:hash\nref_...</div><div class="ttdef"><b>Definition:</b> <a href="refs_8c_source.html#l00087">refs.c:87</a></div></div>

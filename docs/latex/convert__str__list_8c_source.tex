@@ -40,10 +40,10 @@
 \DoxyCodeLine{00036\ \ \ cell\ =\ *list;}
 \DoxyCodeLine{00037\ \ \ \textcolor{keywordflow}{while}\ (cell)\ \{}
 \DoxyCodeLine{00038\ \ \ \ \ cell\_str\ =\ cell\_to\_string(cell);}
-\DoxyCodeLine{00039\ \ \ \ \ strlcat(list\_str,\ cell\_str,\ str\_size);}
+\DoxyCodeLine{00039\ \ \ \ \ strncat(list\_str,\ cell\_str,\ str\_size);}
 \DoxyCodeLine{00040\ \ \ \ \ cell\ =\ cell-\/>next;}
 \DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{if}\ (cell)}
-\DoxyCodeLine{00042\ \ \ \ \ \ \ strlcat(list\_str,\ SEPARATOR\_LIST\_STRING,\ str\_size);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ strncat(list\_str,\ SEPARATOR\_LIST\_STRING,\ str\_size);}
 \DoxyCodeLine{00043\ \ \ \}}
 \DoxyCodeLine{00044\ \}}
 \DoxyCodeLine{00045\ }

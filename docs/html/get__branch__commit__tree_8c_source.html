@@ -100,135 +100,154 @@ $(document).ready(function(){initNavTree('get__branch__commit__tree_8c_source.ht
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//    get_branch_commit_tree.c</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="get__branch__commit__tree_8h.html">branch/get_branch_commit_tree.h</a>&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="insert__key__val__in__commit_8h.html">libs/commit/insert_key_val_in_commit.h</a>&quot;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="save__get__file__commit_8h.html">libs/commit/save_get_file_commit.h</a>&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="create__blob_8h.html">libs/file/create_blob.h</a>&quot;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="insert__get__search__list_8h.html">libs/list/insert_get_search_list.h</a>&quot;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="refs_8h.html">refs/refs.h</a>&quot;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="realloc__and__concat_8h.html">utils/realloc_and_concat.h</a>&quot;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="get__branch__commit__tree_8h.html#a2bcf701eaae0f602e06c8118dc2eed49">   17</a></span><a class="code hl_struct" href="structhash__table__s.html">commit_t</a> *<a class="code hl_function" href="get__branch__commit__tree_8c.html#a2bcf701eaae0f602e06c8118dc2eed49">get_commit_from_hash</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *hash)</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>{</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  <span class="keywordtype">char</span> *commit_path = NULL;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <a class="code hl_struct" href="structhash__table__s.html">commit_t</a> *commit = NULL;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <span class="keywordflow">if</span> (!hash)</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  commit_path = <a class="code hl_function" href="create__blob_8h.html#af95c1809bc63a17ea003d6b61d5c4bd2">get_path_from_hash</a>(hash);</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keywordflow">if</span> (!commit_path)</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  commit = <a class="code hl_function" href="save__get__file__commit_8h.html#aa98cd2c231e45f49149fe9e4baefd613">get_commit_from_file</a>(commit_path);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  free(commit_path);</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keywordflow">return</span> commit;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">static</span> <span class="keywordtype">void</span> get_predecessors_and_concat_rec(<span class="keywordtype">char</span> **branch_str, <span class="keyword">const</span> <span class="keywordtype">char</span> *hash)</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <a class="code hl_struct" href="structhash__table__s.html">commit_t</a> *commit = NULL;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keywordtype">char</span> *predecessor_hash = NULL;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="keywordtype">char</span> *message = NULL;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keywordflow">if</span> (!hash || !branch_str)</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  commit = <a class="code hl_function" href="get__branch__commit__tree_8c.html#a2bcf701eaae0f602e06c8118dc2eed49">get_commit_from_hash</a>(hash);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keywordflow">if</span> (!commit)</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <a class="code hl_function" href="realloc__and__concat_8h.html#afc4012a35e0afd9888c4f6fd43dc5284">realloc_and_concat_after</a>(branch_str, hash);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  predecessor_hash = <a class="code hl_function" href="insert__key__val__in__commit_8h.html#ace97e9529dc2e2bfafb9f08d3321e498">get_value_from_key_in_commit</a>(commit, <a class="code hl_define" href="commit_8h.html#a892df0484f9446d75e1f792e0f7eb0b9">COMMIT_KEY_PARENT</a>);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  message = <a class="code hl_function" href="insert__key__val__in__commit_8h.html#ace97e9529dc2e2bfafb9f08d3321e498">get_value_from_key_in_commit</a>(commit, <a class="code hl_define" href="commit_8h.html#a3bd1874cd6615dfd402418d99409d7e8">COMMIT_KEY_MESSAGE</a>);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keywordflow">if</span> (message) {</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_function" href="realloc__and__concat_8h.html#afc4012a35e0afd9888c4f6fd43dc5284">realloc_and_concat_after</a>(branch_str, <span class="stringliteral">&quot;\t&quot;</span>);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_function" href="realloc__and__concat_8h.html#afc4012a35e0afd9888c4f6fd43dc5284">realloc_and_concat_after</a>(branch_str, message);</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    free(message);</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  }</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <a class="code hl_function" href="realloc__and__concat_8h.html#afc4012a35e0afd9888c4f6fd43dc5284">realloc_and_concat_after</a>(branch_str, <span class="stringliteral">&quot;\n&quot;</span>);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  get_predecessors_and_concat_rec(branch_str, predecessor_hash);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keywordflow">if</span> (predecessor_hash)</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    free(predecessor_hash);</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <a class="code hl_function" href="commit_8h.html#adb9af96f568dfa4194fecee35adce146">free_commit</a>(commit);</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="get__branch__commit__tree_8h.html#a092180329cc57b64d0556cb4aa50d769">   58</a></span><span class="keywordtype">char</span> *<a class="code hl_function" href="get__branch__commit__tree_8c.html#a092180329cc57b64d0556cb4aa50d769">get_branch_commits_tree_str</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *branch_name)</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>{</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="keywordtype">char</span> *current_branch_head = NULL;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="keywordtype">char</span> *branch_str = NULL;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  <span class="keywordflow">if</span> (!branch_name)</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  current_branch_head = <a class="code hl_function" href="refs_8h.html#a50a2137f4e49a72edb6a628b823c1f15">get_ref</a>(branch_name);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <span class="keywordflow">if</span> (!current_branch_head)</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  branch_str = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>));</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keywordflow">if</span> (!branch_str) {</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    free(current_branch_head);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  }</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  get_predecessors_and_concat_rec(&amp;branch_str, current_branch_head);</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  free(current_branch_head);</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="keywordflow">return</span> branch_str;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>}</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="get__branch__commit__tree_8h.html#afbca1f48127867731827c4f4081f61ed">   78</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="get__branch__commit__tree_8c.html#afbca1f48127867731827c4f4081f61ed">print_branch_commit_tree</a>(<span class="keywordtype">char</span> *branch)</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>{</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="keywordtype">char</span> *branch_commit_tree_str = NULL;</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="keywordflow">if</span> (!branch)</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  branch_commit_tree_str = <a class="code hl_function" href="get__branch__commit__tree_8c.html#a092180329cc57b64d0556cb4aa50d769">get_branch_commits_tree_str</a>(branch);</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="keywordflow">if</span> (!branch_commit_tree_str)</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  printf(<span class="stringliteral">&quot;%s\n&quot;</span>, branch_commit_tree_str);</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  free(branch_commit_tree_str);</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>}</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="keyword">static</span> <span class="keywordtype">void</span> append_list_commit_parent_rec(<a class="code hl_struct" href="structcell__s.html">list_t</a> *list, <span class="keyword">const</span> <span class="keywordtype">char</span> *hash)</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>{</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  <a class="code hl_struct" href="structhash__table__s.html">commit_t</a> *commit = NULL;</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="keywordtype">char</span> *parent_hash = NULL;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="keywordflow">if</span> (!hash || !list)</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  commit = <a class="code hl_function" href="get__branch__commit__tree_8c.html#a2bcf701eaae0f602e06c8118dc2eed49">get_commit_from_hash</a>(hash);</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  <span class="keywordflow">if</span> (!commit)</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <a class="code hl_function" href="insert__get__search__list_8h.html#a1be1b5c2c454699aca99e84fcdace9a5">create_and_insert_cell_in_list</a>(list, hash);</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  parent_hash = <a class="code hl_function" href="insert__key__val__in__commit_8h.html#ace97e9529dc2e2bfafb9f08d3321e498">get_value_from_key_in_commit</a>(commit, <a class="code hl_define" href="commit_8h.html#a892df0484f9446d75e1f792e0f7eb0b9">COMMIT_KEY_PARENT</a>);</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  <a class="code hl_function" href="commit_8h.html#adb9af96f568dfa4194fecee35adce146">free_commit</a>(commit);</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  append_list_commit_parent_rec(list, parent_hash);</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  <span class="keywordflow">if</span> (parent_hash)</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    free(parent_hash);</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>}</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="get__branch__commit__tree_8h.html#ad3d919b6e35acbd41e6f735a4e7af588">  109</a></span><a class="code hl_struct" href="structcell__s.html">list_t</a> *<a class="code hl_function" href="get__branch__commit__tree_8c.html#ad3d919b6e35acbd41e6f735a4e7af588">get_commit_from_branch_list</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *branch_name)</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>{</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  <span class="keywordtype">char</span> *current_branch_head = NULL;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  <a class="code hl_struct" href="structcell__s.html">list_t</a> *list_commit = NULL;</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  <span class="keywordflow">if</span> (!branch_name)</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  current_branch_head = <a class="code hl_function" href="refs_8h.html#a50a2137f4e49a72edb6a628b823c1f15">get_ref</a>(branch_name);</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>  <span class="keywordflow">if</span> (!current_branch_head)</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>  list_commit = <a class="code hl_function" href="list_8h.html#a54582f1d975ab79128075441e4cb57fe">create_init_list</a>();</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  <span class="keywordflow">if</span> (!list_commit) {</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    free(current_branch_head);</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  }</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  append_list_commit_parent_rec(list_commit, current_branch_head);</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  free(current_branch_head);</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  <span class="keywordflow">return</span> list_commit;</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>}</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="create__list__branches_8h.html">branch/create_list_branches.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="insert__key__val__in__commit_8h.html">libs/commit/insert_key_val_in_commit.h</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="save__get__file__commit_8h.html">libs/commit/save_get_file_commit.h</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="create__blob_8h.html">libs/file/create_blob.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="insert__get__search__list_8h.html">libs/list/insert_get_search_list.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="refs_8h.html">refs/refs.h</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="realloc__and__concat_8h.html">utils/realloc_and_concat.h</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="get__branch__commit__tree_8h.html#a2bcf701eaae0f602e06c8118dc2eed49">   18</a></span><a class="code hl_struct" href="structhash__table__s.html">commit_t</a> *<a class="code hl_function" href="get__branch__commit__tree_8c.html#a2bcf701eaae0f602e06c8118dc2eed49">get_commit_from_hash</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *hash)</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keywordtype">char</span> *commit_path = NULL;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <a class="code hl_struct" href="structhash__table__s.html">commit_t</a> *commit = NULL;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="keywordflow">if</span> (!hash)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  commit_path = <a class="code hl_function" href="create__blob_8h.html#af95c1809bc63a17ea003d6b61d5c4bd2">get_path_from_hash</a>(hash);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keywordflow">if</span> (!commit_path)</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  commit = <a class="code hl_function" href="save__get__file__commit_8h.html#aa98cd2c231e45f49149fe9e4baefd613">get_commit_from_file</a>(commit_path);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  free(commit_path);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keywordflow">return</span> commit;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">static</span> <span class="keywordtype">void</span> get_predecessors_and_concat_rec(<span class="keywordtype">char</span> **branch_str, <span class="keyword">const</span> <span class="keywordtype">char</span> *hash)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <a class="code hl_struct" href="structhash__table__s.html">commit_t</a> *commit = NULL;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="keywordtype">char</span> *predecessor_hash = NULL;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keywordtype">char</span> *message = NULL;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordflow">if</span> (!hash || !branch_str)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  commit = <a class="code hl_function" href="get__branch__commit__tree_8c.html#a2bcf701eaae0f602e06c8118dc2eed49">get_commit_from_hash</a>(hash);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordflow">if</span> (!commit)</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <a class="code hl_function" href="realloc__and__concat_8h.html#afc4012a35e0afd9888c4f6fd43dc5284">realloc_and_concat_after</a>(branch_str, hash);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  predecessor_hash = <a class="code hl_function" href="insert__key__val__in__commit_8h.html#ace97e9529dc2e2bfafb9f08d3321e498">get_value_from_key_in_commit</a>(commit, <a class="code hl_define" href="commit_8h.html#a892df0484f9446d75e1f792e0f7eb0b9">COMMIT_KEY_PARENT</a>);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  message = <a class="code hl_function" href="insert__key__val__in__commit_8h.html#ace97e9529dc2e2bfafb9f08d3321e498">get_value_from_key_in_commit</a>(commit, <a class="code hl_define" href="commit_8h.html#a3bd1874cd6615dfd402418d99409d7e8">COMMIT_KEY_MESSAGE</a>);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keywordflow">if</span> (message) {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_function" href="realloc__and__concat_8h.html#afc4012a35e0afd9888c4f6fd43dc5284">realloc_and_concat_after</a>(branch_str, <span class="stringliteral">&quot;\t&quot;</span>);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_function" href="realloc__and__concat_8h.html#afc4012a35e0afd9888c4f6fd43dc5284">realloc_and_concat_after</a>(branch_str, message);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    free(message);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <a class="code hl_function" href="realloc__and__concat_8h.html#afc4012a35e0afd9888c4f6fd43dc5284">realloc_and_concat_after</a>(branch_str, <span class="stringliteral">&quot;\n&quot;</span>);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  get_predecessors_and_concat_rec(branch_str, predecessor_hash);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keywordflow">if</span> (predecessor_hash)</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    free(predecessor_hash);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <a class="code hl_function" href="commit_8h.html#adb9af96f568dfa4194fecee35adce146">free_commit</a>(commit);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>}</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="get__branch__commit__tree_8h.html#a092180329cc57b64d0556cb4aa50d769">   59</a></span><span class="keywordtype">char</span> *<a class="code hl_function" href="get__branch__commit__tree_8c.html#a092180329cc57b64d0556cb4aa50d769">get_branch_commits_tree_str</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *branch_name)</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>{</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="keywordtype">char</span> *current_branch_head = NULL;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="keywordtype">char</span> *branch_str = NULL;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  <span class="keywordflow">if</span> (!branch_name)</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  current_branch_head = <a class="code hl_function" href="refs_8h.html#a50a2137f4e49a72edb6a628b823c1f15">get_ref</a>(branch_name);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keywordflow">if</span> (!current_branch_head)</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  branch_str = malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>));</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <span class="keywordflow">if</span> (!branch_str) {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    free(current_branch_head);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  }</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  get_predecessors_and_concat_rec(&amp;branch_str, current_branch_head);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  free(current_branch_head);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keywordflow">return</span> branch_str;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>}</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="get__branch__commit__tree_8h.html#afbca1f48127867731827c4f4081f61ed">   79</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="get__branch__commit__tree_8c.html#afbca1f48127867731827c4f4081f61ed">print_branch_commit_tree</a>(<span class="keywordtype">char</span> *branch)</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>{</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  <span class="keywordtype">char</span> *branch_commit_tree_str = NULL;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="keywordflow">if</span> (!branch)</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  branch_commit_tree_str = <a class="code hl_function" href="get__branch__commit__tree_8c.html#a092180329cc57b64d0556cb4aa50d769">get_branch_commits_tree_str</a>(branch);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  <span class="keywordflow">if</span> (!branch_commit_tree_str)</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  printf(<span class="stringliteral">&quot;%s\n&quot;</span>, branch_commit_tree_str);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  free(branch_commit_tree_str);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>}</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="keyword">static</span> <span class="keywordtype">void</span> append_list_commit_parent_rec(<a class="code hl_struct" href="structcell__s.html">list_t</a> *list, <span class="keyword">const</span> <span class="keywordtype">char</span> *hash)</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>{</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <a class="code hl_struct" href="structhash__table__s.html">commit_t</a> *commit = NULL;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  <span class="keywordtype">char</span> *parent_hash = NULL;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <span class="keywordflow">if</span> (!hash || !list)</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  commit = <a class="code hl_function" href="get__branch__commit__tree_8c.html#a2bcf701eaae0f602e06c8118dc2eed49">get_commit_from_hash</a>(hash);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="keywordflow">if</span> (!commit)</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  <a class="code hl_function" href="insert__get__search__list_8h.html#a1be1b5c2c454699aca99e84fcdace9a5">create_and_insert_cell_in_list</a>(list, hash);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  parent_hash = <a class="code hl_function" href="insert__key__val__in__commit_8h.html#ace97e9529dc2e2bfafb9f08d3321e498">get_value_from_key_in_commit</a>(commit, <a class="code hl_define" href="commit_8h.html#a892df0484f9446d75e1f792e0f7eb0b9">COMMIT_KEY_PARENT</a>);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  <a class="code hl_function" href="commit_8h.html#adb9af96f568dfa4194fecee35adce146">free_commit</a>(commit);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  append_list_commit_parent_rec(list, parent_hash);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  <span class="keywordflow">if</span> (parent_hash)</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    free(parent_hash);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>}</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="get__branch__commit__tree_8h.html#ad3d919b6e35acbd41e6f735a4e7af588">  110</a></span><a class="code hl_struct" href="structcell__s.html">list_t</a> *<a class="code hl_function" href="get__branch__commit__tree_8c.html#ad3d919b6e35acbd41e6f735a4e7af588">get_commit_from_branch_list</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *branch_name)</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>{</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  <span class="keywordtype">char</span> *current_branch_head = NULL;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  <a class="code hl_struct" href="structcell__s.html">list_t</a> *list_commit = NULL;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  <span class="keywordflow">if</span> (!branch_name)</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>  current_branch_head = <a class="code hl_function" href="refs_8h.html#a50a2137f4e49a72edb6a628b823c1f15">get_ref</a>(branch_name);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>  <span class="keywordflow">if</span> (!current_branch_head)</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  list_commit = <a class="code hl_function" href="list_8h.html#a54582f1d975ab79128075441e4cb57fe">create_init_list</a>();</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  <span class="keywordflow">if</span> (!list_commit) {</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    free(current_branch_head);</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  }</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  append_list_commit_parent_rec(list_commit, current_branch_head);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  free(current_branch_head);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>  <span class="keywordflow">return</span> list_commit;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>}</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="get__branch__commit__tree_8h.html#a3d6d63b43a7220959b901753d26a9afe">  130</a></span><a class="code hl_struct" href="structhash__table__s.html">commit_t</a> *<a class="code hl_function" href="get__branch__commit__tree_8c.html#a3d6d63b43a7220959b901753d26a9afe">get_last_commit_from_branch</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *branch_name)</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>{</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  <span class="keywordtype">char</span> *hash_commit = NULL;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>  <a class="code hl_struct" href="structhash__table__s.html">commit_t</a> *commit = NULL;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  <span class="keywordflow">if</span> (!branch_name || !<a class="code hl_function" href="create__list__branches_8h.html#aef766e1ccd88967fc31578c2ba8a24ed">does_branch_exists</a>(branch_name))</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  hash_commit = <a class="code hl_function" href="refs_8h.html#a50a2137f4e49a72edb6a628b823c1f15">get_ref</a>(branch_name);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>  <span class="keywordflow">if</span> (!hash_commit)</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>  commit = <a class="code hl_function" href="get__branch__commit__tree_8c.html#a2bcf701eaae0f602e06c8118dc2eed49">get_commit_from_hash</a>(hash_commit);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>  free(hash_commit);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>  <span class="keywordflow">return</span> commit;</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>}</div>
 <div class="ttc" id="acommit_8h_html_a3bd1874cd6615dfd402418d99409d7e8"><div class="ttname"><a href="commit_8h.html#a3bd1874cd6615dfd402418d99409d7e8">COMMIT_KEY_MESSAGE</a></div><div class="ttdeci">#define COMMIT_KEY_MESSAGE</div><div class="ttdef"><b>Definition:</b> <a href="commit_8h_source.html#l00013">commit.h:13</a></div></div>
 <div class="ttc" id="acommit_8h_html_a892df0484f9446d75e1f792e0f7eb0b9"><div class="ttname"><a href="commit_8h.html#a892df0484f9446d75e1f792e0f7eb0b9">COMMIT_KEY_PARENT</a></div><div class="ttdeci">#define COMMIT_KEY_PARENT</div><div class="ttdef"><b>Definition:</b> <a href="commit_8h_source.html#l00012">commit.h:12</a></div></div>
 <div class="ttc" id="acommit_8h_html_adb9af96f568dfa4194fecee35adce146"><div class="ttname"><a href="commit_8h.html#adb9af96f568dfa4194fecee35adce146">free_commit</a></div><div class="ttdeci">void free_commit(commit_t *commit)</div><div class="ttdoc">Free the commit provided. The key_val_t pointers contained in the commit are also freed (using free_k...</div><div class="ttdef"><b>Definition:</b> <a href="commit_8c_source.html#l00044">commit.c:44</a></div></div>
 <div class="ttc" id="acreate__blob_8h_html"><div class="ttname"><a href="create__blob_8h.html">create_blob.h</a></div></div>
 <div class="ttc" id="acreate__blob_8h_html_af95c1809bc63a17ea003d6b61d5c4bd2"><div class="ttname"><a href="create__blob_8h.html#af95c1809bc63a17ea003d6b61d5c4bd2">get_path_from_hash</a></div><div class="ttdeci">char * get_path_from_hash(const char *hash)</div><div class="ttdoc">Get the path from hash object. The function is based on the MYGIT_DIR_BLOBS constant.</div><div class="ttdef"><b>Definition:</b> <a href="create__blob_8c_source.html#l00063">create_blob.c:63</a></div></div>
-<div class="ttc" id="aget__branch__commit__tree_8c_html_a092180329cc57b64d0556cb4aa50d769"><div class="ttname"><a href="get__branch__commit__tree_8c.html#a092180329cc57b64d0556cb4aa50d769">get_branch_commits_tree_str</a></div><div class="ttdeci">char * get_branch_commits_tree_str(const char *branch_name)</div><div class="ttdoc">Get a list of all the commits of a branch, from the last to the first, the result is a string.</div><div class="ttdef"><b>Definition:</b> <a href="get__branch__commit__tree_8c_source.html#l00058">get_branch_commit_tree.c:58</a></div></div>
-<div class="ttc" id="aget__branch__commit__tree_8c_html_a2bcf701eaae0f602e06c8118dc2eed49"><div class="ttname"><a href="get__branch__commit__tree_8c.html#a2bcf701eaae0f602e06c8118dc2eed49">get_commit_from_hash</a></div><div class="ttdeci">commit_t * get_commit_from_hash(const char *hash)</div><div class="ttdoc">Get the commit from his hash.</div><div class="ttdef"><b>Definition:</b> <a href="get__branch__commit__tree_8c_source.html#l00017">get_branch_commit_tree.c:17</a></div></div>
-<div class="ttc" id="aget__branch__commit__tree_8c_html_ad3d919b6e35acbd41e6f735a4e7af588"><div class="ttname"><a href="get__branch__commit__tree_8c.html#ad3d919b6e35acbd41e6f735a4e7af588">get_commit_from_branch_list</a></div><div class="ttdeci">list_t * get_commit_from_branch_list(const char *branch_name)</div><div class="ttdoc">Get the commit from branch as list_t (from the last to the first)</div><div class="ttdef"><b>Definition:</b> <a href="get__branch__commit__tree_8c_source.html#l00109">get_branch_commit_tree.c:109</a></div></div>
-<div class="ttc" id="aget__branch__commit__tree_8c_html_afbca1f48127867731827c4f4081f61ed"><div class="ttname"><a href="get__branch__commit__tree_8c.html#afbca1f48127867731827c4f4081f61ed">print_branch_commit_tree</a></div><div class="ttdeci">void print_branch_commit_tree(char *branch)</div><div class="ttdoc">Print the the commits of a branch (from the last to the first) the function is based on get_branch_co...</div><div class="ttdef"><b>Definition:</b> <a href="get__branch__commit__tree_8c_source.html#l00078">get_branch_commit_tree.c:78</a></div></div>
+<div class="ttc" id="acreate__list__branches_8h_html"><div class="ttname"><a href="create__list__branches_8h.html">create_list_branches.h</a></div></div>
+<div class="ttc" id="acreate__list__branches_8h_html_aef766e1ccd88967fc31578c2ba8a24ed"><div class="ttname"><a href="create__list__branches_8h.html#aef766e1ccd88967fc31578c2ba8a24ed">does_branch_exists</a></div><div class="ttdeci">int does_branch_exists(const char *branch)</div><div class="ttdoc">Function used to check if a branch exists.</div><div class="ttdef"><b>Definition:</b> <a href="create__list__branches_8c_source.html#l00018">create_list_branches.c:18</a></div></div>
+<div class="ttc" id="aget__branch__commit__tree_8c_html_a092180329cc57b64d0556cb4aa50d769"><div class="ttname"><a href="get__branch__commit__tree_8c.html#a092180329cc57b64d0556cb4aa50d769">get_branch_commits_tree_str</a></div><div class="ttdeci">char * get_branch_commits_tree_str(const char *branch_name)</div><div class="ttdoc">Get a list of all the commits of a branch, from the last to the first, the result is a string.</div><div class="ttdef"><b>Definition:</b> <a href="get__branch__commit__tree_8c_source.html#l00059">get_branch_commit_tree.c:59</a></div></div>
+<div class="ttc" id="aget__branch__commit__tree_8c_html_a2bcf701eaae0f602e06c8118dc2eed49"><div class="ttname"><a href="get__branch__commit__tree_8c.html#a2bcf701eaae0f602e06c8118dc2eed49">get_commit_from_hash</a></div><div class="ttdeci">commit_t * get_commit_from_hash(const char *hash)</div><div class="ttdoc">Get the commit from his hash.</div><div class="ttdef"><b>Definition:</b> <a href="get__branch__commit__tree_8c_source.html#l00018">get_branch_commit_tree.c:18</a></div></div>
+<div class="ttc" id="aget__branch__commit__tree_8c_html_a3d6d63b43a7220959b901753d26a9afe"><div class="ttname"><a href="get__branch__commit__tree_8c.html#a3d6d63b43a7220959b901753d26a9afe">get_last_commit_from_branch</a></div><div class="ttdeci">commit_t * get_last_commit_from_branch(const char *branch_name)</div><div class="ttdoc">Get the last commit from branch name.</div><div class="ttdef"><b>Definition:</b> <a href="get__branch__commit__tree_8c_source.html#l00130">get_branch_commit_tree.c:130</a></div></div>
+<div class="ttc" id="aget__branch__commit__tree_8c_html_ad3d919b6e35acbd41e6f735a4e7af588"><div class="ttname"><a href="get__branch__commit__tree_8c.html#ad3d919b6e35acbd41e6f735a4e7af588">get_commit_from_branch_list</a></div><div class="ttdeci">list_t * get_commit_from_branch_list(const char *branch_name)</div><div class="ttdoc">Get the commit from branch as list_t (from the last to the first)</div><div class="ttdef"><b>Definition:</b> <a href="get__branch__commit__tree_8c_source.html#l00110">get_branch_commit_tree.c:110</a></div></div>
+<div class="ttc" id="aget__branch__commit__tree_8c_html_afbca1f48127867731827c4f4081f61ed"><div class="ttname"><a href="get__branch__commit__tree_8c.html#afbca1f48127867731827c4f4081f61ed">print_branch_commit_tree</a></div><div class="ttdeci">void print_branch_commit_tree(char *branch)</div><div class="ttdoc">Print the the commits of a branch (from the last to the first) the function is based on get_branch_co...</div><div class="ttdef"><b>Definition:</b> <a href="get__branch__commit__tree_8c_source.html#l00079">get_branch_commit_tree.c:79</a></div></div>
 <div class="ttc" id="aget__branch__commit__tree_8h_html"><div class="ttname"><a href="get__branch__commit__tree_8h.html">get_branch_commit_tree.h</a></div></div>
 <div class="ttc" id="ainsert__get__search__list_8h_html"><div class="ttname"><a href="insert__get__search__list_8h.html">insert_get_search_list.h</a></div></div>
 <div class="ttc" id="ainsert__get__search__list_8h_html_a1be1b5c2c454699aca99e84fcdace9a5"><div class="ttname"><a href="insert__get__search__list_8h.html#a1be1b5c2c454699aca99e84fcdace9a5">create_and_insert_cell_in_list</a></div><div class="ttdeci">int create_and_insert_cell_in_list(list_t *list, const char *data)</div><div class="ttdoc">Create and insert cell in list at the begging of the list. The data is copied in the cell.</div><div class="ttdef"><b>Definition:</b> <a href="insert__get__search__list_8c_source.html#l00047">insert_get_search_list.c:47</a></div></div>

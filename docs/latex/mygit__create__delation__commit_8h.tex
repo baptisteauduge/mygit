@@ -1,0 +1,34 @@
+\doxysection{include/merge/mygit\+\_\+create\+\_\+delation\+\_\+commit.h File Reference}
+\label{mygit__create__delation__commit_8h}\index{include/merge/mygit\_create\_delation\_commit.h@{include/merge/mygit\_create\_delation\_commit.h}}
+{\ttfamily \#include \char`\"{}libs/list/list.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ mygit\+\_\+create\+\_\+deletion\+\_\+commit} (const char $\ast$branch, const \textbf{ list\+\_\+t} $\ast$conflicts, const char $\ast$message)
+\begin{DoxyCompactList}\small\item\em Create a deletion commit on the branch with the provided message. It means that the function is committing the files that are not in conflict. (i.\+e. the files that are not in the conflicts list) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{mygit__create__delation__commit_8h_a1f95c3ec9d76271c5888aed295039d22}} 
+\index{mygit\_create\_delation\_commit.h@{mygit\_create\_delation\_commit.h}!mygit\_create\_deletion\_commit@{mygit\_create\_deletion\_commit}}
+\index{mygit\_create\_deletion\_commit@{mygit\_create\_deletion\_commit}!mygit\_create\_delation\_commit.h@{mygit\_create\_delation\_commit.h}}
+\doxysubsubsection{mygit\_create\_deletion\_commit()}
+{\footnotesize\ttfamily void mygit\+\_\+create\+\_\+deletion\+\_\+commit (\begin{DoxyParamCaption}\item[{const char $\ast$}]{branch,  }\item[{const \textbf{ list\+\_\+t} $\ast$}]{conflicts,  }\item[{const char $\ast$}]{message }\end{DoxyParamCaption})}
+
+
+
+Create a deletion commit on the branch with the provided message. It means that the function is committing the files that are not in conflict. (i.\+e. the files that are not in the conflicts list) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch} & The name of the branch on which the commit will be created. \\
+\hline
+{\em conflicts} & The list of the files in conflict. \\
+\hline
+{\em message} & (Optional) The message of the commit. (Default\+: \char`\"{}mygit\+: deletion commit\char`\"{}) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \textbf{ 36} of file \textbf{ mygit\+\_\+create\+\_\+delation\+\_\+commit.\+c}.
+

@@ -133,53 +133,54 @@ $(document).ready(function(){initNavTree('create__list__branches_8c_source.html'
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keywordflow">if</span> (!head_hash)</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <a class="code hl_function" href="refs_8h.html#a580cbabd76e1bb5f50101d0534de3ebb">create_or_update_ref</a>(branch, head_hash);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>}</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="create__list__branches_8h.html#ad929b0cd0d22aee7938780406e8e584b">   44</a></span><span class="keywordtype">char</span> *<a class="code hl_function" href="create__list__branches_8c.html#ad929b0cd0d22aee7938780406e8e584b">get_current_branch</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>{</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keywordtype">char</span> *current_branch = NULL;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  current_branch = <a class="code hl_function" href="read__write__file_8h.html#a145bb2e1e9982d55e722eb0d1d8a5fb6">get_file_content</a>(<a class="code hl_define" href="utils_8h.html#a954cc467eb130a9cd95340181e6d830e">MYGIT_PATH_CURRENT_BRANCH</a>);</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keywordflow">return</span> current_branch;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>}</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="create__list__branches_8h.html#a1ceb5291dc12f23c655da2218ed42903">   52</a></span><a class="code hl_struct" href="structwork__tree__s.html">work_tree_t</a> *<a class="code hl_function" href="create__list__branches_8c.html#a1ceb5291dc12f23c655da2218ed42903">get_work_tree_from_branch</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *branch)</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>{</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keywordtype">char</span> *commit_hash = NULL;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <a class="code hl_struct" href="structwork__tree__s.html">work_tree_t</a> *wt_branch = NULL;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keywordflow">if</span> (!branch)</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  commit_hash = <a class="code hl_function" href="refs_8h.html#a50a2137f4e49a72edb6a628b823c1f15">get_ref</a>(branch);</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="keywordflow">if</span> (!commit_hash)</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  wt_branch = <a class="code hl_function" href="get__work__tree__commit_8h.html#a2b529b5312a9d84f2aec149631bb7427">get_work_tree_from_commit_hash</a>(commit_hash);</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  free(commit_hash);</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  <span class="keywordflow">return</span> wt_branch;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>}</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="create__list__branches_8h.html#a67fa325b87d55d01997147518766199d">   67</a></span><a class="code hl_struct" href="structwork__tree__s.html">work_tree_t</a> *<a class="code hl_function" href="create__list__branches_8c.html#a67fa325b87d55d01997147518766199d">get_work_tree_current_branch</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>{</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keywordtype">char</span> *current_branch = NULL;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <a class="code hl_struct" href="structwork__tree__s.html">work_tree_t</a> *wt_current_branch = NULL;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  current_branch = <a class="code hl_function" href="create__list__branches_8c.html#ad929b0cd0d22aee7938780406e8e584b">get_current_branch</a>();</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="keywordflow">if</span> (!current_branch)</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="keywordflow">if</span> (!<a class="code hl_function" href="mygit__commit__pre__checks_8h.html#a0b893b02dd2e428c8bbcc8c36f27232e">check_if_head_is_in_branch</a>(current_branch)) {</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    free(current_branch);</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  }</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  wt_current_branch = <a class="code hl_function" href="create__list__branches_8c.html#a1ceb5291dc12f23c655da2218ed42903">get_work_tree_from_branch</a>(current_branch);</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  free(current_branch);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  <span class="keywordflow">return</span> wt_current_branch;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>}</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  free(head_hash);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="create__list__branches_8h.html#ad929b0cd0d22aee7938780406e8e584b">   45</a></span><span class="keywordtype">char</span> *<a class="code hl_function" href="create__list__branches_8c.html#ad929b0cd0d22aee7938780406e8e584b">get_current_branch</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>{</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keywordtype">char</span> *current_branch = NULL;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  current_branch = <a class="code hl_function" href="read__write__file_8h.html#a145bb2e1e9982d55e722eb0d1d8a5fb6">get_file_content</a>(<a class="code hl_define" href="utils_8h.html#a954cc467eb130a9cd95340181e6d830e">MYGIT_PATH_CURRENT_BRANCH</a>);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="keywordflow">return</span> current_branch;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="create__list__branches_8h.html#a1ceb5291dc12f23c655da2218ed42903">   53</a></span><a class="code hl_struct" href="structwork__tree__s.html">work_tree_t</a> *<a class="code hl_function" href="create__list__branches_8c.html#a1ceb5291dc12f23c655da2218ed42903">get_work_tree_from_branch</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *branch)</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>{</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="keywordtype">char</span> *commit_hash = NULL;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <a class="code hl_struct" href="structwork__tree__s.html">work_tree_t</a> *wt_branch = NULL;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="keywordflow">if</span> (!branch)</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  commit_hash = <a class="code hl_function" href="refs_8h.html#a50a2137f4e49a72edb6a628b823c1f15">get_ref</a>(branch);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <span class="keywordflow">if</span> (!commit_hash)</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  wt_branch = <a class="code hl_function" href="get__work__tree__commit_8h.html#a2b529b5312a9d84f2aec149631bb7427">get_work_tree_from_commit_hash</a>(commit_hash);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  free(commit_hash);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="keywordflow">return</span> wt_branch;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>}</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="create__list__branches_8h.html#a67fa325b87d55d01997147518766199d">   68</a></span><a class="code hl_struct" href="structwork__tree__s.html">work_tree_t</a> *<a class="code hl_function" href="create__list__branches_8c.html#a67fa325b87d55d01997147518766199d">get_work_tree_current_branch</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>{</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <span class="keywordtype">char</span> *current_branch = NULL;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <a class="code hl_struct" href="structwork__tree__s.html">work_tree_t</a> *wt_current_branch = NULL;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  current_branch = <a class="code hl_function" href="create__list__branches_8c.html#ad929b0cd0d22aee7938780406e8e584b">get_current_branch</a>();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  <span class="keywordflow">if</span> (!current_branch)</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keywordflow">if</span> (!<a class="code hl_function" href="mygit__commit__pre__checks_8h.html#a0b893b02dd2e428c8bbcc8c36f27232e">check_if_head_is_in_branch</a>(current_branch)) {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    free(current_branch);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  wt_current_branch = <a class="code hl_function" href="create__list__branches_8c.html#a1ceb5291dc12f23c655da2218ed42903">get_work_tree_from_branch</a>(current_branch);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  free(current_branch);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="keywordflow">return</span> wt_current_branch;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>}</div>
 <div class="ttc" id="acommit_8h_html"><div class="ttname"><a href="commit_8h.html">commit.h</a></div></div>
-<div class="ttc" id="acreate__list__branches_8c_html_a1ceb5291dc12f23c655da2218ed42903"><div class="ttname"><a href="create__list__branches_8c.html#a1ceb5291dc12f23c655da2218ed42903">get_work_tree_from_branch</a></div><div class="ttdeci">work_tree_t * get_work_tree_from_branch(const char *branch)</div><div class="ttdoc">Get the work tree from branch name i.e. the work tree of the last commit of the branch.</div><div class="ttdef"><b>Definition:</b> <a href="create__list__branches_8c_source.html#l00052">create_list_branches.c:52</a></div></div>
-<div class="ttc" id="acreate__list__branches_8c_html_a67fa325b87d55d01997147518766199d"><div class="ttname"><a href="create__list__branches_8c.html#a67fa325b87d55d01997147518766199d">get_work_tree_current_branch</a></div><div class="ttdeci">work_tree_t * get_work_tree_current_branch(void)</div><div class="ttdoc">Get the work tree of the current branch. Means that it will returns the work tree of the branch point...</div><div class="ttdef"><b>Definition:</b> <a href="create__list__branches_8c_source.html#l00067">create_list_branches.c:67</a></div></div>
+<div class="ttc" id="acreate__list__branches_8c_html_a1ceb5291dc12f23c655da2218ed42903"><div class="ttname"><a href="create__list__branches_8c.html#a1ceb5291dc12f23c655da2218ed42903">get_work_tree_from_branch</a></div><div class="ttdeci">work_tree_t * get_work_tree_from_branch(const char *branch)</div><div class="ttdoc">Get the work tree from branch name i.e. the work tree of the last commit of the branch.</div><div class="ttdef"><b>Definition:</b> <a href="create__list__branches_8c_source.html#l00053">create_list_branches.c:53</a></div></div>
+<div class="ttc" id="acreate__list__branches_8c_html_a67fa325b87d55d01997147518766199d"><div class="ttname"><a href="create__list__branches_8c.html#a67fa325b87d55d01997147518766199d">get_work_tree_current_branch</a></div><div class="ttdeci">work_tree_t * get_work_tree_current_branch(void)</div><div class="ttdoc">Get the work tree of the current branch. Means that it will returns the work tree of the branch point...</div><div class="ttdef"><b>Definition:</b> <a href="create__list__branches_8c_source.html#l00068">create_list_branches.c:68</a></div></div>
 <div class="ttc" id="acreate__list__branches_8c_html_a8b84976d4b443fbc587cababa32927df"><div class="ttname"><a href="create__list__branches_8c.html#a8b84976d4b443fbc587cababa32927df">create_branch_if_not_exists</a></div><div class="ttdeci">int create_branch_if_not_exists(const char *branch)</div><div class="ttdoc">Create a branch if it does not exists.</div><div class="ttdef"><b>Definition:</b> <a href="create__list__branches_8c_source.html#l00031">create_list_branches.c:31</a></div></div>
-<div class="ttc" id="acreate__list__branches_8c_html_ad929b0cd0d22aee7938780406e8e584b"><div class="ttname"><a href="create__list__branches_8c.html#ad929b0cd0d22aee7938780406e8e584b">get_current_branch</a></div><div class="ttdeci">char * get_current_branch(void)</div><div class="ttdoc">Get the current branch name (the branch pointed by HEAD)</div><div class="ttdef"><b>Definition:</b> <a href="create__list__branches_8c_source.html#l00044">create_list_branches.c:44</a></div></div>
+<div class="ttc" id="acreate__list__branches_8c_html_ad929b0cd0d22aee7938780406e8e584b"><div class="ttname"><a href="create__list__branches_8c.html#ad929b0cd0d22aee7938780406e8e584b">get_current_branch</a></div><div class="ttdeci">char * get_current_branch(void)</div><div class="ttdoc">Get the current branch name (the branch pointed by HEAD)</div><div class="ttdef"><b>Definition:</b> <a href="create__list__branches_8c_source.html#l00045">create_list_branches.c:45</a></div></div>
 <div class="ttc" id="acreate__list__branches_8c_html_aef766e1ccd88967fc31578c2ba8a24ed"><div class="ttname"><a href="create__list__branches_8c.html#aef766e1ccd88967fc31578c2ba8a24ed">does_branch_exists</a></div><div class="ttdeci">int does_branch_exists(const char *branch)</div><div class="ttdoc">Function used to check if a branch exists.</div><div class="ttdef"><b>Definition:</b> <a href="create__list__branches_8c_source.html#l00018">create_list_branches.c:18</a></div></div>
 <div class="ttc" id="acreate__list__branches_8h_html"><div class="ttname"><a href="create__list__branches_8h.html">create_list_branches.h</a></div></div>
 <div class="ttc" id="aget__branch__commit__tree_8h_html"><div class="ttname"><a href="get__branch__commit__tree_8h.html">get_branch_commit_tree.h</a></div></div>

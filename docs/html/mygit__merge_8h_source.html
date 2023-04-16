@@ -102,14 +102,10 @@ $(document).ready(function(){initNavTree('mygit__merge_8h_source.html',''); init
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef MYGIT_MERGE_H</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define MYGIT_MERGE_H</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="list_8h.html">libs/list/list.h</a>&quot;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><a class="code hl_struct" href="structcell__s.html">list_t</a> *<a class="code hl_function" href="mygit__merge_8h.html#ab5ae2470fd69f5ba436f08b4a27d0aac">mygit_merge</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *remote_branch, <span class="keyword">const</span> <span class="keywordtype">char</span> *message);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="alist_8h_html"><div class="ttname"><a href="list_8h.html">list.h</a></div></div>
-<div class="ttc" id="amygit__merge_8h_html_ab5ae2470fd69f5ba436f08b4a27d0aac"><div class="ttname"><a href="mygit__merge_8h.html#ab5ae2470fd69f5ba436f08b4a27d0aac">mygit_merge</a></div><div class="ttdeci">list_t * mygit_merge(const char *remote_branch, const char *message)</div><div class="ttdoc">Function that merge the current branch with the remote branch if there is no conflicts if there is co...</div><div class="ttdef"><b>Definition:</b> <a href="mygit__merge_8c_source.html#l00028">mygit_merge.c:28</a></div></div>
-<div class="ttc" id="astructcell__s_html"><div class="ttname"><a href="structcell__s.html">cell_s</a></div><div class="ttdoc">A cell is a node in a linked list. It contains a pointer to the next cell, and a pointer to the data ...</div><div class="ttdef"><b>Definition:</b> <a href="cell_8h_source.html#l00017">cell.h:17</a></div></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keywordtype">void</span> <a class="code hl_function" href="mygit__merge_8h.html#a602f2aaf63dfac583c84e946c44294e2">mygit_merge</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *branch, <span class="keyword">const</span> <span class="keywordtype">char</span> *message);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="amygit__merge_8h_html_a602f2aaf63dfac583c84e946c44294e2"><div class="ttname"><a href="mygit__merge_8h.html#a602f2aaf63dfac583c84e946c44294e2">mygit_merge</a></div><div class="ttdeci">void mygit_merge(const char *branch, const char *message)</div><div class="ttdoc">Function used to merge the provided branch with the current branch. If there is conflits,...</div><div class="ttdef"><b>Definition:</b> <a href="mygit__merge_8c_source.html#l00113">mygit_merge.c:113</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

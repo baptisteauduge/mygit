@@ -12,7 +12,9 @@ char $\ast$ \textbf{ get\+\_\+branch\+\_\+commits\+\_\+tree\+\_\+str} (const cha
 void \textbf{ print\+\_\+branch\+\_\+commit\+\_\+tree} (char $\ast$branch)
 \begin{DoxyCompactList}\small\item\em Print the the commits of a branch (from the last to the first) the function is based on \doxyref{get\+\_\+branch\+\_\+commits\+\_\+tree\+\_\+str}{p.}{get__branch__commit__tree_8h_a092180329cc57b64d0556cb4aa50d769}. \end{DoxyCompactList}\item 
 \textbf{ list\+\_\+t} $\ast$ \textbf{ get\+\_\+commit\+\_\+from\+\_\+branch\+\_\+list} (const char $\ast$branch\+\_\+name)
-\begin{DoxyCompactList}\small\item\em Get the commit from branch as list\+\_\+t (from the last to the first) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get the commit from branch as list\+\_\+t (from the last to the first) \end{DoxyCompactList}\item 
+\textbf{ commit\+\_\+t} $\ast$ \textbf{ get\+\_\+last\+\_\+commit\+\_\+from\+\_\+branch} (const char $\ast$branch\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Get the last commit from branch name. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -36,7 +38,7 @@ char$\ast$ The string containing all the commits of the branch
 \end{DoxyReturn}
 
 
-Definition at line \textbf{ 58} of file \textbf{ get\+\_\+branch\+\_\+commit\+\_\+tree.\+c}.
+Definition at line \textbf{ 59} of file \textbf{ get\+\_\+branch\+\_\+commit\+\_\+tree.\+c}.
 
 \mbox{\label{get__branch__commit__tree_8h_ad3d919b6e35acbd41e6f735a4e7af588}} 
 \index{get\_branch\_commit\_tree.h@{get\_branch\_commit\_tree.h}!get\_commit\_from\_branch\_list@{get\_commit\_from\_branch\_list}}
@@ -58,7 +60,7 @@ list\+\_\+t$\ast$ The list of commits of the branch
 \end{DoxyReturn}
 
 
-Definition at line \textbf{ 109} of file \textbf{ get\+\_\+branch\+\_\+commit\+\_\+tree.\+c}.
+Definition at line \textbf{ 110} of file \textbf{ get\+\_\+branch\+\_\+commit\+\_\+tree.\+c}.
 
 \mbox{\label{get__branch__commit__tree_8h_a2bcf701eaae0f602e06c8118dc2eed49}} 
 \index{get\_branch\_commit\_tree.h@{get\_branch\_commit\_tree.h}!get\_commit\_from\_hash@{get\_commit\_from\_hash}}
@@ -80,7 +82,29 @@ commit\+\_\+t$\ast$ The commit corresponding to the given hash
 \end{DoxyReturn}
 
 
-Definition at line \textbf{ 17} of file \textbf{ get\+\_\+branch\+\_\+commit\+\_\+tree.\+c}.
+Definition at line \textbf{ 18} of file \textbf{ get\+\_\+branch\+\_\+commit\+\_\+tree.\+c}.
+
+\mbox{\label{get__branch__commit__tree_8h_a3d6d63b43a7220959b901753d26a9afe}} 
+\index{get\_branch\_commit\_tree.h@{get\_branch\_commit\_tree.h}!get\_last\_commit\_from\_branch@{get\_last\_commit\_from\_branch}}
+\index{get\_last\_commit\_from\_branch@{get\_last\_commit\_from\_branch}!get\_branch\_commit\_tree.h@{get\_branch\_commit\_tree.h}}
+\doxysubsubsection{get\_last\_commit\_from\_branch()}
+{\footnotesize\ttfamily \textbf{ commit\+\_\+t} $\ast$ get\+\_\+last\+\_\+commit\+\_\+from\+\_\+branch (\begin{DoxyParamCaption}\item[{const char $\ast$}]{branch\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Get the last commit from branch name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em branch\+\_\+name} & The name of the branch \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+commit\+\_\+t$\ast$ The last commit of the branch or NULL if the branch doesn\textquotesingle{}t exist 
+\end{DoxyReturn}
+
+
+Definition at line \textbf{ 130} of file \textbf{ get\+\_\+branch\+\_\+commit\+\_\+tree.\+c}.
 
 \mbox{\label{get__branch__commit__tree_8h_afbca1f48127867731827c4f4081f61ed}} 
 \index{get\_branch\_commit\_tree.h@{get\_branch\_commit\_tree.h}!print\_branch\_commit\_tree@{print\_branch\_commit\_tree}}
@@ -99,5 +123,5 @@ Print the the commits of a branch (from the last to the first) the function is b
 \end{DoxyParams}
 
 
-Definition at line \textbf{ 78} of file \textbf{ get\+\_\+branch\+\_\+commit\+\_\+tree.\+c}.
+Definition at line \textbf{ 79} of file \textbf{ get\+\_\+branch\+\_\+commit\+\_\+tree.\+c}.
 

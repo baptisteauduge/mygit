@@ -42,47 +42,48 @@
 \DoxyCodeLine{00038\ \ \ \textcolor{keywordflow}{if}\ (!head\_hash)}
 \DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
 \DoxyCodeLine{00040\ \ \ create\_or\_update\_ref(branch,\ head\_hash);}
-\DoxyCodeLine{00041\ \ \ \textcolor{keywordflow}{return}\ 1;}
-\DoxyCodeLine{00042\ \}}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \textcolor{keywordtype}{char}\ *get\_current\_branch(\textcolor{keywordtype}{void})}
-\DoxyCodeLine{00045\ \{}
-\DoxyCodeLine{00046\ \ \ \textcolor{keywordtype}{char}\ *current\_branch\ =\ NULL;}
-\DoxyCodeLine{00047\ }
-\DoxyCodeLine{00048\ \ \ current\_branch\ =\ get\_file\_content(MYGIT\_PATH\_CURRENT\_BRANCH);}
-\DoxyCodeLine{00049\ \ \ \textcolor{keywordflow}{return}\ current\_branch;}
-\DoxyCodeLine{00050\ \}}
-\DoxyCodeLine{00051\ }
-\DoxyCodeLine{00052\ work\_tree\_t\ *get\_work\_tree\_from\_branch(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *branch)}
-\DoxyCodeLine{00053\ \{}
-\DoxyCodeLine{00054\ \ \ \textcolor{keywordtype}{char}\ *commit\_hash\ =\ NULL;}
-\DoxyCodeLine{00055\ \ \ work\_tree\_t\ *wt\_branch\ =\ NULL;}
-\DoxyCodeLine{00056\ }
-\DoxyCodeLine{00057\ \ \ \textcolor{keywordflow}{if}\ (!branch)}
-\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
-\DoxyCodeLine{00059\ \ \ commit\_hash\ =\ get\_ref(branch);}
-\DoxyCodeLine{00060\ \ \ \textcolor{keywordflow}{if}\ (!commit\_hash)}
-\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
-\DoxyCodeLine{00062\ \ \ wt\_branch\ =\ get\_work\_tree\_from\_commit\_hash(commit\_hash);}
-\DoxyCodeLine{00063\ \ \ free(commit\_hash);}
-\DoxyCodeLine{00064\ \ \ \textcolor{keywordflow}{return}\ wt\_branch;}
-\DoxyCodeLine{00065\ \}}
-\DoxyCodeLine{00066\ }
-\DoxyCodeLine{00067\ work\_tree\_t\ *get\_work\_tree\_current\_branch(\textcolor{keywordtype}{void})}
-\DoxyCodeLine{00068\ \{}
-\DoxyCodeLine{00069\ \ \ \textcolor{keywordtype}{char}\ *current\_branch\ =\ NULL;}
-\DoxyCodeLine{00070\ \ \ work\_tree\_t\ *wt\_current\_branch\ =\ NULL;}
-\DoxyCodeLine{00071\ }
-\DoxyCodeLine{00072\ \ \ current\_branch\ =\ get\_current\_branch();}
-\DoxyCodeLine{00073\ \ \ \textcolor{keywordflow}{if}\ (!current\_branch)}
-\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
-\DoxyCodeLine{00075\ \ \ \textcolor{keywordflow}{if}\ (!check\_if\_head\_is\_in\_branch(current\_branch))\ \{}
-\DoxyCodeLine{00076\ \ \ \ \ free(current\_branch);}
-\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
-\DoxyCodeLine{00078\ \ \ \}}
-\DoxyCodeLine{00079\ \ \ wt\_current\_branch\ =\ get\_work\_tree\_from\_branch(current\_branch);}
-\DoxyCodeLine{00080\ \ \ free(current\_branch);}
-\DoxyCodeLine{00081\ \ \ \textcolor{keywordflow}{return}\ wt\_current\_branch;}
-\DoxyCodeLine{00082\ \}}
+\DoxyCodeLine{00041\ \ \ free(head\_hash);}
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keywordtype}{char}\ *get\_current\_branch(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordtype}{char}\ *current\_branch\ =\ NULL;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ current\_branch\ =\ get\_file\_content(MYGIT\_PATH\_CURRENT\_BRANCH);}
+\DoxyCodeLine{00050\ \ \ \textcolor{keywordflow}{return}\ current\_branch;}
+\DoxyCodeLine{00051\ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ work\_tree\_t\ *get\_work\_tree\_from\_branch(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *branch)}
+\DoxyCodeLine{00054\ \{}
+\DoxyCodeLine{00055\ \ \ \textcolor{keywordtype}{char}\ *commit\_hash\ =\ NULL;}
+\DoxyCodeLine{00056\ \ \ work\_tree\_t\ *wt\_branch\ =\ NULL;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \textcolor{keywordflow}{if}\ (!branch)}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00060\ \ \ commit\_hash\ =\ get\_ref(branch);}
+\DoxyCodeLine{00061\ \ \ \textcolor{keywordflow}{if}\ (!commit\_hash)}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00063\ \ \ wt\_branch\ =\ get\_work\_tree\_from\_commit\_hash(commit\_hash);}
+\DoxyCodeLine{00064\ \ \ free(commit\_hash);}
+\DoxyCodeLine{00065\ \ \ \textcolor{keywordflow}{return}\ wt\_branch;}
+\DoxyCodeLine{00066\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ work\_tree\_t\ *get\_work\_tree\_current\_branch(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \ \ \textcolor{keywordtype}{char}\ *current\_branch\ =\ NULL;}
+\DoxyCodeLine{00071\ \ \ work\_tree\_t\ *wt\_current\_branch\ =\ NULL;}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ current\_branch\ =\ get\_current\_branch();}
+\DoxyCodeLine{00074\ \ \ \textcolor{keywordflow}{if}\ (!current\_branch)}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00076\ \ \ \textcolor{keywordflow}{if}\ (!check\_if\_head\_is\_in\_branch(current\_branch))\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ free(current\_branch);}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00079\ \ \ \}}
+\DoxyCodeLine{00080\ \ \ wt\_current\_branch\ =\ get\_work\_tree\_from\_branch(current\_branch);}
+\DoxyCodeLine{00081\ \ \ free(current\_branch);}
+\DoxyCodeLine{00082\ \ \ \textcolor{keywordflow}{return}\ wt\_current\_branch;}
+\DoxyCodeLine{00083\ \}}
 
 \end{DoxyCode}
