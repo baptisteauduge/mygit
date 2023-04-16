@@ -1,2 +1,0 @@
-Je suis le contenu dans le fichier 3.
-J'ai été écrit dans la branche master.
