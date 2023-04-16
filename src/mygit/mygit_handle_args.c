@@ -24,7 +24,8 @@ int mygit_handle_args(int argc, char **argv)
                            "branch-print",
                            "checkout-branch",
                            "checkout-commit",
-                           "merge"};
+                           "merge",
+                           "help"};
 
   handle_args_func actions_func[] = {init_handle_args,
                                      list_refs_handle_args,
@@ -39,8 +40,9 @@ int mygit_handle_args(int argc, char **argv)
                                      branch_print_handle_args,
                                      checkout_branch_handle_args,
                                      checkout_commit_handle_args,
-                                     merge_handle_args};
-  int nb_actions = 14;
+                                     merge_handle_args,
+                                     help_handle_args};
+  int nb_actions = 15;
 
   for (int i = 0; i < nb_actions; ++i) {
     if (strcmp(argv[1], actions_names[i]) == 0)

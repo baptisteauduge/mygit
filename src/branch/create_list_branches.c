@@ -38,6 +38,7 @@ int create_branch_if_not_exists(const char *branch)
   if (!head_hash)
     return 0;
   create_or_update_ref(branch, head_hash);
+  free(head_hash);
   return 1;
 }
 

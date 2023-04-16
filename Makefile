@@ -54,6 +54,7 @@ SRC					=		src/libs/cell/cell.c															\
 								src/merge/mygit_create_delation_commit.c					\
 								src/mygit/mygit_handle_args.c											\
 								src/mygit/mygit_handle_args_actions.c							\
+								src/mygit/mygit_help.c														\
 								src/utils/realloc_and_concat.c										\
 								src/utils/get_content_or_dash_str.c								\
 

@@ -48,6 +48,7 @@ int mygit_add(const char *file)
   append_wt_ret = append_work_tree(work_tree, file, NULL, 0);
   if (append_wt_ret) {
     work_tree_to_file(work_tree, MYGIT_PATH_ADD);
+    free_work_tree(work_tree);
     return 1;
   }
   if (append_wt_ret == 0)

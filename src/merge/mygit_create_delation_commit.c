@@ -52,9 +52,11 @@ void mygit_create_deletion_commit(const char *branch, const list_t *conflicts,
   remove(MYGIT_PATH_ADD);
   add_files_not_in_conflict(conflicts, last_work_tree_branch);
   if (!message)
-    mygit_commit(branch, "mygit: deletion commit");
+    free(mygit_commit(branch, "mygit: deletion commit"));
   else
-    mygit_commit(branch, message);
+    free(mygit_commit(branch, message));
   mygit_checkout_branch(default_branch);
   free(default_branch);
+  free_commit(last_commit_branch);
+  free_work_tree(last_work_tree_branch);
 }
