@@ -36,10 +36,10 @@ static void browse_list_and_concat_cells(list_t *list, char *list_str,
   cell = *list;
   while (cell) {
     cell_str = cell_to_string(cell);
-    strlcat(list_str, cell_str, str_size);
+    strncat(list_str, cell_str, str_size);
     cell = cell->next;
     if (cell)
-      strlcat(list_str, SEPARATOR_LIST_STRING, str_size);
+      strncat(list_str, SEPARATOR_LIST_STRING, str_size);
   }
 }
 

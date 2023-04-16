@@ -22,7 +22,7 @@ char *get_path_absolute(const char *path, const char *filename)
     return NULL;
   strcpy(path_absolute, path);
   if (path_absolute[size - 1] != '/')
-    strlcat(path_absolute, "/", size + 1);
-  strlcat(path_absolute, filename, size + 2);
+    strncat(path_absolute, "/", size + 1);
+  strncat(path_absolute, filename, size + 2);
   return path_absolute;
 }

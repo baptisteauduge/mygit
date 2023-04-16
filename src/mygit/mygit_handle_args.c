@@ -40,7 +40,7 @@ int mygit_handle_args(int argc, char **argv)
                                      checkout_branch_handle_args,
                                      checkout_commit_handle_args,
                                      merge_handle_args};
-  int nb_actions = 13;
+  int nb_actions = 14;
 
   for (int i = 0; i < nb_actions; ++i) {
     if (strcmp(argv[1], actions_names[i]) == 0)

@@ -102,8 +102,8 @@ static void mygit_handle_conflicts(const char *branch, const list_t *conflicts,
     return;
 
   LOG_INFO(
-      "What do you want to do ?\n1) Keep the current branch changes\n2) "
-      "Keep the '%s' branch changes\n3) Choose for each file\nYour choice:",
+      "What do you want to do ?\n1) Keep the current branch changes\n2) Keep "
+      "the '%s' branch changes\n3) Choose for each file\nYour choice:",
       branch);
   mygit_handle_answer(branch, conflicts, message);
 }
@@ -112,8 +112,10 @@ void mygit_merge(const char *branch, const char *message)
 {
   list_t *conflicts = NULL;
 
-  if (!branch)
+  if (!branch || !does_branch_exists(branch)) {
+    LOG_ERROR("The branch '%s' does not exists.\n", branch);
     return;
+  }
   conflicts = mygit_merge_or_get_conflicts(branch, message);
   if (conflicts) {
     LOG_ERROR("There is conflicts between the branches that you are trying to "

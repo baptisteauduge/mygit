@@ -32,10 +32,10 @@ static int browse_wt_and_convert(const work_tree_t *wt, char *str_wt, size_t str
     str_wf = convert_work_file_to_str(&wt->tab[i]);
     if (!str_wf)
       return 0;
-    strlcat(str_wt, str_wf, str_wt_size);
+    strncat(str_wt, str_wf, str_wt_size);
     free(str_wf);
     if (i != wt->size - 1)
-      strlcat(str_wt, "\n", str_wt_size);
+      strncat(str_wt, "\n", str_wt_size);
   }
   return 1;
 }

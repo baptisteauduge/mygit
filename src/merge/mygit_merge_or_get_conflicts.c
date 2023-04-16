@@ -83,7 +83,6 @@ list_t *mygit_merge_or_get_conflicts(const char *remote_branch, const char *mess
   free(hash_wt_merged);
   free(hash_commit);
   free(ref_curr_branch);
-  free(ref_curr_branch);
   free(curr_branch);
   free(conflicted_files);
   return NULL;
