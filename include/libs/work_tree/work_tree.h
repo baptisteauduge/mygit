@@ -7,7 +7,7 @@
 #ifndef WORK_TREE_H
 #define WORK_TREE_H
 
-#define WORK_TREE_MAX_SIZE 100
+#define WORK_TREE_MAX_SIZE 10000
 
 #include "libs/work_file/work_file.h"
 #include <stddef.h>

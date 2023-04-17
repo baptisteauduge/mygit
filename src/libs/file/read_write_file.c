@@ -64,8 +64,7 @@ char *get_file_content(const char *path)
   size_read = getline(&line, &len, file);
   if (size_read == -1 && line) {
     fclose(file);
-    free(line);
-    return NULL;
+    return line;
   }
   while (size_read != -1) {
     realloc_and_strcat(&content, size_read, &line);
