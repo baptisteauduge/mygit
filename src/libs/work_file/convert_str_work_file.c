@@ -71,7 +71,7 @@ int get_content_str_work_file(const char *str, char **name, char **hash,
     free(*name);
     return 0;
   }
-  if (sscanf(str, "%s\t%s\t%ho", *name, *hash, mode) < 2)
+  if (sscanf(str, "%s\t%s\t%o", *name, *hash, mode) < 2)
     return 0;
   set_to_null_if_dash(name);
   set_to_null_if_dash(hash);
