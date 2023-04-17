@@ -41,7 +41,8 @@ char *convert_work_file_to_str(const work_file_t *wf)
     return NULL;
   name = get_content_or_dash_str(wf->name);
   hash = get_content_or_dash_str(wf->hash);
-  if (snprintf(wf_str, size_wf_str, "%s\t%s\t%o", name, hash, wf->mode) < 0) {
+  if (snprintf(wf_str, size_wf_str, "%s\t%s\t" SCANF_ARG_MODE, name, hash,
+               wf->mode) < 0) {
     free(wf_str);
     return NULL;
   }
@@ -71,7 +72,7 @@ int get_content_str_work_file(const char *str, char **name, char **hash,
     free(*name);
     return 0;
   }
-  if (sscanf(str, "%s\t%s\t%o", *name, *hash, mode) < 2)
+  if (sscanf(str, "%s\t%s\t" SCANF_ARG_MODE, *name, *hash, mode) < 2)
     return 0;
   set_to_null_if_dash(name);
   set_to_null_if_dash(hash);

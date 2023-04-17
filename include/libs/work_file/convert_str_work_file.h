@@ -9,6 +9,14 @@
 
 #define BUFFER_SIZE 1024
 
+// Due to a bug in MacOS, we have to use %ho instead of %o
+#ifdef __APPLE__
+#define SCANF_ARG_MODE "%ho"
+#else
+#define SCANF_ARG_MODE "%o"
+#endif
+
+
 #include "libs/work_file/work_file.h"
 #include <stddef.h>
 
