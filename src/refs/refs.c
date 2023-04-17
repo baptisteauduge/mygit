@@ -73,7 +73,7 @@ static int concat_ref_name_hash(char **str_all_ref, size_t *size_str_all_ref,
     return 0;
   *size_str_all_ref += strlen(hash_ref) + 1;
   if (!*str_all_ref)
-    *str_all_ref = malloc(*size_str_all_ref * sizeof(char));
+    *str_all_ref = calloc(*size_str_all_ref, sizeof(char));
   else
     *str_all_ref = realloc(*str_all_ref, *size_str_all_ref * sizeof(char));
   strncat(*str_all_ref, ref_name, *size_str_all_ref);

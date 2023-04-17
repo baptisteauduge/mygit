@@ -20,7 +20,7 @@ void create_file_path_dirs(const char *file_path)
 
   if (!file_path)
     return;
-  dir_path = malloc(strlen(file_path) + 1);
+  dir_path = calloc(strlen(file_path) + 1, sizeof(char));
   if (!dir_path)
     return;
   next_sep = strchr(file_path, '/');

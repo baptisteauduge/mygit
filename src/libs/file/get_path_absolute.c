@@ -17,7 +17,7 @@ char *get_path_absolute(const char *path, const char *filename)
     return NULL;
   size = strlen(path);
   size += strlen(filename);
-  path_absolute = malloc((size + 2) * sizeof(char));
+  path_absolute = calloc((size + 2), sizeof(char));
   if (!path_absolute)
     return NULL;
   strcpy(path_absolute, path);

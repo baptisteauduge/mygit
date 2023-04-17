@@ -63,10 +63,10 @@ int get_content_str_work_file(const char *str, char **name, char **hash,
 {
   if (!name || !hash || !mode || !str)
     return 0;
-  *name = malloc(BUFFER_SIZE * sizeof(char));
+  *name = calloc(BUFFER_SIZE, sizeof(char));
   if (!*name)
     return 0;
-  *hash = malloc(BUFFER_SIZE * sizeof(char));
+  *hash = calloc(BUFFER_SIZE, sizeof(char));
   if (!*hash) {
     free(*name);
     return 0;
